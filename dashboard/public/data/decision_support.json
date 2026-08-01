@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "module": "step26_decision_support",
+    "generated_at": "2026-08-01 10:35:03",
+    "model": "预算线性分配 + 级联底线重算（一阶近似）",
+    "basis": "prevention_strategy.csv（step14 实际推演）+ collapse_threshold.csv（step10）",
+    "note": "干预提升量按加固路段线性分摊且与震级无关（保守）；交通/避难未直接施加干预"
+  },
+  "baseline": {
+    "bottom_line_mag": 6.0,
+    "city_collapse": "M6.5 起城市崩溃"
+  },
+  "budget_curve": [
+    {
+      "budget": 0.0,
+      "roads": 0,
+      "med_points": 0,
+      "cost": 0.0,
+      "gain_medical": 0.0,
+      "gain_rescue": 0.0,
+      "bottom_line_mag": 6.0,
+      "shift": 0.0
+    },
+    {
+      "budget": 0.5,
+      "roads": 2,
+      "med_points": 0,
+      "cost": 0.4,
+      "gain_medical": 0.0317,
+      "gain_rescue": 0.0303,
+      "bottom_line_mag": 6.0,
+      "shift": 0.0
+    },
+    {
+      "budget": 1.0,
+      "roads": 4,
+      "med_points": 0,
+      "cost": 0.8,
+      "gain_medical": 0.0634,
+      "gain_rescue": 0.0606,
+      "bottom_line_mag": 6.0,
+      "shift": 0.0
+    },
+    {
+      "budget": 1.5,
+      "roads": 7,
+      "med_points": 0,
+      "cost": 1.4,
+      "gain_medical": 0.1109,
+      "gain_rescue": 0.106,
+      "bottom_line_mag": 6.0,
+      "shift": 0.0
+    },
+    {
+      "budget": 2.0,
+      "roads": 9,
+      "med_points": 0,
+      "cost": 1.8,
+      "gain_medical": 0.1426,
+      "gain_rescue": 0.1363,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 2.5,
+      "roads": 10,
+      "med_points": 1,
+      "cost": 2.5,
+      "gain_medical": 0.1594,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 3.0,
+      "roads": 10,
+      "med_points": 2,
+      "cost": 3.0,
+      "gain_medical": 0.1604,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 3.5,
+      "roads": 10,
+      "med_points": 3,
+      "cost": 3.5,
+      "gain_medical": 0.1614,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 4.0,
+      "roads": 10,
+      "med_points": 4,
+      "cost": 4.0,
+      "gain_medical": 0.1624,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 4.5,
+      "roads": 10,
+      "med_points": 5,
+      "cost": 4.5,
+      "gain_medical": 0.1634,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 5.0,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 5.5,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 6.0,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 6.5,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 7.0,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 7.5,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 8.0,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 8.5,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 9.0,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 9.5,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    },
+    {
+      "budget": 10.0,
+      "roads": 10,
+      "med_points": 6,
+      "cost": 5.0,
+      "gain_medical": 0.1644,
+      "gain_rescue": 0.1515,
+      "bottom_line_mag": 6.5,
+      "shift": 0.5
+    }
+  ],
+  "milestones": [
+    {
+      "target_mag": 6.5,
+      "budget": 2.0,
+      "roads": 9
+    }
+  ],
+  "highlights": {
+    "first_shift_budget": 2.0,
+    "first_shift_to": 6.5,
+    "budget_to_m70": null,
+    "max_shift": 0.5
+  },
+  "interpretation": "城市崩溃底线基线 M6.0；仅 2.0 亿元预算（加固 9 条关键路段）即可把底线推高至 M6.5。预算-底线曲线为防灾预算分配提供量化决策依据：每一亿元能买来多少'底线高度'。"
+}

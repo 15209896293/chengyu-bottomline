@@ -5,11 +5,39 @@ import {
   ShieldCheck, Shield, ShieldOff,
   CheckSquare, Square,
   ZoomIn, ZoomOut, Home, MousePointerClick, Ruler, Maximize,
-  Loader2
+  Loader2,
+  SlidersHorizontal, TrendingUp
 } from 'lucide-vue-next'
 import { useDashboardData } from '../../composables/useDashboardData.js'
 import { useMagnitude } from '../../composables/useMagnitude.js'
 import MapContainer from '../map/MapContainer.vue'
+
+// ==================== 决策舱：预算 → 底线推移 ====================
+const decision = ref(null)
+const budgetSlider = ref(2.0) // 默认 2 亿（首个能推高底线的预算）
+
+async function loadDecision() {
+  try {
+    const r = await fetch('/data/decision_support.json')
+    if (r.ok) decision.value = await r.json()
+  } catch (e) { console.error('加载决策数据失败:', e) }
+}
+
+const currentDecision = computed(() => {
+  const d = decision.value
+  if (!d?.budget_curve?.length) return null
+  // 找预算档位（最近 ≤ 滑块的档）
+  const target = budgetSlider.value
+  const pts = d.budget_curve
+  let best = pts[0]
+  for (const p of pts) {
+    if (p.budget <= target + 1e-9) best = p
+    else break
+  }
+  // 下一档（看再加钱能否推高）
+  const next = pts.find(p => p.budget > best.budget + 1e-9 && p.bottom_line_mag > best.bottom_line_mag)
+  return { current: best, next, baseline: d.baseline?.bottom_line_mag ?? 6.0 }
+})
 
 // ==================== DATA SOURCE ====================
 const { data, loading, error } = useDashboardData()
@@ -585,6 +613,7 @@ function hideDistrictTooltip() {
 
 // ==================== LIFECYCLE ====================
 onMounted(() => {
+  loadDecision()
   nextTick(() => {
     initTrendChart()
     initRadarChart()
@@ -637,6 +666,63 @@ watch(() => data.prevention, () => {
     <div v-for="(item, i) in kpiItems" :key="i" class="kpi-cell">
       <div class="kpi-label">{{ item.label }}</div>
       <div class="kpi-value" :class="item.color">{{ item.value }}</div>
+    </div>
+  </div>
+
+  <!-- ========== 决策舱：花多少钱把底线推多高 ========== -->
+  <div v-if="currentDecision" class="decision-cockpit">
+    <div class="cockpit-head">
+      <ShieldCheck :size="13" style="vertical-align:-1px;color:var(--state-success);" />
+      <span class="cockpit-q">城市底线当前 M{{ currentDecision.baseline.toFixed(1) }}——你的预算能把它推多高？</span>
+      <span class="cockpit-tag">决策舱 · 级联口径</span>
+    </div>
+    <div class="cockpit-body">
+      <!-- 预算输入 -->
+      <div class="cockpit-input">
+        <div class="cockpit-slider-label">
+          预算 <b class="num" style="color:var(--av-primary);">{{ budgetSlider.toFixed(1) }} 亿元</b>
+          <span class="cockpit-sub">推荐：加固 {{ currentDecision.current.roads }} 条关键路段 + {{ currentDecision.current.med_points }} 个医疗点</span>
+        </div>
+        <input v-model.number="budgetSlider" type="range" min="0" max="10" step="0.5" class="cockpit-range" />
+        <div class="cockpit-scale"><span>0亿</span><span>2亿·推高0.5级</span><span>10亿</span></div>
+      </div>
+      <!-- 效果输出 -->
+      <div class="cockpit-output">
+        <div class="cockpit-metric">
+          <div class="cockpit-metric-label">城市底线</div>
+          <div class="cockpit-metric-value num" :style="{ color: currentDecision.current.shift > 0 ? 'var(--state-success)' : 'var(--state-error)' }">
+            M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}
+          </div>
+          <div class="cockpit-metric-sub num" v-if="currentDecision.current.shift > 0">+{{ currentDecision.current.shift.toFixed(1) }} 级</div>
+        </div>
+        <div class="cockpit-metric">
+          <div class="cockpit-metric-label">医疗功能率</div>
+          <div class="cockpit-metric-value num" style="color:var(--av-primary);">+{{ (currentDecision.current.gain_medical * 100).toFixed(1) }}%</div>
+          <div class="cockpit-metric-sub">M6.5 场景提升</div>
+        </div>
+        <div class="cockpit-metric">
+          <div class="cockpit-metric-label">救援功能率</div>
+          <div class="cockpit-metric-value num" style="color:var(--state-info);">+{{ (currentDecision.current.gain_rescue * 100).toFixed(1) }}%</div>
+          <div class="cockpit-metric-sub">M6.5 场景提升</div>
+        </div>
+        <div class="cockpit-metric">
+          <div class="cockpit-metric-label">边际收益</div>
+          <div class="cockpit-metric-value num" :style="{ color: currentDecision.next ? 'var(--state-warning)' : 'var(--av-muted-foreground)' }">
+            {{ currentDecision.next ? `再+${(currentDecision.next.budget - currentDecision.current.budget).toFixed(1)}亿→M${currentDecision.next.bottom_line_mag.toFixed(1)}` : '已封顶' }}
+          </div>
+          <div class="cockpit-metric-sub">{{ currentDecision.next ? '可继续推高' : '10路段加固后边际递减' }}</div>
+        </div>
+      </div>
+      <!-- 决策结论 -->
+      <div class="cockpit-conclusion">
+        <TrendingUp :size="12" style="vertical-align:-1px;" />
+        <span>
+          <b>{{ budgetSlider.toFixed(1) }} 亿元预算</b>（加固 {{ currentDecision.current.roads }} 条关键路段）：
+          城市崩溃底线从 <b>M{{ currentDecision.baseline.toFixed(1) }}</b>
+          推高至 <b style="color:var(--state-success);">M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</b>——
+          {{ currentDecision.current.shift > 0 ? `每亿元买来 ${(currentDecision.current.shift / Math.max(budgetSlider, 0.1)).toFixed(2)} 级底线高度` : '当前预算不足以推高底线，建议增至 2 亿元' }}
+        </span>
+      </div>
     </div>
   </div>
 
