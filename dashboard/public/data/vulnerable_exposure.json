@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "module": "step22_vulnerable_facilities",
+    "generated_at": "2026-08-01 08:36:16",
+    "magnitude": 6.0,
+    "note": "暴露度 = 位于烈度≥VII区（intensity>=7.0）的设施占比"
+  },
+  "by_type": [
+    {
+      "type": "中学",
+      "count": 80,
+      "high_exposure": 54,
+      "exposure_ratio": 0.675,
+      "mean_intensity": 7.354125000000001
+    },
+    {
+      "type": "养老院",
+      "count": 176,
+      "high_exposure": 79,
+      "exposure_ratio": 0.449,
+      "mean_intensity": 6.860056818181818
+    },
+    {
+      "type": "小学",
+      "count": 1,
+      "high_exposure": 1,
+      "exposure_ratio": 1.0,
+      "mean_intensity": 7.97
+    },
+    {
+      "type": "幼儿园",
+      "count": 100,
+      "high_exposure": 91,
+      "exposure_ratio": 0.91,
+      "mean_intensity": 7.781000000000001
+    },
+    {
+      "type": "福利院",
+      "count": 56,
+      "high_exposure": 18,
+      "exposure_ratio": 0.321,
+      "mean_intensity": 6.602678571428571
+    }
+  ],
+  "total": 413
+}

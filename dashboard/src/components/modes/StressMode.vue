@@ -6,6 +6,7 @@ import KpiBar from '../shell/KpiBar.vue'
 
 // ==================== DATA SOURCE ====================
 const report = ref(null)
+const vulnerable = ref(null)
 const loading = ref(true)
 const error = ref(null)
 const activeMag = ref('6.0') // 动态传染展示震级
@@ -16,8 +17,12 @@ const SYSTEM_NAMES = { medical: '医疗', transport: '交通', rescue: '救援',
 
 async function loadData() {
   try {
-    const r = await fetch('/data/stress_report.json').then(res => res.json())
+    const [r, v] = await Promise.all([
+      fetch('/data/stress_report.json').then(res => res.json()),
+      fetch('/data/vulnerable_exposure.json').then(res => res.json()).catch(() => null),
+    ])
     report.value = r
+    vulnerable.value = v
     if (r.dynamic_contagion?.highlight_magnitude) {
       activeMag.value = r.dynamic_contagion.highlight_magnitude
     }
@@ -190,12 +195,13 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
         <div class="panel-item">
           <div class="panel-label"><Activity :size="11" style="vertical-align:-1px;" /> 最不利破裂位置</div>
           <div v-if="epiScan" class="epi-row">
-            <div class="data-row"><span class="data-row-key">基准震中</span><span class="data-row-val">临界 M{{ epiScan.baseline_epicenter.critical_mag != null ? epiScan.baseline_epicenter.critical_mag.toFixed(1) : '—' }}</span></div>
+            <div class="data-row"><span class="data-row-key">基准震中（质心）</span><span class="data-row-val">临界 M{{ epiScan.baseline_epicenter.critical_mag != null ? epiScan.baseline_epicenter.critical_mag.toFixed(1) : '—' }}</span></div>
             <div class="data-row"><span class="data-row-key">最不利位置</span><span class="data-row-val red">{{ epiScan.most_vulnerable.critical_mag != null ? 'M' + epiScan.most_vulnerable.critical_mag.toFixed(1) : '—' }}</span></div>
             <div class="data-row"><span class="data-row-key">坐标</span><span class="data-row-val">{{ epiScan.most_vulnerable.lon }}, {{ epiScan.most_vulnerable.lat }}</span></div>
-            <div class="data-row"><span class="data-row-key">烈度偏移</span><span class="data-row-val">{{ epiScan.most_vulnerable.dI_bar }}</span></div>
+            <div class="data-row"><span class="data-row-key">烈度差 dI</span><span class="data-row-val">{{ epiScan.most_vulnerable.dI_bar }}</span></div>
+            <div class="data-row"><span class="data-row-key">敏感性范围</span><span class="data-row-val">{{ epiScan.most_vulnerable.dI_bar - epiScan.safest.dI_bar }}</span></div>
           </div>
-          <div class="panel-desc">断裂带沿线 ±30km 网格扫描：破裂位置偏移会改变城市临界震级</div>
+          <div class="panel-desc">断裂带沿线 ±30km 网格扫描（dI=人口加权平均烈度差，正=更危险）</div>
         </div>
 
         <div class="panel-item" v-if="magScan?.caliber_note">
@@ -264,6 +270,25 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
             <b>静态依赖评估会高估城市韧性</b>，动态传染是更真实的压力测试。
           </div>
         </div>
+
+        <div class="panel-item" v-if="vulnerable?.by_type?.length">
+          <div class="panel-label">脆弱群体设施暴露 · M6.0</div>
+          <div class="vuln-list">
+            <div v-for="t in vulnerable.by_type" :key="t.type" class="vuln-row">
+              <div class="vuln-head">
+                <span class="vuln-name">{{ t.type }}</span>
+                <span class="vuln-meta">{{ t.high_exposure }}/{{ t.count }} 个 · {{ (t.exposure_ratio * 100).toFixed(0) }}%</span>
+              </div>
+              <div class="probe-track">
+                <div class="probe-fill" :style="{ width: (t.exposure_ratio * 100) + '%', background: t.exposure_ratio > 0.6 ? 'var(--state-error)' : (t.exposure_ratio > 0.4 ? 'var(--state-warning)' : 'var(--state-success)') }"></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-desc">
+            幼儿园 {{ (vulnerable.by_type.find(t => t.type === '幼儿园')?.exposure_ratio * 100 || 0).toFixed(0) }}% 位于高烈度区
+            ——灾难中最脆弱的群体暴露最高，这是"底线债务"最直接的证据。
+          </div>
+        </div>
       </div>
     </template>
   </div>
@@ -294,4 +319,9 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
 .seg-btn.active { color: var(--av-primary); border-color: var(--primary-border); background: var(--primary-dim); }
 .attribution-intro { font-size: 9.5px; line-height: 1.6; color: var(--av-foreground); }
 .attribution-intro b { color: var(--av-primary); }
+.vuln-list { display: flex; flex-direction: column; gap: 5px; margin: 6px 0; }
+.vuln-row { display: flex; flex-direction: column; gap: 2px; }
+.vuln-head { display: flex; justify-content: space-between; font-size: 9.5px; }
+.vuln-name { font-weight: 700; }
+.vuln-meta { font-family: var(--av-font-mono); color: var(--av-muted-foreground); }
 </style>

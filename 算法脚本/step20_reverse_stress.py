@@ -223,12 +223,13 @@ def epicenter_scan(model, imodel, df, grid, half_range_km=30.0, step_km=10.0):
     offsets_km = np.arange(-half_range_km, half_range_km + 1e-9, step_km)
     n = len(offsets_km)
     critical_matrix = np.full((n, n), np.nan)
+    dI_matrix = np.full((n, n), np.nan)
     # 纬度 1° ≈ 111km，经度 1° ≈ 111*cos(lat) km
     lat_scale = 111.0
     lon_scale = 111.0 * math.cos(math.radians(EPICENTER[1]))
 
-    best = {"lon": EPICENTER[0], "lat": EPICENTER[1], "critical_mag": None, "dI_bar": 0.0}
-    worst = {"lon": EPICENTER[0], "lat": EPICENTER[1], "critical_mag": None, "dI_bar": 0.0}
+    best = None   # 最安全：烈度减弱最多（dI_bar 最小）
+    worst = None  # 最危险：烈度增强最多（dI_bar 最大）
 
     for i, dy in enumerate(offsets_km):
         for j, dx in enumerate(offsets_km):
@@ -239,8 +240,10 @@ def epicenter_scan(model, imodel, df, grid, half_range_km=30.0, step_km=10.0):
             d_new = haversine_km(elon, elat, grid["lon"].values, grid["lat"].values)
             I_new = imodel.compute_field(6.0, d_new)
             dI_bar = float(np.sum(w * (I_new - I0)))
+            dI_matrix[i, j] = dI_bar
 
-            # 该震中下的临界震级（一阶近似扫描）
+            # 该震中下的临界震级（一阶近似扫描；注意：基准临界在扫描域下界
+            # 时会被截断，dI_bar 才是连续的定位指标）
             crit = None
             for m in np.arange(MAG_MIN, MAG_MAX + 1e-9, 0.2):
                 base = interpolate_base_rates(m, df)
@@ -257,10 +260,9 @@ def epicenter_scan(model, imodel, df, grid, half_range_km=30.0, step_km=10.0):
             critical_matrix[i, j] = crit
             rec = {"lon": round(elon, 4), "lat": round(elat, 4),
                    "critical_mag": crit, "dI_bar": round(dI_bar, 3)}
-            if crit is not None:
-                if worst["critical_mag"] is None or crit < worst["critical_mag"]:
-                    worst = rec
-            if best["critical_mag"] is None or (crit is not None and crit > best["critical_mag"]):
+            if worst is None or dI_bar > worst["dI_bar"]:
+                worst = rec
+            if best is None or dI_bar < best["dI_bar"]:
                 best = rec
 
     # 基准震中（质心）自身的临界震级
@@ -275,10 +277,15 @@ def epicenter_scan(model, imodel, df, grid, half_range_km=30.0, step_km=10.0):
     return {
         "offsets_km": [round(float(o), 1) for o in offsets_km],
         "critical_mag_matrix": critical_matrix.tolist(),
+        "dI_matrix": dI_matrix.tolist(),
         "baseline_epicenter": {"lon": EPICENTER[0], "lat": EPICENTER[1],
-                               "critical_mag": base_crit},
+                               "critical_mag": base_crit, "dI_bar": 0.0},
         "most_vulnerable": worst,
         "safest": best,
+        "indicator_note": (
+            "临界震级在扫描域下界（M5.0）处可能截断；连续定位指标为 "
+            "人口加权平均烈度差 dI_bar（正=烈度增强/更危险，负=减弱/更安全）。"
+        ),
     }
 
 
@@ -574,12 +581,19 @@ def verify(report):
 
     # 震中扫描
     es = report["reverse_stress"]["epicenter_scan"]
-    mv = es["most_vulnerable"]["critical_mag"]
+    mv = es["most_vulnerable"]
     base_c = es["baseline_epicenter"]["critical_mag"]
-    if base_c is None or mv is None:
-        reasons.append("震中扫描临界震级缺失")
-    elif mv > base_c + 1e-9:
-        reasons.append("最不利震中临界震级应 ≤ 基准震中")
+    if mv is None or base_c is None:
+        reasons.append("震中扫描关键数据缺失")
+    else:
+        # 最不利位置的烈度差应 ≥ 基准（0）——即烈度增强
+        if mv["dI_bar"] < -1e-9:
+            reasons.append("最不利位置 dI_bar 应 ≥ 0（烈度增强）")
+        # dI_matrix 需有非 NaN 值且与 offsets 维度一致
+        n = len(es["offsets_km"])
+        dmat = np.array(es["dI_matrix"])
+        if dmat.shape != (n, n) or not np.any(~np.isnan(dmat)):
+            reasons.append("dI_matrix 维度或有效值异常")
 
     # B. VaR/CVaR
     var = report["var_cvar"]
