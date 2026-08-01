@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综合诊断 - 城域底线</title>
+    <style id="theme-vars">
+/* ============================================================
+   Design Language Extract — Dark Tech Dashboard
+   Single brand hue (cyan), dark surface, free-explore mode
+   ============================================================ */
+
+:root {
+  /* ---- Background & Foreground ---- */
+  --av-background: #0A1320;
+  --av-foreground: #E6EDF7;
+
+  /* ---- Card surfaces (layered depth) ---- */
+  --av-card: #0F1A2B;
+  --av-card-foreground: #E6EDF7;
+
+  /* ---- Popover / elevated ---- */
+  --av-popover: #142440;
+  --av-popover-foreground: #E6EDF7;
+
+  /* ---- Primary brand (single hue: cyan) ---- */
+  --av-primary: #00D4FF;
+  --av-primary-foreground: #061320;
+
+  /* ---- Muted / secondary text & surfaces ---- */
+  --av-muted: #16243C;
+  --av-muted-foreground: #7E91AC;
+
+  /* ---- Border / input / ring ---- */
+  --av-border: #1C2B43;
+  --av-input: #1C2B43;
+  --av-ring: #00D4FF;
+
+  /* ---- Radius scale ---- */
+  --av-radius-sm: 4px;
+  --av-radius-md: 8px;
+  --av-radius-lg: 16px;
+
+  /* ---- Typography ---- */
+  --av-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --av-font-mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+
+  /* ---- Semantic state colors (status only) ---- */
+  --state-success: #34D399;
+  --state-warning: #FBBF24;
+  --state-error: #F87171;
+  --state-info: #60A5FA;
+}
+
+/* ---- Dark mode class hook ---- */
+html.dark {
+  --av-background: #0A1320;
+  --av-foreground: #E6EDF7;
+  --av-card: #0F1A2B;
+  --av-card-foreground: #E6EDF7;
+  --av-popover: #142440;
+  --av-popover-foreground: #E6EDF7;
+  --av-muted: #16243C;
+  --av-muted-foreground: #7E91AC;
+  --av-border: #1C2B43;
+  --av-input: #1C2B43;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--av-background);
+    --color-foreground: var(--av-foreground);
+    --color-card: var(--av-card);
+    --color-card-foreground: var(--av-card-foreground);
+    --color-popover: var(--av-popover);
+    --color-popover-foreground: var(--av-popover-foreground);
+    --color-primary: var(--av-primary);
+    --color-primary-foreground: var(--av-primary-foreground);
+    --color-muted: var(--av-muted);
+    --color-muted-foreground: var(--av-muted-foreground);
+    --color-border: var(--av-border);
+    --color-input: var(--av-input);
+    --color-ring: var(--av-ring);
+    --radius-sm: var(--av-radius-sm);
+    --radius-md: var(--av-radius-md);
+    --radius-lg: var(--av-radius-lg);
+  }
+  @layer base {
+    body { background: var(--av-background); color: var(--av-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--av-background); }
+      .text-background { color: var(--av-background); }
+      .border-background { border-color: var(--av-background); }
+      .ring-background { --tw-ring-color: var(--av-background); }
+      .bg-foreground { background-color: var(--av-foreground); }
+      .text-foreground { color: var(--av-foreground); }
+      .border-foreground { border-color: var(--av-foreground); }
+      .ring-foreground { --tw-ring-color: var(--av-foreground); }
+      .bg-card { background-color: var(--av-card); }
+      .text-card { color: var(--av-card); }
+      .border-card { border-color: var(--av-card); }
+      .ring-card { --tw-ring-color: var(--av-card); }
+      .bg-card-foreground { background-color: var(--av-card-foreground); }
+      .text-card-foreground { color: var(--av-card-foreground); }
+      .border-card-foreground { border-color: var(--av-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--av-card-foreground); }
+      .bg-popover { background-color: var(--av-popover); }
+      .text-popover { color: var(--av-popover); }
+      .border-popover { border-color: var(--av-popover); }
+      .ring-popover { --tw-ring-color: var(--av-popover); }
+      .bg-popover-foreground { background-color: var(--av-popover-foreground); }
+      .text-popover-foreground { color: var(--av-popover-foreground); }
+      .border-popover-foreground { border-color: var(--av-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--av-popover-foreground); }
+      .bg-primary { background-color: var(--av-primary); }
+      .text-primary { color: var(--av-primary); }
+      .border-primary { border-color: var(--av-primary); }
+      .ring-primary { --tw-ring-color: var(--av-primary); }
+      .bg-primary-foreground { background-color: var(--av-primary-foreground); }
+      .text-primary-foreground { color: var(--av-primary-foreground); }
+      .border-primary-foreground { border-color: var(--av-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--av-primary-foreground); }
+      .bg-muted { background-color: var(--av-muted); }
+      .text-muted { color: var(--av-muted); }
+      .border-muted { border-color: var(--av-muted); }
+      .ring-muted { --tw-ring-color: var(--av-muted); }
+      .bg-muted-foreground { background-color: var(--av-muted-foreground); }
+      .text-muted-foreground { color: var(--av-muted-foreground); }
+      .border-muted-foreground { border-color: var(--av-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--av-muted-foreground); }
+      .bg-border { background-color: var(--av-border); }
+      .text-border { color: var(--av-border); }
+      .border-border { border-color: var(--av-border); }
+      .ring-border { --tw-ring-color: var(--av-border); }
+      .bg-input { background-color: var(--av-input); }
+      .text-input { color: var(--av-input); }
+      .border-input { border-color: var(--av-input); }
+      .ring-input { --tw-ring-color: var(--av-input); }
+      .bg-ring { background-color: var(--av-ring); }
+      .text-ring { color: var(--av-ring); }
+      .border-ring { border-color: var(--av-ring); }
+      .ring-ring { --tw-ring-color: var(--av-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+    <style id="critical-layout">
+      /* ===== App-shell framework (static, layout-risk safe) ===== */
+      [data-viewport-mode="app-shell"] {
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .app-shell {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background-color: var(--av-background);
+        background-image:
+          linear-gradient(rgba(28,43,67,0.22) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(28,43,67,0.22) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      #top-bar {
+        height: 64px;
+        min-height: 64px;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--av-border);
+        background-color: rgba(15, 26, 43, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        gap: 20px;
+      }
+      .shell-body {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        min-height: 0;
+      }
+      #sidebar {
+        width: 224px;
+        min-width: 224px;
+        flex-shrink: 0;
+        border-right: 1px solid var(--av-border);
+        background-color: rgba(10, 19, 32, 0.7);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      main[data-scroll-region="primary"] {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-width: 0;
+      }
+      .main-content {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 960px;
+      }
+      /* ===== 2x2 analysis cards grid ===== */
+      #analysis-cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+      /* ===== Card base ===== */
+      .card-base {
+        background-color: var(--av-card);
+        border: 1px solid var(--av-border);
+        border-radius: var(--av-radius-lg);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      }
+      /* ===== Analysis card ===== */
+      .analysis-card {
+        background-color: var(--av-card);
+        border: 1px solid var(--av-border);
+        border-radius: var(--av-radius-lg);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      /* ===== Nav items ===== */
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        color: var(--av-muted-foreground);
+        border-left: 2px solid transparent;
+        border-radius: 0 var(--av-radius-md) var(--av-radius-md) 0;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background-color: var(--av-card);
+        color: var(--av-foreground);
+      }
+      .nav-item.active {
+        color: var(--av-primary);
+        background-color: var(--av-card);
+        border-left-color: var(--av-primary);
+      }
+      .nav-zh { font-size: 14px; font-weight: 500; line-height: 1.2; }
+      .nav-en { font-size: 11px; color: var(--av-muted-foreground); letter-spacing: 0.06em; }
+      .nav-item.active .nav-en { color: var(--av-primary); opacity: 0.75; }
+      /* ===== Status badge ===== */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .badge-success { background-color: rgba(52,211,153,0.12); color: var(--state-success); }
+      .badge-info { background-color: rgba(96,165,250,0.12); color: var(--state-info); }
+      .badge-warning { background-color: rgba(251,191,36,0.12); color: var(--state-warning); }
+      .badge-error { background-color: rgba(248,113,113,0.12); color: var(--state-error); }
+      .badge-muted { background-color: var(--av-muted); color: var(--av-muted-foreground); }
+      .badge-primary { background-color: rgba(0,212,255,0.1); color: var(--av-primary); }
+      .badge-en { opacity: 0.7; font-size: 10px; letter-spacing: 0.06em; }
+      /* ===== Progress bar ===== */
+      .progress-track {
+        height: 5px;
+        background-color: var(--av-muted);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        border-radius: 999px;
+        background-color: var(--av-primary);
+      }
+      .progress-fill.success { background-color: var(--state-success); }
+      .progress-fill.info { background-color: var(--state-info); }
+      .progress-fill.warning { background-color: var(--state-warning); }
+      .progress-fill.error { background-color: var(--state-error); }
+      /* ===== Mono numerals ===== */
+      .num {
+        font-family: var(--av-font-mono);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
+      }
+      /* ===== Section header ===== */
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .section-header .zh { font-size: 15px; font-weight: 600; color: var(--av-foreground); }
+      .section-header .en { font-size: 11px; color: var(--av-muted-foreground); letter-spacing: 0.08em; text-transform: uppercase; }
+      /* ===== Circular gauge ===== */
+      .gauge-ring { transform: rotate(-90deg); }
+      /* ===== Summary section ===== */
+      #summary-section { padding: 24px; }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.15fr) minmax(0, 1.4fr);
+        gap: 32px;
+        align-items: start;
+      }
+      .summary-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+      }
+      .score-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .score-table th,
+      .score-table td {
+        padding: 11px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--av-border);
+        font-size: 13px;
+      }
+      .score-table th {
+        color: var(--av-muted-foreground);
+        font-weight: 500;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .score-table td { color: var(--av-foreground); }
+      .score-table tbody tr:last-child td { border-bottom: none; }
+      .score-table td.num { text-align: left; }
+      .rec-item {
+        display: flex;
+        gap: 12px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--av-border);
+      }
+      .rec-item:last-child { border-bottom: none; }
+      .rec-icon {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: var(--av-radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--av-muted);
+      }
+    </style>
+
+    <div class="app-shell" data-viewport-mode="app-shell">
+      <!-- ===== TOP BAR ===== -->
+      <header id="top-bar">
+        <a href="03_数据加载页.html" class="flex items-center gap-2.5 no-underline" style="color:inherit;">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: rgba(0,212,255,0.12);">
+            <i data-lucide="hexagon" class="w-5 h-5" style="color: var(--av-primary);"></i>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <span class="text-sm font-semibold" style="color: var(--av-foreground);">城域底线</span>
+            <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">URBAN LIFELINE BOTTOM LINE</span>
+          </div>
+        </a>
+        <div class="h-6 w-px" style="background-color: var(--av-border);"></div>
+        <div class="flex flex-col leading-tight">
+          <span class="text-base font-semibold" style="color: var(--av-foreground);">综合诊断</span>
+          <span class="text-[11px] tracking-wider" style="color: var(--av-muted-foreground);">COMPREHENSIVE DIAGNOSIS</span>
+        </div>
+        <div class="ml-auto flex items-center gap-3">
+          <button class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm transition-colors" style="border:1px solid var(--av-border); color: var(--av-foreground);" onmouseover="this.style.backgroundColor='var(--av-card)'" onmouseout="this.style.backgroundColor='transparent'">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>导出报告</span>
+          </button>
+          <button class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors relative" style="border:1px solid var(--av-border); color: var(--av-muted-foreground);">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full" style="background-color: var(--av-primary);"></span>
+          </button>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center" style="border:1px solid var(--av-border); background-color: var(--av-card); color: var(--av-muted-foreground);">
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </header>
+
+      <div class="shell-body">
+        <!-- ===== SIDEBAR ===== -->
+        <aside id="sidebar">
+          <div class="p-4">
+            <div class="text-[10px] tracking-[0.12em] uppercase px-3 mb-2" style="color: var(--av-muted-foreground);">导航 / Navigation</div>
+            <nav class="flex flex-col gap-0.5">
+              <a href="#" class="nav-item">
+                <i data-lucide="search" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">债务发现</span>
+                  <span class="nav-en">DEBT DETECTION</span>
+                </div>
+              </a>
+              <a href="01_推演分析页.html" class="nav-item">
+                <i data-lucide="activity" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">压力推演</span>
+                  <span class="nav-en">PRESSURE SIM</span>
+                </div>
+              </a>
+              <a href="#" class="nav-item">
+                <i data-lucide="git-branch" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">级联分析</span>
+                  <span class="nav-en">CASCADE ANALYSIS</span>
+                </div>
+              </a>
+              <a href="#" class="nav-item">
+                <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">崩溃临界</span>
+                  <span class="nav-en">COLLAPSE THRESHOLD</span>
+                </div>
+              </a>
+              <a href="#" class="nav-item">
+                <i data-lucide="spline" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">策略优化</span>
+                  <span class="nav-en">STRATEGY OPTIMIZATION</span>
+                </div>
+              </a>
+              <a href="#" class="nav-item active">
+                <i data-lucide="clipboard-check" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">综合诊断</span>
+                  <span class="nav-en">DIAGNOSIS</span>
+                </div>
+              </a>
+            </nav>
+          </div>
+          <div class="mx-4 h-px" style="background-color: var(--av-border);"></div>
+          <div class="p-4">
+            <div class="text-[10px] tracking-[0.12em] uppercase px-3 mb-3" style="color: var(--av-muted-foreground);">实时标签 / LIVE TAGS</div>
+            <div class="px-3 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] w-10" style="color: var(--av-muted-foreground);">震级</span>
+                <div class="flex gap-1.5">
+                  <span class="badge badge-muted">M5.0</span>
+                  <span class="badge badge-error">M5.5</span>
+                  <span class="badge badge-muted">M6.0</span>
+                  <span class="badge badge-muted">M6.5</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px]" style="color: var(--av-muted-foreground);">置信</span>
+                <span class="num text-sm" style="color: var(--av-foreground);">92%</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-auto p-4">
+            <div class="rounded-lg p-3" style="background-color:var(--av-card); border:1px solid var(--av-border);">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--state-error);"></span>
+                <span class="text-[11px]" style="color: var(--av-muted-foreground);">诊断状态</span>
+              </div>
+              <div class="text-xs" style="color: var(--av-foreground);">4系统综合评估完成</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ===== MAIN SCROLL REGION ===== -->
+        <main data-scroll-region="primary">
+          <div class="main-content">
+            <!-- SECTION 1: 2x2 ANALYSIS CARDS GRID -->
+            <section id="analysis-cards">
+              <!-- Card 1: 医疗系统 — 崩溃 -->
+              <div class="analysis-card">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="relative w-12 h-12">
+                      <svg viewBox="0 0 48 48" class="w-full h-full gauge-ring">
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--state-error)" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="91.7"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="num text-sm" style="color: var(--av-foreground);">27</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                      <span class="text-sm font-semibold" style="color: var(--av-foreground);">医疗系统</span>
+                      <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">MEDICAL</span>
+                    </div>
+                  </div>
+                  <span class="badge badge-error">崩溃<span class="badge-en">/ COLLAPSE</span></span>
+                </div>
+                <div class="space-y-2.5">
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">功能率</span>
+                      <span class="num" style="color: var(--av-foreground);">27%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill error" style="width:27%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">不可达医院</span>
+                      <span class="num" style="color: var(--av-foreground);">199家</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill error" style="width:47%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">崩溃阈值</span>
+                      <span class="num" style="color: var(--av-foreground);">30%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill error" style="width:30%"></div></div>
+                  </div>
+                </div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">M5.5下医疗功能率27%，低于30%崩溃线。老城区187家医院中199家不可达，原因是道路老化率43%导致路段阻断。</div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-primary);">加固关键路段，提升医院可达性</div>
+              </div>
+
+              <!-- Card 2: 救援系统 — 警戒 -->
+              <div class="analysis-card">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="relative w-12 h-12">
+                      <svg viewBox="0 0 48 48" class="w-full h-full gauge-ring">
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--state-warning)" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="72.9"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="num text-sm" style="color: var(--av-foreground);">42</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                      <span class="text-sm font-semibold" style="color: var(--av-foreground);">救援系统</span>
+                      <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">RESCUE</span>
+                    </div>
+                  </div>
+                  <span class="badge badge-warning">警戒<span class="badge-en">/ WARNING</span></span>
+                </div>
+                <div class="space-y-2.5">
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">功能率</span>
+                      <span class="num" style="color: var(--av-foreground);">42%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill warning" style="width:42%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">响应时间</span>
+                      <span class="num" style="color: var(--av-foreground);">38min</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill warning" style="width:63%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">消防覆盖</span>
+                      <span class="num" style="color: var(--av-foreground);">56%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill warning" style="width:56%"></div></div>
+                  </div>
+                </div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">道路阻断导致救援响应时间延长73%，消防站覆盖不足区域集中在老城区。</div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-primary);">优化消防站布局，增加备用通道</div>
+              </div>
+
+              <!-- Card 3: 交通系统 — 正常 -->
+              <div class="analysis-card">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="relative w-12 h-12">
+                      <svg viewBox="0 0 48 48" class="w-full h-full gauge-ring">
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--state-success)" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="40.2"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="num text-sm" style="color: var(--av-foreground);">68</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                      <span class="text-sm font-semibold" style="color: var(--av-foreground);">交通系统</span>
+                      <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">TRANSPORT</span>
+                    </div>
+                  </div>
+                  <span class="badge badge-success">正常<span class="badge-en">/ NORMAL</span></span>
+                </div>
+                <div class="space-y-2.5">
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">功能率</span>
+                      <span class="num" style="color: var(--av-foreground);">68%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill success" style="width:68%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">阻断路段</span>
+                      <span class="num" style="color: var(--av-foreground);">44%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill warning" style="width:44%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">关键路段</span>
+                      <span class="num" style="color: var(--av-foreground);">8条中断</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill error" style="width:80%"></div></div>
+                  </div>
+                </div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">整体正常但8条关键路段中断触发级联，路段#48130等形成传播链。</div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-primary);">优先加固路段#48130</div>
+              </div>
+
+              <!-- Card 4: 避难系统 — 良好 -->
+              <div class="analysis-card">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="relative w-12 h-12">
+                      <svg viewBox="0 0 48 48" class="w-full h-full gauge-ring">
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="var(--state-info)" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="18.8"/>
+                      </svg>
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="num text-sm" style="color: var(--av-foreground);">85</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                      <span class="text-sm font-semibold" style="color: var(--av-foreground);">避难系统</span>
+                      <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">SHELTER</span>
+                    </div>
+                  </div>
+                  <span class="badge badge-info">良好<span class="badge-en">/ GOOD</span></span>
+                </div>
+                <div class="space-y-2.5">
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">功能率</span>
+                      <span class="num" style="color: var(--av-foreground);">85%</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill info" style="width:85%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">容量缺口</span>
+                      <span class="num" style="color: var(--av-foreground);">12万人</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill warning" style="width:35%"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-[11px] mb-1">
+                      <span style="color: var(--av-muted-foreground);">设施数量</span>
+                      <span class="num" style="color: var(--av-foreground);">89处</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill success" style="width:89%"></div></div>
+                  </div>
+                </div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">整体良好但存在12万人容量缺口，需关注医疗崩溃后的伤员转运压力。</div>
+                <div class="text-xs leading-relaxed" style="color: var(--av-primary);">扩容避难场所，补充物资储备</div>
+              </div>
+            </section>
+
+            <!-- SECTION 2: BOTTOM SUMMARY -->
+            <section id="summary-section" class="card-base">
+              <div class="section-header">
+                <span class="zh">底线诊断总览</span>
+                <span class="en">/ OVERALL DIAGNOSIS</span>
+              </div>
+              <div class="summary-grid">
+                <!-- Overall score gauge -->
+                <div class="summary-score">
+                  <div class="relative w-32 h-32">
+                    <svg viewBox="0 0 120 120" class="w-full h-full gauge-ring">
+                      <circle cx="60" cy="60" r="54" fill="none" stroke="var(--av-border)" stroke-width="8"/>
+                      <circle cx="60" cy="60" r="54" fill="none" stroke="var(--state-error)" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="247.7"/>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                      <span class="num text-4xl" style="color: var(--state-error);">0.27</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-base font-semibold" style="color: var(--state-error);">崩溃临界</span>
+                    <span class="badge badge-error num">M5.5</span>
+                  </div>
+                  <div class="flex flex-col items-center leading-tight">
+                    <span class="text-sm" style="color: var(--av-foreground);">底线指数</span>
+                    <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">BOTTOM LINE INDEX</span>
+                  </div>
+                </div>
+
+                <!-- Scoring detail table -->
+                <div>
+                  <table class="score-table">
+                    <thead>
+                      <tr>
+                        <th>系统 / System</th>
+                        <th>功能率 / Score</th>
+                        <th>等级 / Grade</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>医疗系统</td>
+                        <td class="num">27%</td>
+                        <td><span class="badge badge-error">崩溃</span></td>
+                      </tr>
+                      <tr>
+                        <td>救援系统</td>
+                        <td class="num">42%</td>
+                        <td><span class="badge badge-warning">警戒</span></td>
+                      </tr>
+                      <tr>
+                        <td>交通系统</td>
+                        <td class="num">68%</td>
+                        <td><span class="badge badge-success">正常</span></td>
+                      </tr>
+                      <tr>
+                        <td>避难系统</td>
+                        <td class="num">85%</td>
+                        <td><span class="badge badge-info">良好</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Overall recommendations -->
+                <div>
+                  <div class="text-[11px] tracking-[0.08em] uppercase mb-2" style="color: var(--av-muted-foreground);">策略建议 / RECOMMENDATIONS</div>
+                  <div class="rec-item">
+                    <div class="rec-icon"><i data-lucide="shield" class="w-4 h-4" style="color: var(--av-primary);"></i></div>
+                    <div class="flex-1 text-xs leading-relaxed" style="color: var(--av-foreground);">加固10条关键路段，将崩溃临界点从M5.5推至M6.0，医疗功能率提升至44%。</div>
+                  </div>
+                  <div class="rec-item">
+                    <div class="rec-icon"><i data-lucide="alert-triangle" class="w-4 h-4" style="color: var(--state-warning);"></i></div>
+                    <div class="flex-1 text-xs leading-relaxed" style="color: var(--av-foreground);">老城区道路老化率43%，优先拓宽庐阳/瑶海区路段#48130等8条关键道路。</div>
+                  </div>
+                  <div class="rec-item">
+                    <div class="rec-icon"><i data-lucide="building-2" class="w-4 h-4" style="color: var(--state-info);"></i></div>
+                    <div class="flex-1 text-xs leading-relaxed" style="color: var(--av-foreground);">新老城医疗资源协调：老城区医院密集但路窄先断，新城区路宽但医院稀疏。建立跨区域应急医疗协调机制。</div>
+                  </div>
+                  <div class="rec-item">
+                    <div class="rec-icon"><i data-lucide="trending-up" class="w-4 h-4" style="color: var(--state-success);"></i></div>
+                    <div class="flex-1 text-xs leading-relaxed" style="color: var(--av-foreground);">策略C（A+B组合）最优：底线推移+0.5M，医疗功能率从0.268提升至0.443，减少经济损失158亿元。</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

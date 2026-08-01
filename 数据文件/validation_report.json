@@ -1,0 +1,659 @@
+{
+  "report_meta": {
+    "module": "step18_historical_validation",
+    "generated_at": "2026-08-01 08:08:47",
+    "purpose": "用历史震例验证项目模型链（俞言祥2013烈度衰减 + 易损性矩阵）可信度",
+    "intensity_model": {
+      "model": "yu2013",
+      "reference": "俞言祥, 2013, 中国分区地震动衰减关系的确定, 震灾防御技术",
+      "params": {
+        "c1": 1.785,
+        "c2": 1.352,
+        "c3": 1.038,
+        "c4": 0.017,
+        "c5": 0.494
+      }
+    },
+    "vulnerability_model": {
+      "reference": null,
+      "intensity_grades": [
+        "V",
+        "VI",
+        "VII",
+        "VIII",
+        "IX",
+        "X",
+        "XI",
+        "XII"
+      ],
+      "damage_levels": [
+        "基本完好",
+        "轻微破坏",
+        "中等破坏",
+        "严重破坏",
+        "毁坏"
+      ]
+    },
+    "validation_scope": "等震线半径对比（主） + 损失估算对比（辅）",
+    "limitations": [
+      "俞言祥2013为点源模型，不显式建模破裂面延展，近场高烈度区对大破裂事件系统性低估",
+      "yu2013参数为中国东部标定，对川西山区远场衰减偏慢会高估远场烈度",
+      "汶川/唐山缺乏项目一致的网格化人口GDP数据，暴露度用简化指数衰减函数估算",
+      "经济损失用 loss_rate×年GDP 估算，混淆资本存量与GDP流量，系统性低估直接经济损失"
+    ]
+  },
+  "earthquakes": {
+    "wenchuan_2008": {
+      "event_key": "wenchuan_2008",
+      "params": {
+        "magnitude": 8.0,
+        "epicenter": [
+          103.4,
+          31.0
+        ],
+        "fault_type_config": "thrust",
+        "fault_type_rupture_model": "reverse",
+        "reference": "国务院汶川地震灾后恢复重建条例, 2008"
+      },
+      "rupture_parameters": {
+        "magnitude": 8.0,
+        "fault_type": "reverse",
+        "width_km": 46.7735,
+        "width_m": 46773.5,
+        "length_km": 151.3561,
+        "displacement_m": 5.7544,
+        "reference": "Wells & Coppersmith, 1994, BSSA 84(4):974-1002"
+      },
+      "intensity_model": {
+        "model": "yu2013",
+        "reference": "俞言祥, 2013, 中国分区地震动衰减关系的确定, 震灾防御技术",
+        "params": {
+          "c1": 1.785,
+          "c2": 1.352,
+          "c3": 1.038,
+          "c4": 0.017,
+          "c5": 0.494
+        }
+      },
+      "intensity_field_0_300km": {
+        "distances_km": [
+          0.0,
+          5.0,
+          10.0,
+          15.0,
+          20.0,
+          25.0,
+          30.0,
+          35.0,
+          40.0,
+          45.0,
+          50.0,
+          55.0,
+          60.0,
+          65.0,
+          70.0,
+          75.0,
+          80.0,
+          85.0,
+          90.0,
+          95.0,
+          100.0,
+          105.0,
+          110.0,
+          115.0,
+          120.0,
+          125.0,
+          130.0,
+          135.0,
+          140.0,
+          145.0,
+          150.0,
+          155.0,
+          160.0,
+          165.0,
+          170.0,
+          175.0,
+          180.0,
+          185.0,
+          190.0,
+          195.0,
+          200.0,
+          205.0,
+          210.0,
+          215.0,
+          220.0,
+          225.0,
+          230.0,
+          235.0,
+          240.0,
+          245.0,
+          250.0,
+          255.0,
+          260.0,
+          265.0,
+          270.0,
+          275.0,
+          280.0,
+          285.0,
+          290.0,
+          295.0,
+          300.0
+        ],
+        "model_intensities": [
+          12.617,
+          10.761,
+          10.123,
+          9.731,
+          9.447,
+          9.224,
+          9.04,
+          8.885,
+          8.749,
+          8.629,
+          8.522,
+          8.425,
+          8.336,
+          8.254,
+          8.178,
+          8.107,
+          8.041,
+          7.979,
+          7.92,
+          7.864,
+          7.812,
+          7.761,
+          7.714,
+          7.668,
+          7.624,
+          7.582,
+          7.541,
+          7.503,
+          7.465,
+          7.429,
+          7.394,
+          7.36,
+          7.327,
+          7.295,
+          7.265,
+          7.235,
+          7.206,
+          7.177,
+          7.15,
+          7.123,
+          7.097,
+          7.071,
+          7.046,
+          7.022,
+          6.998,
+          6.975,
+          6.952,
+          6.93,
+          6.908,
+          6.887,
+          6.866,
+          6.846,
+          6.825,
+          6.806,
+          6.786,
+          6.767,
+          6.749,
+          6.73,
+          6.713,
+          6.695,
+          6.677
+        ],
+        "model_grades": [
+          "XII",
+          "XI",
+          "X",
+          "X",
+          "IX",
+          "IX",
+          "IX",
+          "IX",
+          "IX",
+          "IX",
+          "IX",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII"
+        ]
+      },
+      "isoseismal_comparison": {
+        "comparison": {
+          "XI": {
+            "model_radius_km": 6.6,
+            "actual_radius_km": 27.6,
+            "deviation_pct": -76.1
+          },
+          "X": {
+            "model_radius_km": 18.6,
+            "actual_radius_km": 39.1,
+            "deviation_pct": -52.4
+          },
+          "IX": {
+            "model_radius_km": 51.1,
+            "actual_radius_km": 75.7,
+            "deviation_pct": -32.5
+          },
+          "VIII": {
+            "model_radius_km": 135.2,
+            "actual_radius_km": 114.2,
+            "deviation_pct": 18.3
+          },
+          "VII": {
+            "model_radius_km": 356.2,
+            "actual_radius_km": 204.9,
+            "deviation_pct": 73.9
+          },
+          "VI": {
+            "model_radius_km": 935.0,
+            "actual_radius_km": 374.2,
+            "deviation_pct": 149.9
+          }
+        },
+        "near_field_mean_dev_pct": -53.7,
+        "far_field_mean_dev_pct": 111.9,
+        "actual_source": "中国地震局《汶川8.0级地震烈度分布图》(2008)；面积等效半径"
+      },
+      "exposure_and_loss": {
+        "estimates": {
+          "damage_weighted_population": 2694318,
+          "exposure_population_VI_plus": 19683577,
+          "economic_loss": 26943181400,
+          "total_population_0_300km": 19683577
+        },
+        "actual": {
+          "affected_population": 46250000,
+          "direct_economic_loss": 8451000000000,
+          "damaged_buildings": 7789100,
+          "collapsed_buildings": 6945700
+        },
+        "deviation_pct": {
+          "affected_population_vs_exposure": -57.4,
+          "affected_population_vs_damage_weighted": -94.2,
+          "economic_loss": -99.7
+        },
+        "exposure_model": {
+          "function": "density(r) = base * exp(-r / scale)",
+          "params": {
+            "pop_base": 500.0,
+            "pop_scale": 85.0,
+            "gdp_base": 5000000.0,
+            "gdp_scale": 85.0,
+            "note": "震中位于川西山区人口稀疏带，近场含成都平原高密度区"
+          }
+        }
+      },
+      "verdict": {
+        "findings": [
+          "近场(IX及以里)等震线平均偏差 -53.7%",
+          "远场(VII-VI)等震线平均偏差 +111.9%",
+          "经济损失偏差 -99.7%（受简化暴露度与存量/流量差异限制）"
+        ],
+        "credibility": "近场可信度中等（40%<|偏差|<=70%）"
+      }
+    },
+    "tangshan_1976": {
+      "event_key": "tangshan_1976",
+      "params": {
+        "magnitude": 7.8,
+        "epicenter": [
+          118.18,
+          39.63
+        ],
+        "fault_type_config": "strike_slip",
+        "fault_type_rupture_model": "strike_slip",
+        "reference": "唐山地震灾害损失评估"
+      },
+      "rupture_parameters": {
+        "magnitude": 7.8,
+        "fault_type": "strike_slip",
+        "width_km": 30.6196,
+        "width_m": 30619.6,
+        "length_km": 166.7247,
+        "displacement_m": 2.0512,
+        "reference": "Wells & Coppersmith, 1994, BSSA 84(4):974-1002"
+      },
+      "intensity_model": {
+        "model": "yu2013",
+        "reference": "俞言祥, 2013, 中国分区地震动衰减关系的确定, 震灾防御技术",
+        "params": {
+          "c1": 1.785,
+          "c2": 1.352,
+          "c3": 1.038,
+          "c4": 0.017,
+          "c5": 0.494
+        }
+      },
+      "intensity_field_0_300km": {
+        "distances_km": [
+          0.0,
+          5.0,
+          10.0,
+          15.0,
+          20.0,
+          25.0,
+          30.0,
+          35.0,
+          40.0,
+          45.0,
+          50.0,
+          55.0,
+          60.0,
+          65.0,
+          70.0,
+          75.0,
+          80.0,
+          85.0,
+          90.0,
+          95.0,
+          100.0,
+          105.0,
+          110.0,
+          115.0,
+          120.0,
+          125.0,
+          130.0,
+          135.0,
+          140.0,
+          145.0,
+          150.0,
+          155.0,
+          160.0,
+          165.0,
+          170.0,
+          175.0,
+          180.0,
+          185.0,
+          190.0,
+          195.0,
+          200.0,
+          205.0,
+          210.0,
+          215.0,
+          220.0,
+          225.0,
+          230.0,
+          235.0,
+          240.0,
+          245.0,
+          250.0,
+          255.0,
+          260.0,
+          265.0,
+          270.0,
+          275.0,
+          280.0,
+          285.0,
+          290.0,
+          295.0,
+          300.0
+        ],
+        "model_intensities": [
+          12.438,
+          10.506,
+          9.86,
+          9.466,
+          9.18,
+          8.957,
+          8.773,
+          8.617,
+          8.481,
+          8.361,
+          8.253,
+          8.156,
+          8.067,
+          7.985,
+          7.909,
+          7.838,
+          7.772,
+          7.709,
+          7.651,
+          7.595,
+          7.542,
+          7.492,
+          7.444,
+          7.398,
+          7.354,
+          7.312,
+          7.272,
+          7.233,
+          7.195,
+          7.159,
+          7.124,
+          7.09,
+          7.057,
+          7.026,
+          6.995,
+          6.965,
+          6.936,
+          6.907,
+          6.88,
+          6.853,
+          6.827,
+          6.801,
+          6.776,
+          6.752,
+          6.728,
+          6.705,
+          6.682,
+          6.66,
+          6.638,
+          6.617,
+          6.596,
+          6.576,
+          6.555,
+          6.536,
+          6.516,
+          6.497,
+          6.479,
+          6.46,
+          6.442,
+          6.425,
+          6.407
+        ],
+        "model_grades": [
+          "XII",
+          "XI",
+          "X",
+          "IX",
+          "IX",
+          "IX",
+          "IX",
+          "IX",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VIII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VII",
+          "VI",
+          "VI",
+          "VI",
+          "VI",
+          "VI",
+          "VI"
+        ]
+      },
+      "isoseismal_comparison": {
+        "comparison": {
+          "XI": {
+            "model_radius_km": 4.6,
+            "actual_radius_km": 3.9,
+            "deviation_pct": 18.0
+          },
+          "X": {
+            "model_radius_km": 14.1,
+            "actual_radius_km": 10.9,
+            "deviation_pct": 29.4
+          },
+          "IX": {
+            "model_radius_km": 39.1,
+            "actual_radius_km": 23.9,
+            "deviation_pct": 63.7
+          },
+          "VIII": {
+            "model_radius_km": 104.1,
+            "actual_radius_km": 48.4,
+            "deviation_pct": 115.2
+          },
+          "VII": {
+            "model_radius_km": 274.2,
+            "actual_radius_km": 103.0,
+            "deviation_pct": 166.2
+          },
+          "VI": {
+            "model_radius_km": 720.4,
+            "actual_radius_km": 180.0,
+            "deviation_pct": 300.2
+          }
+        },
+        "near_field_mean_dev_pct": 37.0,
+        "far_field_mean_dev_pct": 233.2,
+        "actual_source": "唐山7.8级地震烈度分布图(1976)；钱钢《唐山大地震》等；面积等效半径"
+      },
+      "exposure_and_loss": {
+        "estimates": {
+          "damage_weighted_population": 4689305,
+          "exposure_population_VI_plus": 45287357,
+          "economic_loss": 3126203401,
+          "total_population_0_300km": 45287357
+        },
+        "actual": {
+          "affected_population": 4200000,
+          "direct_economic_loss": 100000000000,
+          "damaged_buildings": null,
+          "collapsed_buildings": null
+        },
+        "deviation_pct": {
+          "affected_population_vs_exposure": 978.3,
+          "affected_population_vs_damage_weighted": 11.7,
+          "economic_loss": -96.9
+        },
+        "exposure_model": {
+          "function": "density(r) = base * exp(-r / scale)",
+          "params": {
+            "pop_base": 900.0,
+            "pop_scale": 100.0,
+            "gdp_base": 600000.0,
+            "gdp_scale": 100.0,
+            "note": "华北平原人口稠密，1976年GDP密度按当年价格"
+          }
+        }
+      },
+      "verdict": {
+        "findings": [
+          "近场(IX及以里)等震线平均偏差 +37.0%",
+          "远场(VII-VI)等震线平均偏差 +233.2%",
+          "经济损失偏差 -96.9%（受简化暴露度与存量/流量差异限制）"
+        ],
+        "credibility": "近场可信度良好（|偏差|<=40%）"
+      }
+    }
+  },
+  "summary": {
+    "isoseismal_validation": {
+      "wenchuan_2008": {
+        "near_field_dev_pct": -53.7,
+        "far_field_dev_pct": 111.9,
+        "pattern": "近场低估、远场高估，VIII度处交叉——点源模型对大破裂逆冲事件近场失真，东部参数对川西远场衰减偏慢"
+      },
+      "tangshan_1976": {
+        "near_field_dev_pct": 37.0,
+        "far_field_dev_pct": 233.2,
+        "pattern": "全程高估，近场(XI/X)最接近，远场(VII/VI)高估显著——东部走滑事件近场适用性较好"
+      }
+    },
+    "model_applicability": "项目研究对象为郯庐断裂带合肥段（中国东部、走滑型），与唐山震例构造环境一致，模型近场适用性较好。汶川震例的偏差主要源于构造环境差异（西部山区+大破裂逆冲），不直接影响项目区适用性，但提示对大震级情景应警惕近场低估。",
+    "primary_conclusion": "等震线物理验证显示：模型对中国东部走滑型中强震近场烈度估计可信度良好，可作为合肥段风险评估的烈度衰减基础。损失估算因暴露度数据缺失仅为量级参考，项目实际分析应使用合肥真实网格人口GDP数据（step4_grid_exposure）以消除该误差源。"
+  }
+}

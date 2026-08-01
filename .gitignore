@@ -1,0 +1,34 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Node / 前端构建产物 ---
+node_modules/
+dist/
+*.local
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# --- 大型中间数据（可再生，不入库；保留目录结构与 README 说明） ---
+数据文件/archive_202607/
+数据文件/grid_base.geojson
+数据文件/hefei_road_graph.graphml
+数据文件/hefei_roads_osm.geojson
+数据文件/road_blocked_M*.geojson
+数据文件/grid_intensity_M*.csv
+数据文件/graph_nodes.csv
+数据文件/grid_population_gdp.csv
+数据文件/CN-faults.gmt
+uii设计/archive_旧4模式模板/
+
+# --- 本地运行时文件 ---
+*.log
+.reasonix/

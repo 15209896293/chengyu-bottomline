@@ -1,0 +1,24 @@
+# 城域底线 — Python 依赖
+# 安装: pip install -r requirements.txt
+# 推荐: conda create -n zhenmai python=3.10 && conda activate zhenmai
+
+# 核心科学计算
+numpy>=1.24
+pandas>=2.0
+
+# 地理空间计算
+geopandas>=0.14
+shapely>=2.0
+osmnx>=1.6
+
+# 网络分析
+networkx>=3.1
+
+# 配置管理
+pyyaml>=6.0
+
+# 数据采集
+requests>=2.31
+
+# GDAL/PROJ（通过 conda 安装，不要用 pip）
+# conda install -c conda-forge gdal proj-data

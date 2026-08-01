@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城域底线 · 临界点模式 · 高保真设计样图</title>
+<style>
+:root {
+  --bg-page: #0A1320;
+  --bg-card: #0F1A2B;
+  --bg-card-2: #16243C;
+  --bg-card-3: #1A2D4A;
+  --bg-mockup: #0D1520;
+  --bg-inset: #060D18;
+  --border-wf: #1E3A5F;
+  --border-solid: #2A4060;
+  --border-light: #1A2D4A;
+  --text-primary: #E6EDF7;
+  --text-secondary: #7E91AC;
+  --text-muted: #4A5C7A;
+  --text-dim: #2D3E5C;
+  --accent: #00D4FF;
+  --accent-dim: #0A3A5C;
+  --accent-glow: rgba(0,212,255,0.15);
+  --green: #34D399;
+  --green-dim: rgba(52,211,153,0.12);
+  --yellow: #FBBF24;
+  --yellow-dim: rgba(251,191,36,0.12);
+  --red: #F87171;
+  --red-dim: rgba(248,113,113,0.12);
+  --orange: #FB923C;
+  --orange-dim: rgba(251,146,60,0.12);
+  --purple: #A78BFA;
+  --purple-dim: rgba(167,139,250,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: "Inter","Noto Sans SC","Microsoft YaHei",sans-serif;
+  background: var(--bg-page); color: var(--text-primary);
+  padding: 40px 20px;
+}
+.page-header { max-width:1400px; margin:0 auto 40px; text-align:center; }
+.page-header h1 { font-size:28px; font-weight:700; letter-spacing:2px; color:var(--accent); margin-bottom:8px; }
+.page-header p { font-size:13px; color:var(--text-secondary); letter-spacing:1px; }
+
+/* === 工作台卡片 === */
+.wb-card { background:var(--bg-card); border:1px solid var(--border-solid); border-radius:12px; overflow:hidden; margin:0 auto 32px; max-width:1400px; }
+.wb-header { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--border-solid); }
+.wb-title-group { display:flex; align-items:center; gap:12px; }
+.wb-number { width:28px; height:28px; border-radius:6px; background:var(--accent-dim); color:var(--accent); font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.wb-title { font-size:15px; font-weight:600; }
+.wb-mode-tag { font-size:10px; font-weight:600; letter-spacing:1px; padding:3px 10px; border-radius:4px; }
+.wb-body { display:grid; grid-template-columns:1fr 300px; }
+.wb-screen-wrap { background:var(--bg-mockup); padding:16px; display:flex; justify-content:center; }
+.wb-screen { width:100%; aspect-ratio:16/9; background:#0A1320; border:1px solid var(--border-solid); border-radius:8px; overflow:hidden; display:flex; flex-direction:column; }
+.wb-notes { background:var(--bg-card-2); padding:16px 20px; border-left:1px solid var(--border-solid); }
+
+/* 顶部栏 */
+.wf-topbar { height:28px; background:#16243C; display:flex; align-items:center; padding:0 10px; gap:6px; border-bottom:1px solid var(--border-solid); flex-shrink:0; }
+.wf-brand { font-size:9px; font-weight:700; color:var(--accent); }
+.wf-nav { display:flex; gap:2px; margin-left:6px; }
+.wf-nav-item { font-size:7px; padding:2px 5px; border-radius:2px; color:var(--text-muted); }
+.wf-nav-item.active { background:var(--accent-dim); color:var(--accent); }
+.wf-status { margin-left:auto; display:flex; gap:4px; align-items:center; }
+.wf-badge { font-size:7px; padding:1px 5px; border-radius:2px; font-weight:600; }
+
+/* KPI条 */
+.wf-kpi-bar { display:flex; height:26px; background:var(--bg-inset); border-bottom:1px solid var(--border-solid); flex-shrink:0; }
+.wf-kpi { flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 6px; border-right:1px solid var(--border-wf); }
+.wf-kpi:last-child { border-right:none; }
+.wf-kpi-label { font-size:6px; color:var(--text-muted); letter-spacing:0.3px; text-transform:uppercase; }
+.wf-kpi-value { font-size:10px; font-weight:700; font-family:"JetBrains Mono",monospace; }
+.wf-kpi-value.accent { color:var(--accent); }
+.wf-kpi-value.red { color:var(--red); }
+.wf-kpi-value.green { color:var(--green); }
+.wf-kpi-value.yellow { color:var(--yellow); }
+.wf-kpi-value.orange { color:var(--orange); }
+
+/* 主体三栏 */
+.wf-main { flex:1; display:grid; grid-template-columns:200px 1fr 200px; gap:1px; background:var(--border-solid); overflow:hidden; }
+.wf-left { background:#0F1A2B; padding:4px 5px; display:flex; flex-direction:column; gap:3px; overflow:hidden; }
+.wf-center { background:var(--bg-inset); display:flex; flex-direction:column; overflow:hidden; }
+.wf-right { background:#0F1A2B; padding:4px 5px; display:flex; flex-direction:column; gap:3px; overflow:hidden; }
+
+/* 左栏 - 专属组件 */
+.wf-left-section { font-size:6px; color:var(--text-muted); padding:3px 4px 1px; letter-spacing:0.5px; text-transform:uppercase; border-top:1px solid var(--border-wf); margin-top:3px; }
+.wf-left-section:first-child { border-top:none; margin-top:0; }
+
+/* 模式导航 */
+.wf-mode-btn { font-size:8px; padding:3px 5px; border-radius:3px; color:var(--text-secondary); border-left:2px solid transparent; display:flex; align-items:center; gap:3px; }
+.wf-mode-btn.active { background:var(--accent-dim); color:var(--accent); border-left-color:var(--accent); }
+.wf-mode-btn .num { font-size:6px; color:var(--text-dim); }
+.wf-mode-btn.active .num { color:var(--accent); }
+
+/* Scrubber */
+.wf-scrubber-box { background:var(--bg-inset); border:1px solid var(--border-wf); border-radius:4px; padding:5px; }
+.wf-scrubber-display { text-align:center; margin-bottom:3px; }
+.wf-scrubber-value { font-size:20px; font-weight:700; color:var(--accent); font-family:"JetBrains Mono",monospace; line-height:1; }
+.wf-scrubber-label { font-size:6px; color:var(--text-muted); letter-spacing:0.5px; }
+.wf-scrubber-track { position:relative; height:14px; margin:2px 0; }
+.wf-scrubber-line { position:absolute; top:50%; left:0; right:0; height:1px; background:var(--border-wf); transform:translateY(-50%); }
+.wf-scrubber-fill { position:absolute; top:50%; left:0; height:2px; background:var(--accent); transform:translateY(-50%); border-radius:1px; }
+.wf-scrubber-stop { position:absolute; top:50%; transform:translate(-50%,-50%); width:6px; height:6px; border-radius:50%; background:var(--bg-card-2); border:1px solid var(--border-solid); }
+.wf-scrubber-stop.active { background:var(--accent); border-color:var(--accent); box-shadow:0 0 4px var(--accent); width:8px; height:8px; }
+.wf-scrubber-stop.collapsed { border-color:var(--red); }
+.wf-scrubber-stop.collapsed.active { background:var(--red); box-shadow:0 0 4px var(--red); }
+.wf-scrubber-labels { display:flex; justify-content:space-between; font-size:5px; color:var(--text-muted); font-family:"JetBrains Mono",monospace; }
+.wf-scrubber-controls { display:flex; gap:2px; justify-content:center; margin-top:3px; }
+.wf-scr-btn { background:var(--bg-card-2); border:1px solid var(--border-wf); border-radius:2px; padding:2px 6px; font-size:6px; color:var(--text-secondary); }
+.wf-scr-btn.active { background:var(--accent-dim); border-color:var(--accent); color:var(--accent); }
+
+/* 系统状态表 */
+.wf-sys-row { display:flex; align-items:center; gap:3px; padding:2px 0; }
+.wf-sys-name { font-size:6px; color:var(--text-secondary); width:16px; flex-shrink:0; }
+.wf-sys-bar-wrap { flex:1; height:7px; background:var(--bg-inset); border-radius:2px; position:relative; overflow:hidden; }
+.wf-sys-bar-fill { height:100%; border-radius:2px; transition:width 0.2s; }
+.wf-sys-bar-fill.red { background:var(--red); }
+.wf-sys-bar-fill.orange { background:var(--orange); }
+.wf-sys-bar-fill.yellow { background:var(--yellow); }
+.wf-sys-bar-fill.green { background:var(--green); }
+.wf-sys-threshold { position:absolute; top:0; bottom:0; width:1px; background:var(--red); opacity:0.6; }
+.wf-sys-val { font-size:6px; font-family:"JetBrains Mono",monospace; font-weight:600; width:18px; text-align:right; flex-shrink:0; }
+.wf-sys-val.red { color:var(--red); }
+.wf-sys-val.orange { color:var(--orange); }
+.wf-sys-val.yellow { color:var(--yellow); }
+.wf-sys-val.green { color:var(--green); }
+
+/* 崩溃告警 */
+.wf-alert { font-size:6px; padding:2px 4px; border-radius:2px; display:flex; align-items:center; gap:3px; }
+.wf-alert.red { background:var(--red-dim); color:var(--red); }
+.wf-alert.green { background:var(--green-dim); color:var(--green); }
+.wf-alert .dot { width:4px; height:4px; border-radius:50%; flex-shrink:0; }
+.wf-alert.red .dot { background:var(--red); }
+.wf-alert.green .dot { background:var(--green); }
+
+/* 地图区 */
+.wf-map-area { flex:1; position:relative; overflow:hidden; min-height:0; }
+.wf-map-toolbar { position:absolute; top:3px; left:3px; right:3px; display:flex; justify-content:space-between; align-items:flex-start; z-index:2; }
+.wf-map-tools { display:flex; gap:2px; }
+.wf-map-tool { background:rgba(15,26,43,0.9); border:1px solid var(--border-wf); border-radius:2px; width:14px; height:14px; display:flex; align-items:center; justify-content:center; font-size:7px; color:var(--text-secondary); }
+.wf-map-tool.active { border-color:var(--accent); color:var(--accent); }
+.wf-map-info { background:rgba(15,26,43,0.9); border:1px solid var(--border-wf); border-radius:2px; padding:2px 5px; font-size:6px; color:var(--text-secondary); }
+.wf-map-legend { position:absolute; bottom:3px; left:3px; background:rgba(15,26,43,0.9); border:1px solid var(--border-wf); border-radius:2px; padding:3px 5px; font-size:6px; z-index:2; line-height:1.5; }
+.wf-map-scale { position:absolute; bottom:3px; right:3px; font-size:6px; color:var(--text-muted); z-index:2; }
+.wf-map-state { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3; text-align:center; pointer-events:none; }
+
+/* 底部双面板 */
+.wf-bottom-bar { height:84px; background:var(--bg-card); border-top:1px solid var(--border-solid); display:grid; grid-template-columns:1fr 1fr; gap:1px; flex-shrink:0; }
+.wf-chart-cell { background:var(--bg-inset); padding:3px 6px; display:flex; flex-direction:column; overflow:hidden; }
+.wf-chart-title { font-size:6px; color:var(--text-muted); letter-spacing:0.3px; text-transform:uppercase; margin-bottom:2px; display:flex; justify-content:space-between; }
+.wf-chart-body { flex:1; position:relative; overflow:hidden; }
+
+/* 右栏 */
+.wf-panel { background:var(--bg-card-2); border:1px solid var(--border-wf); border-radius:3px; padding:4px 5px; }
+.wf-panel.accent { border-color:var(--accent); }
+.wf-panel.red { border-color:var(--red); }
+.wf-panel-label { font-size:6px; color:var(--text-muted); letter-spacing:0.3px; text-transform:uppercase; margin-bottom:3px; }
+.wf-panel-title { font-size:8px; font-weight:600; color:var(--text-primary); margin-bottom:3px; }
+.wf-row { display:flex; justify-content:space-between; align-items:center; font-size:7px; padding:1px 0; }
+.wf-row-key { color:var(--text-secondary); }
+.wf-row-val { font-family:"JetBrains Mono",monospace; font-weight:600; }
+.wf-row-val.red { color:var(--red); }
+.wf-row-val.green { color:var(--green); }
+.wf-row-val.yellow { color:var(--yellow); }
+.wf-row-val.accent { color:var(--accent); }
+.wf-bar { height:3px; border-radius:1px; background:var(--border-wf); overflow:hidden; margin-top:1px; }
+.wf-bar-fill { height:100%; border-radius:1px; }
+.wf-bar-fill.red { background:var(--red); }
+.wf-bar-fill.yellow { background:var(--yellow); }
+.wf-bar-fill.green { background:var(--green); }
+.wf-bar-fill.accent { background:var(--accent); }
+.wf-bar-fill.orange { background:var(--orange); }
+.wf-tag { font-size:6px; padding:1px 4px; border-radius:2px; font-weight:600; display:inline-block; }
+.wf-tag.red { background:var(--red-dim); color:var(--red); }
+.wf-tag.green { background:var(--green-dim); color:var(--green); }
+.wf-tag.accent { background:var(--accent-glow); color:var(--accent); }
+.wf-table { font-size:6px; width:100%; }
+.wf-table th { color:var(--text-muted); text-align:left; padding:1px 2px; font-weight:400; border-bottom:1px solid var(--border-wf); }
+.wf-table td { color:var(--text-secondary); padding:1px 2px; }
+.wf-table td.num { font-family:"JetBrains Mono",monospace; text-align:right; }
+
+/* 说明面板 */
+.notes-title { font-size:11px; font-weight:700; color:var(--accent); letter-spacing:1px; margin-bottom:12px; text-transform:uppercase; }
+.notes-section { margin-bottom:14px; }
+.notes-section-title { font-size:10px; font-weight:600; color:var(--text-primary); margin-bottom:6px; }
+.notes-list { list-style:none; font-size:10px; color:var(--text-secondary); line-height:1.7; }
+.notes-list li { padding-left:10px; position:relative; }
+.notes-list li::before { content:"▸"; position:absolute; left:0; color:var(--accent); font-size:8px; }
+.notes-data { background:var(--bg-mockup); border:1px solid var(--border-wf); border-radius:4px; padding:8px; margin-top:8px; }
+.notes-data-row { display:flex; justify-content:space-between; font-size:9px; padding:2px 0; }
+.notes-data-key { color:var(--text-secondary); }
+.notes-data-val { color:var(--accent); font-family:"JetBrains Mono",monospace; }
+
+/* === 设计理据 === */
+.rationale { max-width:1400px; margin:0 auto 40px; background:var(--bg-card); border:1px solid var(--border-solid); border-radius:12px; padding:24px; }
+.rationale-title { font-size:14px; font-weight:600; color:var(--accent); margin-bottom:16px; }
+.rationale-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.rationale-col { background:var(--bg-card-2); border:1px solid var(--border-wf); border-radius:8px; padding:14px; }
+.rationale-col h3 { font-size:11px; font-weight:600; margin-bottom:10px; }
+.rationale-col p { font-size:10px; color:var(--text-secondary); line-height:1.6; margin-bottom:6px; }
+.rationale-col ul { list-style:none; font-size:10px; color:var(--text-secondary); line-height:1.7; }
+.rationale-col ul li { padding-left:10px; position:relative; }
+.rationale-col ul li::before { content:"▸"; position:absolute; left:0; color:var(--accent); font-size:7px; }
+
+/* === 多状态预览 === */
+.state-preview { max-width:1400px; margin:0 auto 32px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.state-card { background:var(--bg-card); border:1px solid var(--border-solid); border-radius:8px; overflow:hidden; }
+.state-card-header { padding:8px 12px; border-bottom:1px solid var(--border-wf); display:flex; align-items:center; justify-content:space-between; }
+.state-card-title { font-size:11px; font-weight:600; }
+.state-card-body { padding:8px; }
+.state-card-body svg { width:100%; display:block; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>城域底线 · 临界点模式 · 高保真设计样图</h1>
+  <p>LAYER 2 · CRITICAL POINT · SCRUBBER-DRIVEN DYNAMIC ANALYSIS</p>
+</div>
+
+<!-- ========== 设计理据 ========== -->
+<div class="rationale">
+  <div class="rationale-title">▎ 设计理据 · 为什么这页这样设计</div>
+  <div class="rationale-grid">
+    <div class="rationale-col">
+      <h3 style="color:var(--accent);">本页核心 · Scrubber驱动</h3>
+      <p><strong>操作模式</strong>：用户拖动震级滑块，全页所有视图实时响应</p>
+      <p><strong>独特布局</strong>：左栏=控制中心(scrubber+系统仪表)，其他页没有</p>
+      <p><strong>底部双面板</strong>：响应曲线+级联时间线，其他页是3个迷你图表</p>
+      <ul>
+        <li>独有：震级Scrubber（6档可拖动+播放/重置）</li>
+        <li>独有：4系统实时功能率仪表条</li>
+        <li>独有：地震烈度场（同心圆+着色）</li>
+        <li>独有：崩溃告警面板（哪些系统已崩）</li>
+      </ul>
+    </div>
+    <div class="rationale-col">
+      <h3 style="color:var(--orange);">数据资产 · 12类数据</h3>
+      <p><strong>KPI条</strong>：震级/4系统功能率/暴露人口/经济损失/韧性指数</p>
+      <p><strong>地图</strong>：9区县+426医院POI+58K路段+10关键路段+断裂带+烈度场</p>
+      <p><strong>曲线</strong>：6震级×4系统功能率+崩溃阈值线+崩溃事件标记</p>
+      <p><strong>右栏</strong>：9区县损失排名+10关键路段表+韧性指数仪表</p>
+      <ul>
+        <li>collapse_threshold.csv → 曲线+告警</li>
+        <li>resilience_summary.csv → 韧性仪表</li>
+        <li>exposure_summary_M5.5.csv → 区县排名</li>
+        <li>key_roads.csv → 关键路段表</li>
+      </ul>
+    </div>
+    <div class="rationale-col">
+      <h3 style="color:var(--red);">差异化 · vs 其他3页</h3>
+      <p><strong>vs 格局页</strong>：格局页=浮动面板叠地图（hover驱动），本页=scrubber驱动</p>
+      <p><strong>vs 级联页</strong>：级联页=网络图居中（click驱动），本页=曲线+地图双视图</p>
+      <p><strong>vs 韧性页</strong>：韧性页=左右分屏对比（切换驱动），本页=时间轴推进</p>
+      <ul>
+        <li>不同：左栏是控制中心不是导航</li>
+        <li>不同：底部是双面板不是3图表</li>
+        <li>不同：地图有烈度场不是静态底图</li>
+        <li>不同：右栏是排名+路段不是发现面板</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 临界点模式 · 主设计样图 -->
+<!-- ========================================== -->
+<div class="wb-card">
+  <div class="wb-header">
+    <div class="wb-title-group">
+      <div class="wb-number">2</div>
+      <div class="wb-title">临界点模式 · 崩溃阈值识别</div>
+    </div>
+    <div class="wb-mode-tag" style="background:rgba(251,146,60,0.15); color:var(--orange);">MODE 2 · 临界点 M5.5</div>
+  </div>
+  <div class="wb-body">
+    <div class="wb-screen-wrap">
+      <div class="wb-screen">
+        <!-- 顶部栏 -->
+        <div class="wf-topbar">
+          <div class="wf-brand">城域底线</div>
+          <div class="wf-nav">
+            <div class="wf-nav-item">01 格局</div>
+            <div class="wf-nav-item active">02 临界</div>
+            <div class="wf-nav-item">03 级联</div>
+            <div class="wf-nav-item">04 韧性</div>
+          </div>
+          <div class="wf-status">
+            <span class="wf-badge" style="background:var(--red-dim); color:var(--red);">CITY COLLAPSE</span>
+            <span class="wf-badge" style="background:var(--accent-dim); color:var(--accent);">M5.5</span>
+            <span style="font-size:6px; color:var(--text-muted);">2026-07-29</span>
+          </div>
+        </div>
+
+        <!-- KPI条 · 8个动态指标 -->
+        <div class="wf-kpi-bar">
+          <div class="wf-kpi"><div class="wf-kpi-label">当前震级</div><div class="wf-kpi-value accent">M5.5</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">医疗功能率</div><div class="wf-kpi-value red">26.8%</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">救援功能率</div><div class="wf-kpi-value orange">41.6%</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">交通功能率</div><div class="wf-kpi-value yellow">81.3%</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">避难功能率</div><div class="wf-kpi-value green">100%</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">暴露人口</div><div class="wf-kpi-value accent">531万</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">经济损失</div><div class="wf-kpi-value accent">¥346亿</div></div>
+          <div class="wf-kpi"><div class="wf-kpi-label">韧性指数</div><div class="wf-kpi-value yellow">0.616</div></div>
+        </div>
+
+        <!-- 主体三栏 -->
+        <div class="wf-main">
+          <!-- ========== 左栏：控制中心 ========== -->
+          <div class="wf-left">
+            <!-- Scrubber -->
+            <div class="wf-scrubber-box">
+              <div class="wf-scrubber-display">
+                <div class="wf-scrubber-value">5.5</div>
+                <div class="wf-scrubber-label">MAGNITUDE · 里氏震级</div>
+              </div>
+              <div class="wf-scrubber-track">
+                <div class="wf-scrubber-line"></div>
+                <div class="wf-scrubber-fill" style="width:20%;"></div>
+                <!-- 6 stops: M5.0(0%), M5.5(20%), M6.0(40%), M6.5(60%), M7.0(80%), M7.5(100%) -->
+                <div class="wf-scrubber-stop" style="left:0%;"></div>
+                <div class="wf-scrubber-stop collapsed active" style="left:20%;"></div>
+                <div class="wf-scrubber-stop collapsed" style="left:40%;"></div>
+                <div class="wf-scrubber-stop collapsed" style="left:60%;"></div>
+                <div class="wf-scrubber-stop collapsed" style="left:80%;"></div>
+                <div class="wf-scrubber-stop collapsed" style="left:100%;"></div>
+              </div>
+              <div class="wf-scrubber-labels">
+                <span>5.0</span><span>5.5</span><span>6.0</span><span>6.5</span><span>7.0</span><span>7.5</span>
+              </div>
+              <div class="wf-scrubber-controls">
+                <div class="wf-scr-btn active">▶ 播放</div>
+                <div class="wf-scr-btn">⏸</div>
+                <div class="wf-scr-btn">↺ 重置</div>
+              </div>
+            </div>
+
+            <!-- 系统状态 -->
+            <div class="wf-left-section">4系统功能率</div>
+            <!-- 医疗: 27%, threshold ~30%, collapsed -->
+            <div class="wf-sys-row">
+              <span class="wf-sys-name" style="color:var(--red);">医疗</span>
+              <div class="wf-sys-bar-wrap">
+                <div class="wf-sys-bar-fill red" style="width:27%;"></div>
+                <div class="wf-sys-threshold" style="left:30%;"></div>
+              </div>
+              <span class="wf-sys-val red">27%</span>
+            </div>
+            <!-- 救援: 42%, threshold ~30%, not collapsed -->
+            <div class="wf-sys-row">
+              <span class="wf-sys-name" style="color:var(--orange);">救援</span>
+              <div class="wf-sys-bar-wrap">
+                <div class="wf-sys-bar-fill orange" style="width:42%;"></div>
+                <div class="wf-sys-threshold" style="left:30%;"></div>
+              </div>
+              <span class="wf-sys-val orange">42%</span>
+            </div>
+            <!-- 交通: 81% -->
+            <div class="wf-sys-row">
+              <span class="wf-sys-name" style="color:var(--yellow);">交通</span>
+              <div class="wf-sys-bar-wrap">
+                <div class="wf-sys-bar-fill yellow" style="width:81%;"></div>
+                <div class="wf-sys-threshold" style="left:30%;"></div>
+              </div>
+              <span class="wf-sys-val yellow">81%</span>
+            </div>
+            <!-- 避难: 100% -->
+            <div class="wf-sys-row">
+              <span class="wf-sys-name" style="color:var(--green);">避难</span>
+              <div class="wf-sys-bar-wrap">
+                <div class="wf-sys-bar-fill green" style="width:100%;"></div>
+                <div class="wf-sys-threshold" style="left:30%;"></div>
+              </div>
+              <span class="wf-sys-val green">100%</span>
+            </div>
+
+            <!-- 崩溃告警 -->
+            <div class="wf-left-section">崩溃告警</div>
+            <div class="wf-alert red"><span class="dot"></span>医疗系统已崩溃 (27%&lt;30%)</div>
+            <div class="wf-alert red"><span class="dot"></span>城市整体已崩溃</div>
+            <div class="wf-alert green"><span class="dot"></span>救援系统正常</div>
+            <div class="wf-alert green"><span class="dot"></span>交通系统正常</div>
+            <div class="wf-alert green"><span class="dot"></span>避难系统正常</div>
+
+            <!-- 图层 -->
+            <div class="wf-left-section">图层</div>
+            <div style="font-size:7px; padding:1px 4px; color:var(--text-secondary);"><span style="color:var(--accent);">✓</span> 烈度场</div>
+            <div style="font-size:7px; padding:1px 4px; color:var(--text-secondary);"><span style="color:var(--accent);">✓</span> 医院可达性</div>
+            <div style="font-size:7px; padding:1px 4px; color:var(--text-secondary);"><span style="color:var(--accent);">✓</span> 关键路段</div>
+            <div style="font-size:7px; padding:1px 4px; color:var(--text-secondary);"><span style="color:var(--text-dim);">○</span> 人口密度</div>
+            <div style="font-size:7px; padding:1px 4px; color:var(--text-secondary);"><span style="color:var(--text-dim);">○</span> 夜间灯光</div>
+          </div>
+
+          <!-- ========== 中栏：地图 ========== -->
+          <div class="wf-center">
+            <div class="wf-map-area" style="background:#0D1520;">
+              <svg width="100%" height="100%" viewBox="0 0 500 280" style="position:absolute; top:0; left:0;">
+                <defs>
+                  <marker id="arrowR" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto">
+                    <path d="M1,1 L7,4 L1,7 Z" fill="#7E91AC"/>
+                  </marker>
+                </defs>
+
+                <!-- 9区县边界（简化多边形） -->
+                <!-- 长丰县（北） -->
+                <path d="M150,20 Q220,15 290,25 Q310,50 295,75 Q230,80 170,70 Q140,50 150,20Z" fill="rgba(52,211,153,0.04)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="220" y="48" fill="#4A5C7A" font-size="6">长丰县</text>
+                <text x="220" y="56" fill="#34D399" font-size="4" font-family="monospace">I=5.2</text>
+
+                <!-- 肥东（东） -->
+                <path d="M295,75 Q360,70 410,90 Q420,130 400,170 Q350,175 300,160 Q285,120 295,75Z" fill="rgba(251,191,36,0.04)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="350" y="120" fill="#4A5C7A" font-size="6">肥东县</text>
+                <text x="350" y="128" fill="#FBBF24" font-size="4" font-family="monospace">I=5.16</text>
+
+                <!-- 巢湖市（东南） -->
+                <path d="M380,180 Q440,175 465,210 Q470,250 440,265 Q390,260 370,230 Q365,200 380,180Z" fill="rgba(52,211,153,0.02)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="415" y="225" fill="#4A5C7A" font-size="6">巢湖市</text>
+                <text x="415" y="233" fill="#34D399" font-size="4" font-family="monospace">I=4.63</text>
+
+                <!-- 庐江（南） -->
+                <path d="M230,230 Q290,225 340,245 Q345,270 310,275 Q250,272 215,260 Q210,240 230,230Z" fill="rgba(52,211,153,0.01)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="275" y="258" fill="#4A5C7A" font-size="6">庐江县</text>
+                <text x="275" y="266" fill="#34D399" font-size="4" font-family="monospace">I=4.34</text>
+
+                <!-- 肥西（西南） -->
+                <path d="M80,150 Q140,145 175,165 Q180,210 150,240 Q100,245 65,220 Q55,180 80,150Z" fill="rgba(52,211,153,0.03)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="115" y="200" fill="#4A5C7A" font-size="6">肥西县</text>
+                <text x="115" y="208" fill="#34D399" font-size="4" font-family="monospace">I=4.85</text>
+
+                <!-- 蜀山区（中西） -->
+                <path d="M110,80 Q160,75 175,100 Q180,130 160,150 Q120,155 95,135 Q85,105 110,80Z" fill="rgba(251,191,36,0.06)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="132" y="115" fill="#4A5C7A" font-size="6">蜀山区</text>
+                <text x="132" y="123" fill="#FBBF24" font-size="4" font-family="monospace">I=5.31</text>
+
+                <!-- 庐阳区（中） -->
+                <path d="M170,70 Q220,65 240,85 Q245,110 225,130 Q190,135 170,115 Q160,90 170,70Z" fill="rgba(248,113,113,0.08)" stroke="#F87171" stroke-width="0.6"/>
+                <text x="200" y="100" fill="#F87171" font-size="6" font-weight="600">庐阳区</text>
+                <text x="200" y="108" fill="#F87171" font-size="4" font-family="monospace">I=6.0</text>
+
+                <!-- 瑶海区（中东） -->
+                <path d="M240,85 Q285,80 300,100 Q305,125 285,145 Q250,150 235,125 Q230,100 240,85Z" fill="rgba(248,113,113,0.1)" stroke="#F87171" stroke-width="0.6"/>
+                <text x="265" y="112" fill="#F87171" font-size="6" font-weight="600">瑶海区</text>
+                <text x="265" y="120" fill="#F87171" font-size="4" font-family="monospace">I=6.13</text>
+
+                <!-- 包河区（中南） -->
+                <path d="M175,130 Q230,125 260,145 Q270,175 245,195 Q200,200 170,180 Q155,155 175,130Z" fill="rgba(251,191,36,0.06)" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="210" y="162" fill="#4A5C7A" font-size="6">包河区</text>
+                <text x="210" y="170" fill="#FBBF24" font-size="4" font-family="monospace">I=5.34</text>
+
+                <!-- 断裂带 -->
+                <line x1="20" y1="180" x2="480" y2="120" stroke="#A78BFA" stroke-width="1.5" opacity="0.4"/>
+                <text x="30" y="175" fill="#A78BFA" font-size="5">郯庐断裂带</text>
+
+                <!-- 震中 -->
+                <circle cx="210" cy="140" r="2.5" fill="#F87171"/>
+                <circle cx="210" cy="140" r="5" fill="none" stroke="#F87171" stroke-width="0.5" opacity="0.6"/>
+                <text x="216" y="138" fill="#F87171" font-size="5" font-weight="600">震中 M5.5</text>
+
+                <!-- 烈度场同心圆 -->
+                <circle cx="210" cy="140" r="35" fill="rgba(248,113,113,0.12)" stroke="#F87171" stroke-width="0.4" stroke-dasharray="2,1"/>
+                <circle cx="210" cy="140" r="70" fill="rgba(251,191,36,0.08)" stroke="#FBBF24" stroke-width="0.4" stroke-dasharray="2,1"/>
+                <circle cx="210" cy="140" r="110" fill="rgba(52,211,153,0.05)" stroke="#34D399" stroke-width="0.4" stroke-dasharray="2,1"/>
+                <text x="210" y="110" text-anchor="middle" fill="#F87171" font-size="4">VI度</text>
+                <text x="210" y="75" text-anchor="middle" fill="#FBBF24" font-size="4">V度</text>
+                <text x="210" y="35" text-anchor="middle" fill="#34D399" font-size="4">IV度</text>
+
+                <!-- 医院POI（老城区密集，红色=不可达，绿色=可达） -->
+                <!-- 庐阳区+瑶海区（高烈度，部分不可达） -->
+                <circle cx="190" cy="90" r="1.5" fill="#F87171"/><circle cx="198" cy="95" r="1.5" fill="#F87171"/><circle cx="195" cy="105" r="1.5" fill="#F87171"/>
+                <circle cx="205" cy="92" r="1.5" fill="#F87171"/><circle cx="210" cy="100" r="1.5" fill="#F87171"/><circle cx="215" cy="108" r="1.5" fill="#F87171"/>
+                <circle cx="200" cy="115" r="1.5" fill="#F87171"/><circle cx="220" cy="105" r="1.5" fill="#F87171"/><circle cx="225" cy="115" r="1.5" fill="#F87171"/>
+                <circle cx="185" cy="105" r="1.5" fill="#F87171"/><circle cx="190" cy="118" r="1.5" fill="#F87171"/><circle cx="215" cy="120" r="1.5" fill="#F87171"/>
+                <circle cx="250" cy="100" r="1.5" fill="#F87171"/><circle cx="260" cy="108" r="1.5" fill="#F87171"/><circle cx="268" cy="115" r="1.5" fill="#F87171"/>
+                <circle cx="255" cy="120" r="1.5" fill="#F87171"/><circle cx="270" cy="125" r="1.5" fill="#F87171"/><circle cx="245" cy="115" r="1.5" fill="#F87171"/>
+                <circle cx="275" cy="105" r="1.5" fill="#F87171"/><circle cx="282" cy="115" r="1.5" fill="#F87171"/>
+                <!-- 蜀山区（中烈度，部分不可达） -->
+                <circle cx="120" cy="100" r="1.5" fill="#FBBF24"/><circle cx="130" cy="105" r="1.5" fill="#FBBF24"/><circle cx="125" cy="115" r="1.5" fill="#FBBF24"/>
+                <circle cx="115" cy="120" r="1.5" fill="#FBBF24"/><circle cx="140" cy="110" r="1.5" fill="#FBBF24"/><circle cx="135" cy="125" r="1.5" fill="#FBBF24"/>
+                <!-- 包河区 -->
+                <circle cx="195" cy="150" r="1.5" fill="#FBBF24"/><circle cx="210" cy="155" r="1.5" fill="#FBBF24"/><circle cx="220" cy="165" r="1.5" fill="#FBBF24"/>
+                <circle cx="200" cy="170" r="1.5" fill="#FBBF24"/><circle cx="230" cy="175" r="1.5" fill="#FBBF24"/>
+                <!-- 肥东/长丰（低烈度，可达） -->
+                <circle cx="320" cy="100" r="1.5" fill="#34D399"/><circle cx="350" cy="110" r="1.5" fill="#34D399"/><circle cx="340" cy="130" r="1.5" fill="#34D399"/>
+                <circle cx="370" cy="120" r="1.5" fill="#34D399"/><circle cx="380" cy="145" r="1.5" fill="#34D399"/>
+                <circle cx="240" cy="45" r="1.5" fill="#34D399"/><circle cx="260" cy="55" r="1.5" fill="#34D399"/>
+                <!-- 肥西 -->
+                <circle cx="100" cy="170" r="1.5" fill="#34D399"/><circle cx="120" cy="190" r="1.5" fill="#34D399"/><circle cx="90" cy="200" r="1.5" fill="#34D399"/>
+
+                <!-- 10条关键路段（红色加粗） -->
+                <line x1="155" y1="95" x2="168" y2="92" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="148" y="90" fill="#F87171" font-size="3.5">#25821</text>
+                <line x1="225" y1="120" x2="240" y2="125" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="228" y="118" fill="#F87171" font-size="3.5">#25675</text>
+                <line x1="265" y1="130" x2="280" y2="128" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="268" y="128" fill="#F87171" font-size="3.5">#33397</text>
+                <line x1="200" y1="160" x2="230" y2="180" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="205" y="172" fill="#F87171" font-size="3.5">#37114</text>
+                <line x1="340" y1="200" x2="345" y2="225" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="320" y="215" fill="#F87171" font-size="3.5">#53086</text>
+                <line x1="345" y1="225" x2="350" y2="200" stroke="#F87171" stroke-width="1.5" opacity="0.6"/>
+                <line x1="345" y1="225" x2="330" y2="230" stroke="#F87171" stroke-width="1.5" opacity="0.6"/>
+                <line x1="330" y1="240" x2="315" y2="255" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="310" y="250" fill="#F87171" font-size="3.5">#53222</text>
+                <line x1="270" y1="135" x2="265" y2="142" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="255" y="142" fill="#F87171" font-size="3.5">#32683</text>
+                <line x1="310" y1="170" x2="308" y2="185" stroke="#F87171" stroke-width="1.5" opacity="0.8"/>
+                <text x="295" y="180" fill="#F87171" font-size="3.5">#49223</text>
+
+                <!-- 悬停信息卡（庐阳区） -->
+                <rect x="270" y="75" width="135" height="82" fill="#0F1A2B" stroke="#00D4FF" stroke-width="0.6" rx="4"/>
+                <text x="276" y="86" fill="#00D4FF" font-size="7" font-weight="600">庐阳区 · 烈度VI</text>
+                <line x1="276" y1="90" x2="398" y2="90" stroke="#1E3A5F" stroke-width="0.5"/>
+                <text x="276" y="100" fill="#7E91AC" font-size="5">总人口</text><text x="398" y="100" text-anchor="end" fill="#E6EDF7" font-size="5" font-family="monospace">74.4万</text>
+                <text x="276" y="109" fill="#7E91AC" font-size="5">暴露人口</text><text x="398" y="109" text-anchor="end" fill="#F87171" font-size="5" font-family="monospace">74.4万(100%)</text>
+                <text x="276" y="118" fill="#7E91AC" font-size="5">经济损失</text><text x="398" y="118" text-anchor="end" fill="#F87171" font-size="5" font-family="monospace">¥66.2亿</text>
+                <text x="276" y="127" fill="#7E91AC" font-size="5">平均烈度</text><text x="398" y="127" text-anchor="end" fill="#F87171" font-size="5" font-family="monospace">VI度(6.0)</text>
+                <text x="276" y="136" fill="#7E91AC" font-size="5">网格数</text><text x="398" y="136" text-anchor="end" fill="#E6EDF7" font-size="5" font-family="monospace">547</text>
+                <text x="276" y="146" fill="#7E91AC" font-size="5">损失率</text><text x="398" y="146" text-anchor="end" fill="#F87171" font-size="5" font-family="monospace">5.0%</text>
+                <text x="276" y="154" fill="#F87171" font-size="4.5">⚠ 高烈度区·全人口暴露</text>
+              </svg>
+
+              <!-- 地图工具栏 -->
+              <div class="wf-map-toolbar">
+                <div class="wf-map-tools">
+                  <div class="wf-map-tool active">⊕</div>
+                  <div class="wf-map-tool">⊖</div>
+                  <div class="wf-map-tool">⌂</div>
+                  <div class="wf-map-tool">识</div>
+                  <div class="wf-map-tool">测</div>
+                  <div class="wf-map-tool">⛶</div>
+                </div>
+                <div class="wf-map-info">拖动震级查看烈度场变化 · 悬停区县查看详情</div>
+              </div>
+
+              <!-- 图例 -->
+              <div class="wf-map-legend">
+                <div><span style="color:#F87171;">●</span>医院不可达 <span style="color:#34D399;">●</span>可达 <span style="color:#FBBF24;">●</span>部分</div>
+                <div><span style="color:#F87171;">━</span>关键路段(阻断) <span style="color:#A78BFA;">─</span>断裂带</div>
+                <div><span style="color:#F87171;">◎</span>VI度 <span style="color:#FBBF24;">◎</span>V度 <span style="color:#34D399;">◎</span>IV度</div>
+              </div>
+              <div class="wf-map-scale">0 ─── 5km · EPSG:4490</div>
+            </div>
+          </div>
+
+          <!-- ========== 右栏：数据面板 ========== -->
+          <div class="wf-right">
+            <!-- 区县损失排名 -->
+            <div class="wf-panel red">
+              <div class="wf-panel-label">9区县损失排名 · M5.5</div>
+              <div class="wf-row"><span class="wf-row-key">包河区</span><span class="wf-row-val red">¥95.0M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill red" style="width:100%"></div></div>
+              <div class="wf-row"><span class="wf-row-key">蜀山区</span><span class="wf-row-val red">¥71.4M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill red" style="width:75%"></div></div>
+              <div class="wf-row"><span class="wf-row-key">庐阳区</span><span class="wf-row-val yellow">¥66.2M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill yellow" style="width:70%"></div></div>
+              <div class="wf-row"><span class="wf-row-key">瑶海区</span><span class="wf-row-val yellow">¥40.2M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill yellow" style="width:42%"></div></div>
+              <div class="wf-row"><span class="wf-row-key">肥东县</span><span class="wf-row-val">¥31.0M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill accent" style="width:33%"></div></div>
+              <div class="wf-row"><span class="wf-row-key">长丰县</span><span class="wf-row-val">¥30.8M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill accent" style="width:32%"></div></div>
+              <div class="wf-row"><span class="wf-row-key">肥西县</span><span class="wf-row-val green">¥11.0M</span></div>
+              <div class="wf-bar"><div class="wf-bar-fill green" style="width:12%"></div></div>
+            </div>
+
+            <!-- 当前震级汇总 -->
+            <div class="wf-panel accent">
+              <div class="wf-panel-label">M5.5 汇总</div>
+              <div class="wf-row"><span class="wf-row-key">暴露人口</span><span class="wf-row-val accent">531.0万</span></div>
+              <div class="wf-row"><span class="wf-row-key">受灾人口</span><span class="wf-row-val">26.6万</span></div>
+              <div class="wf-row"><span class="wf-row-key">经济损失</span><span class="wf-row-val red">¥346亿</span></div>
+              <div class="wf-row"><span class="wf-row-key">平均损失率</span><span class="wf-row-val yellow">3.2%</span></div>
+              <div class="wf-row"><span class="wf-row-key">城市状态</span><span class="wf-tag red">已崩溃</span></div>
+            </div>
+
+            <!-- 10关键路段 -->
+            <div class="wf-panel">
+              <div class="wf-panel-label">10条关键路段 · 全阻断</div>
+              <table class="wf-table">
+                <tr><th>ID</th><th>长度</th><th>状态</th></tr>
+                <tr><td>#25821</td><td class="num">315m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#25675</td><td class="num">370m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#33397</td><td class="num">315m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#37114</td><td class="num">2400m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#53086</td><td class="num">1933m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#53087</td><td class="num">1933m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#53088</td><td class="num">810m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#53222</td><td class="num">1575m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#32683</td><td class="num">260m</td><td style="color:var(--red);">断</td></tr>
+                <tr><td>#49223</td><td class="num">532m</td><td style="color:var(--red);">断</td></tr>
+              </table>
+              <div style="font-size:5px; color:var(--text-muted); margin-top:2px;">全部位于断裂带0米处</div>
+            </div>
+
+            <!-- 韧性指数 -->
+            <div class="wf-panel">
+              <div class="wf-panel-label">韧性指数</div>
+              <div style="display:flex; align-items:center; gap:4px;">
+                <svg width="36" height="22" viewBox="0 0 36 22">
+                  <path d="M3,19 A15,15 0 0,1 33,19" fill="none" stroke="#1E3A5F" stroke-width="2"/>
+                  <path d="M3,19 A15,15 0 0,1 24,5" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="18" y1="19" x2="13" y2="9" stroke="#FBBF24" stroke-width="1" stroke-linecap="round"/>
+                  <circle cx="18" cy="19" r="1.5" fill="#FBBF24"/>
+                </svg>
+                <div>
+                  <div style="font-size:14px; font-weight:700; color:var(--yellow); font-family:monospace;">0.616</div>
+                  <div style="font-size:5px; color:var(--text-muted);">中等韧性</div>
+                </div>
+              </div>
+              <div class="wf-bar" style="margin-top:2px;"><div class="wf-bar-fill yellow" style="width:62%"></div></div>
+              <div style="display:flex; justify-content:space-between; font-size:4px; color:var(--text-muted); margin-top:1px;">
+                <span>0.0 低</span><span>0.4</span><span>0.6</span><span>1.0 高</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== 底部双面板 ========== -->
+        <div class="wf-bottom-bar">
+          <!-- 左：4系统响应曲线 -->
+          <div class="wf-chart-cell">
+            <div class="wf-chart-title">
+              <span>4系统功能率响应曲线 · 6震级</span>
+              <span style="color:var(--red);">━ 30% 崩溃阈值</span>
+            </div>
+            <div class="wf-chart-body">
+              <svg width="100%" height="100%" viewBox="0 0 300 72" preserveAspectRatio="none">
+                <!-- 网格 -->
+                <line x1="25" y1="6" x2="295" y2="6" stroke="#1E3A5F" stroke-width="0.2"/>
+                <line x1="25" y1="21" x2="295" y2="21" stroke="#1E3A5F" stroke-width="0.2"/>
+                <line x1="25" y1="36" x2="295" y2="36" stroke="#1E3A5F" stroke-width="0.2"/>
+                <line x1="25" y1="51" x2="295" y2="51" stroke="#1E3A5F" stroke-width="0.2"/>
+                <line x1="25" y1="66" x2="295" y2="66" stroke="#1E3A5F" stroke-width="0.3"/>
+
+                <!-- Y轴标签 -->
+                <text x="22" y="9" text-anchor="end" fill="#4A5C7A" font-size="4">100%</text>
+                <text x="22" y="24" text-anchor="end" fill="#4A5C7A" font-size="4">75%</text>
+                <text x="22" y="39" text-anchor="end" fill="#4A5C7A" font-size="4">50%</text>
+                <text x="22" y="54" text-anchor="end" fill="#4A5C7A" font-size="4">25%</text>
+                <text x="22" y="68" text-anchor="end" fill="#4A5C7A" font-size="4">0%</text>
+
+                <!-- X轴标签 -->
+                <text x="25" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M5.0</text>
+                <text x="79" y="71" text-anchor="middle" fill="#00D4FF" font-size="4" font-weight="600">M5.5</text>
+                <text x="133" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M6.0</text>
+                <text x="187" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M6.5</text>
+                <text x="241" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M7.0</text>
+                <text x="295" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M7.5</text>
+
+                <!-- 崩溃阈值线 (30%) -->
+                <line x1="25" y1="48" x2="295" y2="48" stroke="#F87171" stroke-width="0.3" stroke-dasharray="2,1" opacity="0.6"/>
+
+                <!-- 当前震级标记 (M5.5) -->
+                <line x1="79" y1="6" x2="79" y2="66" stroke="#00D4FF" stroke-width="0.5" stroke-dasharray="1,1" opacity="0.5"/>
+                <rect x="74" y="2" width="10" height="5" fill="#00D4FF" rx="1" opacity="0.2"/>
+                <text x="79" y="5" text-anchor="middle" fill="#00D4FF" font-size="3.5" font-weight="600">当前</text>
+
+                <!-- 交通曲线 (黄) 84%→81%→79%→76%→73%→69% -->
+                <polyline points="25,15.6 79,17.2 133,18.2 187,20.0 241,21.6 295,23.4" fill="none" stroke="#FBBF24" stroke-width="1" opacity="0.8"/>
+                <circle cx="25" cy="15.6" r="1" fill="#FBBF24"/><circle cx="79" cy="17.2" r="1" fill="#FBBF24"/><circle cx="133" cy="18.2" r="1" fill="#FBBF24"/>
+                <circle cx="187" cy="20.0" r="1" fill="#FBBF24"/><circle cx="241" cy="21.6" r="1" fill="#FBBF24"/><circle cx="295" cy="23.4" r="1" fill="#FBBF24"/>
+
+                <!-- 避难曲线 (绿) 100%→100%→100%→100%→44%→25% -->
+                <polyline points="25,6 79,6 133,6 187,6 241,39.6 295,50.4" fill="none" stroke="#34D399" stroke-width="1" opacity="0.8"/>
+                <circle cx="25" cy="6" r="1" fill="#34D399"/><circle cx="79" cy="6" r="1" fill="#34D399"/><circle cx="133" cy="6" r="1" fill="#34D399"/>
+                <circle cx="187" cy="6" r="1" fill="#34D399"/>
+                <!-- 崩溃标记 -->
+                <circle cx="241" cy="39.6" r="2" fill="#34D399" stroke="#0D1520" stroke-width="0.5"/>
+                <text x="245" y="38" fill="#34D399" font-size="3">崩</text>
+                <circle cx="295" cy="50.4" r="1" fill="#34D399"/>
+
+                <!-- 救援曲线 (橙) 42%→42%→38%→36%→33%→30% -->
+                <polyline points="25,41.2 79,41.2 133,43.4 187,44.2 241,46.0 295,48.0" fill="none" stroke="#FB923C" stroke-width="1" opacity="0.8"/>
+                <circle cx="25" cy="41.2" r="1" fill="#FB923C"/><circle cx="79" cy="41.2" r="1" fill="#FB923C"/>
+                <!-- 崩溃标记 -->
+                <circle cx="133" cy="43.4" r="2" fill="#FB923C" stroke="#0D1520" stroke-width="0.5"/>
+                <text x="137" y="42" fill="#FB923C" font-size="3">崩</text>
+                <circle cx="187" cy="44.2" r="1" fill="#FB923C"/><circle cx="241" cy="46.0" r="1" fill="#FB923C"/><circle cx="295" cy="48.0" r="1" fill="#FB923C"/>
+
+                <!-- 医疗曲线 (红) 54%→27%→26%→27%→24%→23% -->
+                <polyline points="25,25.6 79,49.6 133,50.2 187,49.6 241,51.6 295,52.2" fill="none" stroke="#F87171" stroke-width="1.2"/>
+                <circle cx="25" cy="25.6" r="1" fill="#F87171"/>
+                <!-- 崩溃标记 (M5.5) -->
+                <circle cx="79" cy="49.6" r="2.5" fill="#F87171" stroke="#0D1520" stroke-width="0.5"/>
+                <text x="83" y="48" fill="#F87171" font-size="3.5" font-weight="600">崩</text>
+                <circle cx="133" cy="50.2" r="1" fill="#F87171"/><circle cx="187" cy="49.6" r="1" fill="#F87171"/>
+                <circle cx="241" cy="51.6" r="1" fill="#F87171"/><circle cx="295" cy="52.2" r="1" fill="#F87171"/>
+
+                <!-- 图例 -->
+                <rect x="200" y="2" width="95" height="5" fill="#0F1A2B" opacity="0.8" rx="1"/>
+                <circle cx="203" cy="5" r="1" fill="#F87171"/><text x="206" y="6" fill="#7E91AC" font-size="3">医疗</text>
+                <circle cx="221" cy="5" r="1" fill="#FB923C"/><text x="224" y="6" fill="#7E91AC" font-size="3">救援</text>
+                <circle cx="239" cy="5" r="1" fill="#FBBF24"/><text x="242" y="6" fill="#7E91AC" font-size="3">交通</text>
+                <circle cx="257" cy="5" r="1" fill="#34D399"/><text x="260" y="6" fill="#7E91AC" font-size="3">避难</text>
+                <circle cx="275" cy="5" r="1" fill="#00D4FF"/><text x="278" y="6" fill="#7E91AC" font-size="3">当前</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 右：级联时间线 -->
+          <div class="wf-chart-cell">
+            <div class="wf-chart-title">
+              <span>级联崩溃时间线 · 系统间传播</span>
+              <span style="color:var(--accent);">→ 因果链</span>
+            </div>
+            <div class="wf-chart-body">
+              <svg width="100%" height="100%" viewBox="0 0 300 72" preserveAspectRatio="none">
+                <defs>
+                  <marker id="arrowC" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="3" markerHeight="3" orient="auto">
+                    <path d="M1,1 L7,4 L1,7 Z" fill="#7E91AC"/>
+                  </marker>
+                </defs>
+
+                <!-- 震级轴 -->
+                <line x1="25" y1="66" x2="295" y2="66" stroke="#2A4060" stroke-width="0.5"/>
+                <text x="25" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M5.0</text>
+                <text x="79" y="71" text-anchor="middle" fill="#00D4FF" font-size="4" font-weight="600">M5.5</text>
+                <text x="133" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M6.0</text>
+                <text x="187" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M6.5</text>
+                <text x="241" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M7.0</text>
+                <text x="295" y="71" text-anchor="middle" fill="#4A5C7A" font-size="4">M7.5</text>
+
+                <!-- 当前震级标记 -->
+                <line x1="79" y1="2" x2="79" y2="66" stroke="#00D4FF" stroke-width="0.4" stroke-dasharray="1,1" opacity="0.4"/>
+
+                <!-- 医疗轨道 (y=12) -->
+                <line x1="25" y1="12" x2="295" y2="12" stroke="#1E3A5F" stroke-width="0.3"/>
+                <text x="2" y="14" fill="#7E91AC" font-size="4">医疗</text>
+                <!-- M5.0正常 -->
+                <rect x="22" y="9" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <!-- M5.5崩溃 -->
+                <circle cx="79" cy="12" r="3" fill="#F87171" stroke="#0D1520" stroke-width="0.5"/>
+                <text x="79" y="8" text-anchor="middle" fill="#F87171" font-size="3.5" font-weight="600">崩</text>
+                <!-- M6.0+持续崩溃 -->
+                <rect x="130" y="9" width="6" height="6" fill="#F87171" rx="1" opacity="0.4"/>
+                <rect x="184" y="9" width="6" height="6" fill="#F87171" rx="1" opacity="0.4"/>
+                <rect x="238" y="9" width="6" height="6" fill="#F87171" rx="1" opacity="0.4"/>
+                <rect x="292" y="9" width="6" height="6" fill="#F87171" rx="1" opacity="0.4"/>
+
+                <!-- 救援轨道 (y=26) -->
+                <line x1="25" y1="26" x2="295" y2="26" stroke="#1E3A5F" stroke-width="0.3"/>
+                <text x="2" y="28" fill="#7E91AC" font-size="4">救援</text>
+                <rect x="22" y="23" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <rect x="76" y="23" width="6" height="6" fill="#FBBF24" rx="1" opacity="0.4"/>
+                <!-- M6.0崩溃 -->
+                <circle cx="133" cy="26" r="3" fill="#FB923C" stroke="#0D1520" stroke-width="0.5"/>
+                <text x="133" y="22" text-anchor="middle" fill="#FB923C" font-size="3.5" font-weight="600">崩</text>
+                <rect x="184" y="23" width="6" height="6" fill="#FB923C" rx="1" opacity="0.4"/>
+                <rect x="238" y="23" width="6" height="6" fill="#FB923C" rx="1" opacity="0.4"/>
+                <rect x="292" y="23" width="6" height="6" fill="#FB923C" rx="1" opacity="0.4"/>
+
+                <!-- 交通轨道 (y=40) -->
+                <line x1="25" y1="40" x2="295" y2="40" stroke="#1E3A5F" stroke-width="0.3"/>
+                <text x="2" y="42" fill="#7E91AC" font-size="4">交通</text>
+                <rect x="22" y="37" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <rect x="76" y="37" width="6" height="6" fill="#FBBF24" rx="1" opacity="0.4"/>
+                <rect x="130" y="37" width="6" height="6" fill="#FBBF24" rx="1" opacity="0.4"/>
+                <rect x="184" y="37" width="6" height="6" fill="#FBBF24" rx="1" opacity="0.4"/>
+                <rect x="238" y="37" width="6" height="6" fill="#FBBF24" rx="1" opacity="0.4"/>
+                <rect x="292" y="37" width="6" height="6" fill="#FBBF24" rx="1" opacity="0.4"/>
+                <text x="295" y="36" text-anchor="end" fill="#FBBF24" font-size="3">退化未崩</text>
+
+                <!-- 避难轨道 (y=54) -->
+                <line x1="25" y1="54" x2="295" y2="54" stroke="#1E3A5F" stroke-width="0.3"/>
+                <text x="2" y="56" fill="#7E91AC" font-size="4">避难</text>
+                <rect x="22" y="51" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <rect x="76" y="51" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <rect x="130" y="51" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <rect x="184" y="51" width="6" height="6" fill="#34D399" rx="1" opacity="0.5"/>
+                <!-- M7.0崩溃 -->
+                <circle cx="241" cy="54" r="3" fill="#34D399" stroke="#0D1520" stroke-width="0.5"/>
+                <text x="241" y="50" text-anchor="middle" fill="#34D399" font-size="3.5" font-weight="600">崩</text>
+                <rect x="292" y="51" width="6" height="6" fill="#34D399" rx="1" opacity="0.4"/>
+
+                <!-- 级联因果箭头 -->
+                <!-- 交通退化 → 医疗崩溃 -->
+                <path d="M55,38 Q65,25 73,15" fill="none" stroke="#FBBF24" stroke-width="0.4" stroke-dasharray="1,1" marker-end="url(#arrowC)" opacity="0.6"/>
+                <text x="48" y="30" fill="#FBBF24" font-size="3" opacity="0.7">交通退化→</text>
+                <text x="48" y="33" fill="#FBBF24" font-size="3" opacity="0.7">医疗不可达</text>
+
+                <!-- 医疗崩溃 → 救援崩溃 -->
+                <path d="M85,15 Q108,20 127,24" fill="none" stroke="#F87171" stroke-width="0.4" stroke-dasharray="1,1" marker-end="url(#arrowC)" opacity="0.6"/>
+                <text x="90" y="18" fill="#F87171" font-size="3" opacity="0.7">医疗崩→救援失援</text>
+
+                <!-- 救援崩溃 → 避难崩溃 -->
+                <path d="M139,28 Q190,40 235,52" fill="none" stroke="#FB923C" stroke-width="0.4" stroke-dasharray="1,1" marker-end="url(#arrowC)" opacity="0.5"/>
+                <text x="170" y="42" fill="#FB923C" font-size="3" opacity="0.7">救援崩→避难失保</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 说明面板 ========== -->
+    <div class="wb-notes">
+      <div class="notes-title">设计说明</div>
+
+      <div class="notes-section">
+        <div class="notes-section-title">信息层次（5层）</div>
+        <ul class="notes-list">
+          <li>顶部KPI条：8个动态指标随scrubber实时更新</li>
+          <li>左栏：震级Scrubber+4系统仪表+崩溃告警+图层</li>
+          <li>地图：烈度场+9区县+426医院+10关键路段+悬停卡</li>
+          <li>右栏：区县排名+震级汇总+关键路段表+韧性仪表</li>
+          <li>底部：响应曲线+级联时间线（双面板，全页独有）</li>
+        </ul>
+      </div>
+
+      <div class="notes-section">
+        <div class="notes-section-title">交互设计（6项）</div>
+        <ul class="notes-list">
+          <li>拖动Scrubber → 全页8个KPI+4仪表+地图+曲线同步更新</li>
+          <li>点击播放 → M5.0→M7.5自动推进，看崩溃逐级发生</li>
+          <li>悬停区县 → 弹出信息卡（人口/损失/烈度/网格）</li>
+          <li>悬停曲线点 → 显示该震级下4系统精确功能率</li>
+          <li>点击关键路段 → 地图高亮+右侧显示路段详情</li>
+          <li>切换图层 → 烈度场/可达性/人口密度/夜间灯光</li>
+        </ul>
+      </div>
+
+      <div class="notes-section">
+        <div class="notes-section-title">独有元素（vs 其他3页）</div>
+        <ul class="notes-list">
+          <li>震级Scrubber：6档可拖动+播放/重置</li>
+          <li>4系统仪表条：实时功能率+30%阈值线</li>
+          <li>地震烈度场：同心圆着色（VI/V/IV度）</li>
+          <li>崩溃告警面板：实时显示哪些系统已崩</li>
+          <li>底部双面板：曲线+级联时间线（其他页是3图表）</li>
+        </ul>
+      </div>
+
+      <div class="notes-section">
+        <div class="notes-section-title">数据源映射</div>
+        <div class="notes-data">
+          <div class="notes-data-row"><span class="notes-data-key">collapse_threshold.csv</span><span class="notes-data-val">→曲线+告警</span></div>
+          <div class="notes-data-row"><span class="notes-data-key">resilience_summary.csv</span><span class="notes-data-val">→韧性仪表</span></div>
+          <div class="notes-data-row"><span class="notes-data-key">exposure_summary_M5.5</span><span class="notes-data-val">→区县排名</span></div>
+          <div class="notes-data-row"><span class="notes-data-key">loss_estimate_M5.5</span><span class="notes-data-val">→损失汇总</span></div>
+          <div class="notes-data-row"><span class="notes-data-key">key_roads.csv</span><span class="notes-data-val">→关键路段表</span></div>
+        </div>
+      </div>
+
+      <div class="notes-section">
+        <div class="notes-section-title">M5.5核心发现</div>
+        <ul class="notes-list">
+          <li>医疗先崩：27%&lt;30%阈值，44%医院不可达</li>
+          <li>级联传播：交通退化→医疗崩→救援崩(M6.0)→避难崩(M7.0)</li>
+          <li>320万居民受影响，损失¥346亿</li>
+          <li>韧性指数0.616，中等水平</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 多状态预览：Scrubber驱动效果 ========== -->
+<div class="page-header" style="margin-top:48px;">
+  <h1 style="font-size:20px;">Scrubber驱动 · 3个关键时刻对比</h1>
+  <p>拖动震级时的页面状态变化预览</p>
+</div>
+
+<div class="state-preview">
+  <!-- M5.0 全部正常 -->
+  <div class="state-card">
+    <div class="state-card-header">
+      <div class="state-card-title" style="color:var(--green);">M5.0 · 全系统正常</div>
+      <span class="wf-tag green">SAFE</span>
+    </div>
+    <div class="state-card-body">
+      <svg viewBox="0 0 300 130" style="background:#0D1520;">
+        <!-- KPI简化 -->
+        <rect x="0" y="0" width="300" height="14" fill="#060D18"/>
+        <text x="5" y="9" fill="#4A5C7A" font-size="4">医疗</text><text x="40" y="9" fill="#34D399" font-size="5" font-family="monospace" font-weight="600">54%</text>
+        <text x="55" y="9" fill="#4A5C7A" font-size="4">救援</text><text x="90" y="9" fill="#34D399" font-size="5" font-family="monospace" font-weight="600">42%</text>
+        <text x="105" y="9" fill="#4A5C7A" font-size="4">交通</text><text x="140" y="9" fill="#34D399" font-size="5" font-family="monospace" font-weight="600">84%</text>
+        <text x="155" y="9" fill="#4A5C7A" font-size="4">避难</text><text x="190" y="9" fill="#34D399" font-size="5" font-family="monospace" font-weight="600">100%</text>
+        <text x="210" y="9" fill="#4A5C7A" font-size="4">韧性</text><text x="250" y="9" fill="#34D399" font-size="5" font-family="monospace" font-weight="600">0.711</text>
+
+        <!-- 地图简化 -->
+        <rect x="5" y="18" width="180" height="85" fill="#0D1520" stroke="#1E3A5F" stroke-width="0.3" rx="2"/>
+        <!-- 烈度场（小范围） -->
+        <circle cx="95" cy="60" r="15" fill="rgba(251,191,36,0.1)" stroke="#FBBF24" stroke-width="0.3" stroke-dasharray="1,1"/>
+        <circle cx="95" cy="60" r="30" fill="rgba(52,211,153,0.06)" stroke="#34D399" stroke-width="0.3" stroke-dasharray="1,1"/>
+        <!-- 医院全绿 -->
+        <circle cx="85" cy="55" r="1" fill="#34D399"/><circle cx="92" cy="58" r="1" fill="#34D399"/><circle cx="100" cy="55" r="1" fill="#34D399"/>
+        <circle cx="88" cy="62" r="1" fill="#34D399"/><circle cx="95" cy="65" r="1" fill="#34D399"/><circle cx="102" cy="62" r="1" fill="#34D399"/>
+        <circle cx="80" cy="70" r="1" fill="#34D399"/><circle cx="110" cy="70" r="1" fill="#34D399"/>
+        <text x="95" y="100" text-anchor="middle" fill="#34D399" font-size="4">全系统正常 · 医院全可达</text>
+
+        <!-- 系统仪表 -->
+        <rect x="190" y="18" width="105" height="85" fill="#0F1A2B" stroke="#1E3A5F" stroke-width="0.3" rx="2"/>
+        <text x="195" y="25" fill="#4A5C7A" font-size="4">系统功能率</text>
+        <text x="195" y="35" fill="#34D399" font-size="3.5">医疗</text><rect x="215" y="32" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="32" width="32" height="3" fill="#34D399" rx="1"/><text x="278" y="35" fill="#34D399" font-size="3.5" font-family="monospace">54%</text>
+        <text x="195" y="45" fill="#34D399" font-size="3.5">救援</text><rect x="215" y="42" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="42" width="25" height="3" fill="#34D399" rx="1"/><text x="278" y="45" fill="#34D399" font-size="3.5" font-family="monospace">42%</text>
+        <text x="195" y="55" fill="#34D399" font-size="3.5">交通</text><rect x="215" y="52" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="52" width="50" height="3" fill="#34D399" rx="1"/><text x="278" y="55" fill="#34D399" font-size="3.5" font-family="monospace">84%</text>
+        <text x="195" y="65" fill="#34D399" font-size="3.5">避难</text><rect x="215" y="62" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="62" width="60" height="3" fill="#34D399" rx="1"/><text x="278" y="65" fill="#34D399" font-size="3.5" font-family="monospace">100%</text>
+        <line x1="215" y1="70" x2="275" y2="70" stroke="#1E3A5F" stroke-width="0.3"/>
+        <text x="195" y="78" fill="#4A5C7A" font-size="4">告警</text>
+        <text x="195" y="86" fill="#34D399" font-size="3.5">● 全系统正常</text>
+        <text x="195" y="93" fill="#34D399" font-size="3.5">● 城市未崩溃</text>
+
+        <!-- 底部曲线简化 -->
+        <rect x="5" y="108" width="290" height="20" fill="#060D18" stroke="#1E3A5F" stroke-width="0.2" rx="1"/>
+        <line x1="15" y1="118" x2="285" y2="118" stroke="#1E3A5F" stroke-width="0.2"/>
+        <line x1="15" y1="113" x2="285" y2="113" stroke="#F87171" stroke-width="0.2" stroke-dasharray="1,1" opacity="0.4"/>
+        <!-- 当前位置标记 M5.0 -->
+        <line x1="15" y1="111" x2="15" y2="125" stroke="#00D4FF" stroke-width="0.4"/>
+        <!-- 4曲线起点 -->
+        <circle cx="15" cy="115.4" r="1" fill="#F87171"/><circle cx="15" cy="116.8" r="1" fill="#FB923C"/><circle cx="15" cy="111.6" r="1" fill="#FBBF24"/><circle cx="15" cy="111" r="1" fill="#34D399"/>
+        <text x="15" y="128" text-anchor="middle" fill="#00D4FF" font-size="3">M5.0</text>
+        <text x="73" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M5.5</text>
+        <text x="131" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M6.0</text>
+        <text x="189" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M6.5</text>
+        <text x="247" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M7.0</text>
+        <text x="285" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M7.5</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- M5.5 医疗崩溃 -->
+  <div class="state-card" style="border-color:var(--red);">
+    <div class="state-card-header">
+      <div class="state-card-title" style="color:var(--red);">M5.5 · 医疗崩溃（临界点）</div>
+      <span class="wf-tag red">CRITICAL</span>
+    </div>
+    <div class="state-card-body">
+      <svg viewBox="0 0 300 130" style="background:#0D1520;">
+        <rect x="0" y="0" width="300" height="14" fill="#060D18"/>
+        <text x="5" y="9" fill="#4A5C7A" font-size="4">医疗</text><text x="40" y="9" fill="#F87171" font-size="5" font-family="monospace" font-weight="600">27%</text>
+        <text x="55" y="9" fill="#4A5C7A" font-size="4">救援</text><text x="90" y="9" fill="#FB923C" font-size="5" font-family="monospace" font-weight="600">42%</text>
+        <text x="105" y="9" fill="#4A5C7A" font-size="4">交通</text><text x="140" y="9" fill="#FBBF24" font-size="5" font-family="monospace" font-weight="600">81%</text>
+        <text x="155" y="9" fill="#4A5C7A" font-size="4">避难</text><text x="190" y="9" fill="#34D399" font-size="5" font-family="monospace" font-weight="600">100%</text>
+        <text x="210" y="9" fill="#4A5C7A" font-size="4">韧性</text><text x="250" y="9" fill="#FBBF24" font-size="5" font-family="monospace" font-weight="600">0.616</text>
+
+        <rect x="5" y="18" width="180" height="85" fill="#0D1520" stroke="#1E3A5F" stroke-width="0.3" rx="2"/>
+        <!-- 烈度场（扩大） -->
+        <circle cx="95" cy="60" r="25" fill="rgba(248,113,113,0.12)" stroke="#F87171" stroke-width="0.3" stroke-dasharray="1,1"/>
+        <circle cx="95" cy="60" r="45" fill="rgba(251,191,36,0.08)" stroke="#FBBF24" stroke-width="0.3" stroke-dasharray="1,1"/>
+        <!-- 医院部分红 -->
+        <circle cx="85" cy="55" r="1" fill="#F87171"/><circle cx="92" cy="58" r="1" fill="#F87171"/><circle cx="100" cy="55" r="1" fill="#F87171"/>
+        <circle cx="88" cy="62" r="1" fill="#F87171"/><circle cx="95" cy="65" r="1" fill="#FBBF24"/><circle cx="102" cy="62" r="1" fill="#FBBF24"/>
+        <circle cx="80" cy="70" r="1" fill="#FBBF24"/><circle cx="110" cy="70" r="1" fill="#34D399"/>
+        <text x="95" y="100" text-anchor="middle" fill="#F87171" font-size="4">医疗崩·44%医院不可达</text>
+
+        <rect x="190" y="18" width="105" height="85" fill="#0F1A2B" stroke="#1E3A5F" stroke-width="0.3" rx="2"/>
+        <text x="195" y="25" fill="#4A5C7A" font-size="4">系统功能率</text>
+        <text x="195" y="35" fill="#F87171" font-size="3.5">医疗</text><rect x="215" y="32" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="32" width="16" height="3" fill="#F87171" rx="1"/><line x1="233" y1="31" x2="233" y2="36" stroke="#F87171" stroke-width="0.3"/><text x="278" y="35" fill="#F87171" font-size="3.5" font-family="monospace">27%</text>
+        <text x="195" y="45" fill="#FB923C" font-size="3.5">救援</text><rect x="215" y="42" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="42" width="25" height="3" fill="#FB923C" rx="1"/><line x1="233" y1="41" x2="233" y2="46" stroke="#F87171" stroke-width="0.3"/><text x="278" y="45" fill="#FB923C" font-size="3.5" font-family="monospace">42%</text>
+        <text x="195" y="55" fill="#FBBF24" font-size="3.5">交通</text><rect x="215" y="52" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="52" width="49" height="3" fill="#FBBF24" rx="1"/><text x="278" y="55" fill="#FBBF24" font-size="3.5" font-family="monospace">81%</text>
+        <text x="195" y="65" fill="#34D399" font-size="3.5">避难</text><rect x="215" y="62" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="62" width="60" height="3" fill="#34D399" rx="1"/><text x="278" y="65" fill="#34D399" font-size="3.5" font-family="monospace">100%</text>
+        <line x1="215" y1="70" x2="275" y2="70" stroke="#1E3A5F" stroke-width="0.3"/>
+        <text x="195" y="78" fill="#4A5C7A" font-size="4">告警</text>
+        <text x="195" y="86" fill="#F87171" font-size="3.5">● 医疗系统已崩溃</text>
+        <text x="195" y="93" fill="#F87171" font-size="3.5">● 城市整体已崩溃</text>
+
+        <rect x="5" y="108" width="290" height="20" fill="#060D18" stroke="#1E3A5F" stroke-width="0.2" rx="1"/>
+        <line x1="15" y1="118" x2="285" y2="118" stroke="#1E3A5F" stroke-width="0.2"/>
+        <line x1="15" y1="113" x2="285" y2="113" stroke="#F87171" stroke-width="0.2" stroke-dasharray="1,1" opacity="0.4"/>
+        <line x1="73" y1="111" x2="73" y2="125" stroke="#00D4FF" stroke-width="0.4"/>
+        <!-- 医疗曲线急降 -->
+        <polyline points="15,115.4 73,119.6 131,119.8" fill="none" stroke="#F87171" stroke-width="0.8"/>
+        <circle cx="15" cy="115.4" r="1" fill="#F87171"/>
+        <circle cx="73" cy="119.6" r="1.5" fill="#F87171" stroke="#0D1520" stroke-width="0.3"/>
+        <polyline points="15,116.8 73,116.8 131,117.2" fill="none" stroke="#FB923C" stroke-width="0.6"/>
+        <polyline points="15,111.6 73,111.8 131,112" fill="none" stroke="#FBBF24" stroke-width="0.6"/>
+        <polyline points="15,111 73,111 131,111" fill="none" stroke="#34D399" stroke-width="0.6"/>
+        <text x="15" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M5.0</text>
+        <text x="73" y="128" text-anchor="middle" fill="#00D4FF" font-size="3" font-weight="600">M5.5</text>
+        <text x="131" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M6.0</text>
+        <text x="189" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M6.5</text>
+        <text x="247" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M7.0</text>
+        <text x="285" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M7.5</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- M7.0 多系统崩溃 -->
+  <div class="state-card" style="border-color:var(--red);">
+    <div class="state-card-header">
+      <div class="state-card-title" style="color:var(--red);">M7.0 · 3系统崩溃</div>
+      <span class="wf-tag red">CATASTROPHE</span>
+    </div>
+    <div class="state-card-body">
+      <svg viewBox="0 0 300 130" style="background:#0D1520;">
+        <rect x="0" y="0" width="300" height="14" fill="#060D18"/>
+        <text x="5" y="9" fill="#4A5C7A" font-size="4">医疗</text><text x="40" y="9" fill="#F87171" font-size="5" font-family="monospace" font-weight="600">24%</text>
+        <text x="55" y="9" fill="#4A5C7A" font-size="4">救援</text><text x="90" y="9" fill="#F87171" font-size="5" font-family="monospace" font-weight="600">33%</text>
+        <text x="105" y="9" fill="#4A5C7A" font-size="4">交通</text><text x="140" y="9" fill="#FBBF24" font-size="5" font-family="monospace" font-weight="600">73%</text>
+        <text x="155" y="9" fill="#4A5C7A" font-size="4">避难</text><text x="190" y="9" fill="#F87171" font-size="5" font-family="monospace" font-weight="600">44%</text>
+        <text x="210" y="9" fill="#4A5C7A" font-size="4">韧性</text><text x="250" y="9" fill="#F87171" font-size="5" font-family="monospace" font-weight="600">0.461</text>
+
+        <rect x="5" y="18" width="180" height="85" fill="#0D1520" stroke="#1E3A5F" stroke-width="0.3" rx="2"/>
+        <!-- 烈度场（大范围） -->
+        <circle cx="95" cy="60" r="40" fill="rgba(248,113,113,0.18)" stroke="#F87171" stroke-width="0.4" stroke-dasharray="1,1"/>
+        <circle cx="95" cy="60" r="60" fill="rgba(248,113,113,0.08)" stroke="#F87171" stroke-width="0.3" stroke-dasharray="1,1"/>
+        <!-- 医院大部分红 -->
+        <circle cx="85" cy="55" r="1" fill="#F87171"/><circle cx="92" cy="58" r="1" fill="#F87171"/><circle cx="100" cy="55" r="1" fill="#F87171"/>
+        <circle cx="88" cy="62" r="1" fill="#F87171"/><circle cx="95" cy="65" r="1" fill="#F87171"/><circle cx="102" cy="62" r="1" fill="#F87171"/>
+        <circle cx="80" cy="70" r="1" fill="#F87171"/><circle cx="110" cy="70" r="1" fill="#F87171"/>
+        <circle cx="75" cy="50" r="1" fill="#F87171"/><circle cx="115" cy="50" r="1" fill="#F87171"/>
+        <text x="95" y="100" text-anchor="middle" fill="#F87171" font-size="4">3系统崩·全城危机</text>
+
+        <rect x="190" y="18" width="105" height="85" fill="#0F1A2B" stroke="#1E3A5F" stroke-width="0.3" rx="2"/>
+        <text x="195" y="25" fill="#4A5C7A" font-size="4">系统功能率</text>
+        <text x="195" y="35" fill="#F87171" font-size="3.5">医疗</text><rect x="215" y="32" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="32" width="14" height="3" fill="#F87171" rx="1"/><line x1="233" y1="31" x2="233" y2="36" stroke="#F87171" stroke-width="0.3"/><text x="278" y="35" fill="#F87171" font-size="3.5" font-family="monospace">24%</text>
+        <text x="195" y="45" fill="#F87171" font-size="3.5">救援</text><rect x="215" y="42" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="42" width="20" height="3" fill="#F87171" rx="1"/><line x1="233" y1="41" x2="233" y2="46" stroke="#F87171" stroke-width="0.3"/><text x="278" y="45" fill="#F87171" font-size="3.5" font-family="monospace">33%</text>
+        <text x="195" y="55" fill="#FBBF24" font-size="3.5">交通</text><rect x="215" y="52" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="52" width="44" height="3" fill="#FBBF24" rx="1"/><text x="278" y="55" fill="#FBBF24" font-size="3.5" font-family="monospace">73%</text>
+        <text x="195" y="65" fill="#F87171" font-size="3.5">避难</text><rect x="215" y="62" width="60" height="3" fill="#1E3A5F" rx="1"/><rect x="215" y="62" width="26" height="3" fill="#F87171" rx="1"/><line x1="233" y1="61" x2="233" y2="66" stroke="#F87171" stroke-width="0.3"/><text x="278" y="65" fill="#F87171" font-size="3.5" font-family="monospace">44%</text>
+        <line x1="215" y1="70" x2="275" y2="70" stroke="#1E3A5F" stroke-width="0.3"/>
+        <text x="195" y="78" fill="#4A5C7A" font-size="4">告警</text>
+        <text x="195" y="86" fill="#F87171" font-size="3.5">● 医疗/救援/避难崩</text>
+        <text x="195" y="93" fill="#F87171" font-size="3.5">● 城市全面崩溃</text>
+
+        <rect x="5" y="108" width="290" height="20" fill="#060D18" stroke="#1E3A5F" stroke-width="0.2" rx="1"/>
+        <line x1="15" y1="118" x2="285" y2="118" stroke="#1E3A5F" stroke-width="0.2"/>
+        <line x1="15" y1="113" x2="285" y2="113" stroke="#F87171" stroke-width="0.2" stroke-dasharray="1,1" opacity="0.4"/>
+        <line x1="247" y1="111" x2="247" y2="125" stroke="#00D4FF" stroke-width="0.4"/>
+        <!-- 4曲线 -->
+        <polyline points="15,115.4 73,119.6 131,119.8 189,119.6 247,121" fill="none" stroke="#F87171" stroke-width="0.8"/>
+        <circle cx="73" cy="119.6" r="1.5" fill="#F87171" stroke="#0D1520" stroke-width="0.3"/>
+        <polyline points="15,116.8 73,116.8 131,117.2 189,118 247,119" fill="none" stroke="#FB923C" stroke-width="0.6"/>
+        <circle cx="131" cy="117.2" r="1.5" fill="#FB923C" stroke="#0D1520" stroke-width="0.3"/>
+        <polyline points="15,111.6 73,111.8 131,112 189,112.6 247,113.4" fill="none" stroke="#FBBF24" stroke-width="0.6"/>
+        <polyline points="15,111 73,111 131,111 189,111 247,115.6" fill="none" stroke="#34D399" stroke-width="0.6"/>
+        <circle cx="247" cy="115.6" r="1.5" fill="#34D399" stroke="#0D1520" stroke-width="0.3"/>
+        <text x="15" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M5.0</text>
+        <text x="73" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M5.5</text>
+        <text x="131" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M6.0</text>
+        <text x="189" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M6.5</text>
+        <text x="247" y="128" text-anchor="middle" fill="#00D4FF" font-size="3" font-weight="600">M7.0</text>
+        <text x="285" y="128" text-anchor="middle" fill="#4A5C7A" font-size="3">M7.5</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

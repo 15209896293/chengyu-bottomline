@@ -1,0 +1,314 @@
+# ═══════════════════════════════════════════════════════════
+# 城域底线 — 全局配置中心
+# 所有算法参数集中管理，消除硬编码
+# ═══════════════════════════════════════════════════════════
+
+# ── 环境路径 ──
+env:
+  gdal_data: "F:/anaconda/envs/zhenmai/Library/share/gdal"
+  proj_lib: "F:/anaconda/envs/zhenmai/Library/share/proj"
+  conda_env: "zhenmai"
+
+# ── API 密钥（从环境变量读取，不硬编码）──
+api:
+  amap_key: "${AMAP_API_KEY}"           # 高德地图 Web 服务 API
+  dataV_url: "https://geo.datav.aliyun.com/areas_v3/bound/340100_full.json"
+
+# ── 坐标系 ──
+crs:
+  geo: "EPSG:4490"       # CGCS2000 地理坐标（存储）
+  proj: "EPSG:4527"      # CGCS2000 3度带39（计算）
+  render: "EPSG:4326"    # 渲染
+
+# ── 震级情景 ──
+scenario:
+  magnitudes: [5.0, 5.5, 6.0, 6.5, 7.0, 7.5]
+  # 震中：郯庐断裂带合肥段几何质心
+  epicenter: [117.28, 31.82]
+  # 断裂带名称
+  fault_name: "郯庐断裂带合肥段"
+  fault_source: "CAFD2023"  # 中国活动断层数据库 2023
+
+# ── 烈度衰减模型 ──
+intensity:
+  # 主模型：俞言祥 2013 中国分区地震动衰减关系
+  # 用于 GB18306-2015 国家地震动参数区划图
+  # 参考文献：俞言祥, 2013, 中国分区地震动衰减关系的确定
+  model: "yu2013"  # yu2013 | simple | gb18306
+
+  # 俞言祥 2013 衰减关系（中国东部地区）
+  # I = c1 + c2*M - c3*ln(R + c4*exp(c5*M))
+  yu2013:
+    c1: 1.785
+    c2: 1.352
+    c3: 1.038
+    c4: 0.017
+    c5: 0.494
+    reference: "俞言祥, 2013, 中国分区地震动衰减关系的确定, 震灾防御技术"
+    region: "中国东部"
+
+  # 旧版简化模型（保留作对比）
+  # I = 0.5 + 1.5*M - ln(R+5)
+  simple:
+    intercept: 0.5
+    magnitude_coef: 1.5
+    distance_coef: 1.0
+    distance_offset: 5.0
+    reference: "项目早期简化点源模型（无学术依据，仅作对比）"
+
+  # GB18306 场地修正
+  gb18306:
+    site_amplification:
+      soft_soil: 0.5      # 软土场地烈度修正
+      hard_rock: -0.2     # 硬岩场地烈度修正
+      default: 0.0
+    reference: "GB 18306-2015 中国地震动参数区划图"
+
+# ── 破裂带宽度模型 ──
+rupture:
+  # Wells & Coppersmith 1994 经验关系
+  # W = 10^(a + b*M)  走滑断层
+  # 参考文献：Wells, D.L., Coppersmith, K.J., 1994,
+  #   New empirical relationships among magnitude, rupture length,
+  #   rupture width, rupture area, and surface displacement.
+  #   Bulletin of the Seismological Society of America, 84(4):974-1002.
+  model: "wells_coppersmith_1994"
+  wells_coppersmith_1994:
+    # 走滑断层（郯庐断裂带类型）
+    # 参数来源：Wells & Coppersmith 1994, Table 2A/2B
+    #   log10(RW)  = a + b*M  破裂宽度   [SS: 0.32M-1.01, RV: 0.41M-1.61]
+    #   log10(SRL) = a + b*M  地表破裂长度 [SS: 0.74M-3.55, RV: 0.63M-2.86]
+    #   log10(MD)  = a + b*M  最大位移    [SS: 0.74M-5.46, RV: 0.65M-4.44]
+    strike_slip:
+      width_a: -1.01
+      width_b: 0.32
+      length_a: -3.55
+      length_b: 0.74
+      displacement_a: -5.46
+      displacement_b: 0.74
+    # 倾滑断层（历史震例验证用，如汶川 2008 逆冲型）
+    reverse:
+      width_a: -1.61
+      width_b: 0.41
+      length_a: -2.86
+      length_b: 0.63
+      displacement_a: -4.44
+      displacement_b: 0.65
+    # 旧版简化公式（保留对比）：W = 10^(M-4)
+  legacy:
+    formula: "10^(M-4)"
+    reference: "项目早期经验公式"
+
+# ── 道路阻断概率模型 ──
+road_blocking:
+  # 幂律缩放：随震级和距离衰减
+  prob_30km_coef: 3.0       # (M-4.5)/3.0 的幂次
+  prob_30km_max: 0.92
+  prob_10km_coef: 2.5
+  prob_10km_max: 0.95
+  # 距离分级
+  rupture_zone: 200          # 破裂带宽度（米），动态计算
+  core_zone: 10000           # 核心区 10km
+  moderate_zone: 30000       # 中等区 30km
+  outer_zone: 50000          # 外区 50km
+  # 阻断级别
+  levels:
+    full_block: "完全阻断"
+    severe: "严重损伤"
+    moderate: "中度损伤"
+    light: "轻度损伤"
+    normal: "正常"
+  # 边权重修正
+  edge_weight_severe: 0.2    # 严重损伤路段通行速度修正
+  edge_weight_moderate: 0.5
+
+# ── 易损性矩阵 ──
+# 参考 DB53/T 1475 区域地震灾害损失预评估技术规范的框架
+# 定义不同烈度等级下的破坏概率分布
+vulnerability:
+  # 烈度等级：V, VI, VII, VIII, IX, X, XI, XII
+  intensity_grades: ["V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"]
+  # 合肥地区以多层砌体+钢筋混凝土为主
+  # 矩阵行=烈度，列=破坏等级[基本完好, 轻微破坏, 中等破坏, 严重破坏, 毁坏]
+  building_matrix:
+    "V":   [0.95, 0.04, 0.01, 0.00, 0.00]
+    "VI":  [0.85, 0.12, 0.02, 0.01, 0.00]
+    "VII": [0.60, 0.25, 0.10, 0.04, 0.01]
+    "VIII": [0.30, 0.30, 0.25, 0.12, 0.03]
+    "IX":  [0.10, 0.20, 0.30, 0.30, 0.10]
+    "X":   [0.02, 0.08, 0.20, 0.40, 0.30]
+    "XI":  [0.00, 0.02, 0.08, 0.30, 0.60]
+    "XII": [0.00, 0.00, 0.00, 0.10, 0.90]
+  # 损失率映射：破坏等级→平均损失率
+  loss_rate_by_damage:
+    "基本完好": 0.0
+    "轻微破坏": 0.05
+    "中等破坏": 0.20
+    "严重破坏": 0.50
+    "毁坏": 0.85
+  # 期望损失率 = sum(P(damage|intensity) * loss_rate(damage))
+  reference: "DB53/T 1475-2026 区域地震灾害损失预评估技术规范框架"
+
+# ── 跨系统依赖权重矩阵 ──
+# 迭代传播模型使用，target depends on source
+# 基于领域知识 + 可达性数据相关性分析校准
+# 参考文献：
+#   Haimes, Y.Y., Jiang, P., 2001. Leontief-based model of risk in complex
+#   interconnected infrastructures. Journal of Infrastructure Systems, 7(1):1-12.
+cascade:
+  model: "iterative"  # iterative | leontief | linear
+  max_iterations: 100
+  convergence_tolerance: 0.0001
+
+  # 有向依赖权重（target ← source）
+  dependency_matrix:
+    medical:   {transport: 0.45, rescue: 0.15, shelter: 0.00, medical: 0.00}
+    rescue:    {transport: 0.55, medical: 0.20, shelter: 0.00, rescue: 0.00}
+    shelter:   {medical: 0.38, rescue: 0.52, transport: 0.20, shelter: 0.00}
+    transport: {medical: 0.00, rescue: 0.00, shelter: 0.00, transport: 0.00}
+
+  # 对称依赖矩阵（前端热力图显示用，取双向最大值）
+  symmetric_matrix: [
+    [1.00, 0.45, 0.20, 0.38],
+    [0.45, 1.00, 0.55, 0.20],
+    [0.20, 0.55, 1.00, 0.52],
+    [0.38, 0.20, 0.52, 1.00]
+  ]
+
+  system_keys: ["medical", "transport", "rescue", "shelter"]
+  system_names:
+    medical: "医疗"
+    transport: "交通"
+    rescue: "救援"
+    shelter: "避难"
+
+  # 依赖边描述（键格式："source,target"）
+  descriptions:
+    "transport,medical": "路网阻断导致医疗物资运输中断"
+    "transport,rescue": "路网阻断导致救援力量无法到达"
+    "transport,shelter": "路网阻断导致避难物资运输受阻"
+    "medical,rescue": "医疗接收能力不足影响救援转运"
+    "medical,shelter": "医疗功能下降影响避难所伤员救治"
+    "rescue,shelter": "危险源失控威胁避难所安全"
+
+# ── 崩溃阈值 ──
+collapse_thresholds:
+  medical: 0.30      # 医疗系统功能率 < 0.30 → 崩溃
+  rescue: 0.40       # 救援系统功能率 < 0.40 → 崩溃
+  transport: 0.50    # 交通连通度 < 0.50 → 崩溃
+  shelter: 0.30      # 避难功能率 < 0.30 → 崩溃
+  # 城市崩溃 = 任一系统崩溃
+
+# ── 可达性分析 ──
+accessibility:
+  cutoff_seconds: 3600     # 1小时（急救黄金时间）
+  # 可达性分类阈值
+  unreachable_threshold: 0.3   # post/pre < 0.3 → 不可达
+  limited_threshold: 0.7       # post/pre < 0.7 → 可达但受限
+  # 设施可达性旅行时间阈值（分钟）
+  facility_normal_min: 30
+  facility_limited_min: 60
+  # 阻断路段缓冲区
+  buffer_m: 50
+
+# ── 韧性指数 ──
+resilience:
+  weights:
+    medical: 0.30
+    shelter: 0.20
+    transport: 0.30
+    safety: 0.20
+  collapse_threshold: 0.50   # 韧性指数 < 0.50 → 底线失守
+
+# ── 时间步进推演 ──
+time_stepping:
+  # 灾害演化时间尺度（小时）
+  steps:
+    - {time: 0,    label: "T+0",    desc: "地震瞬间",    cascade_factor: 0.0}
+    - {time: 1,    label: "T+1h",   desc: "道路阻断定型", cascade_factor: 0.3}
+    - {time: 6,    label: "T+6h",   desc: "医疗资源耗竭", cascade_factor: 0.6}
+    - {time: 24,   label: "T+24h",  desc: "救援扩散",     cascade_factor: 0.85}
+    - {time: 72,   label: "T+72h",  desc: "避难饱和",     cascade_factor: 1.0}
+  # cascade_factor: 该时间点级联传播完成的比例（0=无级联, 1=完全级联）
+
+# ── 蒙特卡洛敏感性分析 ──
+sensitivity:
+  n_samples: 500
+  seed: 42
+  # 参数采样范围（±20% 基准值）
+  params:
+    intensity_c2:
+      base: 1.352
+      range: [1.082, 1.622]     # ±20%
+      distribution: "uniform"
+    intensity_c3:
+      base: 1.038
+      range: [0.830, 1.246]
+      distribution: "uniform"
+    dep_transport_medical:
+      base: 0.45
+      range: [0.30, 0.60]
+      distribution: "uniform"
+    dep_transport_rescue:
+      base: 0.55
+      range: [0.40, 0.70]
+      distribution: "uniform"
+    dep_medical_shelter:
+      base: 0.38
+      range: [0.25, 0.50]
+      distribution: "uniform"
+    dep_rescue_shelter:
+      base: 0.52
+      range: [0.35, 0.65]
+      distribution: "uniform"
+    medical_threshold:
+      base: 0.30
+      range: [0.25, 0.35]
+      distribution: "uniform"
+    rescue_threshold:
+      base: 0.40
+      range: [0.35, 0.45]
+      distribution: "uniform"
+
+# ── 历史震例验证 ──
+validation:
+  wenchuan_2008:
+    magnitude: 8.0
+    epicenter: [103.40, 31.00]
+    fault_type: "thrust"
+    # 汶川地震实际震害数据（公开统计）
+    affected_population: 46250000
+    direct_economic_loss: 8451000000000  # 8451亿元
+    damaged_buildings: 7789100
+    collapsed_buildings: 6945700
+    reference: "国务院汶川地震灾后恢复重建条例, 2008"
+  tangshan_1976:
+    magnitude: 7.8
+    epicenter: [118.18, 39.63]
+    fault_type: "strike_slip"
+    affected_population: 4200000
+    direct_economic_loss: 100000000000  # 100亿元
+    reference: "唐山地震灾害损失评估"
+
+# ── 多震源情景 ──
+multi_source:
+  scenarios:
+    - {name: "郯庐带合肥段", epicenter: [117.28, 31.82], fault: "tanlu", mag: 6.5}
+    - {name: "肥东断裂", epicenter: [117.47, 31.88], fault: "feidong", mag: 6.0}
+    - {name: "大别山断裂", epicenter: [116.50, 31.10], fault: "dabie", mag: 6.0}
+    - {name: "宿迁段迁移", epicenter: [118.30, 33.96], fault: "tanlu", mag: 7.0}
+
+# ── 夜间灯光人口降尺度 ──
+nightlight:
+  # NASA NPP-VIIRS 夜间灯光数据
+  source: "NOAA NGDC"
+  product: "VIIRS_DNB"
+  resolution_m: 500
+  # 回退方案：面积加权法
+  fallback: "area_weighted"
+  # 数据路径（如果存在）
+  tif_path: ""  # 留空则使用回退方案
+
+# ── 随机种子 ──
+random:
+  seed: 42

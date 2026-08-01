@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推演分析</title>
+    <style id="theme-vars">
+/* ============================================================
+   Design Language Extract — Dark Tech Dashboard
+   Single brand hue (cyan), dark surface, free-explore mode
+   ============================================================ */
+
+:root {
+  /* ---- Background & Foreground ---- */
+  --av-background: #0A1320;
+  --av-foreground: #E6EDF7;
+
+  /* ---- Card surfaces (layered depth) ---- */
+  --av-card: #0F1A2B;
+  --av-card-foreground: #E6EDF7;
+
+  /* ---- Popover / elevated ---- */
+  --av-popover: #142440;
+  --av-popover-foreground: #E6EDF7;
+
+  /* ---- Primary brand (single hue: cyan) ---- */
+  --av-primary: #00D4FF;
+  --av-primary-foreground: #061320;
+
+  /* ---- Muted / secondary text & surfaces ---- */
+  --av-muted: #16243C;
+  --av-muted-foreground: #7E91AC;
+
+  /* ---- Border / input / ring ---- */
+  --av-border: #1C2B43;
+  --av-input: #1C2B43;
+  --av-ring: #00D4FF;
+
+  /* ---- Radius scale ---- */
+  --av-radius-sm: 4px;
+  --av-radius-md: 8px;
+  --av-radius-lg: 16px;
+
+  /* ---- Typography ---- */
+  --av-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --av-font-mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+
+  /* ---- Semantic state colors (status only) ---- */
+  --state-success: #34D399;
+  --state-warning: #FBBF24;
+  --state-error: #F87171;
+  --state-info: #60A5FA;
+}
+
+/* ---- Dark mode class hook ---- */
+html.dark {
+  --av-background: #0A1320;
+  --av-foreground: #E6EDF7;
+  --av-card: #0F1A2B;
+  --av-card-foreground: #E6EDF7;
+  --av-popover: #142440;
+  --av-popover-foreground: #E6EDF7;
+  --av-muted: #16243C;
+  --av-muted-foreground: #7E91AC;
+  --av-border: #1C2B43;
+  --av-input: #1C2B43;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--av-background);
+    --color-foreground: var(--av-foreground);
+    --color-card: var(--av-card);
+    --color-card-foreground: var(--av-card-foreground);
+    --color-popover: var(--av-popover);
+    --color-popover-foreground: var(--av-popover-foreground);
+    --color-primary: var(--av-primary);
+    --color-primary-foreground: var(--av-primary-foreground);
+    --color-muted: var(--av-muted);
+    --color-muted-foreground: var(--av-muted-foreground);
+    --color-border: var(--av-border);
+    --color-input: var(--av-input);
+    --color-ring: var(--av-ring);
+    --radius-sm: var(--av-radius-sm);
+    --radius-md: var(--av-radius-md);
+    --radius-lg: var(--av-radius-lg);
+  }
+  @layer base {
+    body { background: var(--av-background); color: var(--av-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--av-background); }
+      .text-background { color: var(--av-background); }
+      .border-background { border-color: var(--av-background); }
+      .ring-background { --tw-ring-color: var(--av-background); }
+      .bg-foreground { background-color: var(--av-foreground); }
+      .text-foreground { color: var(--av-foreground); }
+      .border-foreground { border-color: var(--av-foreground); }
+      .ring-foreground { --tw-ring-color: var(--av-foreground); }
+      .bg-card { background-color: var(--av-card); }
+      .text-card { color: var(--av-card); }
+      .border-card { border-color: var(--av-card); }
+      .ring-card { --tw-ring-color: var(--av-card); }
+      .bg-card-foreground { background-color: var(--av-card-foreground); }
+      .text-card-foreground { color: var(--av-card-foreground); }
+      .border-card-foreground { border-color: var(--av-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--av-card-foreground); }
+      .bg-popover { background-color: var(--av-popover); }
+      .text-popover { color: var(--av-popover); }
+      .border-popover { border-color: var(--av-popover); }
+      .ring-popover { --tw-ring-color: var(--av-popover); }
+      .bg-popover-foreground { background-color: var(--av-popover-foreground); }
+      .text-popover-foreground { color: var(--av-popover-foreground); }
+      .border-popover-foreground { border-color: var(--av-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--av-popover-foreground); }
+      .bg-primary { background-color: var(--av-primary); }
+      .text-primary { color: var(--av-primary); }
+      .border-primary { border-color: var(--av-primary); }
+      .ring-primary { --tw-ring-color: var(--av-primary); }
+      .bg-primary-foreground { background-color: var(--av-primary-foreground); }
+      .text-primary-foreground { color: var(--av-primary-foreground); }
+      .border-primary-foreground { border-color: var(--av-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--av-primary-foreground); }
+      .bg-muted { background-color: var(--av-muted); }
+      .text-muted { color: var(--av-muted); }
+      .border-muted { border-color: var(--av-muted); }
+      .ring-muted { --tw-ring-color: var(--av-muted); }
+      .bg-muted-foreground { background-color: var(--av-muted-foreground); }
+      .text-muted-foreground { color: var(--av-muted-foreground); }
+      .border-muted-foreground { border-color: var(--av-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--av-muted-foreground); }
+      .bg-border { background-color: var(--av-border); }
+      .text-border { color: var(--av-border); }
+      .border-border { border-color: var(--av-border); }
+      .ring-border { --tw-ring-color: var(--av-border); }
+      .bg-input { background-color: var(--av-input); }
+      .text-input { color: var(--av-input); }
+      .border-input { border-color: var(--av-input); }
+      .ring-input { --tw-ring-color: var(--av-input); }
+      .bg-ring { background-color: var(--av-ring); }
+      .text-ring { color: var(--av-ring); }
+      .border-ring { border-color: var(--av-ring); }
+      .ring-ring { --tw-ring-color: var(--av-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+    <style id="critical-layout">
+      /* ===== App-shell framework (static, layout-risk safe) ===== */
+      [data-viewport-mode="app-shell"] {
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .app-shell {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background-color: var(--av-background);
+        background-image:
+          linear-gradient(rgba(28,43,67,0.22) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(28,43,67,0.22) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+      #top-bar {
+        height: 64px;
+        min-height: 64px;
+        flex-shrink: 0;
+        border-bottom: 1px solid var(--av-border);
+        background-color: rgba(15, 26, 43, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        gap: 20px;
+      }
+      .shell-body {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        min-height: 0;
+      }
+      #sidebar {
+        width: 224px;
+        min-width: 224px;
+        flex-shrink: 0;
+        border-right: 1px solid var(--av-border);
+        background-color: rgba(10, 19, 32, 0.7);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      main[data-scroll-region="primary"] {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-width: 0;
+      }
+      .main-content {
+        padding: 24px;
+        min-width: 1100px;
+      }
+      /* ===== Two-column analysis layout (center 60% + right 40%) ===== */
+      .analysis-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+        gap: 16px;
+      }
+      .center-col {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-width: 0;
+      }
+      .right-col {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-width: 0;
+      }
+      /* ===== Card base ===== */
+      .card-base {
+        background-color: var(--av-card);
+        border: 1px solid var(--av-border);
+        border-radius: var(--av-radius-lg);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      }
+      .pad-card {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      /* ===== Nav items ===== */
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        color: var(--av-muted-foreground);
+        border-left: 2px solid transparent;
+        border-radius: 0 var(--av-radius-md) var(--av-radius-md) 0;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background-color: var(--av-card);
+        color: var(--av-foreground);
+      }
+      .nav-item.active {
+        color: var(--av-primary);
+        background-color: var(--av-card);
+        border-left-color: var(--av-primary);
+      }
+      .nav-zh { font-size: 14px; font-weight: 500; line-height: 1.2; }
+      .nav-en { font-size: 11px; color: var(--av-muted-foreground); letter-spacing: 0.06em; }
+      .nav-item.active .nav-en { color: var(--av-primary); opacity: 0.75; }
+      /* ===== Status badge ===== */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .badge-success { background-color: rgba(52,211,153,0.12); color: var(--state-success); }
+      .badge-info { background-color: rgba(96,165,250,0.12); color: var(--state-info); }
+      .badge-warning { background-color: rgba(251,191,36,0.12); color: var(--state-warning); }
+      .badge-muted { background-color: var(--av-muted); color: var(--av-muted-foreground); }
+      .badge-primary { background-color: rgba(0,212,255,0.1); color: var(--av-primary); }
+      .badge-error { background-color: rgba(248,113,113,0.12); color: var(--state-error); }
+      /* ===== Progress bar ===== */
+      .progress-track {
+        height: 5px;
+        background-color: var(--av-muted);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        border-radius: 999px;
+        background-color: var(--av-primary);
+      }
+      .progress-fill.success { background-color: var(--state-success); }
+      .progress-fill.info { background-color: var(--state-info); }
+      .progress-fill.warning { background-color: var(--state-warning); }
+      .progress-fill.error { background-color: var(--state-error); }
+      /* ===== Mono numerals ===== */
+      .num {
+        font-family: var(--av-font-mono);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em;
+      }
+      /* ===== Section header ===== */
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .section-header .zh { font-size: 15px; font-weight: 600; color: var(--av-foreground); }
+      .section-header .en { font-size: 11px; color: var(--av-muted-foreground); letter-spacing: 0.08em; text-transform: uppercase; }
+      /* ===== Video stage ===== */
+      .video-stage {
+        position: relative;
+        min-height: 420px;
+        flex: 1;
+        background-color: var(--av-muted);
+        border: 1px solid var(--av-border);
+        border-radius: var(--av-radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .tracking-pill {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--av-primary);
+        background-color: rgba(0,212,255,0.08);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--av-primary);
+        z-index: 2;
+      }
+      .speed-gauge {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .scrubber {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        z-index: 2;
+      }
+      .scrubber-track {
+        flex: 1;
+        height: 4px;
+        background-color: var(--av-border);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .scrubber-fill {
+        height: 100%;
+        width: 45%;
+        background-color: var(--av-primary);
+        border-radius: 999px;
+      }
+      /* ===== Metric rows ===== */
+      .metric-rows {
+        display: flex;
+        flex-direction: column;
+      }
+      .metric-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--av-border);
+      }
+      .metric-row:last-child { border-bottom: none; }
+      .metric-row .m-icon {
+        flex-shrink: 0;
+        color: var(--av-muted-foreground);
+      }
+      .metric-label {
+        flex: 1;
+        font-size: 13px;
+        color: var(--av-foreground);
+      }
+      .metric-value {
+        font-size: 16px;
+        color: var(--av-foreground);
+      }
+      /* ===== Angles body ===== */
+      .angles-body {
+        display: flex;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .humanoid-placeholder {
+        flex-shrink: 0;
+        width: 116px;
+        background-color: var(--av-muted);
+        border: 1px solid var(--av-border);
+        border-radius: var(--av-radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .angle-values {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+      }
+      .angle-row {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+      }
+      .angle-row .a-label {
+        flex: 1;
+        font-size: 12px;
+        color: var(--av-muted-foreground);
+      }
+      .angle-row .a-value {
+        font-size: 20px;
+        color: var(--av-foreground);
+      }
+      .angle-row .a-unit {
+        font-size: 14px;
+        color: var(--av-muted-foreground);
+      }
+      /* ===== Eval gauge ===== */
+      .eval-gauge-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 4px 0 8px;
+      }
+      .eval-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      /* ===== Suggestions ===== */
+      .suggestion-item {
+        display: flex;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--av-border);
+      }
+      .suggestion-item:last-child { border-bottom: none; padding-bottom: 0; }
+      .suggestion-item:first-child { padding-top: 0; }
+      .suggestion-icon {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0,212,255,0.1);
+        border: 1px solid rgba(0,212,255,0.3);
+      }
+      /* ===== Chart container ===== */
+      .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+      }
+    </style>
+
+    <div class="app-shell" data-viewport-mode="app-shell">
+      <!-- ===== TOP BAR ===== -->
+      <header id="top-bar">
+        <a href="upload.html" class="flex items-center gap-2.5 no-underline" style="color:inherit;">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: rgba(0,212,255,0.12);">
+            <i data-lucide="hexagon" class="w-5 h-5" style="color: var(--av-primary);"></i>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <span class="text-sm font-semibold" style="color: var(--av-foreground);">城域底线</span>
+            <span class="text-[10px] tracking-wider" style="color: var(--av-muted-foreground);">URBAN LIFELINE BOTTOM LINE</span>
+          </div>
+        </a>
+        <div class="h-6 w-px" style="background-color: var(--av-border);"></div>
+        <div class="flex flex-col leading-tight">
+          <span class="text-base font-semibold" style="color: var(--av-foreground);">推演分析</span>
+          <span class="text-[11px] tracking-wider" style="color: var(--av-muted-foreground);">SIMULATION ANALYSIS</span>
+        </div>
+        <div class="ml-auto flex items-center gap-3">
+          <a href="overview.html" class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm transition-colors no-underline" style="border:1px solid var(--av-border); color: var(--av-foreground);" onmouseover="this.style.backgroundColor='var(--av-card)'" onmouseout="this.style.backgroundColor='transparent'">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>导出报告</span>
+          </a>
+          <button class="w-9 h-9 rounded-lg flex items-center justify-center transition-colors relative" style="border:1px solid var(--av-border); color: var(--av-muted-foreground);">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full" style="background-color: var(--av-primary);"></span>
+          </button>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center" style="border:1px solid var(--av-border); background-color: var(--av-card); color: var(--av-muted-foreground);">
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </header>
+
+      <div class="shell-body">
+        <!-- ===== SIDEBAR ===== -->
+        <aside id="sidebar">
+          <div class="p-4">
+            <div class="text-[10px] tracking-[0.12em] uppercase px-3 mb-2" style="color: var(--av-muted-foreground);">导航 / Navigation</div>
+            <nav class="flex flex-col gap-0.5">
+              <a href="analysis.html" class="nav-item">
+                <i data-lucide="search" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">债务发现</span>
+                  <span class="nav-en">DEBT DETECTION</span>
+                </div>
+              </a>
+              <a href="analysis.html" class="nav-item active">
+                <i data-lucide="activity" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">压力推演</span>
+                  <span class="nav-en">PRESSURE SIM</span>
+                </div>
+              </a>
+              <a href="analysis.html" class="nav-item">
+                <i data-lucide="git-branch" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">级联分析</span>
+                  <span class="nav-en">CASCADE ANALYSIS</span>
+                </div>
+              </a>
+              <a href="analysis.html" class="nav-item">
+                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">崩溃临界</span>
+                  <span class="nav-en">COLLAPSE THRESHOLD</span>
+                </div>
+              </a>
+              <a href="overview.html" class="nav-item">
+                <i data-lucide="trending-up" class="w-5 h-5"></i>
+                <div class="flex flex-col leading-tight">
+                  <span class="nav-zh">策略优化</span>
+                  <span class="nav-en">STRATEGY OPTIMIZATION</span>
+                </div>
+              </a>
+            </nav>
+          </div>
+          <div class="mx-4 h-px" style="background-color: var(--av-border);"></div>
+          <div class="p-4">
+            <div class="text-[10px] tracking-[0.12em] uppercase px-3 mb-3" style="color: var(--av-muted-foreground);">实时标签 / LIVE TAGS</div>
+            <div class="px-3 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] w-10" style="color: var(--av-muted-foreground);">震级</span>
+                <div class="flex gap-1.5">
+                  <span class="badge badge-muted">M5.0</span>
+                  <span class="badge badge-error">M5.5</span>
+                  <span class="badge badge-muted">M6.0</span>
+                  <span class="badge badge-muted">M6.5</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-[11px]" style="color: var(--av-muted-foreground);">置信</span>
+                <span class="num text-sm" style="color: var(--av-foreground);">92%</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-auto p-4">
+            <div class="rounded-lg p-3" style="background-color:var(--av-card); border:1px solid var(--av-border);">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--state-error);"></span>
+                <span class="text-[11px]" style="color: var(--av-muted-foreground);">推演状态</span>
+              </div>
+              <div class="text-xs" style="color: var(--av-foreground);">M5.5 医疗系统崩溃</div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ===== MAIN SCROLL REGION ===== -->
+        <main data-scroll-region="primary">
+          <div class="main-content">
+            <div class="analysis-layout">
+              <!-- ============ CENTER COLUMN ============ -->
+              <section class="center-col">
+                <!-- Simulation map card -->
+                <div class="card-base pad-card">
+                  <div class="section-header">
+                    <span class="zh">推演地图</span>
+                    <span class="en">/ SIMULATION MAP</span>
+                  </div>
+                  <div class="video-stage">
+                    <!-- Tracking pill (top-left) -->
+                    <div class="tracking-pill">
+                      <span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--av-primary);"></span>
+                      <span>烈度追踪 ON</span>
+                      <span style="opacity:0.6;">/ INTENSITY TRACKING</span>
+                    </div>
+                    <!-- Map wrap (replaces speed-gauge): Hefei SVG map fills the stage -->
+                    <div class="speed-gauge" style="position:absolute; inset:0;">
+                      <svg viewBox="0 0 900 400" preserveAspectRatio="xMidYMid slice" style="width:100%; height:100%; display:block;">
+                        <defs>
+                          <radialGradient id="intensityGrad" cx="52%" cy="51%" r="55%">
+                            <stop offset="0%" stop-color="#F87171" stop-opacity="0.38"/>
+                            <stop offset="45%" stop-color="#FBBF24" stop-opacity="0.16"/>
+                            <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+                          </radialGradient>
+                        </defs>
+
+                        <!-- base -->
+                        <rect x="0" y="0" width="900" height="400" fill="#0F1A2B"/>
+
+                        <!-- Intensity rings (烈度圈) around epicenter -->
+                        <circle cx="470" cy="205" r="270" fill="url(#intensityGrad)" opacity="0.55"/>
+                        <circle cx="470" cy="205" r="210" fill="none" stroke="#F87171" stroke-width="1" stroke-dasharray="2 5" opacity="0.35"/>
+                        <circle cx="470" cy="205" r="150" fill="none" stroke="#FBBF24" stroke-width="1" stroke-dasharray="2 5" opacity="0.45"/>
+                        <circle cx="470" cy="205" r="90" fill="none" stroke="#F87171" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+
+                        <!-- District polygons -->
+                        <!-- 长丰 (warning / yellow, north) -->
+                        <polygon points="320,20 640,25 660,120 340,118" fill="#FBBF24" fill-opacity="0.18" stroke="#FBBF24" stroke-width="1.2"/>
+                        <!-- 肥西 (stable / green, west) -->
+                        <polygon points="20,120 300,118 285,300 35,295" fill="#34D399" fill-opacity="0.16" stroke="#34D399" stroke-width="1.2"/>
+                        <!-- 肥东 (stable / green, east) -->
+                        <polygon points="640,120 880,128 862,300 620,292" fill="#34D399" fill-opacity="0.16" stroke="#34D399" stroke-width="1.2"/>
+                        <!-- 庐阳 (collapse / red, core top-left) -->
+                        <polygon points="300,128 460,125 462,205 305,208" fill="#F87171" fill-opacity="0.30" stroke="#F87171" stroke-width="1.4"/>
+                        <!-- 瑶海 (collapse / red, core top-right) -->
+                        <polygon points="462,125 620,128 615,208 462,205" fill="#F87171" fill-opacity="0.30" stroke="#F87171" stroke-width="1.4"/>
+                        <!-- 蜀山 (warning / yellow, core bottom-left) -->
+                        <polygon points="305,215 462,212 458,295 290,298" fill="#FBBF24" fill-opacity="0.18" stroke="#FBBF24" stroke-width="1.2"/>
+                        <!-- 包河 (warning / yellow, core bottom-right) -->
+                        <polygon points="462,212 615,215 610,298 458,295" fill="#FBBF24" fill-opacity="0.18" stroke="#FBBF24" stroke-width="1.2"/>
+                        <!-- 庐江 (stable / green, south-left) -->
+                        <polygon points="35,300 290,302 300,378 70,375" fill="#34D399" fill-opacity="0.16" stroke="#34D399" stroke-width="1.2"/>
+                        <!-- 巢湖 (stable / green, south-right) -->
+                        <polygon points="300,302 610,300 820,305 800,378 320,378" fill="#34D399" fill-opacity="0.16" stroke="#34D399" stroke-width="1.2"/>
+                        <!-- 巢湖 lake -->
+                        <ellipse cx="560" cy="342" rx="95" ry="30" fill="#0A1320" stroke="#00D4FF" stroke-width="1" opacity="0.55"/>
+
+                        <!-- District labels -->
+                        <text x="480" y="75" fill="#7E91AC" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">长丰</text>
+                        <text x="160" y="210" fill="#7E91AC" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">肥西</text>
+                        <text x="752" y="210" fill="#7E91AC" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">肥东</text>
+                        <text x="383" y="170" fill="#F87171" font-size="12" font-weight="600" text-anchor="middle" font-family="Inter, sans-serif">庐阳</text>
+                        <text x="540" y="170" fill="#F87171" font-size="12" font-weight="600" text-anchor="middle" font-family="Inter, sans-serif">瑶海</text>
+                        <text x="378" y="258" fill="#FBBF24" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">蜀山</text>
+                        <text x="535" y="258" fill="#FBBF24" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">包河</text>
+                        <text x="170" y="345" fill="#7E91AC" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">庐江</text>
+                        <text x="725" y="345" fill="#7E91AC" font-size="12" text-anchor="middle" font-family="Inter, sans-serif">巢湖</text>
+
+                        <!-- Road network (gray thin) -->
+                        <g stroke="#3B4A63" stroke-width="1" fill="none" opacity="0.75">
+                          <path d="M 300,205 L 620,205"/>
+                          <path d="M 460,125 L 460,300"/>
+                          <path d="M 40,210 L 300,205"/>
+                          <path d="M 620,205 L 870,210"/>
+                          <path d="M 200,40 L 380,205"/>
+                          <path d="M 700,40 L 540,205"/>
+                          <path d="M 160,300 L 380,295"/>
+                          <path d="M 560,295 L 780,300"/>
+                          <path d="M 100,120 L 300,128"/>
+                          <path d="M 640,128 L 850,128"/>
+                          <path d="M 305,215 L 290,298"/>
+                          <path d="M 615,215 L 610,298"/>
+                        </g>
+
+                        <!-- Blocked roads (red thick) -->
+                        <g stroke="#F87171" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.92">
+                          <path d="M 305,205 L 380,205"/>
+                          <path d="M 460,128 L 460,182"/>
+                          <path d="M 500,205 L 600,205"/>
+                          <path d="M 380,128 L 430,180"/>
+                          <path d="M 540,205 L 560,290"/>
+                          <path d="M 410,215 L 410,260"/>
+                          <path d="M 520,128 L 560,200"/>
+                          <path d="M 350,205 L 360,160"/>
+                        </g>
+                        <text x="300" y="200" fill="#F87171" font-size="9" font-family="JetBrains Mono, monospace">#48130</text>
+
+                        <!-- Inaccessible hospitals (red dots) -->
+                        <g>
+                          <circle cx="340" cy="160" r="4.5" fill="#F87171"/>
+                          <circle cx="340" cy="160" r="8.5" fill="none" stroke="#F87171" stroke-width="1" opacity="0.5"/>
+                          <circle cx="400" cy="185" r="4.5" fill="#F87171"/>
+                          <circle cx="400" cy="185" r="8.5" fill="none" stroke="#F87171" stroke-width="1" opacity="0.5"/>
+                          <circle cx="500" cy="150" r="4.5" fill="#F87171"/>
+                          <circle cx="500" cy="150" r="8.5" fill="none" stroke="#F87171" stroke-width="1" opacity="0.5"/>
+                          <circle cx="570" cy="175" r="4.5" fill="#F87171"/>
+                          <circle cx="570" cy="175" r="8.5" fill="none" stroke="#F87171" stroke-width="1" opacity="0.5"/>
+                          <circle cx="425" cy="200" r="4.5" fill="#F87171"/>
+                          <circle cx="425" cy="200" r="8.5" fill="none" stroke="#F87171" stroke-width="1" opacity="0.5"/>
+                        </g>
+
+                        <!-- Tanlu fault zone (dashed orange, NE-SW) -->
+                        <path d="M 820,40 L 470,205 L 120,360" fill="none" stroke="#FB923C" stroke-width="2.5" stroke-dasharray="8 5" opacity="0.85"/>
+                        <text x="700" y="58" fill="#FB923C" font-size="11" font-weight="600" font-family="Inter, sans-serif">郯庐断裂带</text>
+
+                        <!-- Epicenter marker -->
+                        <circle cx="470" cy="205" r="6" fill="none" stroke="#F87171" stroke-width="2"/>
+                        <circle cx="470" cy="205" r="2" fill="#F87171"/>
+                        <text x="470" y="190" fill="#F87171" font-size="9" text-anchor="middle" font-family="Inter, sans-serif">震中</text>
+                      </svg>
+                      <!-- Magnitude display overlaid at map center -->
+                      <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; z-index:3; pointer-events:none;">
+                        <span class="num text-5xl" style="color: var(--av-foreground); text-shadow:0 0 18px rgba(248,113,113,0.45);">M5.5</span>
+                        <div class="text-xs mt-1.5" style="color: var(--av-muted-foreground);">当前震级 / MAGNITUDE</div>
+                        <div class="text-[10px] mt-0.5" style="color: #FB923C;">郯庐断裂带</div>
+                      </div>
+                    </div>
+                    <!-- Scrubber (bottom) -->
+                    <div class="scrubber">
+                      <span class="num text-[11px]" style="color: var(--av-muted-foreground);">M5.0</span>
+                      <div class="scrubber-track"><div class="scrubber-fill" style="width:20%"></div></div>
+                      <span class="num text-[11px]" style="color: var(--av-muted-foreground);">M7.5</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- System function rate curve chart card -->
+                <div class="card-base pad-card">
+                  <div class="section-header">
+                    <span class="zh">系统功能率曲线</span>
+                    <span class="en">/ SYSTEM FUNCTION RATE</span>
+                  </div>
+                  <div class="chart-container">
+                    <canvas id="curveChartCanvas"></canvas>
+                  </div>
+                </div>
+              </section>
+
+              <!-- ============ RIGHT COLUMN ============ -->
+              <section class="right-col">
+                <!-- System metrics card -->
+                <div class="card-base pad-card">
+                  <div class="section-header">
+                    <span class="zh">系统指标</span>
+                    <span class="en">/ SYSTEM METRICS</span>
+                  </div>
+                  <div class="metric-rows">
+                    <div class="metric-row">
+                      <i data-lucide="activity" class="w-4 h-4 m-icon" style="color: var(--state-error);"></i>
+                      <span class="metric-label">医疗功能率</span>
+                      <span class="num metric-value" style="color: var(--state-error);">27.00</span><span class="text-xs ml-0.5" style="color: var(--state-error);">%</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="route" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">道路阻断率</span>
+                      <span class="num metric-value">44.00</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">%</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="building" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">不可达医院</span>
+                      <span class="num metric-value">199.00</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">家</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="ruler" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">崩溃距离</span>
+                      <span class="num metric-value">0.50</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">M</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="users" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">受灾人口</span>
+                      <span class="num metric-value">87.30</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">万</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="dollar-sign" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">经济损失</span>
+                      <span class="num metric-value">570.00</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">亿</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="clock" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">救援响应时间</span>
+                      <span class="num metric-value">38.00</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">分钟</span>
+                    </div>
+                    <div class="metric-row">
+                      <i data-lucide="home" class="w-4 h-4 m-icon"></i>
+                      <span class="metric-label">避难容量缺口</span>
+                      <span class="num metric-value">12.00</span><span class="text-xs ml-0.5" style="color: var(--av-muted-foreground);">万人</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- System status card -->
+                <div class="card-base pad-card">
+                  <div class="section-header">
+                    <span class="zh">系统状态</span>
+                    <span class="en">/ SYSTEM STATUS</span>
+                  </div>
+                  <div class="angles-body">
+                    <div class="humanoid-placeholder" style="padding:8px;">
+                      <div class="grid grid-cols-2 gap-1.5">
+                        <!-- 医疗 27% red -->
+                        <div class="flex flex-col items-center gap-0.5">
+                          <div class="relative" style="width:50px;height:50px;">
+                            <svg viewBox="0 0 50 50" width="50" height="50">
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="#F87171" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.95" stroke-dashoffset="96.32" transform="rotate(-90 25 25)"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-[10px] num font-semibold" style="color:#F87171;">27%</span>
+                          </div>
+                          <span class="text-[9px]" style="color:var(--av-muted-foreground);">医疗</span>
+                        </div>
+                        <!-- 救援 42% yellow -->
+                        <div class="flex flex-col items-center gap-0.5">
+                          <div class="relative" style="width:50px;height:50px;">
+                            <svg viewBox="0 0 50 50" width="50" height="50">
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="#FBBF24" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.95" stroke-dashoffset="76.53" transform="rotate(-90 25 25)"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-[10px] num font-semibold" style="color:#FBBF24;">42%</span>
+                          </div>
+                          <span class="text-[9px]" style="color:var(--av-muted-foreground);">救援</span>
+                        </div>
+                        <!-- 交通 68% green -->
+                        <div class="flex flex-col items-center gap-0.5">
+                          <div class="relative" style="width:50px;height:50px;">
+                            <svg viewBox="0 0 50 50" width="50" height="50">
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="#34D399" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.95" stroke-dashoffset="42.22" transform="rotate(-90 25 25)"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-[10px] num font-semibold" style="color:#34D399;">68%</span>
+                          </div>
+                          <span class="text-[9px]" style="color:var(--av-muted-foreground);">交通</span>
+                        </div>
+                        <!-- 避难 85% cyan -->
+                        <div class="flex flex-col items-center gap-0.5">
+                          <div class="relative" style="width:50px;height:50px;">
+                            <svg viewBox="0 0 50 50" width="50" height="50">
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="var(--av-border)" stroke-width="4"/>
+                              <circle cx="25" cy="25" r="21" fill="none" stroke="#00D4FF" stroke-width="4" stroke-linecap="round" stroke-dasharray="131.95" stroke-dashoffset="19.79" transform="rotate(-90 25 25)"/>
+                            </svg>
+                            <span class="absolute inset-0 flex items-center justify-center text-[10px] num font-semibold" style="color:#00D4FF;">85%</span>
+                          </div>
+                          <span class="text-[9px]" style="color:var(--av-muted-foreground);">避难</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="angle-values">
+                      <div class="angle-row">
+                        <span class="a-label">医疗系统</span>
+                        <span class="num a-value" style="color: var(--state-error);">27</span>
+                        <span class="a-unit" style="color: var(--state-error);">%</span>
+                      </div>
+                      <div class="angle-row">
+                        <span class="a-label">救援系统</span>
+                        <span class="num a-value" style="color: var(--state-warning);">42</span>
+                        <span class="a-unit" style="color: var(--state-warning);">%</span>
+                      </div>
+                      <div class="angle-row">
+                        <span class="a-label">交通系统</span>
+                        <span class="num a-value" style="color: var(--state-success);">68</span>
+                        <span class="a-unit" style="color: var(--state-success);">%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom line evaluation card -->
+                <div class="card-base pad-card">
+                  <div class="section-header">
+                    <span class="zh">底线评价</span>
+                    <span class="en">/ BOTTOM LINE EVAL</span>
+                  </div>
+                  <div class="eval-gauge-wrap">
+                    <div class="relative" style="width:128px; height:128px;">
+                      <svg viewBox="0 0 128 128" class="w-full h-full -rotate-90">
+                        <circle cx="64" cy="64" r="54" fill="none" stroke="var(--av-border)" stroke-width="8"/>
+                        <circle cx="64" cy="64" r="54" fill="none" stroke="#F87171" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.29" stroke-dashoffset="247.68"/>
+                      </svg>
+                      <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span class="num text-3xl" style="color: var(--state-error);">0.27</span>
+                        <span class="text-[10px] mt-0.5" style="color: var(--state-error);">崩溃临界</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="eval-bars">
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1">
+                        <span style="color: var(--av-muted-foreground);">医疗韧性</span>
+                        <span class="num" style="color: var(--state-error);">27</span>
+                      </div>
+                      <div class="progress-track"><div class="progress-fill error" style="width:27%"></div></div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1">
+                        <span style="color: var(--av-muted-foreground);">救援韧性</span>
+                        <span class="num" style="color: var(--state-warning);">42</span>
+                      </div>
+                      <div class="progress-track"><div class="progress-fill warning" style="width:42%"></div></div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1">
+                        <span style="color: var(--av-muted-foreground);">交通韧性</span>
+                        <span class="num" style="color: var(--state-success);">68</span>
+                      </div>
+                      <div class="progress-track"><div class="progress-fill success" style="width:68%"></div></div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between text-[11px] mb-1">
+                        <span style="color: var(--av-muted-foreground);">避难韧性</span>
+                        <span class="num" style="color: var(--av-primary);">85</span>
+                      </div>
+                      <div class="progress-track"><div class="progress-fill" style="width:85%"></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Risk alerts card -->
+                <div class="card-base pad-card">
+                  <div class="section-header">
+                    <span class="zh">风险预警</span>
+                    <span class="en">/ RISK ALERTS</span>
+                  </div>
+                  <div>
+                    <div class="suggestion-item">
+                      <div class="suggestion-icon" style="background-color: rgba(248,113,113,0.12); border-color: rgba(248,113,113,0.35);"><i data-lucide="alert-triangle" class="w-4 h-4" style="color: var(--state-error);"></i></div>
+                      <div class="flex-1">
+                        <div class="text-sm font-semibold mb-1" style="color: var(--av-foreground);">医疗系统已突破崩溃阈值</div>
+                        <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">M5.5下医疗功能率降至27%，低于30%崩溃线。老城区187家医院中199家不可达，原因是道路老化率43%导致路段阻断。</div>
+                      </div>
+                    </div>
+                    <div class="suggestion-item">
+                      <div class="suggestion-icon" style="background-color: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.35);"><i data-lucide="git-branch" class="w-4 h-4" style="color: var(--state-warning);"></i></div>
+                      <div class="flex-1">
+                        <div class="text-sm font-semibold mb-1" style="color: var(--av-foreground);">道路阻断引发级联失效</div>
+                        <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">交通系统功能率68%看似正常，但已触发医疗系统崩溃。路段#48130等8条关键道路中断，形成级联传播链。</div>
+                      </div>
+                    </div>
+                    <div class="suggestion-item">
+                      <div class="suggestion-icon" style="background-color: rgba(52,211,153,0.12); border-color: rgba(52,211,153,0.35);"><i data-lucide="trending-up" class="w-4 h-4" style="color: var(--state-success);"></i></div>
+                      <div class="flex-1">
+                        <div class="text-sm font-semibold mb-1" style="color: var(--av-foreground);">加固10条关键路段可推高底线</div>
+                        <div class="text-xs leading-relaxed" style="color: var(--av-muted-foreground);">策略推演显示：加固关键路段可将崩溃临界点从M5.5推至M6.0，医疗功能率提升至44%，减少经济损失158亿元。</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var ctxEl = document.getElementById('curveChartCanvas');
+        if (!ctxEl || typeof Chart === 'undefined') return;
+        var ctx = ctxEl.getContext('2d');
+        var labels = ['M5.0', 'M5.5', 'M6.0', 'M6.5', 'M7.0', 'M7.5'];
+        var gridColor = 'rgba(28,43,67,0.6)';
+        var tickColor = '#7E91AC';
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: '医疗系统',
+                data: [85, 72, 27, 15, 8, 3],
+                borderColor: '#F87171',
+                backgroundColor: 'rgba(248,113,113,0.08)',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: '#F87171',
+                fill: true
+              },
+              {
+                label: '救援系统',
+                data: [92, 78, 42, 25, 12, 5],
+                borderColor: '#FBBF24',
+                backgroundColor: 'rgba(251,191,36,0.05)',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: '#FBBF24',
+                fill: false
+              },
+              {
+                label: '交通系统',
+                data: [95, 88, 68, 45, 28, 15],
+                borderColor: '#34D399',
+                backgroundColor: 'rgba(52,211,153,0.05)',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: '#34D399',
+                fill: false
+              },
+              {
+                label: '避难系统',
+                data: [98, 92, 85, 70, 52, 35],
+                borderColor: '#00D4FF',
+                backgroundColor: 'rgba(0,212,255,0.06)',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: '#00D4FF',
+                fill: false
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+                align: 'end',
+                labels: {
+                  color: '#7E91AC',
+                  font: { size: 11, family: 'Inter, sans-serif' },
+                  boxWidth: 10,
+                  boxHeight: 10,
+                  usePointStyle: true,
+                  pointStyle: 'circle',
+                  padding: 14
+                }
+              },
+              tooltip: {
+                backgroundColor: '#142440',
+                titleColor: '#E6EDF7',
+                bodyColor: '#E6EDF7',
+                borderColor: '#1C2B43',
+                borderWidth: 1,
+                padding: 10,
+                titleFont: { size: 11 },
+                bodyFont: { size: 11 },
+                callbacks: {
+                  label: function (ctx) { return ctx.dataset.label + ': ' + ctx.parsed.y + '%'; }
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { color: gridColor, drawBorder: false },
+                ticks: { color: tickColor, font: { size: 10, family: 'JetBrains Mono, monospace' } },
+                border: { display: false }
+              },
+              y: {
+                min: 0,
+                max: 100,
+                grid: { color: gridColor, drawBorder: false },
+                ticks: {
+                  color: tickColor,
+                  font: { size: 10, family: 'JetBrains Mono, monospace' },
+                  stepSize: 20,
+                  callback: function (v) { return v + '%'; }
+                },
+                border: { display: false }
+              }
+            }
+          }
+        });
+      })();
+    </script>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
