@@ -97,6 +97,11 @@ python step16_time_stepping.py       # 时间步进演化
 python step17_sensitivity.py         # 敏感性分析
 python step18_historical_validation.py  # 历史验证
 python step19_multi_source.py        # 多震源对比
+python step20_reverse_stress.py      # 逆压测 + VaR/CVaR + 动态传染
+python step21_fault_risk_profile.py  # 断裂带风险剖面
+python step22_vulnerable_facilities.py  # 脆弱群体设施暴露（需高德配额）
+python step23_budget_optimization.py # 预算约束韧性投资优化
+python stressor_model.py             # 压力源抽象层自检
 ```
 
 ### 启动前端
@@ -108,16 +113,40 @@ npm run dev      # 开发模式
 npm run build    # 生产构建
 ```
 
+### 双形态交付
+
+**① 本地离线演示（断网可用）**
+
+```bash
+# Windows: 双击 start-offline.bat（自动启动 http://localhost:8080）
+# macOS/Linux: bash start-offline.sh
+```
+
+已离线化：无 Google Fonts 外链、系统字体栈、高德瓦片断网自动降级为深色底+提示条、
+数据全量随包（dist/data 26MB）。压缩包 `城域底线_离线演示包.zip` 可直接分发。
+
+**② Cloudflare Pages 线上部署**
+
+```bash
+# 1. 仓库推送 GitHub main 分支后，CI（.github/workflows/deploy.yml）自动构建
+# 2. 仓库 Secrets 配置：
+#    CLOUDFLARE_API_TOKEN    # Cloudflare 平台 API Token（Pages 权限）
+#    CLOUDFLARE_ACCOUNT_ID   # Cloudflare 账户 ID
+# 3. Cloudflare Pages 创建项目 chengyu-bottomline，构建命令 npm run build，
+#    输出目录 dashboard/dist（CI 使用 wrangler pages deploy 直推）
+```
+
 ## 分析模式说明
 
 | 模式 | 名称 | 功能 |
 |------|------|------|
 | 1 | 格局 PATTERN | 城市基础设施网络拓扑 + 空间格局分析 |
-| 2 | 临界 COLLAPSE THRESHOLD | 4系统崩溃阈值 + 跨震级临界点识别 |
+| 2 | 临界 COLLAPSE THRESHOLD | 4系统崩溃阈值 + 跨震级临界点识别 + 实时推演探针 |
 | 3 | 级联 CASCADE | 迭代传播路径 + T+0→T+72h时间步进推演 |
 | 4 | 韧性 RESILIENCE | 3策略对比 + ROI分析 + 阈值推移效果 |
 | 5 | 沙盘 SENSITIVITY | 8参数交互滑块 + 蒙特卡洛 + 龙卷风图 |
-| 6 | 验证 VALIDATION | 汶川/唐山等震线验证 + 4震源情景对比 |
+| 6 | 验证 VALIDATION | 汶川/唐山等震线验证 + 4震源情景对比 + 误差归因 |
+| 7 | 压测 REVERSE STRESS | 逆压测（临界震级/破裂位置扫描）+ VaR/CVaR + 动态传染 + 预算优化 + 脆弱群体暴露 |
 
 ## 震级情景
 
