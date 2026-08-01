@@ -1,4 +1,5 @@
-﻿<script setup>
+<script setup>
+import PageIntro from '../shell/PageIntro.vue'
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import { useMagnitude } from '../../composables/useMagnitude.js'
@@ -623,6 +624,7 @@ onUnmounted(() => {
 
 <template>
   <div class="mode-root">
+    <PageIntro question="哪个系统最先扛不住？拖动震级，看功能率如何逼近崩溃线。" :points="['4 系统功能率', '崩溃告警', '实时推演探针']" />
   <div v-if="loading && !data.kpi" class="loading-overlay">
     <Loader2 :size="24" class="spin" />
     <span style="margin-left:8px;font-size:12px;color:var(--av-muted-foreground);">加载临界数据...</span>

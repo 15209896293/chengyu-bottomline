@@ -172,6 +172,7 @@ main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
   transition: color 0.3s;
 }
 
+.kpi-note { font-size: 8.5px; color: var(--av-muted-foreground); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .kpi-value.accent { color: var(--av-primary); }
 .kpi-value.red { color: var(--state-error); }
 .kpi-value.green { color: var(--state-success); }

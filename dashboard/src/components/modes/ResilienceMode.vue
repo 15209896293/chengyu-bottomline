@@ -1,4 +1,5 @@
-﻿<script setup>
+<script setup>
+import PageIntro from '../shell/PageIntro.vue'
 import { ref, reactive, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import {
@@ -626,6 +627,7 @@ watch(() => data.prevention, () => {
 
 <template>
   <div class="mode-root">
+    <PageIntro question="花多少钱、加固什么，能把城市底线往后推？" :points="['3 策略对比', 'ROI 分析', '阈值推移']" />
   <!-- Loading -->
   <div v-if="loading && !data.kpi" class="loading-overlay">
     <Loader2 :size="24" class="spin" />

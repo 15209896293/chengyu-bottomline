@@ -1,4 +1,5 @@
-﻿<script setup>
+<script setup>
+import PageIntro from '../shell/PageIntro.vue'
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import {
@@ -459,6 +460,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="mode-root">
+    <PageIntro question="合肥的生命线系统空间上怎么分布？风险与资源是否错配？" :points="['区县风险排名', '空间错配', '关键设施分布']" />
   <!-- ========== Loading ========== -->
   <div v-if="loading && !data.kpi" class="loading-overlay">
     <Loader2 :size="24" class="spin" />

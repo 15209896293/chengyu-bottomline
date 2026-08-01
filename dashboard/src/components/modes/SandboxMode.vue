@@ -1,4 +1,5 @@
-﻿<script setup>
+<script setup>
+import PageIntro from '../shell/PageIntro.vue'
 import { ref, reactive, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import { FlaskConical, Loader2, AlertCircle, Sigma, TrendingDown, Gauge, RotateCcw, SlidersHorizontal } from 'lucide-vue-next'
@@ -573,6 +574,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="sandbox-mode">
+    <PageIntro question="参数不确定时，结论还稳吗？哪个参数最敏感？" :points="['8 参数交互', '蒙特卡洛 500 次', '龙卷风图']" />
     <!-- Loading -->
     <div v-if="loading" class="loading-state">
       <Loader2 :size="32" class="spin" />

@@ -1,6 +1,7 @@
 <script setup>
 import TopBar from './TopBar.vue'
 import Sidebar from './Sidebar.vue'
+import AnalysisPipeline from './AnalysisPipeline.vue'
 
 const props = defineProps({
   modeName: { type: String, default: '格局' },
@@ -25,6 +26,12 @@ const emit = defineEmits(['switchMode'])
       :status-tag="statusTag"
       :status-tag-type="statusTagType"
       :mag-tag="magTag"
+    />
+    <!-- 分析流水线：7 模式的因果链定位 -->
+    <AnalysisPipeline
+      :modes="modes"
+      :current-mode="currentMode"
+      @switch="emit('switchMode', $event)"
     />
     <div class="shell-body">
       <Sidebar

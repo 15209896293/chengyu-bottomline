@@ -1,4 +1,5 @@
-﻿<script setup>
+<script setup>
+import PageIntro from '../shell/PageIntro.vue'
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import { Target, Activity, ShieldAlert, TrendingUp, GitBranch, Loader2, AlertTriangle, Info, FileText } from 'lucide-vue-next'
@@ -58,9 +59,9 @@ const kpiItems = computed(() => {
   items.push({ label: '医疗临界', value: critical.value.medical != null ? `M${critical.value.medical.toFixed(1)}` : '—', color: 'yellow' })
   items.push({ label: '避难临界', value: critical.value.shelter != null ? `M${critical.value.shelter.toFixed(1)}` : '—', color: 'green' })
   if (varc.value) {
-    items.push({ label: '基准损失', value: `${varc.value.deterministic_loss_yi}亿`, color: 'accent' })
-    items.push({ label: 'VaR95', value: `${varc.value.var95_yi}亿`, color: 'red' })
-    items.push({ label: 'CVaR95', value: `${varc.value.cvar95_yi}亿`, color: 'purple' })
+    items.push({ label: '基准损失', value: `${varc.value.deterministic_loss_yi}亿`, color: 'accent', note: `≈全市GDP ${(varc.value.deterministic_loss_yi / 10109 * 100).toFixed(1)}%` })
+    items.push({ label: 'VaR95', value: `${varc.value.var95_yi}亿`, color: 'red', note: '95%置信上限' })
+    items.push({ label: 'CVaR95', value: `${varc.value.cvar95_yi}亿`, color: 'purple', note: '尾部均值' })
   }
   const hl = contagion.value?.highlight_magnitude
   if (hl) {
@@ -257,6 +258,7 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
 
 <template>
   <div class="mode-root">
+    <PageIntro question="城市崩溃的底线在哪？极端情景损失多大？钱花在哪最值？" :points="['逆压测', 'VaR / CVaR', '动态传染', '预算优化']" />
     <div v-if="loading" class="loading-overlay">
       <Loader2 :size="24" class="spin" style="color:var(--state-info);" />
       <span style="margin-left:8px;font-size:12px;color:var(--av-muted-foreground);">加载压测数据...</span>
