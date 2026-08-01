@@ -39,6 +39,41 @@ const currentDecision = computed(() => {
   return { current: best, next, baseline: d.baseline?.bottom_line_mag ?? 6.0 }
 })
 
+// ---- 底线推移曲线图 ----
+const decisionChartRef = ref(null)
+let decisionChart = null
+
+function renderDecisionChart() {
+  if (!decisionChartRef.value || !decision.value?.budget_curve) return
+  decisionChart = decisionChart || echarts.init(decisionChartRef.value)
+  const curve = decision.value.budget_curve
+  const baseline = decision.value.baseline?.bottom_line_mag ?? 6.0
+  const cur = currentDecision.value?.current
+  decisionChart.setOption({
+    backgroundColor: 'transparent',
+    grid: { left: 38, right: 14, top: 26, bottom: 22 },
+    tooltip: { trigger: 'axis', backgroundColor: '#142440', borderColor: '#1C2B43', textStyle: { color: '#E6EDF7', fontSize: 11 }, formatter: p => {
+      const d = curve[p[0].dataIndex]
+      return `预算 ${d.budget} 亿<br/>底线 M${d.bottom_line_mag.toFixed(1)}（+${d.shift.toFixed(1)}）<br/>加固 ${d.roads} 路段 · 医疗 +${(d.gain_medical * 100).toFixed(1)}%`
+    } },
+    title: { text: '预算 → 城市崩溃底线（级联口径）', left: 8, top: 2, textStyle: { color: '#7E91AC', fontSize: 11, fontWeight: 600 } },
+    xAxis: { type: 'category', data: curve.map(c => c.budget), name: '预算(亿)', nameTextStyle: { color: '#7E91AC', fontSize: 9 }, axisLabel: { color: '#7E91AC', fontSize: 9, interval: 3 }, axisLine: { lineStyle: { color: '#1C2B43' } } },
+    yAxis: { type: 'value', min: 5.5, max: 7.5, name: '底线震级', nameTextStyle: { color: '#7E91AC', fontSize: 9 }, axisLabel: { color: '#7E91AC', fontSize: 9, formatter: 'M{v}' }, splitLine: { lineStyle: { color: 'rgba(28,43,67,0.5)' } } },
+    series: [{
+      type: 'line', data: curve.map(c => c.bottom_line_mag), smooth: true, symbolSize: 5,
+      lineStyle: { color: '#00D4FF', width: 2.5 }, itemStyle: { color: '#00D4FF' },
+      markLine: {
+        silent: true, symbol: 'none', label: { color: '#F87171', fontSize: 9, formatter: '基线 M' + baseline.toFixed(1), position: 'insideEndTop' },
+        lineStyle: { color: '#F87171', type: 'dashed' }, data: [{ yAxis: baseline }],
+      },
+      markPoint: cur ? { symbol: 'pin', symbolSize: 34, label: { color: '#061320', fontSize: 9, fontWeight: 700, formatter: 'M' + cur.bottom_line_mag.toFixed(1) }, itemStyle: { color: '#00D4FF' }, data: [{ coord: [curve.findIndex(c => c.budget === cur.budget), cur.bottom_line_mag] }] } : undefined,
+    }],
+  }, true)
+}
+
+watch(budgetSlider, () => nextTick(renderDecisionChart))
+watch(decision, () => nextTick(renderDecisionChart))
+
 // ==================== DATA SOURCE ====================
 const { data, loading, error } = useDashboardData()
 const { currentMag } = useMagnitude()
@@ -617,6 +652,7 @@ onMounted(() => {
   nextTick(() => {
     initTrendChart()
     initRadarChart()
+    renderDecisionChart()
   })
   window.addEventListener('resize', handleResize)
 })
@@ -677,51 +713,57 @@ watch(() => data.prevention, () => {
       <span class="cockpit-tag">决策舱 · 级联口径</span>
     </div>
     <div class="cockpit-body">
-      <!-- 预算输入 -->
+      <!-- 预算输入（大滑块） -->
       <div class="cockpit-input">
         <div class="cockpit-slider-label">
-          预算 <b class="num" style="color:var(--av-primary);">{{ budgetSlider.toFixed(1) }} 亿元</b>
-          <span class="cockpit-sub">推荐：加固 {{ currentDecision.current.roads }} 条关键路段 + {{ currentDecision.current.med_points }} 个医疗点</span>
+          防灾预算 <b class="num cockpit-budget">{{ budgetSlider.toFixed(1) }} 亿元</b>
         </div>
         <input v-model.number="budgetSlider" type="range" min="0" max="10" step="0.5" class="cockpit-range" />
         <div class="cockpit-scale"><span>0亿</span><span>2亿·推高0.5级</span><span>10亿</span></div>
+        <div class="cockpit-sub">推荐组合：加固 <b style="color:var(--av-primary);">{{ currentDecision.current.roads }}</b> 条关键路段 + {{ currentDecision.current.med_points }} 个医疗点</div>
       </div>
-      <!-- 效果输出 -->
-      <div class="cockpit-output">
-        <div class="cockpit-metric">
-          <div class="cockpit-metric-label">城市底线</div>
-          <div class="cockpit-metric-value num" :style="{ color: currentDecision.current.shift > 0 ? 'var(--state-success)' : 'var(--state-error)' }">
-            M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}
-          </div>
-          <div class="cockpit-metric-sub num" v-if="currentDecision.current.shift > 0">+{{ currentDecision.current.shift.toFixed(1) }} 级</div>
-        </div>
-        <div class="cockpit-metric">
-          <div class="cockpit-metric-label">医疗功能率</div>
-          <div class="cockpit-metric-value num" style="color:var(--av-primary);">+{{ (currentDecision.current.gain_medical * 100).toFixed(1) }}%</div>
-          <div class="cockpit-metric-sub">M6.5 场景提升</div>
-        </div>
-        <div class="cockpit-metric">
-          <div class="cockpit-metric-label">救援功能率</div>
-          <div class="cockpit-metric-value num" style="color:var(--state-info);">+{{ (currentDecision.current.gain_rescue * 100).toFixed(1) }}%</div>
-          <div class="cockpit-metric-sub">M6.5 场景提升</div>
-        </div>
-        <div class="cockpit-metric">
-          <div class="cockpit-metric-label">边际收益</div>
-          <div class="cockpit-metric-value num" :style="{ color: currentDecision.next ? 'var(--state-warning)' : 'var(--av-muted-foreground)' }">
-            {{ currentDecision.next ? `再+${(currentDecision.next.budget - currentDecision.current.budget).toFixed(1)}亿→M${currentDecision.next.bottom_line_mag.toFixed(1)}` : '已封顶' }}
-          </div>
-          <div class="cockpit-metric-sub">{{ currentDecision.next ? '可继续推高' : '10路段加固后边际递减' }}</div>
-        </div>
+      <!-- 底线推移曲线 -->
+      <div class="cockpit-curve">
+        <div ref="decisionChartRef" style="width:100%;height:150px;"></div>
       </div>
-      <!-- 决策结论 -->
-      <div class="cockpit-conclusion">
-        <TrendingUp :size="12" style="vertical-align:-1px;" />
-        <span>
-          <b>{{ budgetSlider.toFixed(1) }} 亿元预算</b>（加固 {{ currentDecision.current.roads }} 条关键路段）：
-          城市崩溃底线从 <b>M{{ currentDecision.baseline.toFixed(1) }}</b>
-          推高至 <b style="color:var(--state-success);">M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</b>——
-          {{ currentDecision.current.shift > 0 ? `每亿元买来 ${(currentDecision.current.shift / Math.max(budgetSlider, 0.1)).toFixed(2)} 级底线高度` : '当前预算不足以推高底线，建议增至 2 亿元' }}
-        </span>
+      <!-- 效果输出 + 结论 -->
+      <div class="cockpit-right">
+        <div class="cockpit-output">
+          <div class="cockpit-metric">
+            <div class="cockpit-metric-label">城市底线</div>
+            <div class="cockpit-metric-value num" :style="{ color: currentDecision.current.shift > 0 ? 'var(--state-success)' : 'var(--state-error)' }">
+              M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}
+            </div>
+            <div class="cockpit-metric-sub num" v-if="currentDecision.current.shift > 0">基线 +{{ currentDecision.current.shift.toFixed(1) }}</div>
+            <div class="cockpit-metric-sub" v-else>= 基线</div>
+          </div>
+          <div class="cockpit-metric">
+            <div class="cockpit-metric-label">医疗功能率</div>
+            <div class="cockpit-metric-value num" style="color:var(--av-primary);">+{{ (currentDecision.current.gain_medical * 100).toFixed(1) }}%</div>
+            <div class="cockpit-metric-sub">M6.5 场景</div>
+          </div>
+          <div class="cockpit-metric">
+            <div class="cockpit-metric-label">救援功能率</div>
+            <div class="cockpit-metric-value num" style="color:var(--state-info);">+{{ (currentDecision.current.gain_rescue * 100).toFixed(1) }}%</div>
+            <div class="cockpit-metric-sub">M6.5 场景</div>
+          </div>
+          <div class="cockpit-metric">
+            <div class="cockpit-metric-label">边际收益</div>
+            <div class="cockpit-metric-value num" style="font-size:12px;" :style="{ color: currentDecision.next ? 'var(--state-warning)' : 'var(--av-muted-foreground)' }">
+              {{ currentDecision.next ? `再+${(currentDecision.next.budget - currentDecision.current.budget).toFixed(1)}亿 → M${currentDecision.next.bottom_line_mag.toFixed(1)}` : '已封顶' }}
+            </div>
+            <div class="cockpit-metric-sub">{{ currentDecision.next ? '可继续推高' : '加固10路段后递减' }}</div>
+          </div>
+        </div>
+        <div class="cockpit-conclusion">
+          <TrendingUp :size="12" style="vertical-align:-1px;" />
+          <span>
+            <b>{{ budgetSlider.toFixed(1) }} 亿元预算</b>（加固 {{ currentDecision.current.roads }} 条关键路段）：
+            城市崩溃底线从 <b>M{{ currentDecision.baseline.toFixed(1) }}</b> 推高至
+            <b style="color:var(--state-success);">M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</b>——
+            {{ currentDecision.current.shift > 0 ? `每亿元买来 ${(currentDecision.current.shift / Math.max(budgetSlider, 0.1)).toFixed(2)} 级底线高度` : '当前预算不足以推高底线，建议增至 2 亿元' }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
