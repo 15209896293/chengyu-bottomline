@@ -53,7 +53,7 @@
           "cascade_factor": 0.0,
           "systems": {
             "medical": {
-              "ratio": 0.5423,
+              "ratio": 0.6608,
               "drop": 0.0,
               "collapsed": false,
               "status": "正常",
@@ -99,8 +99,8 @@
           "cascade_factor": 0.3,
           "systems": {
             "medical": {
-              "ratio": 0.5256,
-              "drop": 0.0167,
+              "ratio": 0.6408,
+              "drop": 0.02,
               "collapsed": false,
               "status": "正常",
               "name": "医疗",
@@ -117,8 +117,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.6775,
-              "drop": 0.0325,
+              "ratio": 0.6818,
+              "drop": 0.0282,
               "collapsed": false,
               "status": "正常",
               "name": "救援",
@@ -126,8 +126,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.8876,
-              "drop": 0.1124,
+              "ratio": 0.899,
+              "drop": 0.101,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -145,8 +145,8 @@
           "cascade_factor": 0.6,
           "systems": {
             "medical": {
-              "ratio": 0.5089,
-              "drop": 0.0334,
+              "ratio": 0.6209,
+              "drop": 0.0399,
               "collapsed": false,
               "status": "正常",
               "name": "医疗",
@@ -163,8 +163,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.6449,
-              "drop": 0.0651,
+              "ratio": 0.6536,
+              "drop": 0.0564,
               "collapsed": false,
               "status": "正常",
               "name": "救援",
@@ -172,8 +172,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.7751,
-              "drop": 0.2249,
+              "ratio": 0.7979,
+              "drop": 0.2021,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -191,8 +191,8 @@
           "cascade_factor": 0.85,
           "systems": {
             "medical": {
-              "ratio": 0.495,
-              "drop": 0.0473,
+              "ratio": 0.6043,
+              "drop": 0.0565,
               "collapsed": false,
               "status": "正常",
               "name": "医疗",
@@ -209,8 +209,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.6178,
-              "drop": 0.0922,
+              "ratio": 0.6301,
+              "drop": 0.0799,
               "collapsed": false,
               "status": "正常",
               "name": "救援",
@@ -218,8 +218,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.6814,
-              "drop": 0.3186,
+              "ratio": 0.7137,
+              "drop": 0.2863,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -237,8 +237,8 @@
           "cascade_factor": 1.0,
           "systems": {
             "medical": {
-              "ratio": 0.4866,
-              "drop": 0.0557,
+              "ratio": 0.5943,
+              "drop": 0.0665,
               "collapsed": false,
               "status": "正常",
               "name": "医疗",
@@ -255,8 +255,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.6015,
-              "drop": 0.1085,
+              "ratio": 0.616,
+              "drop": 0.094,
               "collapsed": false,
               "status": "正常",
               "name": "救援",
@@ -264,8 +264,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.6252,
-              "drop": 0.3748,
+              "ratio": 0.6632,
+              "drop": 0.3368,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -285,8 +285,8 @@
         "cascade_factor": 1.0,
         "systems": {
           "medical": {
-            "ratio": 0.4866,
-            "drop": 0.0557,
+            "ratio": 0.5943,
+            "drop": 0.0665,
             "collapsed": false,
             "status": "正常",
             "name": "医疗",
@@ -303,8 +303,8 @@
             "threshold": 0.5
           },
           "rescue": {
-            "ratio": 0.6015,
-            "drop": 0.1085,
+            "ratio": 0.616,
+            "drop": 0.094,
             "collapsed": false,
             "status": "正常",
             "name": "救援",
@@ -312,8 +312,8 @@
             "threshold": 0.4
           },
           "shelter": {
-            "ratio": 0.6252,
-            "drop": 0.3748,
+            "ratio": 0.6632,
+            "drop": 0.3368,
             "collapsed": false,
             "status": "正常",
             "name": "避难",
@@ -335,10 +335,10 @@
           "cascade_factor": 0.0,
           "systems": {
             "medical": {
-              "ratio": 0.2676,
+              "ratio": 0.6455,
               "drop": 0.0,
-              "collapsed": true,
-              "status": "已崩溃",
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -371,8 +371,8 @@
               "threshold": 0.3
             }
           },
-          "city_collapse": true,
-          "collapsed_count": 1
+          "city_collapse": false,
+          "collapsed_count": 0
         },
         {
           "time": 1,
@@ -381,10 +381,10 @@
           "cascade_factor": 0.3,
           "systems": {
             "medical": {
-              "ratio": 0.2493,
-              "drop": 0.0183,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.6021,
+              "drop": 0.0434,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -399,8 +399,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.5428,
-              "drop": 0.0568,
+              "ratio": 0.5514,
+              "drop": 0.0482,
               "collapsed": false,
               "status": "承压",
               "name": "救援",
@@ -408,8 +408,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.8354,
-              "drop": 0.1646,
+              "ratio": 0.8605,
+              "drop": 0.1395,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -417,8 +417,8 @@
               "threshold": 0.3
             }
           },
-          "city_collapse": true,
-          "collapsed_count": 1
+          "city_collapse": false,
+          "collapsed_count": 0
         },
         {
           "time": 6,
@@ -427,10 +427,10 @@
           "cascade_factor": 0.6,
           "systems": {
             "medical": {
-              "ratio": 0.231,
-              "drop": 0.0366,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.5587,
+              "drop": 0.0868,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -445,8 +445,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.4859,
-              "drop": 0.1137,
+              "ratio": 0.5032,
+              "drop": 0.0964,
               "collapsed": false,
               "status": "承压",
               "name": "救援",
@@ -454,8 +454,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.6708,
-              "drop": 0.3292,
+              "ratio": 0.7209,
+              "drop": 0.2791,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -463,8 +463,8 @@
               "threshold": 0.3
             }
           },
-          "city_collapse": true,
-          "collapsed_count": 1
+          "city_collapse": false,
+          "collapsed_count": 0
         },
         {
           "time": 24,
@@ -473,10 +473,10 @@
           "cascade_factor": 0.85,
           "systems": {
             "medical": {
-              "ratio": 0.2158,
-              "drop": 0.0518,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.5225,
+              "drop": 0.123,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -491,8 +491,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.4386,
-              "drop": 0.161,
+              "ratio": 0.463,
+              "drop": 0.1366,
               "collapsed": false,
               "status": "级联风险",
               "name": "救援",
@@ -500,8 +500,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.5337,
-              "drop": 0.4663,
+              "ratio": 0.6046,
+              "drop": 0.3954,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -509,8 +509,8 @@
               "threshold": 0.3
             }
           },
-          "city_collapse": true,
-          "collapsed_count": 1
+          "city_collapse": false,
+          "collapsed_count": 0
         },
         {
           "time": 72,
@@ -519,10 +519,10 @@
           "cascade_factor": 1.0,
           "systems": {
             "medical": {
-              "ratio": 0.2066,
-              "drop": 0.061,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.5008,
+              "drop": 0.1447,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -537,8 +537,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.4102,
-              "drop": 0.1894,
+              "ratio": 0.4389,
+              "drop": 0.1607,
               "collapsed": false,
               "status": "级联风险",
               "name": "救援",
@@ -546,8 +546,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.4514,
-              "drop": 0.5486,
+              "ratio": 0.5349,
+              "drop": 0.4651,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -555,11 +555,11 @@
               "threshold": 0.3
             }
           },
-          "city_collapse": true,
-          "collapsed_count": 1
+          "city_collapse": false,
+          "collapsed_count": 0
         }
       ],
-      "first_collapse_time": "T+0",
+      "first_collapse_time": null,
       "final_state": {
         "time": 72,
         "label": "T+72h",
@@ -567,10 +567,10 @@
         "cascade_factor": 1.0,
         "systems": {
           "medical": {
-            "ratio": 0.2066,
-            "drop": 0.061,
-            "collapsed": true,
-            "status": "已崩溃",
+            "ratio": 0.5008,
+            "drop": 0.1447,
+            "collapsed": false,
+            "status": "正常",
             "name": "医疗",
             "color": "#F87171",
             "threshold": 0.3
@@ -585,8 +585,8 @@
             "threshold": 0.5
           },
           "rescue": {
-            "ratio": 0.4102,
-            "drop": 0.1894,
+            "ratio": 0.4389,
+            "drop": 0.1607,
             "collapsed": false,
             "status": "级联风险",
             "name": "救援",
@@ -594,8 +594,8 @@
             "threshold": 0.4
           },
           "shelter": {
-            "ratio": 0.4514,
-            "drop": 0.5486,
+            "ratio": 0.5349,
+            "drop": 0.4651,
             "collapsed": false,
             "status": "正常",
             "name": "避难",
@@ -603,8 +603,8 @@
             "threshold": 0.3
           }
         },
-        "city_collapse": true,
-        "collapsed_count": 1
+        "city_collapse": false,
+        "collapsed_count": 0
       }
     },
     "M6.0": {
@@ -617,10 +617,10 @@
           "cascade_factor": 0.0,
           "systems": {
             "medical": {
-              "ratio": 0.2617,
+              "ratio": 0.6009,
               "drop": 0.0,
-              "collapsed": true,
-              "status": "已崩溃",
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -653,8 +653,8 @@
               "threshold": 0.3
             }
           },
-          "city_collapse": true,
-          "collapsed_count": 1
+          "city_collapse": false,
+          "collapsed_count": 0
         },
         {
           "time": 1,
@@ -663,10 +663,10 @@
           "cascade_factor": 0.3,
           "systems": {
             "medical": {
-              "ratio": 0.2409,
-              "drop": 0.0208,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.5536,
+              "drop": 0.0473,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -681,8 +681,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.402,
-              "drop": 0.0461,
+              "ratio": 0.4072,
+              "drop": 0.0409,
               "collapsed": false,
               "status": "级联风险",
               "name": "救援",
@@ -690,8 +690,54 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.8213,
-              "drop": 0.1787,
+              "ratio": 0.8399,
+              "drop": 0.1601,
+              "collapsed": false,
+              "status": "正常",
+              "name": "避难",
+              "color": "#34D399",
+              "threshold": 0.3
+            }
+          },
+          "city_collapse": false,
+          "collapsed_count": 0
+        },
+        {
+          "time": 6,
+          "label": "T+6h",
+          "desc": "医疗资源耗竭",
+          "cascade_factor": 0.6,
+          "systems": {
+            "medical": {
+              "ratio": 0.5063,
+              "drop": 0.0946,
+              "collapsed": false,
+              "status": "正常",
+              "name": "医疗",
+              "color": "#F87171",
+              "threshold": 0.3
+            },
+            "transport": {
+              "ratio": 0.6058,
+              "drop": 0.0,
+              "collapsed": false,
+              "status": "承压",
+              "name": "交通",
+              "color": "#FBBF24",
+              "threshold": 0.5
+            },
+            "rescue": {
+              "ratio": 0.3664,
+              "drop": 0.0817,
+              "collapsed": true,
+              "status": "已崩溃",
+              "name": "救援",
+              "color": "#FB923C",
+              "threshold": 0.4
+            },
+            "shelter": {
+              "ratio": 0.6798,
+              "drop": 0.3202,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -703,62 +749,16 @@
           "collapsed_count": 1
         },
         {
-          "time": 6,
-          "label": "T+6h",
-          "desc": "医疗资源耗竭",
-          "cascade_factor": 0.6,
-          "systems": {
-            "medical": {
-              "ratio": 0.2202,
-              "drop": 0.0415,
-              "collapsed": true,
-              "status": "已崩溃",
-              "name": "医疗",
-              "color": "#F87171",
-              "threshold": 0.3
-            },
-            "transport": {
-              "ratio": 0.6058,
-              "drop": 0.0,
-              "collapsed": false,
-              "status": "承压",
-              "name": "交通",
-              "color": "#FBBF24",
-              "threshold": 0.5
-            },
-            "rescue": {
-              "ratio": 0.3558,
-              "drop": 0.0923,
-              "collapsed": true,
-              "status": "已崩溃",
-              "name": "救援",
-              "color": "#FB923C",
-              "threshold": 0.4
-            },
-            "shelter": {
-              "ratio": 0.6425,
-              "drop": 0.3575,
-              "collapsed": false,
-              "status": "正常",
-              "name": "避难",
-              "color": "#34D399",
-              "threshold": 0.3
-            }
-          },
-          "city_collapse": true,
-          "collapsed_count": 2
-        },
-        {
           "time": 24,
           "label": "T+24h",
           "desc": "救援扩散",
           "cascade_factor": 0.85,
           "systems": {
             "medical": {
-              "ratio": 0.2029,
-              "drop": 0.0588,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.4669,
+              "drop": 0.134,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -773,8 +773,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.3173,
-              "drop": 0.1308,
+              "ratio": 0.3323,
+              "drop": 0.1158,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -782,8 +782,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.4936,
-              "drop": 0.5064,
+              "ratio": 0.5464,
+              "drop": 0.4536,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -792,7 +792,7 @@
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 1
         },
         {
           "time": 72,
@@ -801,10 +801,10 @@
           "cascade_factor": 1.0,
           "systems": {
             "medical": {
-              "ratio": 0.1925,
-              "drop": 0.0692,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.4433,
+              "drop": 0.1576,
+              "collapsed": false,
+              "status": "承压",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -819,8 +819,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.2943,
-              "drop": 0.1538,
+              "ratio": 0.3119,
+              "drop": 0.1362,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -828,20 +828,20 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.4042,
-              "drop": 0.5958,
+              "ratio": 0.4664,
+              "drop": 0.5336,
               "collapsed": false,
-              "status": "承压",
+              "status": "正常",
               "name": "避难",
               "color": "#34D399",
               "threshold": 0.3
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 1
         }
       ],
-      "first_collapse_time": "T+0",
+      "first_collapse_time": "T+6h",
       "final_state": {
         "time": 72,
         "label": "T+72h",
@@ -849,10 +849,10 @@
         "cascade_factor": 1.0,
         "systems": {
           "medical": {
-            "ratio": 0.1925,
-            "drop": 0.0692,
-            "collapsed": true,
-            "status": "已崩溃",
+            "ratio": 0.4433,
+            "drop": 0.1576,
+            "collapsed": false,
+            "status": "承压",
             "name": "医疗",
             "color": "#F87171",
             "threshold": 0.3
@@ -867,8 +867,8 @@
             "threshold": 0.5
           },
           "rescue": {
-            "ratio": 0.2943,
-            "drop": 0.1538,
+            "ratio": 0.3119,
+            "drop": 0.1362,
             "collapsed": true,
             "status": "已崩溃",
             "name": "救援",
@@ -876,17 +876,17 @@
             "threshold": 0.4
           },
           "shelter": {
-            "ratio": 0.4042,
-            "drop": 0.5958,
+            "ratio": 0.4664,
+            "drop": 0.5336,
             "collapsed": false,
-            "status": "承压",
+            "status": "正常",
             "name": "避难",
             "color": "#34D399",
             "threshold": 0.3
           }
         },
         "city_collapse": true,
-        "collapsed_count": 2
+        "collapsed_count": 1
       }
     },
     "M6.5": {
@@ -899,10 +899,10 @@
           "cascade_factor": 0.0,
           "systems": {
             "medical": {
-              "ratio": 0.2617,
+              "ratio": 0.5681,
               "drop": 0.0,
-              "collapsed": true,
-              "status": "已崩溃",
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -926,7 +926,7 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 1.0,
+              "ratio": 0.636,
               "drop": 0.0,
               "collapsed": false,
               "status": "正常",
@@ -936,7 +936,7 @@
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 1
         },
         {
           "time": 1,
@@ -945,10 +945,10 @@
           "cascade_factor": 0.3,
           "systems": {
             "medical": {
-              "ratio": 0.2398,
-              "drop": 0.0219,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.5209,
+              "drop": 0.0472,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -963,8 +963,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.3406,
-              "drop": 0.0404,
+              "ratio": 0.3445,
+              "drop": 0.0365,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -972,8 +972,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.8157,
-              "drop": 0.1843,
+              "ratio": 0.5287,
+              "drop": 0.1073,
               "collapsed": false,
               "status": "正常",
               "name": "避难",
@@ -982,7 +982,7 @@
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 1
         },
         {
           "time": 6,
@@ -991,10 +991,10 @@
           "cascade_factor": 0.6,
           "systems": {
             "medical": {
-              "ratio": 0.2179,
-              "drop": 0.0438,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.4736,
+              "drop": 0.0945,
+              "collapsed": false,
+              "status": "正常",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -1009,8 +1009,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.3002,
-              "drop": 0.0808,
+              "ratio": 0.308,
+              "drop": 0.073,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1018,17 +1018,17 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.6314,
-              "drop": 0.3686,
+              "ratio": 0.4214,
+              "drop": 0.2146,
               "collapsed": false,
-              "status": "正常",
+              "status": "承压",
               "name": "避难",
               "color": "#34D399",
               "threshold": 0.3
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 1
         },
         {
           "time": 24,
@@ -1037,10 +1037,10 @@
           "cascade_factor": 0.85,
           "systems": {
             "medical": {
-              "ratio": 0.1997,
-              "drop": 0.062,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.4343,
+              "drop": 0.1338,
+              "collapsed": false,
+              "status": "承压",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -1055,8 +1055,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.2665,
-              "drop": 0.1145,
+              "ratio": 0.2776,
+              "drop": 0.1034,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1064,17 +1064,17 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.4779,
-              "drop": 0.5221,
+              "ratio": 0.332,
+              "drop": 0.304,
               "collapsed": false,
-              "status": "正常",
+              "status": "级联风险",
               "name": "避难",
               "color": "#34D399",
               "threshold": 0.3
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 1
         },
         {
           "time": 72,
@@ -1083,10 +1083,10 @@
           "cascade_factor": 1.0,
           "systems": {
             "medical": {
-              "ratio": 0.1888,
-              "drop": 0.0729,
-              "collapsed": true,
-              "status": "已崩溃",
+              "ratio": 0.4107,
+              "drop": 0.1574,
+              "collapsed": false,
+              "status": "承压",
               "name": "医疗",
               "color": "#F87171",
               "threshold": 0.3
@@ -1101,8 +1101,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.2463,
-              "drop": 0.1347,
+              "ratio": 0.2594,
+              "drop": 0.1216,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1110,10 +1110,10 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.3857,
-              "drop": 0.6143,
-              "collapsed": false,
-              "status": "承压",
+              "ratio": 0.2783,
+              "drop": 0.3577,
+              "collapsed": true,
+              "status": "已崩溃",
               "name": "避难",
               "color": "#34D399",
               "threshold": 0.3
@@ -1131,10 +1131,10 @@
         "cascade_factor": 1.0,
         "systems": {
           "medical": {
-            "ratio": 0.1888,
-            "drop": 0.0729,
-            "collapsed": true,
-            "status": "已崩溃",
+            "ratio": 0.4107,
+            "drop": 0.1574,
+            "collapsed": false,
+            "status": "承压",
             "name": "医疗",
             "color": "#F87171",
             "threshold": 0.3
@@ -1149,8 +1149,8 @@
             "threshold": 0.5
           },
           "rescue": {
-            "ratio": 0.2463,
-            "drop": 0.1347,
+            "ratio": 0.2594,
+            "drop": 0.1216,
             "collapsed": true,
             "status": "已崩溃",
             "name": "救援",
@@ -1158,10 +1158,10 @@
             "threshold": 0.4
           },
           "shelter": {
-            "ratio": 0.3857,
-            "drop": 0.6143,
-            "collapsed": false,
-            "status": "承压",
+            "ratio": 0.2783,
+            "drop": 0.3577,
+            "collapsed": true,
+            "status": "已崩溃",
             "name": "避难",
             "color": "#34D399",
             "threshold": 0.3
@@ -1181,7 +1181,7 @@
           "cascade_factor": 0.0,
           "systems": {
             "medical": {
-              "ratio": 0.2441,
+              "ratio": 0.2676,
               "drop": 0.0,
               "collapsed": true,
               "status": "已崩溃",
@@ -1208,10 +1208,10 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.4398,
+              "ratio": 0.3583,
               "drop": 0.0,
               "collapsed": false,
-              "status": "承压",
+              "status": "级联风险",
               "name": "避难",
               "color": "#34D399",
               "threshold": 0.3
@@ -1227,8 +1227,8 @@
           "cascade_factor": 0.3,
           "systems": {
             "medical": {
-              "ratio": 0.223,
-              "drop": 0.0211,
+              "ratio": 0.2445,
+              "drop": 0.0231,
               "collapsed": true,
               "status": "已崩溃",
               "name": "医疗",
@@ -1245,8 +1245,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.2972,
-              "drop": 0.0361,
+              "ratio": 0.2974,
+              "drop": 0.0359,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1254,17 +1254,17 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.3568,
-              "drop": 0.083,
-              "collapsed": false,
-              "status": "级联风险",
+              "ratio": 0.2911,
+              "drop": 0.0672,
+              "collapsed": true,
+              "status": "已崩溃",
               "name": "避难",
               "color": "#34D399",
               "threshold": 0.3
             }
           },
           "city_collapse": true,
-          "collapsed_count": 2
+          "collapsed_count": 3
         },
         {
           "time": 6,
@@ -1273,8 +1273,8 @@
           "cascade_factor": 0.6,
           "systems": {
             "medical": {
-              "ratio": 0.202,
-              "drop": 0.0421,
+              "ratio": 0.2214,
+              "drop": 0.0462,
               "collapsed": true,
               "status": "已崩溃",
               "name": "医疗",
@@ -1291,8 +1291,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.261,
-              "drop": 0.0723,
+              "ratio": 0.2616,
+              "drop": 0.0717,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1300,8 +1300,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.2737,
-              "drop": 0.1661,
+              "ratio": 0.2238,
+              "drop": 0.1345,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1319,8 +1319,8 @@
           "cascade_factor": 0.85,
           "systems": {
             "medical": {
-              "ratio": 0.1844,
-              "drop": 0.0597,
+              "ratio": 0.2022,
+              "drop": 0.0654,
               "collapsed": true,
               "status": "已崩溃",
               "name": "医疗",
@@ -1337,8 +1337,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.2309,
-              "drop": 0.1024,
+              "ratio": 0.2317,
+              "drop": 0.1016,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1346,8 +1346,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.2045,
-              "drop": 0.2353,
+              "ratio": 0.1678,
+              "drop": 0.1905,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1365,8 +1365,8 @@
           "cascade_factor": 1.0,
           "systems": {
             "medical": {
-              "ratio": 0.1739,
-              "drop": 0.0702,
+              "ratio": 0.1907,
+              "drop": 0.0769,
               "collapsed": true,
               "status": "已崩溃",
               "name": "医疗",
@@ -1383,8 +1383,8 @@
               "threshold": 0.5
             },
             "rescue": {
-              "ratio": 0.2129,
-              "drop": 0.1204,
+              "ratio": 0.2137,
+              "drop": 0.1196,
               "collapsed": true,
               "status": "已崩溃",
               "name": "救援",
@@ -1392,8 +1392,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.163,
-              "drop": 0.2768,
+              "ratio": 0.1341,
+              "drop": 0.2242,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1413,8 +1413,8 @@
         "cascade_factor": 1.0,
         "systems": {
           "medical": {
-            "ratio": 0.1739,
-            "drop": 0.0702,
+            "ratio": 0.1907,
+            "drop": 0.0769,
             "collapsed": true,
             "status": "已崩溃",
             "name": "医疗",
@@ -1431,8 +1431,8 @@
             "threshold": 0.5
           },
           "rescue": {
-            "ratio": 0.2129,
-            "drop": 0.1204,
+            "ratio": 0.2137,
+            "drop": 0.1196,
             "collapsed": true,
             "status": "已崩溃",
             "name": "救援",
@@ -1440,8 +1440,8 @@
             "threshold": 0.4
           },
           "shelter": {
-            "ratio": 0.163,
-            "drop": 0.2768,
+            "ratio": 0.1341,
+            "drop": 0.2242,
             "collapsed": true,
             "status": "已崩溃",
             "name": "避难",
@@ -1490,7 +1490,7 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.2454,
+              "ratio": 0.2333,
               "drop": 0.0,
               "collapsed": true,
               "status": "已崩溃",
@@ -1536,8 +1536,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.1983,
-              "drop": 0.0471,
+              "ratio": 0.1885,
+              "drop": 0.0448,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1582,8 +1582,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.1512,
-              "drop": 0.0942,
+              "ratio": 0.1438,
+              "drop": 0.0895,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1628,8 +1628,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.112,
-              "drop": 0.1334,
+              "ratio": 0.1065,
+              "drop": 0.1268,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1674,8 +1674,8 @@
               "threshold": 0.4
             },
             "shelter": {
-              "ratio": 0.0884,
-              "drop": 0.157,
+              "ratio": 0.0841,
+              "drop": 0.1492,
               "collapsed": true,
               "status": "已崩溃",
               "name": "避难",
@@ -1722,8 +1722,8 @@
             "threshold": 0.4
           },
           "shelter": {
-            "ratio": 0.0884,
-            "drop": 0.157,
+            "ratio": 0.0841,
+            "drop": 0.1492,
             "collapsed": true,
             "status": "已崩溃",
             "name": "避难",
@@ -1742,7 +1742,7 @@
       "label": "T+0",
       "desc": "地震瞬间",
       "cascade_factor": 0.0,
-      "collapsed_magnitudes": 5,
+      "collapsed_magnitudes": 3,
       "total_magnitudes": 6
     },
     {
@@ -1750,7 +1750,7 @@
       "label": "T+1h",
       "desc": "道路阻断定型",
       "cascade_factor": 0.3,
-      "collapsed_magnitudes": 5,
+      "collapsed_magnitudes": 3,
       "total_magnitudes": 6
     },
     {
@@ -1758,7 +1758,7 @@
       "label": "T+6h",
       "desc": "医疗资源耗竭",
       "cascade_factor": 0.6,
-      "collapsed_magnitudes": 5,
+      "collapsed_magnitudes": 4,
       "total_magnitudes": 6
     },
     {
@@ -1766,7 +1766,7 @@
       "label": "T+24h",
       "desc": "救援扩散",
       "cascade_factor": 0.85,
-      "collapsed_magnitudes": 5,
+      "collapsed_magnitudes": 4,
       "total_magnitudes": 6
     },
     {
@@ -1774,7 +1774,7 @@
       "label": "T+72h",
       "desc": "避难饱和",
       "cascade_factor": 1.0,
-      "collapsed_magnitudes": 5,
+      "collapsed_magnitudes": 4,
       "total_magnitudes": 6
     }
   ]

@@ -1,7 +1,7 @@
 ﻿magnitude,medical_base,medical_cascade,medical_drop,medical_collapse,rescue_base,rescue_cascade,rescue_drop,rescue_collapse,transport_base,transport_cascade,transport_drop,transport_collapse,shelter_base,shelter_cascade,shelter_drop,shelter_collapse,city_collapse
-5.0,0.5423,0.5175,0.0248,False,0.71,0.638,0.072,False,0.8985,0.8985,0.0,False,1.0,0.6495,0.3505,False,False
-5.5,0.2676,0.2267,0.0409,True,0.5996,0.4498,0.1498,False,0.6602,0.6602,0.0,False,1.0,0.4699,0.5301,False,True
-6.0,0.2617,0.2153,0.0464,True,0.4481,0.3234,0.1247,True,0.6058,0.6058,0.0,False,1.0,0.419,0.581,False,True
-6.5,0.2617,0.2128,0.0489,True,0.381,0.2709,0.1101,True,0.585,0.585,0.0,False,1.0,0.399,0.601,False,True
-7.0,0.2441,0.1972,0.0469,True,0.3333,0.2345,0.0988,True,0.5729,0.5729,0.0,False,0.4398,0.1683,0.2715,True,True
-7.5,0.2347,0.1879,0.0468,True,0.303,0.2105,0.0925,True,0.5566,0.5566,0.0,False,0.2454,0.0911,0.1543,True,True
+5.0,0.6608,0.6306,0.0302,False,0.71,0.6456,0.0644,False,0.8985,0.8985,0.0,False,1.0,0.687,0.313,False,False
+5.5,0.6455,0.5468,0.0987,False,0.5996,0.4654,0.1342,False,0.6602,0.6602,0.0,False,1.0,0.5571,0.4429,False,False
+6.0,0.6009,0.4943,0.1066,False,0.4481,0.3332,0.1149,True,0.6058,0.6058,0.0,False,1.0,0.4861,0.5139,False,True
+6.5,0.5681,0.462,0.1061,False,0.381,0.2782,0.1028,True,0.585,0.585,0.0,False,0.636,0.2898,0.3462,True,True
+7.0,0.2676,0.2162,0.0514,True,0.3333,0.235,0.0983,True,0.5729,0.5729,0.0,False,0.3583,0.1386,0.2197,True,True
+7.5,0.2347,0.1879,0.0468,True,0.303,0.2105,0.0925,True,0.5566,0.5566,0.0,False,0.2333,0.0866,0.1467,True,True

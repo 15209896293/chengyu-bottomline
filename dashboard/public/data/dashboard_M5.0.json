@@ -5,7 +5,7 @@
       "lng": 117.2795,
       "lat": 31.949
     },
-    "generate_time": "2026-08-01T09:03:23"
+    "generate_time": "2026-08-01T09:16:58"
   },
   "kpi": {
     "total_population": 8455000,
@@ -14,8 +14,8 @@
     "total_gdp_yi": 10109.4,
     "economic_loss_yi": 291.56,
     "total_hospitals": 426,
-    "accessible_hospitals": 239,
-    "inaccessible_hospitals": 187,
+    "accessible_hospitals": 296,
+    "inaccessible_hospitals": 130,
     "road_block_rate": 0.1535,
     "city_collapse": false
   },
@@ -6118,14 +6118,14 @@
         "lng": 117.280261,
         "lat": 31.867684,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院北区(屯溪路院区)(老院区)",
         "lng": 117.282749,
         "lat": 31.848373,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区琥珀街道社区卫生服务中心(新址)",
@@ -6167,7 +6167,7 @@
         "lng": 117.282322,
         "lat": 31.848175,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "广瑞医疗·新园中医综合医院",
@@ -6370,7 +6370,7 @@
         "lng": 117.266631,
         "lat": 31.877035,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "荷叶地街道社区卫生服务中心急诊",
@@ -6391,7 +6391,7 @@
         "lng": 117.2564,
         "lat": 31.882367,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市包河区望江中路社区卫生服务中心科大花园社区卫生服务站",
@@ -6426,7 +6426,7 @@
         "lng": 117.232596,
         "lat": 31.890728,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包公街道社区卫生服务中心",
@@ -6447,7 +6447,7 @@
         "lng": 117.272481,
         "lat": 31.887195,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥市第一人民医院临床教学中心",
@@ -6538,7 +6538,7 @@
         "lng": 117.287548,
         "lat": 31.86672,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽建筑大学北校区校医院",
@@ -6580,7 +6580,7 @@
         "lng": 117.276725,
         "lat": 31.867275,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区同安街道朱岗社区卫生服务站",
@@ -6650,7 +6650,7 @@
         "lng": 117.276935,
         "lat": 31.874988,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院介入中心",
@@ -6692,7 +6692,7 @@
         "lng": 117.291411,
         "lat": 31.881457,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "安徽中医药大学第一附属医院丹溪楼",
@@ -6706,7 +6706,7 @@
         "lng": 117.318423,
         "lat": 31.856642,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥高新区南岗社区卫生服务中心",
@@ -6720,7 +6720,7 @@
         "lng": 117.287421,
         "lat": 31.866674,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "锦绣天都社区卫生服务站",
@@ -6741,7 +6741,7 @@
         "lng": 117.278953,
         "lat": 31.883345,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "安徽三联学院南区校医院",
@@ -6776,7 +6776,7 @@
         "lng": 117.303196,
         "lat": 31.866988,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "包公街道河滨社区卫生服务站",
@@ -6790,7 +6790,7 @@
         "lng": 117.227547,
         "lat": 31.904916,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院高新院区医技楼",
@@ -6811,14 +6811,14 @@
         "lng": 117.318159,
         "lat": 31.850979,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区杏林街道社区卫生服务中心",
         "lng": 117.287569,
         "lat": 31.88841,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "琥珀社区医疗服务中心",
@@ -6839,14 +6839,14 @@
         "lng": 117.215614,
         "lat": 31.899856,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "大杨镇夹塘社区卫生服务站",
         "lng": 117.242599,
         "lat": 31.893008,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "同安街道周谷堆社区卫生服务站",
@@ -6860,7 +6860,7 @@
         "lng": 117.303482,
         "lat": 31.867083,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "瑶海区胜利路街道社区卫生服务中心",
@@ -6888,7 +6888,7 @@
         "lng": 117.275046,
         "lat": 31.887158,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "安徽医科大学第一附属医院绩溪路院区新外科大楼",
@@ -6944,7 +6944,7 @@
         "lng": 117.291386,
         "lat": 31.875779,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "稻香村街道合力社区卫生服务站",
@@ -6958,7 +6958,7 @@
         "lng": 117.279087,
         "lat": 31.89047,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "陈村路医疗卫生服务站",
@@ -6972,7 +6972,7 @@
         "lng": 117.310981,
         "lat": 31.869804,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市中医院",
@@ -7000,28 +7000,28 @@
         "lng": 117.306093,
         "lat": 31.896048,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥光华医院",
         "lng": 117.294404,
         "lat": 31.879824,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "庐阳区杏花村街道社区卫生服务中心",
         "lng": 117.262297,
         "lat": 31.90025,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥贝叶中西医结合医院",
         "lng": 117.29212,
         "lat": 31.882243,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥大学校医院",
@@ -7035,7 +7035,7 @@
         "lng": 117.339495,
         "lat": 31.849296,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽庐州医院分院",
@@ -7070,7 +7070,7 @@
         "lng": 117.289024,
         "lat": 31.883585,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "中心卫生院大柳塘社区卫生服务站",
@@ -7119,14 +7119,14 @@
         "lng": 117.34871,
         "lat": 31.84376,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "城东街道大王庙社区卫生服务站",
         "lng": 117.319651,
         "lat": 31.850423,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "临湖社区卫生服务中心",
@@ -7154,7 +7154,7 @@
         "lng": 117.316234,
         "lat": 31.901801,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "瑶海区方庙街道社区卫生服务中心",
@@ -7168,7 +7168,7 @@
         "lng": 117.317946,
         "lat": 31.867179,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "中国科学技术大学附属第一医院安徽省立医院滨湖医疗保健中心",
@@ -7203,14 +7203,14 @@
         "lng": 117.326054,
         "lat": 31.855059,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区林店街道社区卫生服务中心",
         "lng": 117.272302,
         "lat": 31.91229,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "长淮街道社区卫生中心",
@@ -7231,7 +7231,7 @@
         "lng": 117.288428,
         "lat": 31.878875,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽静安中西医结合医院",
@@ -7252,14 +7252,14 @@
         "lng": 117.293791,
         "lat": 31.892829,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥佰惠医院",
         "lng": 117.27523,
         "lat": 31.935931,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "城西桥社区卫生服务中心",
@@ -7280,14 +7280,14 @@
         "lng": 117.342994,
         "lat": 31.890884,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥长兴康复医院",
         "lng": 117.35181,
         "lat": 31.894199,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "小通社区医院",
@@ -7301,35 +7301,35 @@
         "lng": 117.186831,
         "lat": 31.946338,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥庐州医院",
         "lng": 117.262042,
         "lat": 31.950645,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "明光路街道填海巷社区卫生服务站",
         "lng": 117.309474,
         "lat": 31.865192,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽新安中西医结合医院",
         "lng": 117.335651,
         "lat": 31.899147,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "上海交通大学医学院附属仁济医院安徽医院",
         "lng": 117.306618,
         "lat": 31.89989,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "仁德医院",
@@ -7434,7 +7434,7 @@
         "lng": 117.302234,
         "lat": 31.880757,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "庐江县鲍井社区卫生服务站",
@@ -7483,7 +7483,7 @@
         "lng": 117.282019,
         "lat": 31.879901,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥工业大学翡翠湖校区医院",
@@ -7567,7 +7567,7 @@
         "lng": 117.258292,
         "lat": 31.901336,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "丁家巷卫生厅",
@@ -7588,7 +7588,7 @@
         "lng": 117.126064,
         "lat": 31.926308,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "紫蓬镇卫生院泗洲卫生室",
@@ -7602,7 +7602,7 @@
         "lng": 117.205908,
         "lat": 31.926981,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "淝河镇卫乡村卫生站",
@@ -7616,7 +7616,7 @@
         "lng": 117.276366,
         "lat": 31.913378,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "淝河镇黄镇村卫生站",
@@ -7644,21 +7644,21 @@
         "lng": 117.140962,
         "lat": 31.92345,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "方桥村卫生室",
         "lng": 117.339418,
         "lat": 31.894221,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "新站站北社区新店村卫生所",
         "lng": 117.32677,
         "lat": 31.945066,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "合肥瑶海罗岗第四卫生室",
@@ -7679,7 +7679,7 @@
         "lng": 117.236534,
         "lat": 31.957291,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥瑶海龙岗史城第二卫生室",
@@ -7700,7 +7700,7 @@
         "lng": 117.261225,
         "lat": 31.897775,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "王岗第一卫生室",
@@ -7721,7 +7721,7 @@
         "lng": 117.2864,
         "lat": 31.895574,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "罗岗第二卫生室(临泉东路店)",
@@ -7770,7 +7770,7 @@
         "lng": 117.21561,
         "lat": 31.980516,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥东县店埠镇光大社区卫生室",
@@ -7784,7 +7784,7 @@
         "lng": 117.384922,
         "lat": 31.822501,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "新站综合开发试验区张店村卫生室",
@@ -7882,7 +7882,7 @@
         "lng": 117.1741,
         "lat": 31.971227,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "泗州新村卫生室",
@@ -8043,7 +8043,7 @@
         "lng": 117.27068,
         "lat": 31.934542,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "三十头镇三房岗村卫生室",
@@ -8148,7 +8148,7 @@
         "lng": 117.249225,
         "lat": 32.015125,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "店埠镇镇南社区卫生室",
@@ -8316,7 +8316,7 @@
         "lng": 117.467699,
         "lat": 31.710472,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "花灯卫生室",
@@ -8400,7 +8400,7 @@
         "lng": 117.330475,
         "lat": 31.526025,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "牌坊乡新丰村卫生室",
@@ -8449,7 +8449,7 @@
         "lng": 117.315586,
         "lat": 31.484419,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "齐咀村卫生室",
@@ -8554,7 +8554,7 @@
         "lng": 117.243782,
         "lat": 31.508904,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "江夏街道卫生室",
@@ -8575,7 +8575,7 @@
         "lng": 117.345801,
         "lat": 31.486686,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "长丰县下塘镇新集村卫生室",
@@ -8617,7 +8617,7 @@
         "lng": 117.311875,
         "lat": 31.984325,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "铭传乡卫生院鸽子笼卫生室",
@@ -8638,14 +8638,14 @@
         "lng": 117.315141,
         "lat": 31.476146,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "西湾村卫生室",
         "lng": 117.295928,
         "lat": 31.50614,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "山南镇中心卫生院街道卫生室",
@@ -8673,7 +8673,7 @@
         "lng": 117.247093,
         "lat": 31.469664,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "撮东社区卫生所",
@@ -61927,9 +61927,9 @@
     ],
     "accessibility_distribution": {
       "hospitals": {
-        "正常可达": 223,
-        "可达但受限": 16,
-        "不可达": 187
+        "正常可达": 267,
+        "可达但受限": 29,
+        "不可达": 130
       },
       "facilities": {
         "消防站": {
@@ -62044,16 +62044,16 @@
       }
     ],
     "collapse": {
-      "medical_ratio": 0.5423,
+      "medical_ratio": 0.6608,
       "rescue_ratio": 0.71,
       "transport_ratio": 0.8985,
-      "shelter_ratio": 15.3806,
+      "shelter_ratio": 5.8181,
       "medical_collapse": false,
       "rescue_collapse": false,
       "transport_collapse": false,
       "shelter_collapse": false,
       "city_collapse": false,
-      "threshold_magnitude": 5.5
+      "threshold_magnitude": 6.5
     },
     "resilience": {
       "medical": 0.5423,
@@ -62118,5 +62118,1206 @@
         "threshold_shift": "0.5"
       }
     ]
+  },
+  "cascade": {
+    "dependency_matrix": [
+      [
+        1.0,
+        0.45,
+        0.2,
+        0.38
+      ],
+      [
+        0.45,
+        1.0,
+        0.55,
+        0.2
+      ],
+      [
+        0.2,
+        0.55,
+        1.0,
+        0.52
+      ],
+      [
+        0.38,
+        0.2,
+        0.52,
+        1.0
+      ]
+    ],
+    "matrix_labels": [
+      "医",
+      "交",
+      "救",
+      "避"
+    ],
+    "matrix_keys": [
+      "medical",
+      "transport",
+      "rescue",
+      "shelter"
+    ],
+    "systems": {
+      "medical": {
+        "base_ratio": 0.6608,
+        "cascade_ratio": 0.6306,
+        "cascade_drop": 0.0302,
+        "collapse_threshold": 0.3,
+        "collapsed": false,
+        "status": "正常",
+        "name": "医疗",
+        "color": "#F87171"
+      },
+      "transport": {
+        "base_ratio": 0.8985,
+        "cascade_ratio": 0.8985,
+        "cascade_drop": 0.0,
+        "collapse_threshold": 0.5,
+        "collapsed": false,
+        "status": "正常",
+        "name": "交通",
+        "color": "#FBBF24"
+      },
+      "rescue": {
+        "base_ratio": 0.71,
+        "cascade_ratio": 0.6456,
+        "cascade_drop": 0.0644,
+        "collapse_threshold": 0.4,
+        "collapsed": false,
+        "status": "正常",
+        "name": "救援",
+        "color": "#FB923C"
+      },
+      "shelter": {
+        "base_ratio": 1.0,
+        "cascade_ratio": 0.687,
+        "cascade_drop": 0.313,
+        "collapse_threshold": 0.3,
+        "collapsed": false,
+        "status": "正常",
+        "name": "避难",
+        "color": "#34D399"
+      }
+    },
+    "propagation_paths": [
+      {
+        "source": "transport",
+        "target": "medical",
+        "weight": 0.45,
+        "source_ratio": 0.8985,
+        "source_drop": 0.0,
+        "propagated_drop": 0.0,
+        "description": "路网阻断导致医疗物资运输中断"
+      },
+      {
+        "source": "rescue",
+        "target": "medical",
+        "weight": 0.15,
+        "source_ratio": 0.6456,
+        "source_drop": 0.0644,
+        "propagated_drop": 0.0097,
+        "description": "救援→医疗 依赖传播"
+      },
+      {
+        "source": "medical",
+        "target": "rescue",
+        "weight": 0.2,
+        "source_ratio": 0.6306,
+        "source_drop": 0.0302,
+        "propagated_drop": 0.006,
+        "description": "医疗接收能力不足影响救援转运"
+      },
+      {
+        "source": "transport",
+        "target": "rescue",
+        "weight": 0.55,
+        "source_ratio": 0.8985,
+        "source_drop": 0.0,
+        "propagated_drop": 0.0,
+        "description": "路网阻断导致救援力量无法到达"
+      },
+      {
+        "source": "medical",
+        "target": "shelter",
+        "weight": 0.38,
+        "source_ratio": 0.6306,
+        "source_drop": 0.0302,
+        "propagated_drop": 0.0115,
+        "description": "医疗功能下降影响避难所伤员救治"
+      },
+      {
+        "source": "transport",
+        "target": "shelter",
+        "weight": 0.2,
+        "source_ratio": 0.8985,
+        "source_drop": 0.0,
+        "propagated_drop": 0.0,
+        "description": "路网阻断导致避难物资运输受阻"
+      },
+      {
+        "source": "rescue",
+        "target": "shelter",
+        "weight": 0.52,
+        "source_ratio": 0.6456,
+        "source_drop": 0.0644,
+        "propagated_drop": 0.0335,
+        "description": "危险源失控威胁避难所安全"
+      }
+    ],
+    "cascade_timeline": [
+      {
+        "step": 0,
+        "event": "交通系统受损",
+        "system": "transport",
+        "ratio": 0.8985,
+        "drop": 0.10150000000000003,
+        "description": "M5.0 地震导致路网阻断"
+      },
+      {
+        "step": 1,
+        "event": "医疗系统受波及",
+        "system": "medical",
+        "ratio": 0.6306,
+        "drop": 0.0302,
+        "description": "路网阻断导致医院可达性下降，医疗物资运输中断"
+      },
+      {
+        "step": 2,
+        "event": "救援系统受波及",
+        "system": "rescue",
+        "ratio": 0.6456,
+        "drop": 0.0644,
+        "description": "路网阻断导致消防站出勤受限，救援转运能力下降"
+      },
+      {
+        "step": 3,
+        "event": "避难系统受波及",
+        "system": "shelter",
+        "ratio": 0.687,
+        "drop": 0.313,
+        "description": "医疗和救援功能下降影响避难所伤员救治与安全保障"
+      }
+    ],
+    "vulnerable_nodes": [
+      {
+        "name": "医疗系统",
+        "val": "0.81 · M7.0",
+        "pct": 81,
+        "magnitude": 7.0,
+        "vulnerability": 0.81,
+        "color": "#F87171",
+        "system": "medical"
+      },
+      {
+        "name": "交通系统",
+        "val": "0.44 · 未崩溃",
+        "pct": 44,
+        "magnitude": null,
+        "vulnerability": 0.44,
+        "color": "#FBBF24",
+        "system": "transport"
+      },
+      {
+        "name": "救援系统",
+        "val": "0.79 · M6.0",
+        "pct": 79,
+        "magnitude": 6.0,
+        "vulnerability": 0.79,
+        "color": "#FB923C",
+        "system": "rescue"
+      },
+      {
+        "name": "避难系统",
+        "val": "0.91 · M6.5",
+        "pct": 91,
+        "magnitude": 6.5,
+        "vulnerability": 0.91,
+        "color": "#34D399",
+        "system": "shelter"
+      }
+    ],
+    "impact_data": [
+      {
+        "key": "受影响人口",
+        "val": "22万",
+        "color": "var(--av-primary)"
+      },
+      {
+        "key": "级联深度",
+        "val": "3层",
+        "color": "var(--state-error)"
+      },
+      {
+        "key": "传播时间",
+        "val": "~60h",
+        "color": "var(--state-orange)"
+      },
+      {
+        "key": "崩溃系统",
+        "val": "0/4",
+        "color": "var(--state-error)"
+      },
+      {
+        "key": "级联概率",
+        "val": "11%",
+        "color": "var(--state-warning)"
+      },
+      {
+        "key": "韧性指数",
+        "val": "0.807",
+        "color": "var(--state-warning)"
+      }
+    ],
+    "prop_strengths": [
+      {
+        "label": "救援→医疗",
+        "pct": 15,
+        "source": "rescue",
+        "target": "medical",
+        "weight": 0.15
+      },
+      {
+        "label": "医疗→救援",
+        "pct": 20,
+        "source": "medical",
+        "target": "rescue",
+        "weight": 0.2
+      },
+      {
+        "label": "医疗→避难",
+        "pct": 38,
+        "source": "medical",
+        "target": "shelter",
+        "weight": 0.38
+      },
+      {
+        "label": "救援→避难",
+        "pct": 52,
+        "source": "rescue",
+        "target": "shelter",
+        "weight": 0.52
+      }
+    ],
+    "city_cascade_collapse": false,
+    "threshold_magnitude": 6.0,
+    "cascade_depth": 3,
+    "propagation_paths_count": 4,
+    "cascade_probability": 0.1129,
+    "collapsed_systems_count": 0
+  },
+  "time_evolution": {
+    "steps": [
+      {
+        "time": 0,
+        "label": "T+0",
+        "desc": "地震瞬间",
+        "cascade_factor": 0.0,
+        "systems": {
+          "medical": {
+            "ratio": 0.6608,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.8985,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.71,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 1.0,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": false,
+        "collapsed_count": 0
+      },
+      {
+        "time": 1,
+        "label": "T+1h",
+        "desc": "道路阻断定型",
+        "cascade_factor": 0.3,
+        "systems": {
+          "medical": {
+            "ratio": 0.6408,
+            "drop": 0.02,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.8985,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.6818,
+            "drop": 0.0282,
+            "collapsed": false,
+            "status": "正常",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.899,
+            "drop": 0.101,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": false,
+        "collapsed_count": 0
+      },
+      {
+        "time": 6,
+        "label": "T+6h",
+        "desc": "医疗资源耗竭",
+        "cascade_factor": 0.6,
+        "systems": {
+          "medical": {
+            "ratio": 0.6209,
+            "drop": 0.0399,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.8985,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.6536,
+            "drop": 0.0564,
+            "collapsed": false,
+            "status": "正常",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.7979,
+            "drop": 0.2021,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": false,
+        "collapsed_count": 0
+      },
+      {
+        "time": 24,
+        "label": "T+24h",
+        "desc": "救援扩散",
+        "cascade_factor": 0.85,
+        "systems": {
+          "medical": {
+            "ratio": 0.6043,
+            "drop": 0.0565,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.8985,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.6301,
+            "drop": 0.0799,
+            "collapsed": false,
+            "status": "正常",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.7137,
+            "drop": 0.2863,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": false,
+        "collapsed_count": 0
+      },
+      {
+        "time": 72,
+        "label": "T+72h",
+        "desc": "避难饱和",
+        "cascade_factor": 1.0,
+        "systems": {
+          "medical": {
+            "ratio": 0.5943,
+            "drop": 0.0665,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.8985,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.616,
+            "drop": 0.094,
+            "collapsed": false,
+            "status": "正常",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.6632,
+            "drop": 0.3368,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": false,
+        "collapsed_count": 0
+      }
+    ],
+    "first_collapse_time": null
+  },
+  "sensitivity": {
+    "magnitude": 5.0,
+    "method": "Monte Carlo + OAT + Spearman",
+    "n_samples": 500,
+    "collapse_probability": 0.0,
+    "system_confidence_intervals": [
+      {
+        "system": "medical",
+        "name": "医疗",
+        "color": "#F87171",
+        "mean": 0.5935,
+        "std": 0.0349,
+        "p5": 0.5375,
+        "p95": 0.6525
+      },
+      {
+        "system": "transport",
+        "name": "交通",
+        "color": "#FBBF24",
+        "mean": 0.8982,
+        "std": 0.0136,
+        "p5": 0.8757,
+        "p95": 0.9211
+      },
+      {
+        "system": "rescue",
+        "name": "救援",
+        "color": "#FB923C",
+        "mean": 0.6157,
+        "std": 0.0324,
+        "p5": 0.5622,
+        "p95": 0.6687
+      },
+      {
+        "system": "shelter",
+        "name": "避难",
+        "color": "#34D399",
+        "mean": 0.6705,
+        "std": 0.0438,
+        "p5": 0.5978,
+        "p95": 0.7427
+      }
+    ],
+    "tornado": [
+      {
+        "param": "intensity_c2",
+        "label": "烈度系数 c₂",
+        "base": 1.352,
+        "low": 1.082,
+        "high": 1.622,
+        "resilience_range": 0.1616,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.5415,
+        "high_resilience": 0.3799
+      },
+      {
+        "param": "intensity_c3",
+        "label": "烈度系数 c₃",
+        "base": 1.038,
+        "low": 0.83,
+        "high": 1.246,
+        "resilience_range": 0.0689,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4231,
+        "high_resilience": 0.492
+      },
+      {
+        "param": "dep_rescue_shelter",
+        "label": "救援→避难 依赖",
+        "base": 0.52,
+        "low": 0.35,
+        "high": 0.65,
+        "resilience_range": 0.0375,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4781,
+        "high_resilience": 0.4406
+      },
+      {
+        "param": "dep_transport_medical",
+        "label": "交通→医疗 依赖",
+        "base": 0.45,
+        "low": 0.3,
+        "high": 0.6,
+        "resilience_range": 0.0211,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4674,
+        "high_resilience": 0.4463
+      },
+      {
+        "param": "dep_medical_shelter",
+        "label": "医疗→避难 依赖",
+        "base": 0.38,
+        "low": 0.25,
+        "high": 0.5,
+        "resilience_range": 0.0206,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4676,
+        "high_resilience": 0.447
+      },
+      {
+        "param": "dep_transport_rescue",
+        "label": "交通→救援 依赖",
+        "base": 0.55,
+        "low": 0.4,
+        "high": 0.7,
+        "resilience_range": 0.0173,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4655,
+        "high_resilience": 0.4481
+      },
+      {
+        "param": "medical_threshold",
+        "label": "医疗崩溃阈值",
+        "base": 0.3,
+        "low": 0.25,
+        "high": 0.35,
+        "resilience_range": 0.0,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4569,
+        "high_resilience": 0.4569
+      },
+      {
+        "param": "rescue_threshold",
+        "label": "救援崩溃阈值",
+        "base": 0.4,
+        "low": 0.35,
+        "high": 0.45,
+        "resilience_range": 0.0,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4569,
+        "high_resilience": 0.4569
+      }
+    ],
+    "parameter_importance": [
+      {
+        "param": "intensity_c2",
+        "label": "烈度系数 c₂",
+        "rho": -0.897,
+        "significant": true
+      },
+      {
+        "param": "intensity_c3",
+        "label": "烈度系数 c₃",
+        "rho": 0.3295,
+        "significant": true
+      },
+      {
+        "param": "dep_transport_medical",
+        "label": "交通→医疗 依赖",
+        "rho": -0.1779,
+        "significant": true
+      },
+      {
+        "param": "dep_rescue_shelter",
+        "label": "救援→避难 依赖",
+        "rho": -0.1744,
+        "significant": true
+      },
+      {
+        "param": "dep_medical_shelter",
+        "label": "医疗→避难 依赖",
+        "rho": -0.12,
+        "significant": true
+      }
+    ],
+    "threshold_distribution": {
+      "mean": 5.95,
+      "std": 0.33,
+      "median": 6.0,
+      "p5": 5.5,
+      "p25": 5.5,
+      "p75": 6.0,
+      "p95": 6.5,
+      "min": 5.5,
+      "max": 7.0,
+      "values": [
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.5,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.0,
+        7.0,
+        5.5,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        6.0,
+        5.5,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.5,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.5,
+        7.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.5,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.5,
+        7.0,
+        6.0,
+        6.5,
+        6.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.5,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        5.5,
+        6.0,
+        5.5,
+        6.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ]
+    }
   }
 }

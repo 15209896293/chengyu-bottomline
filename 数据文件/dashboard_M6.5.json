@@ -5,7 +5,7 @@
       "lng": 117.2795,
       "lat": 31.949
     },
-    "generate_time": "2026-08-01T09:03:23"
+    "generate_time": "2026-08-01T09:16:58"
   },
   "kpi": {
     "total_population": 8455000,
@@ -14,8 +14,8 @@
     "total_gdp_yi": 10109.4,
     "economic_loss_yi": 1750.95,
     "total_hospitals": 426,
-    "accessible_hospitals": 225,
-    "inaccessible_hospitals": 201,
+    "accessible_hospitals": 245,
+    "inaccessible_hospitals": 181,
     "road_block_rate": 0.2604,
     "city_collapse": true
   },
@@ -5628,259 +5628,259 @@
         "lng": 117.2494,
         "lat": 31.814395,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区荷叶地街道社区卫生服务中心",
         "lng": 117.24065,
         "lat": 31.821548,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "笔架山街道社区卫生服务中心",
         "lng": 117.219495,
         "lat": 31.821902,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省立医院南区2期",
         "lng": 117.249386,
         "lat": 31.813388,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第二附属医院",
         "lng": 117.21241,
         "lat": 31.790188,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区南七街道社区卫生服务中心",
         "lng": 117.240301,
         "lat": 31.827287,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "高新区兴园社区卫生服务中心",
         "lng": 117.205035,
         "lat": 31.817779,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥安中中医医院",
         "lng": 117.246199,
         "lat": 31.828393,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区西园街道社区卫生服务中心",
         "lng": 117.247685,
         "lat": 31.846312,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中国人民解放军联勤保障部队第九〇一医院",
         "lng": 117.24737,
         "lat": 31.853909,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥光明医院",
         "lng": 117.215123,
         "lat": 31.84731,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第三人民医院望江路院区",
         "lng": 117.267442,
         "lat": 31.830264,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "稻香村街道社区卫生服务中心",
         "lng": 117.253309,
         "lat": 31.830337,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥长淮中医医院",
         "lng": 117.268335,
         "lat": 31.841357,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院绩溪路院区",
         "lng": 117.267662,
         "lat": 31.847151,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院",
         "lng": 117.260208,
         "lat": 31.85348,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "高新区天乐社区卫生服务中心",
         "lng": 117.201392,
         "lat": 31.844525,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省红十字会医院",
         "lng": 117.227648,
         "lat": 31.852395,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中国科学技术大学东校区校医院",
         "lng": 117.266039,
         "lat": 31.833407,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "嘉和苑社区卫生服务站",
         "lng": 117.238649,
         "lat": 31.803747,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "莲花社区卫生服务中心",
         "lng": 117.236794,
         "lat": 31.782143,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "上海中医药大学附属曙光医院安徽医院",
         "lng": 117.24365,
         "lat": 31.862681,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区荷叶地社区医院",
         "lng": 117.240884,
         "lat": 31.821546,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "国药中铁中心医院",
         "lng": 117.274193,
         "lat": 31.828842,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥经济技术开发区芙蓉社区卫生服务中心",
         "lng": 117.199787,
         "lat": 31.788235,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区笔架山街道翠庭园社区卫生服务站",
         "lng": 117.208694,
         "lat": 31.805993,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥皓康医院",
         "lng": 117.221725,
         "lat": 31.822975,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区南七街道洪岗社区卫生服务站",
         "lng": 117.233484,
         "lat": 31.835522,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "莲花朝霞社区卫生服务站",
         "lng": 117.21919,
         "lat": 31.788398,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "江淮汽车集团医院",
         "lng": 117.279895,
         "lat": 31.81479,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "三里庵街道社区卫生服务中心",
         "lng": 117.260141,
         "lat": 31.843513,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区常青街道社区卫生服务中心",
         "lng": 117.278923,
         "lat": 31.814771,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "井岗镇十里庙社区卫生服务站",
         "lng": 117.221214,
         "lat": 31.848242,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "西园街道汉嘉社区卫生服务站",
         "lng": 117.230851,
         "lat": 31.846052,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽叉车集团有限责任公司职工医院",
         "lng": 117.253172,
         "lat": 31.830408,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市包河区常青街道薛河湾社区卫生服务站",
         "lng": 117.262081,
         "lat": 31.80486,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "高新区蜀南庭苑社区卫生服务中心",
         "lng": 117.166118,
         "lat": 31.827561,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "武警医院安徽省总队医院北区",
@@ -5894,231 +5894,231 @@
         "lng": 117.234112,
         "lat": 31.869193,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中国科学技术大学附属第一医院(安徽省立医院)",
         "lng": 117.290493,
         "lat": 31.857692,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院(省中医院)西区",
         "lng": 117.244081,
         "lat": 31.862812,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥仁爱中医医院",
         "lng": 117.282449,
         "lat": 31.850118,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "常青街道金寨南路社区卫生服务站",
         "lng": 117.264167,
         "lat": 31.825055,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第一人民医院本部",
         "lng": 117.280261,
         "lat": 31.867684,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院北区(屯溪路院区)(老院区)",
         "lng": 117.282749,
         "lat": 31.848373,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区琥珀街道社区卫生服务中心(新址)",
         "lng": 117.251019,
         "lat": 31.860277,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "省人大医院",
         "lng": 117.275864,
         "lat": 31.846663,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区南七街道新华社区卫生服务站",
         "lng": 117.248424,
         "lat": 31.830648,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "西园街道安居苑社区卫生服务站",
         "lng": 117.236698,
         "lat": 31.848366,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区社区卫生服务中心",
         "lng": 117.171113,
         "lat": 31.857503,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区芜湖路街道社区卫生服务中心",
         "lng": 117.282322,
         "lat": 31.848175,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "广瑞医疗·新园中医综合医院",
         "lng": 117.169997,
         "lat": 31.78183,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "稻香村街道合作化南路社区卫生服务站",
         "lng": 117.251906,
         "lat": 31.831016,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "芜湖路街道友谊社区卫生服务站",
         "lng": 117.284746,
         "lat": 31.833752,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区常青街道仰光社区卫生服务站",
         "lng": 117.27077,
         "lat": 31.821638,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西县桃花镇染坊社区卫生服务站",
         "lng": 117.198999,
         "lat": 31.791565,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "天乐社区卫生服务中心狂犬病暴露预防处置门诊",
         "lng": 117.201535,
         "lat": 31.844535,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥高新区江河社区卫生服务中心",
         "lng": 117.161362,
         "lat": 31.807834,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "井岗镇蜀山经济开发区阳光社区卫生服务站",
         "lng": 117.207918,
         "lat": 31.858188,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "同安街道社区卫生服务中心",
         "lng": 117.297814,
         "lat": 31.822063,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "海恒社区卫生服务中心",
         "lng": 117.269428,
         "lat": 31.766574,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥瞬至医院",
         "lng": 117.227592,
         "lat": 31.852795,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "常青街道社区医院",
         "lng": 117.27895,
         "lat": 31.814739,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "望湖社区卫生服务中心",
         "lng": 117.296779,
         "lat": 31.806074,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省创面与显微外科技术研究院附属医院",
         "lng": 117.289956,
         "lat": 31.826096,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "三里庵街道二里街社区卫生服务站",
         "lng": 117.264024,
         "lat": 31.857349,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区南七街道社区卫生服务中心口腔诊疗中心",
         "lng": 117.24099,
         "lat": 31.827219,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "翡翠医院",
         "lng": 117.200926,
         "lat": 31.761933,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "荷叶地街道金荷社区卫生服务站",
         "lng": 117.245456,
         "lat": 31.806014,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区三孝口街道社区卫生服务中心",
         "lng": 117.279027,
         "lat": 31.861952,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学医院",
         "lng": 117.263949,
         "lat": 31.850467,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区琥珀街道奥林花园社区卫生服务站",
@@ -6132,49 +6132,49 @@
         "lng": 117.194851,
         "lat": 31.812609,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区望湖街道银杏苑社区卫生服务站",
         "lng": 117.287872,
         "lat": 31.821637,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省中医院名医堂",
         "lng": 117.261131,
         "lat": 31.85378,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "桃花镇卫生院",
         "lng": 117.170878,
         "lat": 31.778042,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "延乔路医院",
         "lng": 117.170931,
         "lat": 31.777788,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "琥珀街道飞虹社区卫生服务站",
         "lng": 117.253325,
         "lat": 31.855375,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "经开区海恒社区习友卫生服务站",
         "lng": 117.257304,
         "lat": 31.782953,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "亳州路街道社区卫生服务中心",
@@ -6188,28 +6188,28 @@
         "lng": 117.240781,
         "lat": 31.821567,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "五里墩街道青阳路社区卫生服务站",
         "lng": 117.249959,
         "lat": 31.857104,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "金谷医院",
         "lng": 117.2564,
         "lat": 31.882367,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市包河区望江中路社区卫生服务中心科大花园社区卫生服务站",
         "lng": 117.278077,
         "lat": 31.819648,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省人民政府机关医院",
@@ -6223,35 +6223,35 @@
         "lng": 117.264082,
         "lat": 31.866784,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "海恒福禄园社区卫生服务站",
         "lng": 117.259663,
         "lat": 31.777427,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "四里河街道社区卫生服务中心",
         "lng": 117.232596,
         "lat": 31.890728,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包公街道社区卫生服务中心",
         "lng": 117.300332,
         "lat": 31.846789,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包公街道青年西区社区卫生服务站",
         "lng": 117.291551,
         "lat": 31.836457,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区海棠街道社区卫生服务中心",
@@ -6265,112 +6265,112 @@
         "lng": 117.273607,
         "lat": 31.859436,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西县桃花工业园社区卫生服务中心",
         "lng": 117.218386,
         "lat": 31.764912,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥高新区长宁社区卫生服务中心",
         "lng": 117.13925,
         "lat": 31.819461,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "南七街道丁香汽修社区卫生服务站",
         "lng": 117.247275,
         "lat": 31.830275,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥光明老年护理医院",
         "lng": 117.241838,
         "lat": 31.855828,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院柏堰院区",
         "lng": 117.156114,
         "lat": 31.801026,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中国科学院临床研究医院(合肥)(装修中)",
         "lng": 117.2509,
         "lat": 31.813746,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第一人民医院西区(暂停营业)",
         "lng": 117.211629,
         "lat": 31.871939,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "武警医院(南区)(暂停营业)",
         "lng": 117.277092,
         "lat": 31.851878,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市淝河镇社区卫生服务中心",
         "lng": 117.315845,
         "lat": 31.810242,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院高新院区",
         "lng": 117.137131,
         "lat": 31.846555,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥建安中医院",
         "lng": 117.318638,
         "lat": 31.814696,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "逍遥津街道社区卫生服务中心",
         "lng": 117.287548,
         "lat": 31.86672,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽建筑大学北校区校医院",
         "lng": 117.252782,
         "lat": 31.813804,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥包河区包公街道炳辉社区卫生服务站",
         "lng": 117.287153,
         "lat": 31.837544,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥经济技术开发区锦绣方兴社区卫生服务站",
         "lng": 117.208162,
         "lat": 31.751995,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "亳州路街道古城社区卫生服务站",
@@ -6384,91 +6384,91 @@
         "lng": 117.224853,
         "lat": 31.851485,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "三孝口街道大夫第社区卫生服务站",
         "lng": 117.276725,
         "lat": 31.867275,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区同安街道朱岗社区卫生服务站",
         "lng": 117.300741,
         "lat": 31.827256,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院内科大楼",
         "lng": 117.259337,
         "lat": 31.852742,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "首都医科大学附属北京安贞医院安徽医院",
         "lng": 117.139113,
         "lat": 31.846311,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "五里墩街道家家景园社区卫生服务站",
         "lng": 117.233811,
         "lat": 31.857179,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "锦绣社区卫生服务中心",
         "lng": 117.232196,
         "lat": 31.741521,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院安徽省中医院双向转诊接诊处",
         "lng": 117.261232,
         "lat": 31.853802,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第二附属医院爱婴医院",
         "lng": 117.211599,
         "lat": 31.790076,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "小通社区医院",
         "lng": 117.247799,
         "lat": 31.846263,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "仁医星中医连锁(合肥总店)",
         "lng": 117.312225,
         "lat": 31.826175,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "双岗街道高河埂社区卫生服务站",
         "lng": 117.276935,
         "lat": 31.874988,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院介入中心",
         "lng": 117.260255,
         "lat": 31.853405,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "双岗街道小桥湾社区卫生服务站",
@@ -6482,21 +6482,21 @@
         "lng": 117.260012,
         "lat": 31.852455,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院临床研究医院",
         "lng": 117.137911,
         "lat": 31.84435,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥东南中医院",
         "lng": 117.265399,
         "lat": 31.747457,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥瑶海板桥医院",
@@ -6510,7 +6510,7 @@
         "lng": 117.259289,
         "lat": 31.853147,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第二人民医院和平路院区",
@@ -6524,28 +6524,28 @@
         "lng": 117.136538,
         "lat": 31.854793,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥中医推拿医院",
         "lng": 117.287421,
         "lat": 31.866674,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "锦绣天都社区卫生服务站",
         "lng": 117.23163,
         "lat": 31.745326,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽中医药大学第一附属医院检验中心",
         "lng": 117.260825,
         "lat": 31.854125,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥龙华医院",
@@ -6559,28 +6559,28 @@
         "lng": 117.196751,
         "lat": 31.751937,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥高新区杨林社区卫生服务站",
         "lng": 117.142235,
         "lat": 31.848136,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽庐州医院四季青分院",
         "lng": 117.212963,
         "lat": 31.894706,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "同安街道分路口社区卫生服务站",
         "lng": 117.310397,
         "lat": 31.8411,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "胜利明光街道社区卫生服务中心",
@@ -6594,7 +6594,7 @@
         "lng": 117.30435,
         "lat": 31.859353,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区大杨镇社区卫生服务中心",
@@ -6608,21 +6608,21 @@
         "lng": 117.137243,
         "lat": 31.846522,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥东南中医院",
         "lng": 117.231675,
         "lat": 31.743175,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "瑶海区城东街道社区卫生服务中心",
         "lng": 117.318159,
         "lat": 31.850979,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区杏林街道社区卫生服务中心",
@@ -6636,35 +6636,35 @@
         "lng": 117.264875,
         "lat": 31.863432,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "同安街道王大郢社区卫生服务站",
         "lng": 117.314744,
         "lat": 31.835884,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥博极医院",
         "lng": 117.215614,
         "lat": 31.899856,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "大杨镇夹塘社区卫生服务站",
         "lng": 117.242599,
         "lat": 31.893008,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "同安街道周谷堆社区卫生服务站",
         "lng": 117.30513,
         "lat": 31.844377,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "瑶海区胜利明光街道社区卫生服务",
@@ -6685,14 +6685,14 @@
         "lng": 117.169565,
         "lat": 31.77805,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "工会驿站(清溪路与肥西路交口社区卫生服务站)",
         "lng": 117.255575,
         "lat": 31.870525,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "海棠街道清华社区卫生服务站",
@@ -6706,63 +6706,63 @@
         "lng": 117.268626,
         "lat": 31.846101,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥锐迈医院(建设中)",
         "lng": 117.28875,
         "lat": 31.80765,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥建安中医院精神心理研究中心",
         "lng": 117.318961,
         "lat": 31.814318,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "科学家园医疗卫生服务站",
         "lng": 117.172012,
         "lat": 31.864105,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省中医院-急诊科儿科病区",
         "lng": 117.261112,
         "lat": 31.853875,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市包河区骆岗街道社区卫生服务中心",
         "lng": 117.327223,
         "lat": 31.799195,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽医科大学第一附属医院南区",
         "lng": 117.170293,
         "lat": 31.745298,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "双岗街道虹桥社区卫生服务站",
         "lng": 117.291386,
         "lat": 31.875779,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "稻香村街道合力社区卫生服务站",
         "lng": 117.260973,
         "lat": 31.832316,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "杏林街道上城社区卫生服务站",
@@ -6776,7 +6776,7 @@
         "lng": 117.237325,
         "lat": 31.853725,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省第二人民医院临淮路院区",
@@ -6790,21 +6790,21 @@
         "lng": 117.333651,
         "lat": 31.814341,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第一人民医院滨湖院区",
         "lng": 117.289054,
         "lat": 31.739214,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "稻香村街道黄山路社区卫生服务站",
         "lng": 117.266182,
         "lat": 31.840903,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省第二人民医院主院区",
@@ -6839,28 +6839,28 @@
         "lng": 117.25085,
         "lat": 31.753174,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省妇女儿童医学中心东区",
         "lng": 117.339495,
         "lat": 31.849296,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽庐州医院分院",
         "lng": 117.213075,
         "lat": 31.894725,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省中医院制剂中心",
         "lng": 117.259252,
         "lat": 31.853651,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第二人民医院广德路院区",
@@ -6874,7 +6874,7 @@
         "lng": 117.293473,
         "lat": 31.831876,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "双岗街道绿都花园社区卫生服务站",
@@ -6888,14 +6888,14 @@
         "lng": 117.218458,
         "lat": 31.764912,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "骆岗街道观音庙社区卫生服务站",
         "lng": 117.320114,
         "lat": 31.795453,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥同行康复医院",
@@ -6916,14 +6916,14 @@
         "lng": 117.270937,
         "lat": 31.720072,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥新港医院",
         "lng": 117.184937,
         "lat": 31.734939,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "红光街道卫生服务中心",
@@ -6944,21 +6944,21 @@
         "lng": 117.245114,
         "lat": 31.709555,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西华阳医院",
         "lng": 117.156862,
         "lat": 31.728805,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "滨湖世纪社区卫生服务中心",
         "lng": 117.296059,
         "lat": 31.736753,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "新站高新区七里塘社区卫生服务中心",
@@ -6986,28 +6986,28 @@
         "lng": 117.324272,
         "lat": 31.737119,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "望湖街道王大郢医务室",
         "lng": 117.315224,
         "lat": 31.838791,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西县中医院(新区)",
         "lng": 117.177494,
         "lat": 31.700116,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "包河区方兴社区医院",
         "lng": 117.310476,
         "lat": 31.742779,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "和平路街道社区卫生服务中心",
@@ -7035,7 +7035,7 @@
         "lng": 117.118674,
         "lat": 31.847678,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "双岗街道虹桥老街社区卫生服务站",
@@ -7077,14 +7077,14 @@
         "lng": 117.081612,
         "lat": 31.827475,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥康恒中西医结合医院",
         "lng": 117.245074,
         "lat": 31.711054,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥康中医院",
@@ -7105,7 +7105,7 @@
         "lng": 117.161639,
         "lat": 31.80797,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "岗集中心卫生院",
@@ -7126,7 +7126,7 @@
         "lng": 117.309474,
         "lat": 31.865192,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽新安中西医结合医院",
@@ -7154,84 +7154,84 @@
         "lng": 117.143874,
         "lat": 31.768427,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥市第四人民医院",
         "lng": 117.263342,
         "lat": 31.843824,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省胸科医院",
         "lng": 117.260949,
         "lat": 31.844251,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省儿童医院本院",
         "lng": 117.280216,
         "lat": 31.82701,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥民众医院",
         "lng": 117.214558,
         "lat": 31.861758,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省眼科医院",
         "lng": 117.27386,
         "lat": 31.840706,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中国科学技术大学附属第一医院(西区)",
         "lng": 117.211754,
         "lat": 31.870949,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥阳光消化病医院(包河院区)",
         "lng": 117.286755,
         "lat": 31.814734,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥友好医院",
         "lng": 117.285017,
         "lat": 31.836805,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安徽省妇女儿童医学中心",
         "lng": 117.281171,
         "lat": 31.860075,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥天佑白癜风中医院",
         "lng": 117.301232,
         "lat": 31.845037,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西县第二人民医院",
         "lng": 117.169991,
         "lat": 31.747599,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥中山医院",
@@ -7259,35 +7259,35 @@
         "lng": 117.219356,
         "lat": 31.823706,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "凯旋门医疗卫生服务站",
         "lng": 117.232108,
         "lat": 31.80121,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区南七街道社区卫生服务中心庙岗路医疗卫生服务站",
         "lng": 117.226908,
         "lat": 31.829714,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥长淮中医医院-中医门诊·痛症·针灸推拿",
         "lng": 117.268278,
         "lat": 31.84138,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中航工业江航公司航鑫家苑卫生所",
         "lng": 117.240048,
         "lat": 31.829573,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥白领安琪儿综合医院",
@@ -7301,77 +7301,77 @@
         "lng": 117.204041,
         "lat": 31.773117,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥工业大学屯溪路校区校医院",
         "lng": 117.298687,
         "lat": 31.843383,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "望湖城社区卫生服务中心-预防接种门诊",
         "lng": 117.296813,
         "lat": 31.806279,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "丹霞社区卫生服务站",
         "lng": 117.218194,
         "lat": 31.775507,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "新年社区卫生服务站-狂犬病暴露处置门诊",
         "lng": 117.267097,
         "lat": 31.746539,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合经区临湖新年社区卫生服务站",
         "lng": 117.26695,
         "lat": 31.74633,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥经济技术开发区柳芝秀卫生所",
         "lng": 117.23043,
         "lat": 31.743768,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "山湖苑卫生站",
         "lng": 117.170226,
         "lat": 31.857357,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "建平实验小学南艳校区本部卫生室",
         "lng": 117.270875,
         "lat": 31.765525,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "省工业设备安装公司卫生所",
         "lng": 117.287125,
         "lat": 31.837625,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "卓然社区卫生站",
         "lng": 117.153394,
         "lat": 31.872799,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "桃花卫生站",
@@ -7385,28 +7385,28 @@
         "lng": 117.281925,
         "lat": 31.860125,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥永康综合门诊",
         "lng": 117.297389,
         "lat": 31.746773,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区三十岗乡三岗村卫生室",
         "lng": 117.126064,
         "lat": 31.926308,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "紫蓬镇卫生院泗洲卫生室",
         "lng": 117.113722,
         "lat": 31.779618,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "庐阳区大杨镇十张村卫生室",
@@ -7420,7 +7420,7 @@
         "lng": 117.342911,
         "lat": 31.828351,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "菱店诊所",
@@ -7434,14 +7434,14 @@
         "lng": 117.360258,
         "lat": 31.798912,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西县上派镇古埂社区卫生服务站",
         "lng": 117.166701,
         "lat": 31.709471,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "合肥瑶海漕冲卫生室",
@@ -7483,7 +7483,7 @@
         "lng": 117.098018,
         "lat": 31.763968,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "长丰县岗集镇龙岗村卫生室",
@@ -7525,7 +7525,7 @@
         "lng": 117.128761,
         "lat": 31.854149,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "望城店卫生站",
@@ -7609,7 +7609,7 @@
         "lng": 117.194876,
         "lat": 31.957902,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "罗岗第三卫生室",
@@ -7651,21 +7651,21 @@
         "lng": 117.017237,
         "lat": 31.846597,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "安冲村卫生室",
         "lng": 117.194802,
         "lat": 31.957889,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "牛寨村卫生室",
         "lng": 117.194803,
         "lat": 31.957889,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "大店卫生室",
@@ -7693,14 +7693,14 @@
         "lng": 117.1741,
         "lat": 31.971227,
         "district": "未知",
-        "accessibility": "不可达"
+        "accessibility": "可达但受限"
       },
       {
         "name": "泗州新村卫生室",
         "lng": 117.110975,
         "lat": 31.779125,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "店埠镇双桥社区卫生室",
@@ -7721,7 +7721,7 @@
         "lng": 117.032797,
         "lat": 31.754949,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "撮镇镇华光村卫生室",
@@ -7742,28 +7742,28 @@
         "lng": 117.27567,
         "lat": 31.672519,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "蜀山区小庙镇大柏卫生室",
         "lng": 116.948893,
         "lat": 31.826695,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "雷麻卫生站",
         "lng": 117.005683,
         "lat": 31.789447,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "严店乡卫生院苏小卫生室",
         "lng": 117.22466,
         "lat": 31.592731,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "店埠镇城南社区卫生室",
@@ -7777,7 +7777,7 @@
         "lng": 117.114575,
         "lat": 31.779275,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "枞阳路卫生站",
@@ -7791,7 +7791,7 @@
         "lng": 117.159737,
         "lat": 31.663116,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "瑶海红光钢北卫生站",
@@ -7819,14 +7819,14 @@
         "lng": 117.153475,
         "lat": 31.720775,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "中心卫生院谢塘卫生室",
         "lng": 117.104856,
         "lat": 31.730382,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "张店村卫生室三",
@@ -7924,7 +7924,7 @@
         "lng": 117.058003,
         "lat": 31.577799,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "燎原社区卫生室",
@@ -7945,14 +7945,14 @@
         "lng": 116.9911,
         "lat": 31.879551,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "丰乐镇中心卫生院方桥卫生室",
         "lng": 117.142393,
         "lat": 31.595199,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "双墩镇花园社区卫生服务站",
@@ -8169,7 +8169,7 @@
         "lng": 117.069625,
         "lat": 31.571159,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥东县桥头集镇梅山社区卫生室",
@@ -8183,7 +8183,7 @@
         "lng": 116.977955,
         "lat": 31.6768,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "长丰县双墩镇罗北村卫生室",
@@ -8211,7 +8211,7 @@
         "lng": 117.330475,
         "lat": 31.526025,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "牌坊乡新丰村卫生室",
@@ -8239,7 +8239,7 @@
         "lng": 117.066032,
         "lat": 31.601113,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "长丰县陶楼镇大桥社区卫生室",
@@ -8260,7 +8260,7 @@
         "lng": 117.315586,
         "lat": 31.484419,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "齐咀村卫生室",
@@ -8330,7 +8330,7 @@
         "lng": 117.240977,
         "lat": 31.519087,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "长丰县下塘镇陶新村卫生室",
@@ -8358,14 +8358,14 @@
         "lng": 117.191578,
         "lat": 31.490153,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "南街卫生站",
         "lng": 117.243782,
         "lat": 31.508904,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "江夏街道卫生室",
@@ -8386,7 +8386,7 @@
         "lng": 117.345801,
         "lat": 31.486686,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "长丰县下塘镇新集村卫生室",
@@ -8407,7 +8407,7 @@
         "lng": 117.249441,
         "lat": 31.638329,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥东县石塘镇新联村卫生室",
@@ -8449,14 +8449,14 @@
         "lng": 117.315141,
         "lat": 31.476146,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "西湾村卫生室",
         "lng": 117.295928,
         "lat": 31.50614,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "山南镇中心卫生院街道卫生室",
@@ -8484,7 +8484,7 @@
         "lng": 117.247093,
         "lat": 31.469664,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "撮东社区卫生所",
@@ -8540,14 +8540,14 @@
         "lng": 117.196725,
         "lat": 31.604975,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "肥西县紫蓬镇兴庄村卫生室",
         "lng": 116.981475,
         "lat": 31.757675,
         "district": "未知",
-        "accessibility": "可达但受限"
+        "accessibility": "正常可达"
       },
       {
         "name": "刘集社区卫生室",
@@ -61738,9 +61738,9 @@
     ],
     "accessibility_distribution": {
       "hospitals": {
-        "正常可达": 1,
-        "可达但受限": 224,
-        "不可达": 201
+        "正常可达": 239,
+        "可达但受限": 6,
+        "不可达": 181
       },
       "facilities": {
         "消防站": {
@@ -61855,16 +61855,16 @@
       }
     ],
     "collapse": {
-      "medical_ratio": 0.2617,
+      "medical_ratio": 0.5681,
       "rescue_ratio": 0.381,
       "transport_ratio": 0.585,
-      "shelter_ratio": 1.05,
-      "medical_collapse": true,
+      "shelter_ratio": 0.636,
+      "medical_collapse": false,
       "rescue_collapse": true,
       "transport_collapse": false,
       "shelter_collapse": false,
       "city_collapse": true,
-      "threshold_magnitude": 5.5
+      "threshold_magnitude": 6.5
     },
     "resilience": {
       "medical": 0.2653,
@@ -61929,5 +61929,1206 @@
         "threshold_shift": "0.5"
       }
     ]
+  },
+  "cascade": {
+    "dependency_matrix": [
+      [
+        1.0,
+        0.45,
+        0.2,
+        0.38
+      ],
+      [
+        0.45,
+        1.0,
+        0.55,
+        0.2
+      ],
+      [
+        0.2,
+        0.55,
+        1.0,
+        0.52
+      ],
+      [
+        0.38,
+        0.2,
+        0.52,
+        1.0
+      ]
+    ],
+    "matrix_labels": [
+      "医",
+      "交",
+      "救",
+      "避"
+    ],
+    "matrix_keys": [
+      "medical",
+      "transport",
+      "rescue",
+      "shelter"
+    ],
+    "systems": {
+      "medical": {
+        "base_ratio": 0.5681,
+        "cascade_ratio": 0.462,
+        "cascade_drop": 0.1061,
+        "collapse_threshold": 0.3,
+        "collapsed": false,
+        "status": "正常",
+        "name": "医疗",
+        "color": "#F87171"
+      },
+      "transport": {
+        "base_ratio": 0.585,
+        "cascade_ratio": 0.585,
+        "cascade_drop": 0.0,
+        "collapse_threshold": 0.5,
+        "collapsed": false,
+        "status": "级联风险",
+        "name": "交通",
+        "color": "#FBBF24"
+      },
+      "rescue": {
+        "base_ratio": 0.381,
+        "cascade_ratio": 0.2782,
+        "cascade_drop": 0.1028,
+        "collapse_threshold": 0.4,
+        "collapsed": true,
+        "status": "已崩溃",
+        "name": "救援",
+        "color": "#FB923C"
+      },
+      "shelter": {
+        "base_ratio": 0.636,
+        "cascade_ratio": 0.2898,
+        "cascade_drop": 0.3462,
+        "collapse_threshold": 0.3,
+        "collapsed": true,
+        "status": "已崩溃",
+        "name": "避难",
+        "color": "#34D399"
+      }
+    },
+    "propagation_paths": [
+      {
+        "source": "transport",
+        "target": "medical",
+        "weight": 0.45,
+        "source_ratio": 0.585,
+        "source_drop": 0.0,
+        "propagated_drop": 0.0,
+        "description": "路网阻断导致医疗物资运输中断"
+      },
+      {
+        "source": "rescue",
+        "target": "medical",
+        "weight": 0.15,
+        "source_ratio": 0.2782,
+        "source_drop": 0.1028,
+        "propagated_drop": 0.0154,
+        "description": "救援→医疗 依赖传播"
+      },
+      {
+        "source": "medical",
+        "target": "rescue",
+        "weight": 0.2,
+        "source_ratio": 0.462,
+        "source_drop": 0.1061,
+        "propagated_drop": 0.0212,
+        "description": "医疗接收能力不足影响救援转运"
+      },
+      {
+        "source": "transport",
+        "target": "rescue",
+        "weight": 0.55,
+        "source_ratio": 0.585,
+        "source_drop": 0.0,
+        "propagated_drop": 0.0,
+        "description": "路网阻断导致救援力量无法到达"
+      },
+      {
+        "source": "medical",
+        "target": "shelter",
+        "weight": 0.38,
+        "source_ratio": 0.462,
+        "source_drop": 0.1061,
+        "propagated_drop": 0.0403,
+        "description": "医疗功能下降影响避难所伤员救治"
+      },
+      {
+        "source": "transport",
+        "target": "shelter",
+        "weight": 0.2,
+        "source_ratio": 0.585,
+        "source_drop": 0.0,
+        "propagated_drop": 0.0,
+        "description": "路网阻断导致避难物资运输受阻"
+      },
+      {
+        "source": "rescue",
+        "target": "shelter",
+        "weight": 0.52,
+        "source_ratio": 0.2782,
+        "source_drop": 0.1028,
+        "propagated_drop": 0.0535,
+        "description": "危险源失控威胁避难所安全"
+      }
+    ],
+    "cascade_timeline": [
+      {
+        "step": 0,
+        "event": "交通系统受损",
+        "system": "transport",
+        "ratio": 0.585,
+        "drop": 0.41500000000000004,
+        "description": "M6.5 地震导致路网阻断"
+      },
+      {
+        "step": 1,
+        "event": "医疗系统受波及",
+        "system": "medical",
+        "ratio": 0.462,
+        "drop": 0.1061,
+        "description": "路网阻断导致医院可达性下降，医疗物资运输中断"
+      },
+      {
+        "step": 2,
+        "event": "救援系统受波及",
+        "system": "rescue",
+        "ratio": 0.2782,
+        "drop": 0.1028,
+        "description": "路网阻断导致消防站出勤受限，救援转运能力下降"
+      },
+      {
+        "step": 3,
+        "event": "避难系统受波及",
+        "system": "shelter",
+        "ratio": 0.2898,
+        "drop": 0.3462,
+        "description": "医疗和救援功能下降影响避难所伤员救治与安全保障"
+      }
+    ],
+    "vulnerable_nodes": [
+      {
+        "name": "医疗系统",
+        "val": "0.81 · M7.0",
+        "pct": 81,
+        "magnitude": 7.0,
+        "vulnerability": 0.81,
+        "color": "#F87171",
+        "system": "medical"
+      },
+      {
+        "name": "交通系统",
+        "val": "0.44 · 未崩溃",
+        "pct": 44,
+        "magnitude": null,
+        "vulnerability": 0.44,
+        "color": "#FBBF24",
+        "system": "transport"
+      },
+      {
+        "name": "救援系统",
+        "val": "0.79 · M6.0",
+        "pct": 79,
+        "magnitude": 6.0,
+        "vulnerability": 0.79,
+        "color": "#FB923C",
+        "system": "rescue"
+      },
+      {
+        "name": "避难系统",
+        "val": "0.91 · M6.5",
+        "pct": 91,
+        "magnitude": 6.5,
+        "vulnerability": 0.91,
+        "color": "#34D399",
+        "system": "shelter"
+      }
+    ],
+    "impact_data": [
+      {
+        "key": "受影响人口",
+        "val": "139万",
+        "color": "var(--av-primary)"
+      },
+      {
+        "key": "级联深度",
+        "val": "3层",
+        "color": "var(--state-error)"
+      },
+      {
+        "key": "传播时间",
+        "val": "~60h",
+        "color": "var(--state-orange)"
+      },
+      {
+        "key": "崩溃系统",
+        "val": "2/4",
+        "color": "var(--state-error)"
+      },
+      {
+        "key": "级联概率",
+        "val": "19%",
+        "color": "var(--state-warning)"
+      },
+      {
+        "key": "韧性指数",
+        "val": "0.549",
+        "color": "var(--state-warning)"
+      }
+    ],
+    "prop_strengths": [
+      {
+        "label": "救援→医疗",
+        "pct": 15,
+        "source": "rescue",
+        "target": "medical",
+        "weight": 0.15
+      },
+      {
+        "label": "医疗→救援",
+        "pct": 20,
+        "source": "medical",
+        "target": "rescue",
+        "weight": 0.2
+      },
+      {
+        "label": "医疗→避难",
+        "pct": 38,
+        "source": "medical",
+        "target": "shelter",
+        "weight": 0.38
+      },
+      {
+        "label": "救援→避难",
+        "pct": 52,
+        "source": "rescue",
+        "target": "shelter",
+        "weight": 0.52
+      }
+    ],
+    "city_cascade_collapse": true,
+    "threshold_magnitude": 6.0,
+    "cascade_depth": 3,
+    "propagation_paths_count": 4,
+    "cascade_probability": 0.1989,
+    "collapsed_systems_count": 2
+  },
+  "time_evolution": {
+    "steps": [
+      {
+        "time": 0,
+        "label": "T+0",
+        "desc": "地震瞬间",
+        "cascade_factor": 0.0,
+        "systems": {
+          "medical": {
+            "ratio": 0.5681,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.585,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "级联风险",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.381,
+            "drop": 0.0,
+            "collapsed": true,
+            "status": "已崩溃",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.636,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": true,
+        "collapsed_count": 1
+      },
+      {
+        "time": 1,
+        "label": "T+1h",
+        "desc": "道路阻断定型",
+        "cascade_factor": 0.3,
+        "systems": {
+          "medical": {
+            "ratio": 0.5209,
+            "drop": 0.0472,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.585,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "级联风险",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.3445,
+            "drop": 0.0365,
+            "collapsed": true,
+            "status": "已崩溃",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.5287,
+            "drop": 0.1073,
+            "collapsed": false,
+            "status": "正常",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": true,
+        "collapsed_count": 1
+      },
+      {
+        "time": 6,
+        "label": "T+6h",
+        "desc": "医疗资源耗竭",
+        "cascade_factor": 0.6,
+        "systems": {
+          "medical": {
+            "ratio": 0.4736,
+            "drop": 0.0945,
+            "collapsed": false,
+            "status": "正常",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.585,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "级联风险",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.308,
+            "drop": 0.073,
+            "collapsed": true,
+            "status": "已崩溃",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.4214,
+            "drop": 0.2146,
+            "collapsed": false,
+            "status": "承压",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": true,
+        "collapsed_count": 1
+      },
+      {
+        "time": 24,
+        "label": "T+24h",
+        "desc": "救援扩散",
+        "cascade_factor": 0.85,
+        "systems": {
+          "medical": {
+            "ratio": 0.4343,
+            "drop": 0.1338,
+            "collapsed": false,
+            "status": "承压",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.585,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "级联风险",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.2776,
+            "drop": 0.1034,
+            "collapsed": true,
+            "status": "已崩溃",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.332,
+            "drop": 0.304,
+            "collapsed": false,
+            "status": "级联风险",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": true,
+        "collapsed_count": 1
+      },
+      {
+        "time": 72,
+        "label": "T+72h",
+        "desc": "避难饱和",
+        "cascade_factor": 1.0,
+        "systems": {
+          "medical": {
+            "ratio": 0.4107,
+            "drop": 0.1574,
+            "collapsed": false,
+            "status": "承压",
+            "name": "医疗",
+            "color": "#F87171",
+            "threshold": 0.3
+          },
+          "transport": {
+            "ratio": 0.585,
+            "drop": 0.0,
+            "collapsed": false,
+            "status": "级联风险",
+            "name": "交通",
+            "color": "#FBBF24",
+            "threshold": 0.5
+          },
+          "rescue": {
+            "ratio": 0.2594,
+            "drop": 0.1216,
+            "collapsed": true,
+            "status": "已崩溃",
+            "name": "救援",
+            "color": "#FB923C",
+            "threshold": 0.4
+          },
+          "shelter": {
+            "ratio": 0.2783,
+            "drop": 0.3577,
+            "collapsed": true,
+            "status": "已崩溃",
+            "name": "避难",
+            "color": "#34D399",
+            "threshold": 0.3
+          }
+        },
+        "city_collapse": true,
+        "collapsed_count": 2
+      }
+    ],
+    "first_collapse_time": "T+0"
+  },
+  "sensitivity": {
+    "magnitude": 6.5,
+    "method": "Monte Carlo + OAT + Spearman",
+    "n_samples": 500,
+    "collapse_probability": 0.976,
+    "system_confidence_intervals": [
+      {
+        "system": "medical",
+        "name": "医疗",
+        "color": "#F87171",
+        "mean": 0.4107,
+        "std": 0.0592,
+        "p5": 0.3116,
+        "p95": 0.509
+      },
+      {
+        "system": "transport",
+        "name": "交通",
+        "color": "#FBBF24",
+        "mean": 0.5838,
+        "std": 0.0694,
+        "p5": 0.4726,
+        "p95": 0.698
+      },
+      {
+        "system": "rescue",
+        "name": "救援",
+        "color": "#FB923C",
+        "mean": 0.2616,
+        "std": 0.0641,
+        "p5": 0.1613,
+        "p95": 0.3681
+      },
+      {
+        "system": "shelter",
+        "name": "避难",
+        "color": "#34D399",
+        "mean": 0.2877,
+        "std": 0.0529,
+        "p5": 0.1998,
+        "p95": 0.3772
+      }
+    ],
+    "tornado": [
+      {
+        "param": "intensity_c2",
+        "label": "烈度系数 c₂",
+        "base": 1.352,
+        "low": 1.082,
+        "high": 1.622,
+        "resilience_range": 0.1616,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.5415,
+        "high_resilience": 0.3799
+      },
+      {
+        "param": "intensity_c3",
+        "label": "烈度系数 c₃",
+        "base": 1.038,
+        "low": 0.83,
+        "high": 1.246,
+        "resilience_range": 0.0689,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4231,
+        "high_resilience": 0.492
+      },
+      {
+        "param": "dep_rescue_shelter",
+        "label": "救援→避难 依赖",
+        "base": 0.52,
+        "low": 0.35,
+        "high": 0.65,
+        "resilience_range": 0.0375,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4781,
+        "high_resilience": 0.4406
+      },
+      {
+        "param": "dep_transport_medical",
+        "label": "交通→医疗 依赖",
+        "base": 0.45,
+        "low": 0.3,
+        "high": 0.6,
+        "resilience_range": 0.0211,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4674,
+        "high_resilience": 0.4463
+      },
+      {
+        "param": "dep_medical_shelter",
+        "label": "医疗→避难 依赖",
+        "base": 0.38,
+        "low": 0.25,
+        "high": 0.5,
+        "resilience_range": 0.0206,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4676,
+        "high_resilience": 0.447
+      },
+      {
+        "param": "dep_transport_rescue",
+        "label": "交通→救援 依赖",
+        "base": 0.55,
+        "low": 0.4,
+        "high": 0.7,
+        "resilience_range": 0.0173,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4655,
+        "high_resilience": 0.4481
+      },
+      {
+        "param": "medical_threshold",
+        "label": "医疗崩溃阈值",
+        "base": 0.3,
+        "low": 0.25,
+        "high": 0.35,
+        "resilience_range": 0.0,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4569,
+        "high_resilience": 0.4569
+      },
+      {
+        "param": "rescue_threshold",
+        "label": "救援崩溃阈值",
+        "base": 0.4,
+        "low": 0.35,
+        "high": 0.45,
+        "resilience_range": 0.0,
+        "base_resilience": 0.4569,
+        "low_resilience": 0.4569,
+        "high_resilience": 0.4569
+      }
+    ],
+    "parameter_importance": [
+      {
+        "param": "intensity_c2",
+        "label": "烈度系数 c₂",
+        "rho": -0.897,
+        "significant": true
+      },
+      {
+        "param": "intensity_c3",
+        "label": "烈度系数 c₃",
+        "rho": 0.3295,
+        "significant": true
+      },
+      {
+        "param": "dep_transport_medical",
+        "label": "交通→医疗 依赖",
+        "rho": -0.1779,
+        "significant": true
+      },
+      {
+        "param": "dep_rescue_shelter",
+        "label": "救援→避难 依赖",
+        "rho": -0.1744,
+        "significant": true
+      },
+      {
+        "param": "dep_medical_shelter",
+        "label": "医疗→避难 依赖",
+        "rho": -0.12,
+        "significant": true
+      }
+    ],
+    "threshold_distribution": {
+      "mean": 5.95,
+      "std": 0.33,
+      "median": 6.0,
+      "p5": 5.5,
+      "p25": 5.5,
+      "p75": 6.0,
+      "p95": 6.5,
+      "min": 5.5,
+      "max": 7.0,
+      "values": [
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.5,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.0,
+        7.0,
+        5.5,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        6.0,
+        5.5,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.5,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.5,
+        7.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.5,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.5,
+        7.0,
+        6.0,
+        6.5,
+        6.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        5.5,
+        6.5,
+        6.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        5.5,
+        5.5,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        5.5,
+        6.0,
+        6.0,
+        6.5,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        5.5,
+        6.0,
+        5.5,
+        6.5,
+        5.5,
+        5.5,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        5.5,
+        7.0,
+        6.0,
+        5.5,
+        5.5,
+        6.0,
+        6.0,
+        6.0,
+        6.5,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ]
+    }
   }
 }

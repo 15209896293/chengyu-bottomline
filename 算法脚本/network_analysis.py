@@ -154,6 +154,11 @@ def apply_earthquake_damage(G, magnitude, blocking_radius_km=10):
 
     rng = np.random.default_rng(seed=int(magnitude * 100 + blocking_radius_km * 10))
 
+    # 震级强度因子（幂律标定，2026-08 修正，与 download_real_roads 一致）：
+    # 原 p = 0.9*(M/7.5) 在 M5.0 即 60%——过度标定导致医院可达性 M5.5 断崖。
+    # 修正后 M5.0≈2.5%, M5.5≈10%, M6.0≈22.5%, M6.5≈40%, M7.0≈62.5%, M7.5≈90%
+    strength = ((magnitude - 4.5) / 3.0) ** 2
+
     removed = 0
     slowed_severe = 0
     slowed_mild = 0
@@ -179,7 +184,7 @@ def apply_earthquake_damage(G, magnitude, blocking_radius_km=10):
             removed += 1
 
         elif dist < inner_zone * 0.3:
-            p = 0.9 * (magnitude / 7.5)
+            p = 0.9 * strength
             roll = rng.random()
             if roll < p * 0.7:
                 data["travel_time"] = float("inf")
@@ -197,7 +202,7 @@ def apply_earthquake_damage(G, magnitude, blocking_radius_km=10):
         elif dist < inner_zone:
             norm_d = dist / inner_zone
             decay = (1 - norm_d) / 0.7
-            p_block = 0.3 * decay * (magnitude / 7.5)
+            p_block = 0.3 * decay * strength
             roll = rng.random()
             if roll < p_block * 0.3:
                 data["travel_time"] = float("inf")

@@ -1,5 +1,5 @@
 ﻿strategy,description,key_roads_repaired,temp_medical_points_added,medical_ratio_before,medical_ratio_after,rescue_ratio_before,rescue_ratio_after,city_collapse_before,city_collapse_after,threshold_shift
-baseline,无干预（当前状态）,0,0,0.2676,0.2676,0.5996,0.5996,True,True,0.0
-A,加固断裂带沿线10条关键路段,10,0,0.2676,0.4401,0.5996,0.6991,True,False,0.5
-B,增设3个临时医疗点,0,3,0.2676,0.2727,0.5996,0.5996,True,True,0.0
-C,A+B组合（加固10路段+3医疗点）,10,3,0.2676,0.4427,0.5996,0.6991,True,False,0.5
+baseline,无干预（当前状态）,0,0,0.5681,0.5681,0.381,0.381,True,True,0.0
+A,加固断裂带沿线10条关键路段,10,0,0.5681,0.7265,0.381,0.5325,True,False,0.0
+B,增设3个临时医疗点,0,3,0.5681,0.5711,0.381,0.381,True,False,0.0
+C,A+B组合（加固10路段+3医疗点）,10,3,0.5681,0.728,0.381,0.5325,True,False,0.0

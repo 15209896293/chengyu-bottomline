@@ -1,7 +1,7 @@
 {
   "report_meta": {
     "module": "step20_reverse_stress",
-    "generated_at": "2026-08-01 09:04:19",
+    "generated_at": "2026-08-01 09:17:36",
     "purpose": "金融压力测试语言体系：逆压测 + VaR/CVaR + 动态传染",
     "seed": 42,
     "framework": "Reverse Stress Test / VaR-CVaR / Dynamic Contagion"
@@ -46,9 +46,9 @@
         false,
         false,
         false,
-        true,
-        true,
-        true,
+        false,
+        false,
+        false,
         true,
         true,
         true,
@@ -80,20 +80,20 @@
           false,
           false,
           false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
           true,
           true,
           true,
@@ -148,7 +148,7 @@
           false,
           false,
           false,
-          true,
+          false,
           true,
           true,
           true,
@@ -190,9 +190,9 @@
           false,
           false,
           false,
-          false,
-          false,
-          false,
+          true,
+          true,
+          true,
           true,
           true,
           true,
@@ -209,18 +209,18 @@
         ]
       },
       "critical_magnitudes": {
-        "medical": 5.4,
+        "medical": 6.8,
         "transport": null,
-        "rescue": 5.6,
-        "shelter": 6.8,
-        "city": 5.4
+        "rescue": 5.7,
+        "shelter": 6.5,
+        "city": 5.7
       },
       "margin_at_m60": {
-        "medical": -0.6,
+        "medical": 0.8,
         "transport": null,
-        "rescue": -0.4,
-        "shelter": 0.8,
-        "city": -0.6
+        "rescue": -0.3,
+        "shelter": 0.5,
+        "city": -0.3
       },
       "caliber_note": "本扫描采用级联传播后的功能率判定（口径与 step10 的独立判定不同），扫描域为 M5.0~M8.0；临界震级等于扫描下界时表示'该震级已崩溃，精确临界可能更低'。级联口径比单系统独立评估更早发现崩溃——这正是跨系统依赖建模的价值：单系统评估（step10）显示M5.0 救援功能率 41.6% 未达阈值，但级联耦合后实际已失能。"
     },
@@ -237,65 +237,65 @@
       "critical_mag_matrix": [
         [
           NaN,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
           NaN
         ],
         [
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8
         ],
         [
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8
         ],
         [
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8
         ],
         [
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8
         ],
         [
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8
         ],
         [
           NaN,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
-          5.4,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
+          5.8,
           NaN
         ]
       ],
@@ -367,19 +367,19 @@
       "baseline_epicenter": {
         "lon": 117.28,
         "lat": 31.82,
-        "critical_mag": 5.4,
+        "critical_mag": 5.7,
         "dI_bar": 0.0
       },
       "most_vulnerable": {
         "lon": 117.28,
         "lat": 31.82,
-        "critical_mag": 5.4,
+        "critical_mag": 5.8,
         "dI_bar": 0.0
       },
       "safest": {
         "lon": 117.068,
         "lat": 31.5497,
-        "critical_mag": 5.4,
+        "critical_mag": 5.8,
         "dI_bar": -0.568
       },
       "indicator_note": "临界震级在扫描域下界（M5.0）处可能截断；连续定位指标为 人口加权平均烈度差 dI_bar（正=烈度增强/更危险，负=减弱/更安全）。"
@@ -597,11 +597,11 @@
         "fixed_dependency": {
           "systems": {
             "medical": [
-              0.5423,
-              0.5256,
-              0.5089,
-              0.495,
-              0.4866
+              0.6608,
+              0.6408,
+              0.6209,
+              0.6043,
+              0.5943
             ],
             "transport": [
               0.8985,
@@ -612,17 +612,17 @@
             ],
             "rescue": [
               0.71,
-              0.6775,
-              0.6449,
-              0.6178,
-              0.6015
+              0.6818,
+              0.6536,
+              0.6301,
+              0.616
             ],
             "shelter": [
               1.0,
-              0.8876,
-              0.7751,
-              0.6814,
-              0.6252
+              0.899,
+              0.7979,
+              0.7137,
+              0.6632
             ]
           },
           "collapse_time_by_system": {
@@ -636,11 +636,11 @@
         "dynamic_dependency": {
           "systems": {
             "medical": [
-              0.5423,
-              0.5252,
-              0.5067,
-              0.4889,
-              0.4763
+              0.6608,
+              0.6404,
+              0.6184,
+              0.5972,
+              0.5822
             ],
             "transport": [
               0.8985,
@@ -651,17 +651,17 @@
             ],
             "rescue": [
               0.71,
-              0.6762,
-              0.6373,
-              0.5966,
-              0.5678
+              0.6807,
+              0.6471,
+              0.6122,
+              0.5875
             ],
             "shelter": [
               1.0,
-              0.8827,
-              0.7482,
-              0.6139,
-              0.5165
+              0.8943,
+              0.7724,
+              0.6502,
+              0.5605
             ]
           },
           "collapse_time_by_system": {
@@ -673,21 +673,21 @@
           }
         },
         "reinforcement_extra_drop": {
-          "medical": 0.0103,
+          "medical": 0.0121,
           "transport": 0.0,
-          "rescue": 0.0337,
-          "shelter": 0.1087
+          "rescue": 0.0285,
+          "shelter": 0.1027
         }
       },
       "5.5": {
         "fixed_dependency": {
           "systems": {
             "medical": [
-              0.2676,
-              0.2493,
-              0.231,
-              0.2158,
-              0.2066
+              0.6455,
+              0.6021,
+              0.5587,
+              0.5225,
+              0.5008
             ],
             "transport": [
               0.6602,
@@ -698,35 +698,35 @@
             ],
             "rescue": [
               0.5996,
-              0.5428,
-              0.4859,
-              0.4386,
-              0.4102
+              0.5514,
+              0.5032,
+              0.463,
+              0.4389
             ],
             "shelter": [
               1.0,
-              0.8354,
-              0.6708,
-              0.5337,
-              0.4514
+              0.8605,
+              0.7209,
+              0.6046,
+              0.5349
             ]
           },
           "collapse_time_by_system": {
-            "medical": 0,
+            "medical": null,
             "transport": null,
             "rescue": null,
             "shelter": null,
-            "city": 0
+            "city": null
           }
         },
         "dynamic_dependency": {
           "systems": {
             "medical": [
-              0.2676,
-              0.2488,
-              0.2282,
-              0.2078,
-              0.1928
+              0.6455,
+              0.6008,
+              0.552,
+              0.5037,
+              0.4679
             ],
             "transport": [
               0.6602,
@@ -737,43 +737,43 @@
             ],
             "rescue": [
               0.5996,
-              0.541,
-              0.4757,
-              0.411,
-              0.3663
+              0.55,
+              0.4948,
+              0.4407,
+              0.4028
             ],
             "shelter": [
               1.0,
-              0.8292,
-              0.6375,
-              0.4518,
-              0.3213
+              0.8542,
+              0.6875,
+              0.5233,
+              0.4036
             ]
           },
           "collapse_time_by_system": {
-            "medical": 0,
+            "medical": null,
             "transport": null,
-            "rescue": 72,
+            "rescue": null,
             "shelter": null,
-            "city": 0
+            "city": null
           }
         },
         "reinforcement_extra_drop": {
-          "medical": 0.0138,
+          "medical": 0.0329,
           "transport": 0.0,
-          "rescue": 0.0439,
-          "shelter": 0.1301
+          "rescue": 0.0361,
+          "shelter": 0.1313
         }
       },
       "6.0": {
         "fixed_dependency": {
           "systems": {
             "medical": [
-              0.2617,
-              0.2409,
-              0.2202,
-              0.2029,
-              0.1925
+              0.6009,
+              0.5536,
+              0.5063,
+              0.4669,
+              0.4433
             ],
             "transport": [
               0.6058,
@@ -784,35 +784,35 @@
             ],
             "rescue": [
               0.4481,
-              0.402,
-              0.3558,
-              0.3173,
-              0.2943
+              0.4072,
+              0.3664,
+              0.3323,
+              0.3119
             ],
             "shelter": [
               1.0,
-              0.8213,
-              0.6425,
-              0.4936,
-              0.4042
+              0.8399,
+              0.6798,
+              0.5464,
+              0.4664
             ]
           },
           "collapse_time_by_system": {
-            "medical": 0,
+            "medical": null,
             "transport": null,
             "rescue": 6,
             "shelter": null,
-            "city": 0
+            "city": 6
           }
         },
         "dynamic_dependency": {
           "systems": {
             "medical": [
-              0.2617,
-              0.2403,
-              0.2172,
-              0.1944,
-              0.1776
+              0.6009,
+              0.5523,
+              0.4995,
+              0.4476,
+              0.4094
             ],
             "transport": [
               0.6058,
@@ -823,36 +823,36 @@
             ],
             "rescue": [
               0.4481,
-              0.4006,
-              0.3479,
-              0.2962,
-              0.2606
+              0.4061,
+              0.3595,
+              0.3142,
+              0.2826
             ],
             "shelter": [
               1.0,
-              0.8147,
-              0.6078,
-              0.4099,
-              0.2716
+              0.8331,
+              0.6439,
+              0.4603,
+              0.3283
             ]
           },
           "collapse_time_by_system": {
-            "medical": 0,
+            "medical": null,
             "transport": null,
             "rescue": 6,
-            "shelter": 72,
-            "city": 0
+            "shelter": null,
+            "city": 6
           }
         },
         "reinforcement_extra_drop": {
-          "medical": 0.0149,
+          "medical": 0.0339,
           "transport": 0.0,
-          "rescue": 0.0337,
-          "shelter": 0.1326
+          "rescue": 0.0293,
+          "shelter": 0.1381
         }
       }
     },
-    "highlight_magnitude": "5.5",
+    "highlight_magnitude": "5.0",
     "interpretation": "时变依赖（灾后依赖强化）使救援/避难系统功能率加速衰减，崩溃时间可能提前——对比固定/时变两组曲线可量化'依赖强化'对韧性评估的影响。"
   }
 }
