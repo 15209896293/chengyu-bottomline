@@ -1,5 +1,5 @@
 <script setup>
-import { Hexagon, LayoutGrid, Activity, GitBranch, ShieldCheck, FlaskConical, CheckCircle2 } from 'lucide-vue-next'
+import { Hexagon, LayoutGrid, Activity, GitBranch, ShieldCheck, FlaskConical, CheckCircle2, Gauge } from 'lucide-vue-next'
 
 const props = defineProps({
   modes: { type: Array, required: true },
@@ -14,7 +14,8 @@ const iconMap = {
   'git-branch': GitBranch,
   'shield-check': ShieldCheck,
   'flask-conical': FlaskConical,
-  'check-circle': CheckCircle2
+  'check-circle': CheckCircle2,
+  'gauge': Gauge
 }
 </script>
 

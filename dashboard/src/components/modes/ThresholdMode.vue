@@ -11,6 +11,7 @@ import {
   Loader2
 } from 'lucide-vue-next'
 import MapContainer from '../map/MapContainer.vue'
+import RealtimeProbe from './RealtimeProbe.vue'
 
 // ==================== DATA ====================
 const COLLAPSE_THRESHOLD = 0.30
@@ -640,6 +641,9 @@ onUnmounted(() => {
 
       <!-- === Left Panel === -->
       <div class="col-panel">
+        <!-- 实时推演探针 -->
+        <RealtimeProbe />
+
         <!-- Status Banner -->
         <div class="status-banner" :style="{ borderColor: statusBanner.border }">
           <div class="status-banner-icon" :style="{ background: statusBanner.bg }">

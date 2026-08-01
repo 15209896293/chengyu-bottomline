@@ -9,6 +9,7 @@ import CascadeMode from './components/modes/CascadeMode.vue'
 import ResilienceMode from './components/modes/ResilienceMode.vue'
 import SandboxMode from './components/modes/SandboxMode.vue'
 import ValidationMode from './components/modes/ValidationMode.vue'
+import StressMode from './components/modes/StressMode.vue'
 
 const { modes, currentMode, mode, switchMode } = useMode()
 const { currentMag } = useMagnitude()
@@ -25,6 +26,7 @@ const statusTag = computed(() => {
     case 4: return '策略C最优'
     case 5: return '500次蒙特卡洛'
     case 6: return '2震例+4震源'
+    case 7: return '逆压测+VaR95'
     default: return ''
   }
 })
@@ -37,6 +39,7 @@ const statusTagType = computed(() => {
     case 4: return 'green'
     case 5: return 'purple'
     case 6: return 'green'
+    case 7: return 'accent'
     default: return 'green'
   }
 })
@@ -49,6 +52,7 @@ const magTag = computed(() => {
     case 4: return 'M' + currentMag.value.toFixed(1)
     case 5: return 'M' + currentMag.value.toFixed(1)
     case 6: return 'yu2013'
+    case 7: return 'M6.0'
     default: return ''
   }
 })
@@ -61,6 +65,7 @@ const currentComponent = computed(() => {
     case 4: return ResilienceMode
     case 5: return SandboxMode
     case 6: return ValidationMode
+    case 7: return StressMode
     default: return PatternMode
   }
 })
