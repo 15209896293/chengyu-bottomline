@@ -1,13 +1,16 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { Zap, SlidersHorizontal, MapPin } from 'lucide-vue-next'
+import { Zap, SlidersHorizontal, MapPin, Link2 } from 'lucide-vue-next'
 import { calcCityState, calcCityStateAtOffset, SYSTEM_KEYS, SYSTEM_NAMES, SYSTEM_COLORS } from '../../engine/realTimeEngine.js'
+import { useMagnitude } from '../../composables/useMagnitude.js'
 
 // ==================== 实时推演状态 ====================
 const mag = ref(6.0)              // 连续震级 M5.0-7.5
 const depTm = ref(0.45)           // 交通→医疗依赖（实时可调）
 const offsetKm = ref(0)           // 震中偏移（沿断裂带走向，正=北）
 const distanceProfile = ref(null) // 人口距离档案
+const { magnitudes, currentMag, setMagnitude } = useMagnitude()
+const synced = ref(false)         // 是否已联动全局震级
 
 onMounted(async () => {
   try {
@@ -20,6 +23,15 @@ onMounted(async () => {
     }
   } catch (e) { /* 用引擎内置默认 */ }
 })
+
+// 松手联动：把探针震级同步到全局（round 到最近 0.5 档）→ 页面地图/KPI/图表联动
+function syncGlobalMag() {
+  const nearest = magnitudes.reduce((best, m) => Math.abs(m - mag.value) < Math.abs(best - mag.value) ? m : best, magnitudes[0])
+  setMagnitude(nearest)
+  mag.value = nearest
+  synced.value = true
+  setTimeout(() => { synced.value = false }, 2000)
+}
 
 const state = computed(() => {
   const dep = {
@@ -74,8 +86,10 @@ const offsetInfo = computed(() => {
 
     <!-- 连续震级滑块 -->
     <div class="probe-row">
-      <div class="probe-label">震级 M<span class="probe-val">{{ mag.toFixed(1) }}</span></div>
-      <input v-model.number="mag" type="range" min="5.0" max="7.5" step="0.1" class="probe-range" />
+      <div class="probe-label">震级 M<span class="probe-val">{{ mag.toFixed(1) }}</span>
+        <span v-if="synced" class="probe-sync"><Link2 :size="9" style="vertical-align:-1px;" /> 已联动全局</span>
+      </div>
+      <input v-model.number="mag" type="range" min="5.0" max="7.5" step="0.1" class="probe-range" @change="syncGlobalMag" />
       <div class="probe-scale"><span>M5.0</span><span>M7.5</span></div>
     </div>
 
@@ -155,4 +169,5 @@ const offsetInfo = computed(() => {
 .probe-city { font-size: 10.5px; font-weight: 700; border: 1px dashed; border-radius: 3px; padding: 4px 6px; text-align: center; margin-top: 4px; }
 .probe-note { font-size: 8.5px; color: var(--av-muted-foreground); margin-top: 5px; line-height: 1.4; }
 .probe-offset-note { font-size: 8.5px; color: var(--state-warning); margin-top: 2px; }
+.probe-sync { font-size: 8.5px; color: var(--state-success); margin-left: 6px; font-weight: 600; }
 </style>

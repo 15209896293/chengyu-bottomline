@@ -1007,3 +1007,11 @@ main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 .fade-mode-leave-to {
   opacity: 0;
 }
+
+/* 可点元素统一 hover 反馈（交互可发现性） */
+.seg-btn:hover, .chain-pill:hover, .legend-item:hover, .vuln-row:hover, .critical-cell:hover {
+  border-color: var(--primary-border) !important;
+  background: rgba(0, 212, 255, 0.08) !important;
+  transition: all 0.12s;
+}
+.seg-btn { transition: all 0.12s; }

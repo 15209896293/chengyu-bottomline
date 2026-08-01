@@ -145,6 +145,23 @@ function clearSelection() {
   selectedNode.value = null
 }
 
+// 选中节点的依赖详情（被谁影响 / 影响谁）
+const selectedNodeDetails = computed(() => {
+  const s = selectedNode.value
+  if (!s) return null
+  const affectedBy = depEdges.value.filter(e => e.t === s)
+  const affects = depEdges.value.filter(e => e.s === s)
+  return {
+    sys: s,
+    name: nodes.value[s]?.name || s,
+    color: nodes.value[s]?.color || '#7E91AC',
+    ratio: nodes.value[s] ? nodes.value[s].value : null,
+    status: nodes.value[s]?.status || '—',
+    affectedBy: affectedBy.map(e => ({ name: nodes.value[e.s]?.name || e.s, w: e.w })),
+    affects: affects.map(e => ({ name: nodes.value[e.t]?.name || e.t, w: e.w })),
+  }
+})
+
 function isEdgeHi(edge) {
   if (!selectedNode.value) return false
   return edge.s === selectedNode.value || edge.t === selectedNode.value
@@ -747,7 +764,28 @@ onBeforeUnmount(() => {
           <div><span class="legend-dot" style="background:#3a4a66;"></span>依赖关系</div>
           <div><span class="legend-dot" style="background:#00D4FF;"></span>选中路径</div>
         </div>
-        <div class="map-hint">点击节点高亮依赖路径</div>
+        <div class="map-hint">点击节点查看依赖详情 · 红色箭头为实际传播路径</div>
+
+        <!-- 选中节点依赖详情浮层 -->
+        <div v-if="selectedNodeDetails" class="node-detail"
+             :style="{ borderColor: selectedNodeDetails.color + '55' }">
+          <div class="node-detail-head" :style="{ color: selectedNodeDetails.color }">
+            {{ selectedNodeDetails.name }}
+            <span class="node-detail-status">{{ selectedNodeDetails.status }}</span>
+            <span class="node-detail-close" @click="clearSelection">✕</span>
+          </div>
+          <div class="node-detail-row" v-if="selectedNodeDetails.ratio != null">
+            <span>功能率</span><b>{{ selectedNodeDetails.ratio.toFixed(1) }}%</b>
+          </div>
+          <div class="node-detail-sec">被以下系统影响</div>
+          <div v-for="d in selectedNodeDetails.affectedBy" :key="'in-' + d.name" class="node-detail-row">
+            <span>{{ d.name }}</span><b>依赖 {{ (d.w * 100).toFixed(0) }}%</b>
+          </div>
+          <div class="node-detail-sec">影响以下系统</div>
+          <div v-for="d in selectedNodeDetails.affects" :key="'out-' + d.name" class="node-detail-row">
+            <span>{{ d.name }}</span><b>{{ (d.w * 100).toFixed(0) }}% 依赖它</b>
+          </div>
+        </div>
       </div>
 
       <!-- 底部双图表 -->
@@ -859,6 +897,7 @@ onBeforeUnmount(() => {
     <div class="evo-header">
       <div class="evo-title">
         <Clock :size="13" /> 时间步进推演 · 系统功能率随时间衰减
+        <span v-if="!isPlaying && currentStepIdx === 0" class="evo-guide">点击 ▶ 播放 T+0→T+72h 演化</span>
       </div>
       <div class="evo-controls">
         <span class="evo-step-info">

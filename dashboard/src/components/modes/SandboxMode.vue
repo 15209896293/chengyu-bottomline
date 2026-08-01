@@ -651,33 +651,6 @@ onBeforeUnmount(() => {
               <span>重置基准</span>
             </button>
           </div>
-
-          <!-- Resilience Summary -->
-          <div class="resilience-summary">
-            <div class="summary-item">
-              <span class="summary-label">预测韧性指数</span>
-              <span class="summary-value" :class="resilienceDeltaClass">
-                {{ estimatedResilience != null ? estimatedResilience.toFixed(4) : '--' }}
-              </span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-label">基准韧性指数</span>
-              <span class="summary-value muted">{{ baseResilience != null ? baseResilience.toFixed(4) : '--' }}</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-label">偏移 Δ</span>
-              <span class="summary-value" :class="resilienceDeltaClass">
-                <template v-if="resilienceDelta != null">
-                  {{ resilienceDelta >= 0 ? '+' : '' }}{{ resilienceDelta.toFixed(4) }}
-                  <span class="summary-delta-pct">
-                    ({{ resilienceDeviationPct >= 0 ? '+' : '' }}{{ resilienceDeviationPct.toFixed(2) }}%)
-                  </span>
-                </template>
-                <template v-else>--</template>
-              </span>
-            </div>
-          </div>
-
           <!-- Slider Groups -->
           <div class="slider-groups">
             <div class="slider-group" v-for="group in sliderGroups" :key="group.key">
@@ -721,6 +694,32 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
+
+          <!-- Resilience Summary（跟随滑块，拖动时结果同屏可见） -->
+          <div class="resilience-summary">
+            <div class="summary-item">
+              <span class="summary-label">预测韧性指数</span>
+              <span class="summary-value" :class="resilienceDeltaClass">
+                {{ estimatedResilience != null ? estimatedResilience.toFixed(4) : '--' }}
+              </span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">基准韧性指数</span>
+              <span class="summary-value muted">{{ baseResilience != null ? baseResilience.toFixed(4) : '--' }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">偏移 Δ</span>
+              <span class="summary-value" :class="resilienceDeltaClass">
+                <template v-if="resilienceDelta != null">
+                  {{ resilienceDelta >= 0 ? '+' : '' }}{{ resilienceDelta.toFixed(4) }}
+                  <span class="summary-delta-pct">
+                    ({{ resilienceDeviationPct >= 0 ? '+' : '' }}{{ resilienceDeviationPct.toFixed(2) }}%)
+                  </span>
+                </template>
+                <template v-else>--</template>
+              </span>
+            </div>
+          </div>
 
         <!-- Tornado Chart -->
         <div class="panel panel-tornado">
