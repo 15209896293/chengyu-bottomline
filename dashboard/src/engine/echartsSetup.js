@@ -5,7 +5,7 @@
  * 显著降低首屏 JS 体积。项目仅使用 line/bar/radar 三类图表。
  */
 import * as echarts from 'echarts/core'
-import { LineChart, BarChart, RadarChart } from 'echarts/charts'
+import { LineChart, BarChart, RadarChart, CustomChart } from 'echarts/charts'
 import {
   TitleComponent,
   TooltipComponent,
@@ -20,6 +20,7 @@ echarts.use([
   LineChart,
   BarChart,
   RadarChart,
+  CustomChart,
   TitleComponent,
   TooltipComponent,
   GridComponent,
