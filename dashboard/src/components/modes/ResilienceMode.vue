@@ -705,69 +705,70 @@ watch(() => data.prevention, () => {
     </div>
   </div>
 
-  <!-- ========== 决策舱：花多少钱把底线推多高 ========== -->
-  <div v-if="currentDecision" class="decision-cockpit">
-    <div class="cockpit-head">
-      <ShieldCheck :size="13" style="vertical-align:-1px;color:var(--state-success);" />
-      <span class="cockpit-q">城市底线当前 M{{ currentDecision.baseline.toFixed(1) }}——你的预算能把它推多高？</span>
-      <span class="cockpit-tag">决策舱 · 级联口径</span>
+  <!-- ========== 决策舱：预算 → 底线推移（精致主卡） ========== -->
+  <div v-if="currentDecision" class="cockpit-card">
+    <!-- 头部 -->
+    <div class="cockpit-header">
+      <div class="cockpit-title-group">
+        <span class="cockpit-title"><ShieldCheck :size="14" style="vertical-align:-2px;color:var(--state-success);" /> 城市底线决策舱</span>
+        <span class="cockpit-subtitle">BUDGET &rarr; BOTTOM LINE · 防灾预算分配决策</span>
+      </div>
+      <div class="cockpit-badges">
+        <span class="cockpit-badge">基线 M{{ currentDecision.baseline.toFixed(1) }}</span>
+        <span class="cockpit-badge target" :class="currentDecision.current.shift > 0 ? 'saved' : 'flat'">目标 M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</span>
+        <span class="cockpit-badge note">级联口径</span>
+      </div>
     </div>
-    <div class="cockpit-body">
-      <!-- 预算输入（大滑块） -->
-      <div class="cockpit-input">
-        <div class="cockpit-slider-label">
-          防灾预算 <b class="num cockpit-budget">{{ budgetSlider.toFixed(1) }} 亿元</b>
-        </div>
+    <!-- 主体 -->
+    <div class="cockpit-main">
+      <!-- 左：预算控制 -->
+      <div class="cockpit-control">
+        <div class="cockpit-control-label">防灾预算</div>
+        <div class="cockpit-budget-num num">{{ budgetSlider.toFixed(1) }}<span class="unit">亿元</span></div>
         <input v-model.number="budgetSlider" type="range" min="0" max="10" step="0.5" class="cockpit-range" />
-        <div class="cockpit-scale"><span>0亿</span><span>2亿·推高0.5级</span><span>10亿</span></div>
-        <div class="cockpit-sub">推荐组合：加固 <b style="color:var(--av-primary);">{{ currentDecision.current.roads }}</b> 条关键路段 + {{ currentDecision.current.med_points }} 个医疗点</div>
+        <div class="cockpit-scale"><span>0</span><span>2 亿 · 推高 0.5 级</span><span>10 亿</span></div>
+        <div class="cockpit-reco">
+          <span class="reco-label">推荐组合</span>
+          <span class="reco-pill">加固 {{ currentDecision.current.roads }} 条路段</span>
+          <span class="reco-pill dim">+{{ currentDecision.current.med_points }} 医疗点</span>
+        </div>
       </div>
-      <!-- 底线推移曲线 -->
-      <div class="cockpit-curve">
-        <div ref="decisionChartRef" style="width:100%;height:150px;"></div>
+      <!-- 中：底线推移曲线 -->
+      <div class="cockpit-chart">
+        <div ref="decisionChartRef" style="width:100%;height:170px;"></div>
       </div>
-      <!-- 效果输出 + 结论 -->
-      <div class="cockpit-right">
-        <div class="cockpit-output">
-          <div class="cockpit-metric">
-            <div class="cockpit-metric-label">城市底线</div>
-            <div class="cockpit-metric-value num" :style="{ color: currentDecision.current.shift > 0 ? 'var(--state-success)' : 'var(--state-error)' }">
-              M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}
-            </div>
-            <div class="cockpit-metric-sub num" v-if="currentDecision.current.shift > 0">基线 +{{ currentDecision.current.shift.toFixed(1) }}</div>
-            <div class="cockpit-metric-sub" v-else>= 基线</div>
+      <!-- 右：效果指标 -->
+      <div class="cockpit-effects">
+        <div class="effect-grid">
+          <div class="effect-cell" :class="{ up: currentDecision.current.shift > 0 }">
+            <div class="effect-label">城市底线</div>
+            <div class="effect-value num">M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</div>
+            <div class="effect-sub" v-if="currentDecision.current.shift > 0">基线 +{{ currentDecision.current.shift.toFixed(1) }}</div>
+            <div class="effect-sub" v-else>= 基线</div>
           </div>
-          <div class="cockpit-metric">
-            <div class="cockpit-metric-label">医疗功能率</div>
-            <div class="cockpit-metric-value num" style="color:var(--av-primary);">+{{ (currentDecision.current.gain_medical * 100).toFixed(1) }}%</div>
-            <div class="cockpit-metric-sub">M6.5 场景</div>
+          <div class="effect-cell">
+            <div class="effect-label">医疗功能率</div>
+            <div class="effect-value num accent">+{{ (currentDecision.current.gain_medical * 100).toFixed(1) }}%</div>
+            <div class="effect-sub">M6.5 场景</div>
           </div>
-          <div class="cockpit-metric">
-            <div class="cockpit-metric-label">救援功能率</div>
-            <div class="cockpit-metric-value num" style="color:var(--state-info);">+{{ (currentDecision.current.gain_rescue * 100).toFixed(1) }}%</div>
-            <div class="cockpit-metric-sub">M6.5 场景</div>
+          <div class="effect-cell">
+            <div class="effect-label">救援功能率</div>
+            <div class="effect-value num info">+{{ (currentDecision.current.gain_rescue * 100).toFixed(1) }}%</div>
+            <div class="effect-sub">M6.5 场景</div>
           </div>
-          <div class="cockpit-metric">
-            <div class="cockpit-metric-label">边际收益</div>
-            <div class="cockpit-metric-value num" style="font-size:12px;" :style="{ color: currentDecision.next ? 'var(--state-warning)' : 'var(--av-muted-foreground)' }">
-              {{ currentDecision.next ? `再+${(currentDecision.next.budget - currentDecision.current.budget).toFixed(1)}亿 → M${currentDecision.next.bottom_line_mag.toFixed(1)}` : '已封顶' }}
-            </div>
-            <div class="cockpit-metric-sub">{{ currentDecision.next ? '可继续推高' : '加固10路段后递减' }}</div>
+          <div class="effect-cell">
+            <div class="effect-label">边际收益</div>
+            <div class="effect-value num warn" style="font-size:11px;">{{ currentDecision.next ? `再+${(currentDecision.next.budget - currentDecision.current.budget).toFixed(1)}亿→M${currentDecision.next.bottom_line_mag.toFixed(1)}` : '已封顶' }}</div>
+            <div class="effect-sub">{{ currentDecision.next ? '可继续推高' : '加固 10 路段后递减' }}</div>
           </div>
         </div>
         <div class="cockpit-conclusion">
-          <TrendingUp :size="12" style="vertical-align:-1px;" />
-          <span>
-            <b>{{ budgetSlider.toFixed(1) }} 亿元预算</b>（加固 {{ currentDecision.current.roads }} 条关键路段）：
-            城市崩溃底线从 <b>M{{ currentDecision.baseline.toFixed(1) }}</b> 推高至
-            <b style="color:var(--state-success);">M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</b>——
-            {{ currentDecision.current.shift > 0 ? `每亿元买来 ${(currentDecision.current.shift / Math.max(budgetSlider, 0.1)).toFixed(2)} 级底线高度` : '当前预算不足以推高底线，建议增至 2 亿元' }}
-          </span>
+          <TrendingUp :size="13" style="vertical-align:-2px;flex-shrink:0;" />
+          <span><b>{{ budgetSlider.toFixed(1) }} 亿元</b>（加固 {{ currentDecision.current.roads }} 条路段）→ 底线 <b>M{{ currentDecision.baseline.toFixed(1) }}</b> 推至 <b class="hl">M{{ currentDecision.current.bottom_line_mag.toFixed(1) }}</b>，{{ currentDecision.current.shift > 0 ? `每亿元买来 ${(currentDecision.current.shift / Math.max(budgetSlider, 0.1)).toFixed(2)} 级底线高度` : '建议增至 2 亿元' }}</span>
         </div>
       </div>
     </div>
   </div>
-
   <!-- ========== Three Columns ========== -->
   <div class="three-col">
 
@@ -1010,3 +1011,49 @@ watch(() => data.prevention, () => {
   </template>
   </div>
 </template>
+
+<style scoped>
+/* ===== 决策舱（精致主卡） ===== */
+.cockpit-card {
+  background: linear-gradient(180deg, rgba(15,26,43,0.85), rgba(15,26,43,0.6));
+  border: 1px solid var(--av-border);
+  border-top: 3px solid var(--state-success);
+  border-radius: 16px;
+  padding: 16px 20px 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+}
+.cockpit-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.cockpit-title-group { display: flex; flex-direction: column; }
+.cockpit-title { font-size: 15px; font-weight: 700; color: var(--av-foreground); }
+.cockpit-subtitle { font-size: 9.5px; letter-spacing: 0.08em; color: var(--av-muted-foreground); }
+.cockpit-badges { margin-left: auto; display: flex; gap: 6px; }
+.cockpit-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; background: var(--av-muted); color: var(--av-muted-foreground); }
+.cockpit-badge.target.saved { background: rgba(52,211,153,0.14); color: var(--state-success); }
+.cockpit-badge.target.flat { background: rgba(248,113,113,0.14); color: var(--state-error); }
+.cockpit-badge.note { font-size: 9px; background: rgba(0,212,255,0.1); color: var(--av-primary); }
+.cockpit-main { display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.5fr) minmax(0,1.2fr); gap: 16px; align-items: stretch; }
+.cockpit-control { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 4px 6px; }
+.cockpit-control-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--av-muted-foreground); }
+.cockpit-budget-num { font-size: 32px; font-weight: 800; color: var(--av-primary); font-family: var(--av-font-mono); line-height: 1; }
+.cockpit-budget-num .unit { font-size: 12px; color: var(--av-muted-foreground); margin-left: 3px; font-weight: 600; }
+.cockpit-range { width: 100%; height: 6px; accent-color: var(--state-success); cursor: pointer; }
+.cockpit-scale { display: flex; justify-content: space-between; font-size: 8.5px; color: var(--av-muted-foreground); }
+.cockpit-reco { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
+.reco-label { font-size: 9px; color: var(--av-muted-foreground); }
+.reco-pill { font-size: 9.5px; font-weight: 600; color: var(--av-primary); background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.25); border-radius: 4px; padding: 1px 7px; }
+.reco-pill.dim { color: var(--av-muted-foreground); background: var(--av-muted); border-color: var(--av-border); }
+.cockpit-chart { background: rgba(10,19,32,0.55); border: 1px solid var(--av-border); border-radius: 12px; padding: 6px 8px; }
+.cockpit-effects { display: flex; flex-direction: column; gap: 8px; }
+.effect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.effect-cell { background: rgba(10,19,32,0.6); border: 1px solid var(--av-border); border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+.effect-cell.up { border-left: 2px solid var(--state-success); }
+.effect-label { font-size: 8.5px; color: var(--av-muted-foreground); letter-spacing: 0.05em; }
+.effect-value { font-size: 17px; font-weight: 800; font-family: var(--av-font-mono); color: var(--av-foreground); line-height: 1.15; }
+.effect-value.accent { color: var(--av-primary); }
+.effect-value.info { color: var(--state-info); }
+.effect-value.warn { color: var(--state-warning); }
+.effect-sub { font-size: 8px; color: var(--av-muted-foreground); }
+.cockpit-conclusion { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: var(--av-foreground); line-height: 1.55; background: linear-gradient(90deg, rgba(52,211,153,0.1), rgba(0,212,255,0.05)); border-left: 3px solid var(--state-success); border-radius: 4px; padding: 7px 10px; }
+.cockpit-conclusion b.hl { color: var(--state-success); }
+</style>
