@@ -1,6 +1,6 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '../../engine/echartsSetup.js'
 import { useMagnitude } from '../../composables/useMagnitude.js'
 import { useDashboardData } from '../../composables/useDashboardData.js'
 import {

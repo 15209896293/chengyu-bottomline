@@ -1,6 +1,6 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '../../engine/echartsSetup.js'
 import { Zap, GitBranch, Share2, Route, X, Loader2, Play, Pause, Clock } from 'lucide-vue-next'
 import { useDashboardData } from '../../composables/useDashboardData.js'
 import { useMagnitude } from '../../composables/useMagnitude.js'

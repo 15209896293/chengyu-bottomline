@@ -1,6 +1,6 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '../../engine/echartsSetup.js'
 import { CheckCircle2, AlertTriangle, Loader2, Award, Target, Layers } from 'lucide-vue-next'
 
 // ==================== DATA SOURCE ====================

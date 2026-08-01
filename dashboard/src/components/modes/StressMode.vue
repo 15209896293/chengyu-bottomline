@@ -1,6 +1,6 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '../../engine/echartsSetup.js'
 import { Target, Activity, ShieldAlert, TrendingUp, GitBranch, Loader2, AlertTriangle, Info, FileText } from 'lucide-vue-next'
 import KpiBar from '../shell/KpiBar.vue'
 

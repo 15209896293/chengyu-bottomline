@@ -1,6 +1,6 @@
-<script setup>
+﻿<script setup>
 import { ref, reactive, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '../../engine/echartsSetup.js'
 import {
   ShieldCheck, Shield, ShieldOff,
   CheckSquare, Square,

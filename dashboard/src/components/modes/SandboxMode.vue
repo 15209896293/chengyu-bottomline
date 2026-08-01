@@ -1,6 +1,6 @@
-<script setup>
+﻿<script setup>
 import { ref, reactive, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
-import * as echarts from 'echarts'
+import echarts from '../../engine/echartsSetup.js'
 import { FlaskConical, Loader2, AlertCircle, Sigma, TrendingDown, Gauge, RotateCcw, SlidersHorizontal } from 'lucide-vue-next'
 import { useDashboardData } from '../../composables/useDashboardData.js'
 import { useMagnitude } from '../../composables/useMagnitude.js'
