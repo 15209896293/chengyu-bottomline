@@ -1,15 +1,17 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 import { useMode } from './composables/useMode'
 import { useMagnitude } from './composables/useMagnitude'
 import AppShell from './components/shell/AppShell.vue'
-import PatternMode from './components/modes/PatternMode.vue'
-import ThresholdMode from './components/modes/ThresholdMode.vue'
-import CascadeMode from './components/modes/CascadeMode.vue'
-import ResilienceMode from './components/modes/ResilienceMode.vue'
-import SandboxMode from './components/modes/SandboxMode.vue'
-import ValidationMode from './components/modes/ValidationMode.vue'
-import StressMode from './components/modes/StressMode.vue'
+
+// 模式组件懒加载：首屏只加载当前模式，其余按需分包
+const PatternMode = defineAsyncComponent(() => import('./components/modes/PatternMode.vue'))
+const ThresholdMode = defineAsyncComponent(() => import('./components/modes/ThresholdMode.vue'))
+const CascadeMode = defineAsyncComponent(() => import('./components/modes/CascadeMode.vue'))
+const ResilienceMode = defineAsyncComponent(() => import('./components/modes/ResilienceMode.vue'))
+const SandboxMode = defineAsyncComponent(() => import('./components/modes/SandboxMode.vue'))
+const ValidationMode = defineAsyncComponent(() => import('./components/modes/ValidationMode.vue'))
+const StressMode = defineAsyncComponent(() => import('./components/modes/StressMode.vue'))
 
 const { modes, currentMode, mode, switchMode } = useMode()
 const { currentMag } = useMagnitude()
