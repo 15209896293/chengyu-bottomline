@@ -1,12 +1,13 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import * as echarts from 'echarts'
-import { Target, Activity, ShieldAlert, TrendingUp, GitBranch, Loader2, AlertTriangle, Info } from 'lucide-vue-next'
+import { Target, Activity, ShieldAlert, TrendingUp, GitBranch, Loader2, AlertTriangle, Info, FileText } from 'lucide-vue-next'
 import KpiBar from '../shell/KpiBar.vue'
 
 // ==================== DATA SOURCE ====================
 const report = ref(null)
 const vulnerable = ref(null)
+const budget = ref(null)
 const loading = ref(true)
 const error = ref(null)
 const activeMag = ref('6.0') // 动态传染展示震级
@@ -17,12 +18,14 @@ const SYSTEM_NAMES = { medical: '医疗', transport: '交通', rescue: '救援',
 
 async function loadData() {
   try {
-    const [r, v] = await Promise.all([
+    const [r, v, b] = await Promise.all([
       fetch('/data/stress_report.json').then(res => res.json()),
       fetch('/data/vulnerable_exposure.json').then(res => res.json()).catch(() => null),
+      fetch('/data/budget_optimization.json').then(res => res.json()).catch(() => null),
     ])
     report.value = r
     vulnerable.value = v
+    budget.value = b
     if (r.dynamic_contagion?.highlight_magnitude) {
       activeMag.value = r.dynamic_contagion.highlight_magnitude
     }
@@ -138,6 +141,46 @@ function renderContagion() {
   }, true)
 }
 
+// ==================== 诊断单导出 ====================
+function exportDiagnosis() {
+  if (!report.value) return
+  const lines = []
+  lines.push('【城域底线 · 城市生命线压测诊断单】')
+  lines.push('='.repeat(32))
+  const c = critical.value
+  lines.push(`· 城市崩溃临界震级: M${c.city != null ? c.city.toFixed(1) : '—'}`)
+  lines.push(`· 医疗临界 M${c.medical != null ? c.medical.toFixed(1) : '—'} / 避难临界 M${c.shelter != null ? c.shelter.toFixed(1) : '—'}`)
+  if (varc.value) {
+    lines.push(`· M6.0 基准损失: ${varc.value.deterministic_loss_yi} 亿元`)
+    lines.push(`· VaR95（95%置信上限）: ${varc.value.var95_yi} 亿元`)
+    lines.push(`· CVaR95（尾部均值）: ${varc.value.cvar95_yi} 亿元`)
+  }
+  if (contagion.value?.highlight_magnitude) {
+    const hl = contagion.value.highlight_magnitude
+    const r = contagion.value.by_magnitude[hl]
+    lines.push(`· 动态传染 M${hl}: 避难系统固定依赖${r.fixed_dependency.collapse_time_by_system.shelter != null ? 'T+' + r.fixed_dependency.collapse_time_by_system.shelter + 'h失守' : '72h未失守'} → 时变依赖${r.dynamic_dependency.collapse_time_by_system.shelter != null ? 'T+' + r.dynamic_dependency.collapse_time_by_system.shelter + 'h失守' : '72h未失守'}`)
+  }
+  if (budget.value?.highlights) {
+    lines.push(`· 韧性投资: ${budget.value.highlights.min_budget_for_city_saved_yi} 亿元预算即可使城市崩溃翻转`)
+  }
+  if (vulnerable.value?.by_type?.length) {
+    const kg = vulnerable.value.by_type.find(t => t.type === '幼儿园')
+    if (kg) lines.push(`· 脆弱群体: 幼儿园 ${(kg.exposure_ratio * 100).toFixed(0)}% 位于 M6.0 高烈度区`)
+  }
+  lines.push('='.repeat(32))
+  lines.push('城域底线 · 大数据压测诊断系统')
+  const text = lines.join('\n')
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(() => { copied.value = true; setTimeout(() => copied.value = false, 1500) })
+  } else {
+    const ta = document.createElement('textarea')
+    ta.value = text; document.body.appendChild(ta); ta.select()
+    document.execCommand('copy'); document.body.removeChild(ta)
+    copied.value = true; setTimeout(() => copied.value = false, 1500)
+  }
+}
+const copied = ref(false)
+
 // ==================== 生命周期 ====================
 let resizeHandler = null
 
@@ -173,6 +216,14 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
     </div>
     <template v-else>
       <KpiBar :items="kpiItems" />
+
+      <!-- 导出诊断单 -->
+      <div class="export-bar">
+        <button class="export-btn" @click="exportDiagnosis">
+          <FileText :size="11" style="vertical-align:-1px;" /> {{ copied ? '已复制 ✓' : '导出诊断单' }}
+        </button>
+        <span class="export-hint">生成政府汇报用文本结论（复制/粘贴）</span>
+      </div>
 
       <!-- === 左栏：逆压测 === -->
       <div class="col-panel">
@@ -289,6 +340,29 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
             ——灾难中最脆弱的群体暴露最高，这是"底线债务"最直接的证据。
           </div>
         </div>
+
+        <!-- 预算优化：韧性投资资本配置 -->
+        <div class="panel-item" v-if="budget?.highlights">
+          <div class="panel-label">韧性投资 · 预算优化</div>
+          <div class="budget-hero">
+            <div class="budget-hero-num">{{ budget.highlights.min_budget_for_city_saved_yi }}亿</div>
+            <div class="budget-hero-label">即可让城市崩溃翻转</div>
+          </div>
+          <div class="budget-bar">
+            <div v-for="c in budget.budget_curve.filter((_, i) => i % 4 === 0)" :key="c.budget_yi"
+                 class="budget-bar-col" :class="{ saved: c.city_saved }"
+                 :style="{ height: (c.medical_after * 160) + 'px' }"
+                 :title="`预算${c.budget_yi}亿 → 医疗功能率${(c.medical_after * 100).toFixed(1)}%`">
+            </div>
+          </div>
+          <div class="budget-legend">
+            <span class="budget-legend-item"><span class="dot saved"></span>城市可维持</span>
+            <span class="budget-legend-item"><span class="dot"></span>仍崩溃</span>
+          </div>
+          <div class="panel-desc" style="margin-top:4px;">
+            {{ budget.interpretation }}
+          </div>
+        </div>
       </div>
     </template>
   </div>
@@ -324,4 +398,18 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
 .vuln-head { display: flex; justify-content: space-between; font-size: 9.5px; }
 .vuln-name { font-weight: 700; }
 .vuln-meta { font-family: var(--av-font-mono); color: var(--av-muted-foreground); }
+.budget-hero { text-align: center; padding: 6px 0 2px; }
+.budget-hero-num { font-size: 26px; font-weight: 800; font-family: var(--av-font-mono); color: var(--state-success); }
+.budget-hero-label { font-size: 9.5px; color: var(--av-muted-foreground); }
+.budget-bar { display: flex; align-items: flex-end; gap: 2px; height: 170px; padding: 6px 2px 0; border-bottom: 1px solid var(--av-border); }
+.budget-bar-col { flex: 1; min-width: 8px; background: rgba(248,113,113,0.55); border-radius: 2px 2px 0 0; }
+.budget-bar-col.saved { background: linear-gradient(180deg, rgba(52,211,153,0.9), rgba(52,211,153,0.35)); }
+.budget-legend { display: flex; gap: 10px; margin-top: 4px; font-size: 8.5px; color: var(--av-muted-foreground); }
+.budget-legend-item { display: flex; align-items: center; gap: 3px; }
+.dot { width: 6px; height: 6px; border-radius: 2px; background: rgba(248,113,113,0.7); display: inline-block; }
+.dot.saved { background: var(--state-success); }
+.export-bar { display: flex; align-items: center; gap: 8px; margin: 2px 0 6px; }
+.export-btn { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; font-size: 10px; font-weight: 600; color: var(--av-primary); background: var(--primary-dim); border: 1px solid var(--primary-border); border-radius: 3px; cursor: pointer; }
+.export-btn:hover { background: rgba(0,212,255,0.2); }
+.export-hint { font-size: 9px; color: var(--av-muted-foreground); }
 </style>

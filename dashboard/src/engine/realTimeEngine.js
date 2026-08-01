@@ -162,6 +162,65 @@ export function calcCityState(mag, opts = {}) {
   }
 }
 
+// ═══════════════ 自定义震中推演（一阶近似） ═══════════════
+// 思路与 step20 震中扫描一致：人口加权平均烈度差 dI_bar →
+// 功能率线性偏移 Δrate = -coef × dI_bar × (1 - rate)。
+// 距离档案：人口按距断裂带质心距离分桶（grid_distance_profile.json），
+// 偏移近似 d_new = sqrt(d0² + offset²)（沿断裂带走向破裂，城区在两侧）。
+const DEFAULT_PROFILE = {
+  repDistKm: [3.5, 8.0, 12.5, 17.5, 22.5, 27.5, 35, 45, 55, 70, 92],
+  weight: [0.02, 0.08, 0.15, 0.18, 0.14, 0.12, 0.10, 0.08, 0.06, 0.04, 0.03],
+  epicenter: [117.28, 31.82],
+}
+
+const INTENSITY_SENSITIVITY = { transport: 0.15, medical: 0.10, rescue: 0.10, shelter: 0.08 }
+
+export function calcCityStateAtOffset(mag, offsetKm, opts = {}) {
+  const profile = opts.distanceProfile || DEFAULT_PROFILE
+  const dep = opts.dependencyMatrix || DEPENDENCY_MATRIX
+  const thresholds = opts.thresholds || THRESHOLDS
+  const base = interpolateBaseRates(mag)
+
+  // 人口加权平均烈度（质心 vs 偏移后）
+  const d0 = profile.repDistKm
+  const dNew = d0.map(d => Math.sqrt(d * d + offsetKm * offsetKm))
+  const w = profile.weight
+  const I0 = d0.reduce((s, d, i) => s + w[i] * calcIntensity(mag, d), 0)
+  const I1 = dNew.reduce((s, d, i) => s + w[i] * calcIntensity(mag, d), 0)
+  const dI = I1 - I0  // 偏移后烈度变化（通常为负）
+
+  // 功能率调整（一阶代理，同 step20）
+  const adj = {}
+  for (const k of SYSTEM_KEYS) {
+    const raw = base[k] - INTENSITY_SENSITIVITY[k] * dI * (1 - base[k])
+    adj[k] = Math.min(Math.max(raw, 0.05), 1.0)
+  }
+  const cascade = cascadeIterate(adj, dep, opts)
+
+  const systems = {}
+  for (const k of SYSTEM_KEYS) {
+    systems[k] = {
+      name: SYSTEM_NAMES[k],
+      color: SYSTEM_COLORS[k],
+      baseRatio: adj[k],
+      cascadeRatio: cascade[k],
+      drop: Math.round((adj[k] - cascade[k]) * 10000) / 10000,
+      collapsed: judgeCollapse(cascade[k], k, thresholds),
+      status: systemStatus(cascade[k], k, thresholds),
+    }
+  }
+  return {
+    magnitude: Math.round(mag * 100) / 100,
+    offsetKm,
+    dI,
+    base: adj,
+    cascade,
+    systems,
+    cityCollapsed: cityCollapsed(cascade, thresholds),
+    collapsedCount: SYSTEM_KEYS.filter(k => systems[k].collapsed).length,
+  }
+}
+
 // ═══════════════ 自检（Node 环境用） ═══════════════
 export function selfTest() {
   // Python cascade_model.compute_all_magnitudes 参考值（compute_cascade, propagation=1.0）

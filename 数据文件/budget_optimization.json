@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "module": "step23_budget_optimization",
+    "generated_at": "2026-08-01 08:37:45",
+    "model": "线性单位干预 + 预算枚举",
+    "cost_assumptions": {
+      "road_yi": 0.2,
+      "med_point_yi": 0.5
+    },
+    "basis": "prevention_strategy.csv（step14 实际推演）",
+    "note": "单位收益为策略总收益的线性均摊（一阶近似）；收益度量=医疗功能率提升，城市翻转=医疗≥0.30且救援≥0.40"
+  },
+  "budget_curve": [
+    {
+      "budget_yi": 0.0,
+      "roads_repaired": 0,
+      "med_points": 0,
+      "cost_yi": 0.0,
+      "medical_after": 0.2676,
+      "rescue_after": 0.4156,
+      "city_saved": false,
+      "medical_gain": 0.0
+    },
+    {
+      "budget_yi": 0.5,
+      "roads_repaired": 2,
+      "med_points": 0,
+      "cost_yi": 0.4,
+      "medical_after": 0.3021,
+      "rescue_after": 0.4442,
+      "city_saved": true,
+      "medical_gain": 0.0345
+    },
+    {
+      "budget_yi": 1.0,
+      "roads_repaired": 5,
+      "med_points": 0,
+      "cost_yi": 1.0,
+      "medical_after": 0.3538,
+      "rescue_after": 0.487,
+      "city_saved": true,
+      "medical_gain": 0.0862
+    },
+    {
+      "budget_yi": 1.5,
+      "roads_repaired": 7,
+      "med_points": 0,
+      "cost_yi": 1.4,
+      "medical_after": 0.3883,
+      "rescue_after": 0.5156,
+      "city_saved": true,
+      "medical_gain": 0.1207
+    },
+    {
+      "budget_yi": 2.0,
+      "roads_repaired": 10,
+      "med_points": 0,
+      "cost_yi": 2.0,
+      "medical_after": 0.4401,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1725
+    },
+    {
+      "budget_yi": 2.5,
+      "roads_repaired": 10,
+      "med_points": 1,
+      "cost_yi": 2.5,
+      "medical_after": 0.4418,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1742
+    },
+    {
+      "budget_yi": 3.0,
+      "roads_repaired": 10,
+      "med_points": 2,
+      "cost_yi": 3.0,
+      "medical_after": 0.4435,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1759
+    },
+    {
+      "budget_yi": 3.5,
+      "roads_repaired": 10,
+      "med_points": 3,
+      "cost_yi": 3.5,
+      "medical_after": 0.4452,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1776
+    },
+    {
+      "budget_yi": 4.0,
+      "roads_repaired": 10,
+      "med_points": 4,
+      "cost_yi": 4.0,
+      "medical_after": 0.4469,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1793
+    },
+    {
+      "budget_yi": 4.5,
+      "roads_repaired": 10,
+      "med_points": 5,
+      "cost_yi": 4.5,
+      "medical_after": 0.4486,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.181
+    },
+    {
+      "budget_yi": 5.0,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 5.5,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 6.0,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 6.5,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 7.0,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 7.5,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 8.0,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 8.5,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 9.0,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 9.5,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    },
+    {
+      "budget_yi": 10.0,
+      "roads_repaired": 10,
+      "med_points": 6,
+      "cost_yi": 5.0,
+      "medical_after": 0.4503,
+      "rescue_after": 0.5584,
+      "city_saved": true,
+      "medical_gain": 0.1827
+    }
+  ],
+  "highlights": {
+    "min_budget_for_city_saved_yi": 0.5,
+    "min_budget_combination": {
+      "roads": 2,
+      "med_points": 0
+    },
+    "no_intervention_medical": 0.2676,
+    "full_intervention_medical": 0.4503,
+    "marginal_gains": [
+      {
+        "budget_yi": 0.5,
+        "marginal_gain": 0.0345
+      },
+      {
+        "budget_yi": 1.0,
+        "marginal_gain": 0.0517
+      },
+      {
+        "budget_yi": 1.5,
+        "marginal_gain": 0.0345
+      },
+      {
+        "budget_yi": 2.0,
+        "marginal_gain": 0.0518
+      },
+      {
+        "budget_yi": 2.5,
+        "marginal_gain": 0.0017
+      },
+      {
+        "budget_yi": 3.0,
+        "marginal_gain": 0.0017
+      }
+    ]
+  },
+  "interpretation": "在 0.5 亿元预算下，优先加固 2 条关键路段即可使医疗功能率跨过 30% 崩溃线、城市从'崩溃'翻转为'可维持'。加固路段的收益远高于增设医疗点（单位收益 ~10:1），预算应优先投向路网韧性——这是与直觉相反的发现：医疗崩溃的根源在交通，不在医院本身。"
+}

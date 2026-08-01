@@ -1,11 +1,25 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
-import { Zap, SlidersHorizontal } from 'lucide-vue-next'
-import { calcCityState, SYSTEM_KEYS, SYSTEM_NAMES, SYSTEM_COLORS } from '../../engine/realTimeEngine.js'
+import { ref, computed, onMounted } from 'vue'
+import { Zap, SlidersHorizontal, MapPin } from 'lucide-vue-next'
+import { calcCityState, calcCityStateAtOffset, SYSTEM_KEYS, SYSTEM_NAMES, SYSTEM_COLORS } from '../../engine/realTimeEngine.js'
 
 // ==================== 实时推演状态 ====================
 const mag = ref(6.0)              // 连续震级 M5.0-7.5
 const depTm = ref(0.45)           // 交通→医疗依赖（实时可调）
+const offsetKm = ref(0)           // 震中偏移（沿断裂带走向，正=北）
+const distanceProfile = ref(null) // 人口距离档案
+
+onMounted(async () => {
+  try {
+    const r = await fetch('/data/grid_distance_profile.json')
+    const p = await r.json()
+    distanceProfile.value = {
+      repDistKm: p.meta.rep_dist_km,
+      weight: p.population_weight,
+      epicenter: p.epicenter,
+    }
+  } catch (e) { /* 用引擎内置默认 */ }
+})
 
 const state = computed(() => {
   const dep = {
@@ -14,7 +28,11 @@ const state = computed(() => {
     shelter: { medical: 0.38, rescue: 0.52, transport: 0.20 },
     transport: {},
   }
-  return calcCityState(mag.value, { dependencyMatrix: dep })
+  const opts = { dependencyMatrix: dep }
+  if (distanceProfile.value) opts.distanceProfile = distanceProfile.value
+  return offsetKm.value === 0
+    ? calcCityState(mag.value, opts)
+    : calcCityStateAtOffset(mag.value, offsetKm.value, opts)
 })
 
 const bars = computed(() => SYSTEM_KEYS.map(k => ({
@@ -34,6 +52,16 @@ const cityLabel = computed(() => {
   if (s.collapsedCount > 0) return { text: '部分系统承压', color: 'var(--state-warning)' }
   return { text: '全系统正常', color: 'var(--state-success)' }
 })
+
+const offsetInfo = computed(() => {
+  if (offsetKm.value === 0) return null
+  const dI = state.value.dI
+  return {
+    dir: offsetKm.value > 0 ? '北移' : '南移',
+    dI: dI,
+    note: dI < 0 ? '城区距破裂更远，烈度下降' : '城区更靠近破裂，烈度上升',
+  }
+})
 </script>
 
 <template>
@@ -49,6 +77,19 @@ const cityLabel = computed(() => {
       <div class="probe-label">震级 M<span class="probe-val">{{ mag.toFixed(1) }}</span></div>
       <input v-model.number="mag" type="range" min="5.0" max="7.5" step="0.1" class="probe-range" />
       <div class="probe-scale"><span>M5.0</span><span>M7.5</span></div>
+    </div>
+
+    <!-- 震中偏移（自定义震源一阶推演） -->
+    <div class="probe-row">
+      <div class="probe-label">
+        <MapPin :size="9" style="vertical-align:-1px;" /> 破裂位置偏移
+        <span class="probe-val">{{ offsetKm > 0 ? '北' : (offsetKm < 0 ? '南' : '质心') }} {{ Math.abs(offsetKm) }}km</span>
+      </div>
+      <input v-model.number="offsetKm" type="range" min="-30" max="30" step="5" class="probe-range" />
+      <div class="probe-scale"><span>南30km</span><span>质心</span><span>北30km</span></div>
+      <div v-if="offsetInfo" class="probe-offset-note">
+        烈度差 dI {{ offsetInfo.dI.toFixed(2) }} · {{ offsetInfo.note }}
+      </div>
     </div>
 
     <!-- 依赖权重微调 -->
@@ -81,7 +122,7 @@ const cityLabel = computed(() => {
     <div class="probe-city" :style="{ color: cityLabel.color, borderColor: cityLabel.color + '44' }">
       {{ cityLabel.text }} · {{ state.collapsedCount }}/4 系统崩溃
     </div>
-    <div class="probe-note">拖动实时计算（浏览器内引擎），中间震级如 M{{ mag.toFixed(1) }} 无需加载数据文件</div>
+    <div class="probe-note">拖动实时计算（浏览器内引擎）：震级/破裂位置/依赖权重任意组合</div>
   </div>
 </template>
 
@@ -113,4 +154,5 @@ const cityLabel = computed(() => {
 .probe-fill { height: 100%; border-radius: 1px; transition: width 0.08s linear; }
 .probe-city { font-size: 10.5px; font-weight: 700; border: 1px dashed; border-radius: 3px; padding: 4px 6px; text-align: center; margin-top: 4px; }
 .probe-note { font-size: 8.5px; color: var(--av-muted-foreground); margin-top: 5px; line-height: 1.4; }
+.probe-offset-note { font-size: 8.5px; color: var(--state-warning); margin-top: 2px; }
 </style>
