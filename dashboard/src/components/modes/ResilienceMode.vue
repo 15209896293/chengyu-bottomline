@@ -173,8 +173,7 @@ const strategyCards = [
 const layerList = [
   { key: 'effect', label: '策略效果' },
   { key: 'road', label: '加固路段' },
-  { key: 'facility', label: '新增设施' },
-  { key: 'impact', label: '影响范围' }
+  { key: 'facility', label: '新增设施' }
 ]
 
 // 从 data.prevention.strategies 动态构建策略对比表（医疗/救援/推移/城市状态）
@@ -719,18 +718,6 @@ watch(() => data.prevention, () => {
 
         <!-- Map Toolbar -->
         <div class="map-toolbar">
-          <div class="map-tools">
-            <div
-              v-for="tool in mapTools"
-              :key="tool.key"
-              class="map-tool"
-              :class="{ active: activeTool === tool.key }"
-              :title="tool.title"
-              @click="activeTool = tool.key"
-            >
-              <component :is="tool.icon" :size="16" />
-            </div>
-          </div>
           <div class="map-info">点击左侧策略卡片查看效果 · 悬停区县查看对比数据</div>
         </div>
 
@@ -882,18 +869,10 @@ watch(() => data.prevention, () => {
       <!-- Recommendation -->
       <div class="panel-item green">
         <div class="panel-label">推荐方案</div>
-        <div class="flex items-center gap-2">
-          <svg width="80" height="48" viewBox="0 0 80 48">
-            <path d="M8,44 A32,32 0 0,1 72,44" fill="none" stroke="#1E3A5F" stroke-width="4" />
-            <path :d="gaugeData.arcPath" fill="none" :stroke="gaugeData.color" stroke-width="4" stroke-linecap="round" />
-            <text x="40" y="38" text-anchor="middle" :fill="gaugeData.color" font-size="14" font-weight="700" font-family="monospace">{{ gaugeData.score }}</text>
-            <text x="40" y="46" text-anchor="middle" fill="#7E91AC" font-size="5">综合评分</text>
-          </svg>
-          <div style="flex:1;">
-            <div class="data-row"><span class="data-row-key">推荐</span><span class="data-row-val" style="color:var(--state-success);">{{ currentStrat.name }}</span></div>
-            <div class="data-row"><span class="data-row-key">投资</span><span class="data-row-val">¥{{ currentStrat.investment }}亿</span></div>
-            <div class="data-row"><span class="data-row-key">回收期</span><span class="data-row-val" style="color:var(--state-success);">{{ currentStrat.paybackPeriod ? currentStrat.paybackPeriod + '年' : '—' }}</span></div>
-          </div>
+        <div style="flex:1;">
+          <div class="data-row"><span class="data-row-key">推荐</span><span class="data-row-val" style="color:var(--state-success);">{{ currentStrat.name }}</span></div>
+          <div class="data-row"><span class="data-row-key">投资</span><span class="data-row-val">¥{{ currentStrat.investment }}亿</span></div>
+          <div class="data-row"><span class="data-row-key">回收期</span><span class="data-row-val" style="color:var(--state-success);">{{ currentStrat.paybackPeriod ? currentStrat.paybackPeriod + '年' : '—' }}</span></div>
         </div>
         <div style="font-size:9px;color:var(--av-muted-foreground);margin-top:4px;border-top:1px solid var(--av-border);padding-top:3px;">
           {{ currentStrat.nameCn }}，阈值推移+{{ currentStrat.thresholdShift }}M

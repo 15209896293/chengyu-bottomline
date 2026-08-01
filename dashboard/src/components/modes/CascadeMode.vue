@@ -638,30 +638,6 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- 4x4 依赖矩阵 -->
-      <div class="section-label">4系统依赖矩阵</div>
-      <table class="dep-matrix">
-        <thead>
-          <tr>
-            <th></th>
-            <th v-for="l in SYSTEM_LABELS" :key="l">{{ l }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, i) in depMatrix" :key="i">
-            <th>{{ SYSTEM_LABELS[i] }}</th>
-            <td v-for="(w, j) in row" :key="j"
-                :class="{ diag: i === j }"
-                :style="{ background: depCellColor(w), color: depCellTxtColor(i, j, w) }"
-                :title="`${SYSTEM_LABELS[i]}→${SYSTEM_LABELS[j]}: ${w.toFixed(2)}`">
-              {{ w.toFixed(2) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="font-size:9px;color:var(--av-muted-foreground);margin-top:3px;line-height:1.4;">
-        行=源系统 · 列=目标系统 · 颜色深浅=依赖强度
-      </div>
-
       <!-- 传播强度条 -->
       <div class="section-label">传播强度</div>
       <div v-for="s in propStrengths" :key="s.label" style="margin-bottom:4px;">

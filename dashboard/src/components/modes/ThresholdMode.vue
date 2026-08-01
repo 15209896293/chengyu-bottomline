@@ -158,9 +158,7 @@ const activeTool = ref('zoom-in')
 const layers = ref([
   { id: 'intensity', name: '烈度场', active: true },
   { id: 'hospital', name: '医院可达性', active: true },
-  { id: 'road', name: '关键路段', active: true },
-  { id: 'population', name: '人口密度', active: false },
-  { id: 'nightlight', name: '夜间灯光', active: false }
+  { id: 'road', name: '关键路段', active: true }
 ])
 
 // 映射到 MapContainer 的 layers 格式（02临界模式：区县/路网/阻断路网/医院/断裂带/烈度网格/震中）
@@ -755,18 +753,6 @@ onUnmounted(() => {
 
           <!-- Map Toolbar -->
           <div class="map-toolbar">
-            <div class="map-tools">
-              <div
-                v-for="tool in mapTools"
-                :key="tool.id"
-                class="map-tool"
-                :class="{ active: activeTool === tool.id }"
-                :title="tool.title"
-                @click="activeTool = tool.id"
-              >
-                <component :is="tool.icon" class="w-4 h-4" />
-              </div>
-            </div>
             <div class="map-info">拖动震级滑块查看烈度场变化 · 悬停区县查看详情</div>
           </div>
 
@@ -869,22 +855,6 @@ onUnmounted(() => {
             <span class="data-row-key">城市状态</span>
             <span class="tag" :class="currentData.cityC ? 'tag-red' : 'tag-green'">{{ currentData.cityC ? '已崩溃' : '正常' }}</span>
           </div>
-        </div>
-
-        <!-- Key Roads -->
-        <div class="panel-item">
-          <div class="panel-label">10条关键路段 · 全阻断</div>
-          <table class="mini-table">
-            <tbody>
-            <tr><th>ID</th><th>长度</th><th>状态</th></tr>
-            <tr v-for="r in keyRoads" :key="r.id">
-              <td>{{ r.id }}</td>
-              <td class="num">{{ r.len }}</td>
-              <td style="color:var(--state-error);">断</td>
-            </tr>
-            </tbody>
-          </table>
-          <div style="font-size:9px;color:var(--av-muted-foreground);margin-top:3px;">全部位于断裂带0米处</div>
         </div>
 
         <!-- Resilience -->

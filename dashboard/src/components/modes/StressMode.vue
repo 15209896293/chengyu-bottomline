@@ -322,12 +322,6 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
           </div>
           <div ref="histChartRef" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
         </div>
-        <div class="metric-strip" v-if="varc">
-          <div class="metric-cell"><div class="metric-label">确定性基准</div><div class="metric-value accent">{{ varc.deterministic_loss_yi }}亿</div></div>
-          <div class="metric-cell"><div class="metric-label">期望损失</div><div class="metric-value">{{ varc.mean_loss_yi }}亿</div></div>
-          <div class="metric-cell"><div class="metric-label">VaR95 上限</div><div class="metric-value red">{{ varc.var95_yi }}亿</div></div>
-          <div class="metric-cell"><div class="metric-label">CVaR95 尾部</div><div class="metric-value purple">{{ varc.cvar95_yi }}亿</div></div>
-        </div>
         <div class="panel-item green">
           <div class="panel-label"><ShieldAlert :size="11" style="vertical-align:-1px;" /> 金融语言解读</div>
           <div class="attribution-intro">

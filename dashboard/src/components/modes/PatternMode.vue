@@ -29,13 +29,9 @@ const kpiItems = computed(() => {
   if (!k) return []
   return [
     { label: '医疗机构', value: `${k.total_hospitals}家`, color: 'accent' },
-    { label: '路网路段', value: '58K', color: 'accent' },
-    { label: '空间网格', value: '46K', color: 'accent' },
-    { label: '区县', value: '9个', color: 'green' },
     { label: '总人口', value: `${(k.total_population / 10000).toFixed(1)}万`, color: 'accent' },
     { label: 'GDP总量', value: `¥${k.total_gdp_yi.toFixed(0)}亿`, color: 'accent' },
-    { label: '老化路率', value: `${(k.road_block_rate * 100).toFixed(1)}%`, color: 'red' },
-    { label: '断裂带距', value: '0m', color: 'red' }
+    { label: '路网阻断率', value: `${(k.road_block_rate * 100).toFixed(1)}%`, color: 'red' }
   ]
 })
 
@@ -138,11 +134,9 @@ const mapLayers = computed(() => ({
 }))
 
 const layerItems = [
-  { key: 'density',   label: '人口密度' },
   { key: 'hospital',  label: '医院分布' },
   { key: 'road',      label: '路网健康' },
-  { key: 'fault',    label: '断裂带' },
-  { key: 'nightlight', label: '夜间灯光' }
+  { key: 'fault',    label: '断裂带' }
 ]
 
 function toggleLayer(key) {
@@ -555,14 +549,6 @@ onBeforeUnmount(() => {
 
         <!-- Map Toolbar -->
         <div class="map-toolbar">
-          <div class="map-tools">
-            <div class="map-tool active" title="放大"><ZoomIn class="w-4 h-4" /></div>
-            <div class="map-tool" title="缩小"><ZoomOut class="w-4 h-4" /></div>
-            <div class="map-tool" title="复位"><Home class="w-4 h-4" /></div>
-            <div class="map-tool" title="识别"><MousePointerClick class="w-4 h-4" /></div>
-            <div class="map-tool" title="测距"><Ruler class="w-4 h-4" /></div>
-            <div class="map-tool" title="全屏"><Maximize class="w-4 h-4" /></div>
-          </div>
           <div class="map-info">基线拓扑视图 · 悬停区县查看详情 · 点击左栏区县高亮地图</div>
         </div>
 
@@ -640,57 +626,6 @@ onBeforeUnmount(() => {
     <!-- === Right Panel === -->
     <div class="col-panel">
       <!-- 空间错配分析 -->
-      <div class="panel-item red">
-        <div class="panel-label">空间错配分析</div>
-        <div style="font-size:10px;font-weight:600;color:var(--state-error);margin-bottom:2px;">
-          老城区 (庐阳+瑶海)
-        </div>
-        <div class="data-row"><span class="data-row-key">人口</span><span class="data-row-val" style="color:var(--av-foreground);">164.5万</span></div>
-        <div class="data-row"><span class="data-row-key">路宽&lt;8m占比</span><span class="data-row-val" style="color:var(--state-error);">68%</span></div>
-        <div class="data-row"><span class="data-row-key">路网老化率</span><span class="data-row-val" style="color:var(--state-error);">43%</span></div>
-        <div style="font-size:9px;color:var(--av-muted-foreground);margin-top:1px;">医院密度最高 · 空间高度紧张</div>
-        <div style="height:1px;background:var(--av-border);margin:4px 0;"></div>
-        <div style="font-size:10px;font-weight:600;color:var(--state-success);margin-bottom:2px;">
-          新城区 (蜀山+包河)
-        </div>
-        <div class="data-row"><span class="data-row-key">人口</span><span class="data-row-val" style="color:var(--av-foreground);">184.8万</span></div>
-        <div class="data-row"><span class="data-row-key">路宽&gt;20m占比</span><span class="data-row-val" style="color:var(--state-success);">80%</span></div>
-        <div class="data-row"><span class="data-row-key">医院密度</span><span class="data-row-val" style="color:var(--state-warning);">较低</span></div>
-        <div style="height:1px;background:var(--av-border);margin:4px 0;"></div>
-        <div class="data-row"><span class="data-row-key" style="font-weight:600;">空间债务指数</span></div>
-        <div style="display:flex;gap:6px;margin-top:2px;">
-          <div style="flex:1;text-align:center;background:rgba(248,113,113,0.1);border-radius:3px;padding:2px;">
-            <div style="font-size:14px;font-weight:700;color:var(--state-error);font-family:var(--av-font-mono);">0.82</div>
-            <div style="font-size:8px;color:var(--av-muted-foreground);">老城</div>
-          </div>
-          <div style="flex:1;text-align:center;background:rgba(52,211,153,0.1);border-radius:3px;padding:2px;">
-            <div style="font-size:14px;font-weight:700;color:var(--state-success);font-family:var(--av-font-mono);">0.31</div>
-            <div style="font-size:8px;color:var(--av-muted-foreground);">新城</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 老城风险 -->
-      <div class="panel-item">
-        <div class="panel-label">老城风险</div>
-        <div class="data-row"><span class="data-row-key">路段总数</span><span class="data-row-val" style="color:var(--av-primary);">58,234</span></div>
-        <div class="data-row"><span class="data-row-key">老化路段</span><span class="data-row-val" style="color:var(--state-error);">25,040 (43%)</span></div>
-        <div class="data-row"><span class="data-row-key">断裂带0m路段</span><span class="data-row-val" style="color:var(--state-error);">10条</span></div>
-        <div class="data-row"><span class="data-row-key">关键瓶颈</span><span class="data-row-val" style="color:var(--state-orange);">{{ bottleneckRoads.length }}处</span></div>
-        <table class="mini-table" style="margin-top:3px;">
-          <thead>
-            <tr><th>ID</th><th>长度</th><th>状态</th></tr>
-          </thead>
-          <tbody>
-            <tr v-for="(r, i) in bottleneckRoads" :key="i">
-              <td>{{ r.id }}</td>
-              <td class="num">{{ r.length }}</td>
-              <td :style="{ color: r.color }">{{ r.status }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
       <!-- 基线韧性 -->
       <div class="panel-item accent">
         <div class="panel-label">底线债务指数</div>
