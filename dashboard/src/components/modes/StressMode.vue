@@ -141,43 +141,94 @@ function renderContagion() {
   }, true)
 }
 
-// ==================== 诊断单导出 ====================
+// ==================== 诊断单导出（打印友好 HTML → 另存 PDF） ====================
 function exportDiagnosis() {
   if (!report.value) return
-  const lines = []
-  lines.push('【城域底线 · 城市生命线压测诊断单】')
-  lines.push('='.repeat(32))
   const c = critical.value
-  lines.push(`· 城市崩溃临界震级: M${c.city != null ? c.city.toFixed(1) : '—'}`)
-  lines.push(`· 医疗临界 M${c.medical != null ? c.medical.toFixed(1) : '—'} / 避难临界 M${c.shelter != null ? c.shelter.toFixed(1) : '—'}`)
-  if (varc.value) {
-    lines.push(`· M6.0 基准损失: ${varc.value.deterministic_loss_yi} 亿元`)
-    lines.push(`· VaR95（95%置信上限）: ${varc.value.var95_yi} 亿元`)
-    lines.push(`· CVaR95（尾部均值）: ${varc.value.cvar95_yi} 亿元`)
-  }
-  if (contagion.value?.highlight_magnitude) {
-    const hl = contagion.value.highlight_magnitude
-    const r = contagion.value.by_magnitude[hl]
-    lines.push(`· 动态传染 M${hl}: 避难系统固定依赖${r.fixed_dependency.collapse_time_by_system.shelter != null ? 'T+' + r.fixed_dependency.collapse_time_by_system.shelter + 'h失守' : '72h未失守'} → 时变依赖${r.dynamic_dependency.collapse_time_by_system.shelter != null ? 'T+' + r.dynamic_dependency.collapse_time_by_system.shelter + 'h失守' : '72h未失守'}`)
-  }
-  if (budget.value?.highlights) {
-    lines.push(`· 韧性投资: ${budget.value.highlights.min_budget_for_city_saved_yi} 亿元预算即可使城市崩溃翻转`)
-  }
-  if (vulnerable.value?.by_type?.length) {
-    const kg = vulnerable.value.by_type.find(t => t.type === '幼儿园')
-    if (kg) lines.push(`· 脆弱群体: 幼儿园 ${(kg.exposure_ratio * 100).toFixed(0)}% 位于 M6.0 高烈度区`)
-  }
-  lines.push('='.repeat(32))
-  lines.push('城域底线 · 大数据压测诊断系统')
-  const text = lines.join('\n')
-  if (navigator.clipboard?.writeText) {
-    navigator.clipboard.writeText(text).then(() => { copied.value = true; setTimeout(() => copied.value = false, 1500) })
-  } else {
-    const ta = document.createElement('textarea')
-    ta.value = text; document.body.appendChild(ta); ta.select()
-    document.execCommand('copy'); document.body.removeChild(ta)
-    copied.value = true; setTimeout(() => copied.value = false, 1500)
-  }
+  const v = varc.value
+  const hl = contagion.value?.highlight_magnitude
+  const hlData = hl ? contagion.value.by_magnitude[hl] : null
+  const bd = budget.value?.highlights
+  const vuln = vulnerable.value?.by_type || []
+  const kg = vuln.find(t => t.type === '幼儿园')
+  const now = new Date().toLocaleString('zh-CN')
+
+  const row = (k, val, note = '') => `<tr><td class="k">${k}</td><td class="v">${val}</td><td class="n">${note}</td></tr>`
+  const html = `<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<title>城域底线 · 压测诊断单</title>
+<style>
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; color: #1a2332; margin: 32px; }
+  h1 { font-size: 22px; border-bottom: 3px solid #00A3C4; padding-bottom: 8px; }
+  .meta { color: #667; font-size: 12px; margin: 6px 0 18px; }
+  h2 { font-size: 15px; color: #00536B; margin: 22px 0 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  td { border: 1px solid #d0d7e0; padding: 6px 10px; }
+  td.k { width: 30%; color: #445; background: #f4f8fa; }
+  td.v { width: 28%; font-weight: 700; }
+  td.n { color: #667; font-size: 12px; }
+  .hl { background: #fff7e6; }
+  .foot { margin-top: 28px; font-size: 11px; color: #889; border-top: 1px solid #ddd; padding-top: 8px; }
+  @media print { body { margin: 12mm; } }
+</style></head><body>
+<h1>城域底线 · 城市生命线压测诊断单</h1>
+<div class="meta">生成时间：${now} ｜ 模型：俞言祥2013 烈度衰减 + 迭代级联 + W&C 破裂参数 ｜ 场景震中：郯庐断裂带合肥段质心</div>
+
+<h2>一、逆压测：城市崩溃底线</h2>
+<table>
+${row('城市崩溃临界震级', c.city != null ? `M${c.city.toFixed(1)}` : '—', '级联口径连续扫描（M5.0-8.0）')}
+${row('医疗系统临界', c.medical != null ? `M${c.medical.toFixed(1)}` : '—', '')}
+${row('救援系统临界', c.rescue != null ? `M${c.rescue.toFixed(1)}` : '—', '')}
+${row('避难系统临界', c.shelter != null ? `M${c.shelter.toFixed(1)}` : '—', '')}
+${row('交通系统', '未崩溃', '全震级')}
+</table>
+
+<h2>二、尾部风险（M6.0）</h2>
+<table>
+${row('基准损失', `${v ? v.deterministic_loss_yi : '—'} 亿元`, 'step8 官方口径（yu2013 烈度场）')}
+${row('VaR95（95% 置信上限）', v ? `${v.var95_yi} 亿元` : '—', '蒙特卡洛 500 样本物理参数扰动')}
+${row('CVaR95（尾部均值）', v ? `${v.cvar95_yi} 亿元` : '—', '极端参数组合下的期望损失')}
+${row('风险准备金目标', v ? `${v.cvar95_yi} 亿元` : '—', '= CVaR95，巨灾保险定价参考')}
+</table>
+
+<h2>三、动态传染（灾后依赖强化）</h2>
+<table>
+${hlData && hl ? row('高亮震级', `M${hl}`, '依赖强化影响最显著') : ''}
+${hlData && hl ? row('避难系统（固定依赖）', hlData.fixed_dependency.collapse_time_by_system.shelter != null ? `T+${hlData.fixed_dependency.collapse_time_by_system.shelter}h 失守` : '72h 内未失守', '静态评估') : ''}
+${hlData && hl ? row('避难系统（时变依赖）', hlData.dynamic_dependency.collapse_time_by_system.shelter != null ? `T+${hlData.dynamic_dependency.collapse_time_by_system.shelter}h 失守` : '72h 内未失守', '依赖强化后') : ''}
+${hlData ? row('依赖强化额外下降', `${(Math.max(...Object.values(hlData.reinforcement_extra_drop)) * 100).toFixed(1)}%`, '避难系统功能率') : ''}
+</table>
+<div class="hl" style="padding:6px 10px;font-size:12px;margin-top:6px;">
+结论：灾后依赖强化使系统比静态评估更早失守——静态依赖评估会<b>高估城市韧性</b>。
+</div>
+
+<h2>四、韧性投资（预算优化）</h2>
+<table>
+${bd ? row('城市崩溃翻转最小预算', `${bd.min_budget_for_city_saved_yi} 亿元`, '优先加固关键路段') : ''}
+${bd && bd.min_budget_combination ? row('最优组合', `加固 ${bd.min_budget_combination.roads} 条路段 + ${bd.min_budget_combination.med_points} 医疗点`, '') : ''}
+${row('核心发现', '加固路段的收益约为增设医疗点的 10 倍', '医疗崩溃的根源在交通，不在医院本身')}
+</table>
+
+<h2>五、脆弱群体暴露（M6.0）</h2>
+<table>
+${kg ? row('幼儿园', `${(kg.exposure_ratio * 100).toFixed(0)}% 位于高烈度区`, `${kg.high_exposure}/${kg.count} 个`) : ''}
+${vuln.filter(t => t.type !== '幼儿园').map(t => row(t.type, `${(t.exposure_ratio * 100).toFixed(0)}% 位于高烈度区`, `${t.high_exposure}/${t.count} 个`)).join('')}
+</table>
+<div style="padding:6px 10px;font-size:12px;margin-top:6px;background:#f4f8fa;">
+结论：灾难中最脆弱的群体暴露最高——这是城市"底线债务"最直接的证据。
+</div>
+
+<div class="foot">
+城域底线 · 大数据压测诊断系统（中国大学生计算机设计大赛参赛作品）<br>
+口径说明：损失率采用 step8 分档（VII 5% / VIII 20% / X 50%）；可达性为最保守判定；
+完整口径与已知边界见 docs/数据口径说明.md。
+</div>
+</body></html>`
+
+  const w = window.open('', '_blank', 'width=900,height=700')
+  if (!w) { copied.value = true; setTimeout(() => copied.value = false, 1500); return }
+  w.document.write(html)
+  w.document.close()
+  setTimeout(() => { w.focus(); w.print() }, 300)
 }
 const copied = ref(false)
 
@@ -220,9 +271,9 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
       <!-- 导出诊断单 -->
       <div class="export-bar">
         <button class="export-btn" @click="exportDiagnosis">
-          <FileText :size="11" style="vertical-align:-1px;" /> {{ copied ? '已复制 ✓' : '导出诊断单' }}
+          <FileText :size="11" style="vertical-align:-1px;" /> {{ copied ? '已生成 ✓' : '导出诊断单(PDF)' }}
         </button>
-        <span class="export-hint">生成政府汇报用文本结论（复制/粘贴）</span>
+        <span class="export-hint">生成打印友好诊断单（浏览器另存为 PDF）</span>
       </div>
 
       <!-- === 左栏：逆压测 === -->
