@@ -547,9 +547,19 @@ def main():
         "dynamic_contagion": contagion,
     }
 
+    # NaN → null：Python json 默认写出 NaN（非标准 JSON），浏览器 JSON.parse 会拒绝
+    def clean_nan(obj):
+        if isinstance(obj, float) and math.isnan(obj):
+            return None
+        if isinstance(obj, list):
+            return [clean_nan(x) for x in obj]
+        if isinstance(obj, dict):
+            return {k: clean_nan(v) for k, v in obj.items()}
+        return obj
+
     out_path = DATA_DIR / "stress_report.json"
     with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(report, f, ensure_ascii=False, indent=2)
+        json.dump(clean_nan(report), f, ensure_ascii=False, indent=2)
     print(f"\n报告已保存: {out_path}")
 
     ok = verify(report)

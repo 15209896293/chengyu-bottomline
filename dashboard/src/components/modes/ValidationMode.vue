@@ -1,5 +1,4 @@
 <script setup>
-import PageIntro from '../shell/PageIntro.vue'
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import { CheckCircle2, AlertTriangle, Loader2, Award, Target, Layers } from 'lucide-vue-next'
@@ -331,7 +330,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="mode-root">
-    <PageIntro question="模型可信吗？与真实地震对比，误差在哪？" :points="['汶川/唐山等震线验证', '4 震源情景', '误差归因']" />
   <!-- Loading -->
   <div v-if="loading" class="loading-overlay">
     <Loader2 :size="24" class="spin" />

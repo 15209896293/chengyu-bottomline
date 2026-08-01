@@ -1,5 +1,4 @@
 <script setup>
-import PageIntro from '../shell/PageIntro.vue'
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import {
@@ -83,6 +82,28 @@ function getDensityColor(level) {
 }
 
 /* ============================================================
+   空间错配（真实数据派生：老城 vs 新城）
+   ============================================================ */
+const spatialMismatch = computed(() => {
+  const ds = districts.value
+  if (!ds.length) return null
+  const oldCity = ds.filter(d => ['庐阳区', '瑶海区'].includes(d.name))
+  const newCity = ds.filter(d => ['蜀山区', '包河区'].includes(d.name))
+  const sum = arr => arr.reduce((s, d) => s + (d.pop || 0), 0)
+  const sumGdp = arr => arr.reduce((s, d) => s + (d.gdp || 0), 0)
+  const sumLoss = arr => arr.reduce((s, d) => s + (d.loss || 0), 0)
+  const sumExp = arr => arr.reduce((s, d) => s + (d.exposed || 0), 0)
+  const oldPop = sum(oldCity), newPop = sum(newCity)
+  return {
+    old: { name: '老城（庐阳+瑶海）', pop: oldPop, gdp: sumGdp(oldCity), loss: sumLoss(oldCity), exposed: sumExp(oldCity) },
+    new: { name: '新城（蜀山+包河）', pop: newPop, gdp: sumGdp(newCity), loss: sumLoss(newCity), exposed: sumExp(newCity) },
+    // 人均风险：每万人暴露人口（真实暴露度对比）
+    oldRiskPer10k: oldPop > 0 ? sumExp(oldCity) / oldPop * 10 : 0,
+    newRiskPer10k: newPop > 0 ? sumExp(newCity) / newPop * 10 : 0,
+  }
+})
+
+/* ============================================================
    设施分布数据 (来自 accessibility_distribution)
    ============================================================ */
 const facilities = computed(() => {
@@ -125,9 +146,9 @@ const mapLayers = computed(() => ({
   roads: layers.road,
   blockedRoads: false,
   hospitals: layers.hospital,
-  rescue: true,
-  shelters: true,
-  hazards: true,
+  rescue: false,
+  shelters: false,
+  hazards: false,
   fault: layers.fault,
   intensity: false,
   epicenter: false,
@@ -454,7 +475,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="mode-root">
-    <PageIntro question="合肥的生命线系统空间上怎么分布？风险与资源是否错配？" :points="['区县风险排名', '空间错配', '关键设施分布']" />
   <!-- ========== Loading ========== -->
   <div v-if="loading && !data.kpi" class="loading-overlay">
     <Loader2 :size="24" class="spin" />
@@ -625,7 +645,30 @@ onBeforeUnmount(() => {
 
     <!-- === Right Panel === -->
     <div class="col-panel">
-      <!-- 空间错配分析 -->
+      <!-- 空间错配（真实数据派生） -->
+      <div class="panel-item red" v-if="spatialMismatch">
+        <div class="panel-label">空间错配 · 债务对比</div>
+        <div style="font-size:10px;font-weight:600;color:var(--state-error);margin-bottom:2px;">
+          {{ spatialMismatch.old.name }}
+        </div>
+        <div class="data-row"><span class="data-row-key">人口</span><span class="data-row-val" style="color:var(--av-foreground);">{{ spatialMismatch.old.pop.toFixed(1) }}万</span></div>
+        <div class="data-row"><span class="data-row-key">GDP</span><span class="data-row-val">¥{{ spatialMismatch.old.gdp.toFixed(0) }}亿</span></div>
+        <div class="data-row"><span class="data-row-key">暴露人口</span><span class="data-row-val" style="color:var(--state-error);">{{ (spatialMismatch.old.exposed / 10000).toFixed(1) }}万</span></div>
+        <div style="height:1px;background:var(--av-border);margin:4px 0;"></div>
+        <div style="font-size:10px;font-weight:600;color:var(--state-success);margin-bottom:2px;">
+          {{ spatialMismatch.new.name }}
+        </div>
+        <div class="data-row"><span class="data-row-key">人口</span><span class="data-row-val" style="color:var(--av-foreground);">{{ spatialMismatch.new.pop.toFixed(1) }}万</span></div>
+        <div class="data-row"><span class="data-row-key">GDP</span><span class="data-row-val">¥{{ spatialMismatch.new.gdp.toFixed(0) }}亿</span></div>
+        <div class="data-row"><span class="data-row-key">暴露人口</span><span class="data-row-val" style="color:var(--state-warning);">{{ (spatialMismatch.new.exposed / 10000).toFixed(1) }}万</span></div>
+        <div style="height:1px;background:var(--av-border);margin:4px 0;"></div>
+        <div class="data-row"><span class="data-row-key">每万人暴露（老/新）</span><span class="data-row-val" style="font-family:var(--av-font-mono);">{{ spatialMismatch.oldRiskPer10k.toFixed(1) }} / {{ spatialMismatch.newRiskPer10k.toFixed(1) }}</span></div>
+        <div style="font-size:9px;color:var(--av-muted-foreground);margin-top:3px;line-height:1.4;">
+          老城人均承灾暴露 {{ spatialMismatch.oldRiskPer10k >= spatialMismatch.newRiskPer10k ? '高于' : '低于' }} 新城——
+          空间错配的量化证据（数据源：district_loss + spatial_mismatch）
+        </div>
+      </div>
+
       <!-- 基线韧性 -->
       <div class="panel-item accent">
         <div class="panel-label">底线债务指数</div>

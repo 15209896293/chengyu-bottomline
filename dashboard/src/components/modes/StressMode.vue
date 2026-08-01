@@ -1,5 +1,4 @@
 <script setup>
-import PageIntro from '../shell/PageIntro.vue'
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import { Target, Activity, ShieldAlert, TrendingUp, GitBranch, Loader2, AlertTriangle, Info, FileText } from 'lucide-vue-next'
@@ -258,7 +257,6 @@ watch(() => report.value, () => { nextTick(() => { renderHistogram(); renderCont
 
 <template>
   <div class="mode-root">
-    <PageIntro question="城市崩溃的底线在哪？极端情景损失多大？钱花在哪最值？" :points="['逆压测', 'VaR / CVaR', '动态传染', '预算优化']" />
     <div v-if="loading" class="loading-overlay">
       <Loader2 :size="24" class="spin" style="color:var(--state-info);" />
       <span style="margin-left:8px;font-size:12px;color:var(--av-muted-foreground);">加载压测数据...</span>

@@ -1,5 +1,4 @@
 <script setup>
-import PageIntro from '../shell/PageIntro.vue'
 import { ref, computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import echarts from '../../engine/echartsSetup.js'
 import { Zap, GitBranch, Share2, Route, X, Loader2, Play, Pause, Clock } from 'lucide-vue-next'
@@ -605,7 +604,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="mode-root">
-    <PageIntro question="一个系统崩了，如何拖垮其他系统？崩溃如何随时间蔓延？" :points="['级联传播路径', 'T+0→T+72h 时间推演', '依赖矩阵']" />
   <!-- Loading -->
   <div v-if="loading && !cascade" class="loading-overlay">
     <Loader2 :size="24" class="spin" />
