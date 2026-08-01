@@ -1,24 +1,38 @@
 {
   "meta": {
     "module": "step22_vulnerable_facilities",
-    "generated_at": "2026-08-01 08:36:16",
+    "generated_at": "2026-08-01 09:06:35",
     "magnitude": 6.0,
     "note": "暴露度 = 位于烈度≥VII区（intensity>=7.0）的设施占比"
   },
   "by_type": [
     {
       "type": "中学",
-      "count": 80,
-      "high_exposure": 54,
-      "exposure_ratio": 0.675,
-      "mean_intensity": 7.354125000000001
+      "count": 100,
+      "high_exposure": 61,
+      "exposure_ratio": 0.61,
+      "mean_intensity": 7.2436
+    },
+    {
+      "type": "供电设施",
+      "count": 98,
+      "high_exposure": 37,
+      "exposure_ratio": 0.378,
+      "mean_intensity": 6.852142857142857
     },
     {
       "type": "养老院",
-      "count": 176,
-      "high_exposure": 79,
-      "exposure_ratio": 0.449,
-      "mean_intensity": 6.860056818181818
+      "count": 193,
+      "high_exposure": 82,
+      "exposure_ratio": 0.425,
+      "mean_intensity": 6.805284974093265
+    },
+    {
+      "type": "变电站",
+      "count": 11,
+      "high_exposure": 1,
+      "exposure_ratio": 0.091,
+      "mean_intensity": 6.131818181818182
     },
     {
       "type": "小学",
@@ -35,6 +49,13 @@
       "mean_intensity": 7.781000000000001
     },
     {
+      "type": "水厂",
+      "count": 38,
+      "high_exposure": 10,
+      "exposure_ratio": 0.263,
+      "mean_intensity": 6.601315789473684
+    },
+    {
       "type": "福利院",
       "count": 56,
       "high_exposure": 18,
@@ -42,5 +63,5 @@
       "mean_intensity": 6.602678571428571
     }
   ],
-  "total": 413
+  "total": 597
 }

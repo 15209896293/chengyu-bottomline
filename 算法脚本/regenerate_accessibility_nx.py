@@ -51,12 +51,11 @@ def regenerate_all(blocking_radius=10):
     ).to_crs(CRS_PROJ)
 
     # Load original accessibility for district names
-    orig_acc = pd.read_csv(DATA_DIR / "accessibility.csv")
-
-    # Ensure district column exists
-    if "district" in orig_acc.columns:
-        name_to_dist = dict(zip(orig_acc["name"], orig_acc["district"]))
-    else:
+    try:
+        orig_acc = pd.read_csv(DATA_DIR / "accessibility.csv")
+        name_to_dist = dict(zip(orig_acc["name"], orig_acc["district"])) if "district" in orig_acc.columns else {}
+    except FileNotFoundError:
+        print("    [skip] accessibility.csv 不存在，district 合并跳过")
         name_to_dist = {}
 
     magnitudes = [5.0, 5.5, 6.0, 6.5, 7.0, 7.5]

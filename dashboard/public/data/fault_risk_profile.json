@@ -1,12 +1,12 @@
 {
   "meta": {
     "module": "step21_fault_risk_profile",
-    "generated_at": "2026-08-01 08:34:43",
+    "generated_at": "2026-08-01 09:04:26",
     "source": "step20_reverse_stress 震中偏移扫描",
     "baseline_epicenter": {
       "lon": 117.28,
       "lat": 31.82,
-      "critical_mag": 5.0,
+      "critical_mag": 5.4,
       "dI_bar": 0.0
     },
     "offsets_unit": "km（负=南/西，正=北/东）",
@@ -15,111 +15,111 @@
   "along_strike_profile": [
     {
       "offset_km": -30.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": -20.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": -10.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 0.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 10.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 20.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 30.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     }
   ],
   "along_strike_east10": [
     {
       "offset_km": -30.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": -20.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": -10.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 0.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 10.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 20.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 30.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     }
   ],
   "across_strike_profile": [
     {
       "offset_km": -30.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": -20.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": -10.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 0.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 10.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 20.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     },
     {
       "offset_km": 30.0,
-      "critical_mag": 5.0
+      "critical_mag": 5.4
     }
   ],
   "highlights": {
-    "baseline_critical_mag": 5.0,
+    "baseline_critical_mag": 5.4,
     "most_vulnerable": {
       "lon": 117.28,
       "lat": 31.82,
-      "critical_mag": 5.0,
+      "critical_mag": 5.4,
       "dI_bar": 0.0
     },
     "safest": {
       "lon": 117.068,
       "lat": 31.5497,
-      "critical_mag": 5.0,
+      "critical_mag": 5.4,
       "dI_bar": -0.568
     },
     "critical_mag_shift_from_baseline": 0.0,
     "intensity_sensitivity_range": 0.568,
-    "worst_along_strike_mag": 5.0,
-    "safest_along_strike_mag": 5.0
+    "worst_along_strike_mag": 5.4,
+    "safest_along_strike_mag": 5.4
   },
   "interpretation": "破裂位置敏感性：质心（117.28, 31.82）即人口加权烈度的最不利位置——合肥城区正位于断裂带最危险破裂段正上方，任何破裂位置偏移都使城区平均烈度下降（最多 0.57 度）。临界震级因扫描域下界（M5.0）截断而持平，实际敏感性体现在烈度场上。"
 }

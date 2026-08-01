@@ -569,9 +569,9 @@ def verify(report):
     else:
         if not (4.0 <= crit["city"] <= 8.0):
             reasons.append(f"城市临界震级越界: {crit['city']}")
-        # 单调性：城市崩溃标志随震级递增
+        # 单调性：城市崩溃标志随震级从 False→True（升序排列应等于自身）
         cc = ms["city_collapse"]
-        if cc != sorted(cc, key=lambda x: not x):
+        if cc != sorted(cc):
             reasons.append("城市崩溃标志不随震级单调")
     # 各系统临界 ≤ 城市临界（城市 = 任一系统崩）
     for k in SYSTEM_KEYS:

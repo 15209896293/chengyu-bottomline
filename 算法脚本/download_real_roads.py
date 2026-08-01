@@ -155,12 +155,17 @@ def assign_block_level(dist_m, magnitude, max_radius=20000):
         return "正常"
 
     # Rupture zone width scales with magnitude (empirical)
-    # M5.0 ~ 100m, M6.0 ~ 300m, M7.0 ~ 1500m, M7.5 ~ 4000m
+    # M5.0 ~ 10m, M6.0 ~ 100m, M7.0 ~ 1000m, M7.5 ~ 3162m
     rupture_width = 10 ** (magnitude - 4.0)  # M5→10m, M6→100m, M7→1000m
 
     # Inner damage zone radius scales with magnitude
     inner_zone = max_radius * (magnitude / 7.5)  # M5→13.3km, M7.5→20km
     outer_zone = max_radius * min(1.5, 1.0 + (magnitude - 5.0) / 5.0)
+
+    # 震级强度因子（幂律标定，2026-08 修正）：
+    # 原 p = 0.9*(M/7.5) 在 M5.0 即给 60% 完全阻断概率——过度标定。
+    # 修正后：M5.0≈2.5%, M5.5≈10%, M6.0≈22.5%, M6.5≈40%, M7.0≈62.5%, M7.5≈90%
+    strength = ((magnitude - 4.5) / 3.0) ** 2
 
     # Use fixed seed per road + magnitude for reproducibility
     rng = np.random.default_rng(seed=int(dist_m * 1000 + magnitude * 100))
@@ -171,7 +176,7 @@ def assign_block_level(dist_m, magnitude, max_radius=20000):
 
     elif dist_m < inner_zone * 0.3:
         # Core damage zone
-        p = 0.9 * (magnitude / 7.5)  # Higher M = higher P
+        p = 0.9 * strength  # Higher M = higher P
         roll = rng.random()
         if roll < p:
             return "完全阻断"
@@ -185,7 +190,7 @@ def assign_block_level(dist_m, magnitude, max_radius=20000):
         # Probability decays with distance: P(d) = (1 - d/inner_zone)^power
         normalized_d = dist_m / inner_zone  # 0.3 to 1.0
         decay = (1 - normalized_d) / 0.7  # 1.0 at zone start, 0.0 at zone end
-        p_block = 0.3 * decay * (magnitude / 7.5)
+        p_block = 0.3 * decay * strength
 
         roll = rng.random()
         if roll < p_block * 0.4:
@@ -198,7 +203,7 @@ def assign_block_level(dist_m, magnitude, max_radius=20000):
     elif dist_m < outer_zone:
         # Outer zone — minor damage only
         normalized_d = (dist_m - inner_zone) / (outer_zone - inner_zone)
-        p_mild = 0.15 * (1 - normalized_d) * (magnitude / 7.5)
+        p_mild = 0.15 * (1 - normalized_d) * strength
 
         roll = rng.random()
         if roll < p_mild:
@@ -298,10 +303,14 @@ def generate_accessibility(roads_gdf, magnitude):
     df = pd.DataFrame(results)
 
     # Merge with original hospital data to get district info from existing file
-    orig_acc = pd.read_csv(DATA_DIR / "accessibility.csv")
-    if "district" in orig_acc.columns:
-        name_to_dist = dict(zip(orig_acc["name"], orig_acc["district"]))
-        df["district"] = df["name"].map(name_to_dist).fillna("未知")
+    try:
+        orig_acc = pd.read_csv(DATA_DIR / "accessibility.csv")
+        if "district" in orig_acc.columns:
+            name_to_dist = dict(zip(orig_acc["name"], orig_acc["district"]))
+            df["district"] = df["name"].map(name_to_dist).fillna("未知")
+    except FileNotFoundError:
+        # accessibility.csv 为历史占位文件，缺失时跳过合并（可达性以 step9 为准）
+        print("    [skip] accessibility.csv 不存在，district 合并跳过")
 
     out_path = DATA_DIR / f"accessibility_{mag_str}.csv"
     df.to_csv(out_path, index=False)

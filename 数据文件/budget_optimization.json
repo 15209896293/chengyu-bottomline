@@ -1,7 +1,7 @@
 {
   "meta": {
     "module": "step23_budget_optimization",
-    "generated_at": "2026-08-01 08:37:45",
+    "generated_at": "2026-08-01 09:04:26",
     "model": "线性单位干预 + 预算枚举",
     "cost_assumptions": {
       "road_yi": 0.2,
