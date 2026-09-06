@@ -18,7 +18,7 @@ const budgetSlider = ref(2.0) // 默认 2 亿（首个能推高底线的预算�
 
 async function loadDecision() {
   try {
-    const r = await fetch('/data/decision_support.json')
+    const r = await fetch(import.meta.env.BASE_URL + 'data/decision_support.json')
     if (r.ok) decision.value = await r.json()
   } catch (e) { console.error('加载决策数据失败:', e) }
 }
@@ -52,21 +52,21 @@ function renderDecisionChart() {
   decisionChart.setOption({
     backgroundColor: 'transparent',
     grid: { left: 38, right: 14, top: 26, bottom: 22 },
-    tooltip: { trigger: 'axis', backgroundColor: '#142440', borderColor: '#1C2B43', textStyle: { color: '#E6EDF7', fontSize: 11 }, formatter: p => {
+    tooltip: { trigger: 'axis', backgroundColor: '#0B1018', borderColor: '#1B2640', textStyle: { color: '#DCE6F0', fontSize: 11 }, formatter: p => {
       const d = curve[p[0].dataIndex]
       return `预算 ${d.budget} 亿<br/>底线 M${d.bottom_line_mag.toFixed(1)}（+${d.shift.toFixed(1)}）<br/>加固 ${d.roads} 路段 · 医疗 +${(d.gain_medical * 100).toFixed(1)}%`
     } },
-    title: { text: '预算 → 城市崩溃底线（级联口径）', left: 8, top: 2, textStyle: { color: '#7E91AC', fontSize: 11, fontWeight: 600 } },
-    xAxis: { type: 'category', data: curve.map(c => c.budget), name: '预算(亿)', nameTextStyle: { color: '#7E91AC', fontSize: 9 }, axisLabel: { color: '#7E91AC', fontSize: 9, interval: 3 }, axisLine: { lineStyle: { color: '#1C2B43' } } },
-    yAxis: { type: 'value', min: 5.5, max: 7.5, name: '底线震级', nameTextStyle: { color: '#7E91AC', fontSize: 9 }, axisLabel: { color: '#7E91AC', fontSize: 9, formatter: 'M{v}' }, splitLine: { lineStyle: { color: 'rgba(28,43,67,0.5)' } } },
+    title: { text: '预算 → 城市崩溃底线（级联口径）', left: 8, top: 2, textStyle: { color: '#5A6B82', fontSize: 11, fontWeight: 600 } },
+    xAxis: { type: 'category', data: curve.map(c => c.budget), name: '预算(亿)', nameTextStyle: { color: '#5A6B82', fontSize: 9 }, axisLabel: { color: '#5A6B82', fontSize: 9, interval: 3 }, axisLine: { lineStyle: { color: '#1B2640' } } },
+    yAxis: { type: 'value', min: 5.5, max: 7.5, name: '底线震级', nameTextStyle: { color: '#5A6B82', fontSize: 9 }, axisLabel: { color: '#5A6B82', fontSize: 9, formatter: 'M{v}' }, splitLine: { lineStyle: { color: 'rgba(42,37,32,0.5)' } } },
     series: [{
       type: 'line', data: curve.map(c => c.bottom_line_mag), smooth: true, symbolSize: 5,
-      lineStyle: { color: '#00D4FF', width: 2.5 }, itemStyle: { color: '#00D4FF' },
+      lineStyle: { color: '#00D9FF', width: 2.5 }, itemStyle: { color: '#00D9FF' },
       markLine: {
-        silent: true, symbol: 'none', label: { color: '#F87171', fontSize: 9, formatter: '基线 M' + baseline.toFixed(1), position: 'insideEndTop' },
-        lineStyle: { color: '#F87171', type: 'dashed' }, data: [{ yAxis: baseline }],
+        silent: true, symbol: 'none', label: { color: '#FF4444', fontSize: 9, formatter: '基线 M' + baseline.toFixed(1), position: 'insideEndTop' },
+        lineStyle: { color: '#FF4444', type: 'dashed' }, data: [{ yAxis: baseline }],
       },
-      markPoint: cur ? { symbol: 'pin', symbolSize: 34, label: { color: '#061320', fontSize: 9, fontWeight: 700, formatter: 'M' + cur.bottom_line_mag.toFixed(1) }, itemStyle: { color: '#00D4FF' }, data: [{ coord: [curve.findIndex(c => c.budget === cur.budget), cur.bottom_line_mag] }] } : undefined,
+      markPoint: cur ? { symbol: 'pin', symbolSize: 34, label: { color: '#060912', fontSize: 9, fontWeight: 700, formatter: 'M' + cur.bottom_line_mag.toFixed(1) }, itemStyle: { color: '#00D9FF' }, data: [{ coord: [curve.findIndex(c => c.budget === cur.budget), cur.bottom_line_mag] }] } : undefined,
     }],
   }, true)
 }
@@ -127,15 +127,15 @@ const DISTRICT_IMPROVEMENT = {
 }
 
 const DISTRICT_ORIGINAL = {
-  '长丰县': { fill: 'rgba(52,211,153,0.04)', stroke: '#1E3A5F', sw: 0.5 },
-  '肥东县': { fill: 'rgba(251,191,36,0.04)', stroke: '#1E3A5F', sw: 0.5 },
-  '巢湖市': { fill: 'rgba(52,211,153,0.02)', stroke: '#1E3A5F', sw: 0.5 },
-  '庐江县': { fill: 'rgba(52,211,153,0.01)', stroke: '#1E3A5F', sw: 0.5 },
-  '肥西县': { fill: 'rgba(52,211,153,0.03)', stroke: '#1E3A5F', sw: 0.5 },
-  '蜀山区': { fill: 'rgba(251,191,36,0.06)', stroke: '#1E3A5F', sw: 0.5 },
-  '庐阳区': { fill: 'rgba(248,113,113,0.08)', stroke: '#F87171', sw: 0.6 },
-  '瑶海区': { fill: 'rgba(248,113,113,0.1)', stroke: '#F87171', sw: 0.6 },
-  '包河区': { fill: 'rgba(251,191,36,0.06)', stroke: '#1E3A5F', sw: 0.5 }
+  '长丰县': { fill: 'rgba(0, 255, 148,0.04)', stroke: '#1E3A5F', sw: 0.5 },
+  '肥东县': { fill: 'rgba(255, 184, 0,0.04)', stroke: '#1E3A5F', sw: 0.5 },
+  '巢湖市': { fill: 'rgba(0, 255, 148,0.02)', stroke: '#1E3A5F', sw: 0.5 },
+  '庐江县': { fill: 'rgba(0, 255, 148,0.01)', stroke: '#1E3A5F', sw: 0.5 },
+  '肥西县': { fill: 'rgba(0, 255, 148,0.03)', stroke: '#1E3A5F', sw: 0.5 },
+  '蜀山区': { fill: 'rgba(255, 184, 0,0.06)', stroke: '#1E3A5F', sw: 0.5 },
+  '庐阳区': { fill: 'rgba(255, 68, 68,0.08)', stroke: '#FF4444', sw: 0.6 },
+  '瑶海区': { fill: 'rgba(255, 68, 68,0.1)', stroke: '#FF4444', sw: 0.6 },
+  '包河区': { fill: 'rgba(255, 184, 0,0.06)', stroke: '#1E3A5F', sw: 0.5 }
 }
 
 const DISTRICTS = [
@@ -218,11 +218,11 @@ const RESILIENCE_TRENDS = computed(() => {
 const MAGNITUDES = ['M5.0', 'M5.5', 'M6.0', 'M6.5', 'M7.0', 'M7.5']
 
 const TREND_COLORS = {
-  baseline: '#7E91AC', A: '#FBBF24', B: '#FB923C', C: '#34D399'
+  baseline: '#5A6B82', A: '#FFB800', B: '#FF3366', C: '#00FF94'
 }
 const TREND_BG = {
-  baseline: 'rgba(126,145,172,0.1)', A: 'rgba(251,191,36,0.15)',
-  B: 'rgba(251,146,60,0.15)', C: 'rgba(52,211,153,0.15)'
+  baseline: 'rgba(90, 107, 130,0.1)', A: 'rgba(255, 184, 0,0.15)',
+  B: 'rgba(255, 51, 102,0.15)', C: 'rgba(0, 255, 148,0.15)'
 }
 
 const strategyCards = [
@@ -363,10 +363,10 @@ const kpiItems = computed(() => {
 const bannerStyle = computed(() => {
   const s = currentStrat.value
   const styles = {
-    green: { iconBg: 'rgba(52,211,153,0.15)', iconColor: 'var(--state-success)', borderColor: 'rgba(52,211,153,0.3)' },
-    yellow: { iconBg: 'rgba(251,191,36,0.15)', iconColor: 'var(--state-warning)', borderColor: 'rgba(251,191,36,0.3)' },
-    orange: { iconBg: 'rgba(251,146,60,0.15)', iconColor: 'var(--state-orange)', borderColor: 'rgba(251,146,60,0.3)' },
-    muted: { iconBg: 'rgba(126,145,172,0.15)', iconColor: 'var(--av-muted-foreground)', borderColor: 'var(--av-border)' }
+    green: { iconBg: 'rgba(0, 255, 148,0.15)', iconColor: 'var(--state-success)', borderColor: 'rgba(0, 255, 148,0.3)' },
+    yellow: { iconBg: 'rgba(255, 184, 0,0.15)', iconColor: 'var(--state-warning)', borderColor: 'rgba(255, 184, 0,0.3)' },
+    orange: { iconBg: 'rgba(255, 51, 102,0.15)', iconColor: 'var(--state-orange)', borderColor: 'rgba(255, 51, 102,0.3)' },
+    muted: { iconBg: 'rgba(90, 107, 130,0.15)', iconColor: 'var(--av-muted-foreground)', borderColor: 'var(--av-border)' }
   }
   return styles[s.color]
 })
@@ -389,8 +389,8 @@ const isRoadReinforced = computed(() => currentStrategy.value === 'A' || current
 const showMedicalPoints = computed(() => currentStrategy.value === 'B' || currentStrategy.value === 'C')
 
 const roadStyle = computed(() => {
-  if (isRoadReinforced.value) return { stroke: '#34D399', strokeWidth: 2, opacity: 0.9 }
-  return { stroke: '#F87171', strokeWidth: 1.5, opacity: 0.8 }
+  if (isRoadReinforced.value) return { stroke: '#00FF94', strokeWidth: 2, opacity: 0.9 }
+  return { stroke: '#FF4444', strokeWidth: 1.5, opacity: 0.8 }
 })
 
 const districtStyles = computed(() => {
@@ -401,9 +401,9 @@ const districtStyles = computed(() => {
       styles[name] = DISTRICT_ORIGINAL[name]
     } else {
       const imp = DISTRICT_IMPROVEMENT[currentStrategy.value][name] || 0
-      if (imp > 0.5) styles[name] = { fill: 'rgba(52,211,153,0.15)', stroke: '#34D399', sw: 0.6 }
-      else if (imp > 0.2) styles[name] = { fill: 'rgba(52,211,153,0.06)', stroke: '#1E3A5F', sw: 0.5 }
-      else if (imp > 0) styles[name] = { fill: 'rgba(126,145,172,0.04)', stroke: '#1E3A5F', sw: 0.5 }
+      if (imp > 0.5) styles[name] = { fill: 'rgba(0, 255, 148,0.15)', stroke: '#00FF94', sw: 0.6 }
+      else if (imp > 0.2) styles[name] = { fill: 'rgba(0, 255, 148,0.06)', stroke: '#1E3A5F', sw: 0.5 }
+      else if (imp > 0) styles[name] = { fill: 'rgba(90, 107, 130,0.04)', stroke: '#1E3A5F', sw: 0.5 }
       else styles[name] = DISTRICT_ORIGINAL[name]
     }
   }
@@ -413,9 +413,9 @@ const districtStyles = computed(() => {
 function hospitalFill(baseReach) {
   const s = currentStrat.value
   const reach = baseReach * s.medicalAfter / 0.2676
-  if (reach < 0.3) return '#F87171'
-  if (reach < 0.6) return '#FBBF24'
-  return '#34D399'
+  if (reach < 0.3) return '#FF4444'
+  if (reach < 0.6) return '#FFB800'
+  return '#00FF94'
 }
 
 const threshData = computed(() => {
@@ -444,10 +444,10 @@ const gaugeData = computed(() => {
   const s = currentStrat.value
   const score = s.score
   let color
-  if (score >= 0.8) color = '#34D399'
-  else if (score >= 0.65) color = '#FBBF24'
-  else if (score >= 0.5) color = '#00D4FF'
-  else color = '#F87171'
+  if (score >= 0.8) color = '#00FF94'
+  else if (score >= 0.65) color = '#FFB800'
+  else if (score >= 0.5) color = '#00D9FF'
+  else color = '#FF4444'
   const cx = 40, cy = 44, r2 = 32
   const startAngle = Math.PI
   const endAngle = startAngle - score * Math.PI
@@ -483,28 +483,28 @@ function updateTrendChart() {
     grid: { left: 38, right: 15, top: 28, bottom: 25 },
     legend: {
       top: 0,
-      textStyle: { color: '#7E91AC', fontSize: 9 },
+      textStyle: { color: '#5A6B82', fontSize: 9 },
       itemWidth: 12, itemHeight: 2
     },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
-      textStyle: { color: '#E6EDF7', fontSize: 10 },
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
+      textStyle: { color: '#DCE6F0', fontSize: 10 },
       valueFormatter: (v) => v.toFixed(3)
     },
     xAxis: {
       type: 'category',
       data: MAGNITUDES,
       axisLine: { lineStyle: { color: '#1E3A5F' } },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 },
+      axisLabel: { color: '#5A6B82', fontSize: 9 },
       axisTick: { show: false }
     },
     yAxis: {
       type: 'value',
       min: 0.35, max: 0.85,
       axisLine: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 },
+      axisLabel: { color: '#5A6B82', fontSize: 9 },
       splitLine: { lineStyle: { color: '#1E3A5F' } }
     },
     series: [
@@ -512,15 +512,15 @@ function updateTrendChart() {
         name: '基线',
         type: 'line',
         data: trends.baseline || [],
-        lineStyle: { color: '#7E91AC', width: 2, type: 'dashed' },
-        itemStyle: { color: '#7E91AC' },
+        lineStyle: { color: '#5A6B82', width: 2, type: 'dashed' },
+        itemStyle: { color: '#5A6B82' },
         symbolSize: 5,
         markLine: {
           silent: true,
           symbol: 'none',
           data: [
-            { xAxis: 'M5.5', lineStyle: { color: '#F87171', type: 'dashed', width: 1, opacity: 0.5 }, label: { show: false } },
-            { xAxis: 'M6.0', lineStyle: { color: '#34D399', type: 'dashed', width: 1, opacity: 0.5 }, label: { show: false } }
+            { xAxis: 'M5.5', lineStyle: { color: '#FF4444', type: 'dashed', width: 1, opacity: 0.5 }, label: { show: false } },
+            { xAxis: 'M6.0', lineStyle: { color: '#00FF94', type: 'dashed', width: 1, opacity: 0.5 }, label: { show: false } }
           ]
         }
       },
@@ -546,8 +546,8 @@ function initRadarChart() {
 function updateRadarChart() {
   if (!radarChart) return
   const key = currentStrategy.value
-  const colors = { baseline: '#7E91AC', A: '#FBBF24', B: '#FB923C', C: '#34D399' }
-  const bgColors = { baseline: 'rgba(126,145,172,0.1)', A: 'rgba(251,191,36,0.1)', B: 'rgba(251,146,60,0.1)', C: 'rgba(52,211,153,0.2)' }
+  const colors = { baseline: '#5A6B82', A: '#FFB800', B: '#FF3366', C: '#00FF94' }
+  const bgColors = { baseline: 'rgba(90, 107, 130,0.1)', A: 'rgba(255, 184, 0,0.1)', B: 'rgba(255, 51, 102,0.1)', C: 'rgba(0, 255, 148,0.2)' }
   const names = { baseline: '基线', A: '策略A', B: '策略B', C: '策略C' }
   const chartData = STRATEGY_LIST.map(k => {
     const s = STRATEGIES.value[k] || {}
@@ -570,13 +570,13 @@ function updateRadarChart() {
   radarChart.setOption({
     legend: {
       top: 0,
-      textStyle: { color: '#7E91AC', fontSize: 9 },
+      textStyle: { color: '#5A6B82', fontSize: 9 },
       itemWidth: 10, itemHeight: 2
     },
     tooltip: {
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
-      textStyle: { color: '#E6EDF7', fontSize: 10 }
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
+      textStyle: { color: '#DCE6F0', fontSize: 10 }
     },
     radar: {
       center: ['50%', '58%'],
@@ -587,7 +587,7 @@ function updateRadarChart() {
         { name: '救援提升(%)', max: 16 },
         { name: '投资效率(ROI)', max: 5 }
       ],
-      axisName: { color: '#4A5C7A', fontSize: 9 },
+      axisName: { color: '#5A6B82', fontSize: 9 },
       splitLine: { lineStyle: { color: '#1E3A5F' } },
       splitArea: { areaStyle: { color: ['rgba(30,58,95,0.03)', 'rgba(30,58,95,0.08)'] } },
       axisLine: { lineStyle: { color: '#1E3A5F' } }
@@ -850,9 +850,9 @@ watch(() => data.prevention, () => {
 
         <!-- Legend -->
         <div class="map-legend">
-          <div><span style="color:#34D399;">━</span>加固路段 <span style="color:#34D399;">✚</span>新增设施</div>
-          <div><span style="color:#34D399;">●</span>高改善 <span style="color:#FBBF24;">●</span>中改善 <span style="color:#7E91AC;">●</span>无改善</div>
-          <div><span style="color:#A78BFA;">─</span>断裂带 <span style="color:#F87171;">◎</span>震中</div>
+          <div><span style="color:#00FF94;">━</span>加固路段 <span style="color:#00FF94;">✚</span>新增设施</div>
+          <div><span style="color:#00FF94;">●</span>高改善 <span style="color:#FFB800;">●</span>中改善 <span style="color:#5A6B82;">●</span>无改善</div>
+          <div><span style="color:#5A6B82;">─</span>断裂带 <span style="color:#FF4444;">◎</span>震中</div>
         </div>
 
         <!-- District Tooltip -->
@@ -1015,7 +1015,7 @@ watch(() => data.prevention, () => {
 <style scoped>
 /* ===== 决策舱（精致主卡） ===== */
 .cockpit-card {
-  background: linear-gradient(180deg, rgba(15,26,43,0.85), rgba(15,26,43,0.6));
+  background: linear-gradient(180deg, rgba(17, 26, 42,0.85), rgba(17, 26, 42,0.6));
   border: 1px solid var(--av-border);
   border-top: 3px solid var(--state-success);
   border-radius: 16px;
@@ -1029,9 +1029,9 @@ watch(() => data.prevention, () => {
 .cockpit-subtitle { font-size: 9.5px; letter-spacing: 0.08em; color: var(--av-muted-foreground); }
 .cockpit-badges { margin-left: auto; display: flex; gap: 6px; }
 .cockpit-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; background: var(--av-muted); color: var(--av-muted-foreground); }
-.cockpit-badge.target.saved { background: rgba(52,211,153,0.14); color: var(--state-success); }
-.cockpit-badge.target.flat { background: rgba(248,113,113,0.14); color: var(--state-error); }
-.cockpit-badge.note { font-size: 9px; background: rgba(0,212,255,0.1); color: var(--av-primary); }
+.cockpit-badge.target.saved { background: rgba(0, 255, 148,0.14); color: var(--state-success); }
+.cockpit-badge.target.flat { background: rgba(255, 68, 68,0.14); color: var(--state-error); }
+.cockpit-badge.note { font-size: 9px; background: rgba(0, 217, 255,0.1); color: var(--av-primary); }
 .cockpit-main { display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.5fr) minmax(0,1.2fr); gap: 16px; align-items: stretch; }
 .cockpit-control { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 4px 6px; }
 .cockpit-control-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--av-muted-foreground); }
@@ -1041,7 +1041,7 @@ watch(() => data.prevention, () => {
 .cockpit-scale { display: flex; justify-content: space-between; font-size: 8.5px; color: var(--av-muted-foreground); }
 .cockpit-reco { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
 .reco-label { font-size: 9px; color: var(--av-muted-foreground); }
-.reco-pill { font-size: 9.5px; font-weight: 600; color: var(--av-primary); background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.25); border-radius: 4px; padding: 1px 7px; }
+.reco-pill { font-size: 9.5px; font-weight: 600; color: var(--av-primary); background: rgba(0, 217, 255,0.08); border: 1px solid rgba(0, 217, 255,0.25); border-radius: 4px; padding: 1px 7px; }
 .reco-pill.dim { color: var(--av-muted-foreground); background: var(--av-muted); border-color: var(--av-border); }
 .cockpit-chart { background: rgba(10,19,32,0.55); border: 1px solid var(--av-border); border-radius: 12px; padding: 6px 8px; }
 .cockpit-effects { display: flex; flex-direction: column; gap: 8px; }
@@ -1054,6 +1054,6 @@ watch(() => data.prevention, () => {
 .effect-value.info { color: var(--state-info); }
 .effect-value.warn { color: var(--state-warning); }
 .effect-sub { font-size: 8px; color: var(--av-muted-foreground); }
-.cockpit-conclusion { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: var(--av-foreground); line-height: 1.55; background: linear-gradient(90deg, rgba(52,211,153,0.1), rgba(0,212,255,0.05)); border-left: 3px solid var(--state-success); border-radius: 4px; padding: 7px 10px; }
+.cockpit-conclusion { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: var(--av-foreground); line-height: 1.55; background: linear-gradient(90deg, rgba(0, 255, 148,0.1), rgba(0, 217, 255,0.05)); border-left: 3px solid var(--state-success); border-radius: 4px; padding: 7px 10px; }
 .cockpit-conclusion b.hl { color: var(--state-success); }
 </style>

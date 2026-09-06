@@ -14,7 +14,7 @@ const synced = ref(false)         // 是否已联动全局震级
 
 onMounted(async () => {
   try {
-    const r = await fetch('/data/grid_distance_profile.json')
+    const r = await fetch(import.meta.env.BASE_URL + 'data/grid_distance_profile.json')
     const p = await r.json()
     distanceProfile.value = {
       repDistKm: p.meta.rep_dist_km,
@@ -142,7 +142,7 @@ const offsetInfo = computed(() => {
 
 <style scoped>
 .probe-panel {
-  background: rgba(15, 26, 43, 0.5);
+  background: rgba(17, 26, 42, 0.5);
   border: 1px solid var(--av-border);
   border-top: 2px solid var(--state-warning);
   border-radius: 4px;
@@ -162,9 +162,9 @@ const offsetInfo = computed(() => {
 .probe-bar-name { font-weight: 700; }
 .probe-bar-meta { display: flex; align-items: center; gap: 5px; font-family: var(--av-font-mono); }
 .probe-drop { color: var(--state-error); font-size: 8px; }
-.probe-status { font-size: 8px; color: var(--av-muted-foreground); font-family: var(--font-sans, sans-serif); padding: 0 3px; border-radius: 2px; background: rgba(126,145,172,0.15); }
-.probe-status.collapsed { color: var(--state-error); background: rgba(248,113,113,0.15); }
-.probe-track { height: 6px; background: rgba(15,26,43,0.8); border: 1px solid var(--av-border); border-radius: 2px; overflow: hidden; }
+.probe-status { font-size: 8px; color: var(--av-muted-foreground); font-family: var(--font-sans, sans-serif); padding: 0 3px; border-radius: 2px; background: rgba(90, 107, 130,0.15); }
+.probe-status.collapsed { color: var(--state-error); background: rgba(255, 68, 68,0.15); }
+.probe-track { height: 6px; background: rgba(17, 26, 42,0.8); border: 1px solid var(--av-border); border-radius: 2px; overflow: hidden; }
 .probe-fill { height: 100%; border-radius: 1px; transition: width 0.08s linear; }
 .probe-city { font-size: 10.5px; font-weight: 700; border: 1px dashed; border-radius: 3px; padding: 4px 6px; text-align: center; margin-top: 4px; }
 .probe-note { font-size: 8.5px; color: var(--av-muted-foreground); margin-top: 5px; line-height: 1.4; }

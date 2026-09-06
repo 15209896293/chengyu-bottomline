@@ -3,7 +3,7 @@
  * MapContainer.vue — Leaflet 真实地图容器
  *
  * 功能：
- * - 高德瓦片底图 + CSS filter 深色化（契合 #0A1320 科技风）
+ * - 高德瓦片底图 + CSS filter 深色化（契合 #060912 科技风）
  * - 真实 GeoJSON 图层：区县边界 / 路网 / 阻断路网 / 医院POI / 消防/避难/危险源 / 断裂带 / 烈度网格 / 震中
  * - 震级联动：切换震级自动更新阻断路网和烈度网格
  * - Canvas 渲染器：高效渲染 3000 条路段
@@ -50,40 +50,40 @@ let loaded = false
 
 // ==================== 颜色配置 ====================
 const STYLE = {
-  district: { color: '#1C2B43', weight: 1, fillColor: '#0F1A2B', fillOpacity: 0.3 },
-  districtHover: { color: '#00D4FF', weight: 1.5, fillColor: '#00D4FF', fillOpacity: 0.15 },
+  district: { color: '#1B2640', weight: 1, fillColor: '#0B1018', fillOpacity: 0.3 },
+  districtHover: { color: '#00D9FF', weight: 1.5, fillColor: '#00D9FF', fillOpacity: 0.15 },
   road: { color: '#2A3F5F', weight: 0.8, opacity: 0.5 },
   block: {
     '正常':     { color: '#2A3F5F', weight: 0.8, opacity: 0.4 },
-    '轻度损伤': { color: '#FBBF24', weight: 1.5, opacity: 0.7 },
-    '严重损伤': { color: '#FB923C', weight: 2, opacity: 0.8 },
-    '完全阻断': { color: '#F87171', weight: 2.5, opacity: 0.9 },
+    '轻度损伤': { color: '#FFB800', weight: 1.5, opacity: 0.7 },
+    '严重损伤': { color: '#FF3366', weight: 2, opacity: 0.8 },
+    '完全阻断': { color: '#FF4444', weight: 2.5, opacity: 0.9 },
   },
-  hospital: { color: '#00D4FF', radius: 3, fillOpacity: 0.8, weight: 0.5 },
-  hospitalLost: { color: '#F87171', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+  hospital: { color: '#00D9FF', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+  hospitalLost: { color: '#FF4444', radius: 3, fillOpacity: 0.8, weight: 0.5 },
   // 医院可达性着色（与 dashboard JSON map_layers.hospitals 的 accessibility 字段对应）
   hospitalReach: {
-    '可达但受限': { color: '#FBBF24', radius: 3, fillOpacity: 0.8, weight: 0.5 },
-    '不可达':     { color: '#F87171', radius: 3, fillOpacity: 0.8, weight: 0.5 },
-    '正常可达':   { color: '#34D399', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+    '可达但受限': { color: '#FFB800', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+    '不可达':     { color: '#FF4444', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+    '正常可达':   { color: '#00FF94', radius: 3, fillOpacity: 0.8, weight: 0.5 },
     // 无该字段时的兜底色（青色）
-    _default:     { color: '#00D4FF', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+    _default:     { color: '#00D9FF', radius: 3, fillOpacity: 0.8, weight: 0.5 },
   },
-  rescue: { color: '#34D399', radius: 3, fillOpacity: 0.8, weight: 0.5 },
-  shelter: { color: '#60A5FA', radius: 3, fillOpacity: 0.8, weight: 0.5 },
-  hazard: { color: '#F87171', radius: 3, fillOpacity: 0.6, weight: 0.5 },
-  fault: { color: '#F87171', weight: 1.5, opacity: 0.8, dashArray: '6,4' },
-  epicenter: { color: '#F87171', radius: 8, fillOpacity: 0.4, weight: 2 },
+  rescue: { color: '#00FF94', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+  shelter: { color: '#5A6B82', radius: 3, fillOpacity: 0.8, weight: 0.5 },
+  hazard: { color: '#FF4444', radius: 3, fillOpacity: 0.6, weight: 0.5 },
+  fault: { color: '#FF4444', weight: 1.5, opacity: 0.8, dashArray: '6,4' },
+  epicenter: { color: '#FF4444', radius: 8, fillOpacity: 0.4, weight: 2 },
 }
 
 // 烈度→颜色映射
 function intensityColor(i) {
-  if (i >= 8) return '#F87171'
-  if (i >= 7) return '#FB923C'
-  if (i >= 6) return '#FBBF24'
-  if (i >= 5) return '#A3E635'
-  if (i >= 4) return '#34D399'
-  return '#60A5FA'
+  if (i >= 8) return '#FF4444'
+  if (i >= 7) return '#FF3366'
+  if (i >= 6) return '#FFB800'
+  if (i >= 5) return '#00FF94'
+  if (i >= 4) return '#00FF94'
+  return '#5A6B82'
 }
 
 // ==================== 地图初始化 ====================
@@ -131,7 +131,7 @@ onUnmounted(() => {
 
 // ==================== 图层加载 ====================
 async function loadAllLayers() {
-  const geoBase = '/data/geo'
+  const geoBase = import.meta.env.BASE_URL + 'data/geo'
   // 分批加载，避免浏览器并发连接限制（HTTP/1.1 同域最多6个并发）
   const batch1 = [
     ['districts', 'hefei_districts_4490.geojson', createDistricts],
@@ -204,7 +204,7 @@ function createRoads() {
 // --- 阻断路网（按震级） ---
 async function loadBlockedRoads(reqId) {
   const mag = props.magnitude.toFixed(1)
-  const url = `/data/geo/road_blocked_M${mag}_lite.geojson`
+  const url = `${import.meta.env.BASE_URL}data/geo/road_blocked_M${mag}_lite.geojson`
   try {
     const data = await fetchGeo(url)
     if (reqId != null && reqId !== magnitudeReqId) return // 过期请求丢弃
@@ -241,7 +241,7 @@ function createHospitals() {
 async function loadHospitalsAccessibility(reqId) {
   const mag = props.magnitude.toFixed(1)
   try {
-    const r = await fetch(`/data/dashboard_M${mag}.json`)
+    const r = await fetch(`${import.meta.env.BASE_URL}data/dashboard_M${mag}.json`)
     const json = await r.json()
     if (reqId != null && reqId !== magnitudeReqId) return // 过期请求丢弃
     const list = json.map_layers?.hospitals || []
@@ -295,7 +295,7 @@ function createFault() {
 async function loadIntensity(reqId) {
   const mag = props.magnitude.toFixed(1)
   try {
-    const r = await fetch(`/data/dashboard_M${mag}.json`)
+    const r = await fetch(`${import.meta.env.BASE_URL}data/dashboard_M${mag}.json`)
     const json = await r.json()
     if (reqId != null && reqId !== magnitudeReqId) return // 过期请求丢弃
     const grid = json.map_layers?.intensity_grid || []
@@ -320,7 +320,7 @@ async function loadIntensity(reqId) {
 // --- 震中 ---
 function loadEpicenter(reqId) {
   const mag = props.magnitude.toFixed(1)
-  fetch(`/data/dashboard_M${mag}.json`)
+  fetch(`${import.meta.env.BASE_URL}data/dashboard_M${mag}.json`)
     .then(r => r.json())
     .then(json => {
       if (reqId != null && reqId !== magnitudeReqId) return // 过期请求丢弃
@@ -331,7 +331,7 @@ function loadEpicenter(reqId) {
       layerRefs.epicenter = L.layerGroup([
         L.circleMarker(latlng, { ...STYLE.epicenter, radius: 10, fillOpacity: 0.2 }),
         L.circleMarker(latlng, { ...STYLE.epicenter, radius: 5, fillOpacity: 0.6 }),
-        L.circleMarker(latlng, { radius: 2, color: '#F87171', fillColor: '#F87171', fillOpacity: 1, weight: 0 }),
+        L.circleMarker(latlng, { radius: 2, color: '#FF4444', fillColor: '#FF4444', fillOpacity: 1, weight: 0 }),
       ])
       if (props.layers.epicenter && loaded) layerRefs.epicenter.addTo(map)
     })
@@ -396,14 +396,14 @@ defineExpose({
   width: 100%;
   height: 100%;
   position: relative;
-  background: #0A1320;
+  background: #060912;
   border-radius: 6px;
   overflow: hidden;
 }
 .leaflet-map {
   width: 100%;
   height: 100%;
-  background: #0A1320;
+  background: #060912;
 }
 /* 离线底图提示条 */
 .tile-offline-tip {
@@ -416,9 +416,9 @@ defineExpose({
   gap: 6px;
   padding: 4px 10px;
   font-size: 10px;
-  color: var(--muted, #7E91AC);
-  background: rgba(15, 26, 43, 0.85);
-  border: 1px solid var(--border, #1C2B43);
+  color: var(--muted, #5A6B82);
+  background: rgba(17, 26, 42, 0.85);
+  border: 1px solid var(--border, #1B2640);
   border-radius: 4px;
   backdrop-filter: blur(4px);
   pointer-events: none;
@@ -427,7 +427,7 @@ defineExpose({
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--warning, #FBBF24);
+  background: var(--warning, #FFB800);
 }
 </style>
 
@@ -439,19 +439,19 @@ defineExpose({
 
 /* Leaflet 控件深色化 */
 .leaflet-control-zoom a {
-  background: rgba(15, 26, 43, 0.9) !important;
-  color: #00D4FF !important;
-  border-color: #1C2B43 !important;
+  background: rgba(17, 26, 42, 0.9) !important;
+  color: #00D9FF !important;
+  border-color: #1B2640 !important;
 }
 .leaflet-control-zoom a:hover {
-  background: rgba(0, 212, 255, 0.15) !important;
+  background: rgba(0, 217, 255, 0.15) !important;
 }
 
 /* tooltip 深色化 */
 .leaflet-tooltip {
-  background: rgba(15, 26, 43, 0.95) !important;
+  background: rgba(17, 26, 42, 0.95) !important;
   color: #E2E8F0 !important;
-  border: 1px solid #1C2B43 !important;
+  border: 1px solid #1B2640 !important;
   border-radius: 4px !important;
   font-size: 11px !important;
   font-family: var(--font-sans, sans-serif) !important;
@@ -462,17 +462,17 @@ defineExpose({
 .leaflet-tooltip-bottom:before,
 .leaflet-tooltip-left:before,
 .leaflet-tooltip-right:before {
-  border-top-color: #1C2B43 !important;
-  border-bottom-color: #1C2B43 !important;
-  border-left-color: #1C2B43 !important;
-  border-right-color: #1C2B43 !important;
+  border-top-color: #1B2640 !important;
+  border-bottom-color: #1B2640 !important;
+  border-left-color: #1B2640 !important;
+  border-right-color: #1B2640 !important;
 }
 
 /* 区县标签 */
 .map-district-label {
   background: transparent !important;
   border: none !important;
-  color: #4A5C7A !important;
+  color: #5A6B82 !important;
   font-size: 10px !important;
   font-weight: 500 !important;
   text-shadow: 0 0 4px rgba(10, 19, 32, 0.8) !important;
@@ -480,7 +480,7 @@ defineExpose({
 
 /* Leaflet 容器背景 */
 .leaflet-container {
-  background: #0A1320 !important;
+  background: #060912 !important;
   font-family: var(--font-sans, sans-serif) !important;
 }
 .leaflet-tile-pane {

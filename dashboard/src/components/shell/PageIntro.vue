@@ -32,7 +32,7 @@ defineProps({
   display: flex;
   align-items: stretch;
   gap: 0;
-  background: rgba(15, 26, 43, 0.5);
+  background: rgba(17, 26, 42, 0.5);
   border: 1px solid var(--av-border);
   border-radius: 4px;
   overflow: hidden;
@@ -65,8 +65,8 @@ defineProps({
 .page-intro-point {
   font-size: 9.5px;
   color: var(--av-muted-foreground);
-  background: rgba(126, 145, 172, 0.1);
-  border: 1px solid rgba(126, 145, 172, 0.2);
+  background: rgba(90, 107, 130, 0.1);
+  border: 1px solid rgba(90, 107, 130, 0.2);
   border-radius: 2px;
   padding: 1px 6px;
 }

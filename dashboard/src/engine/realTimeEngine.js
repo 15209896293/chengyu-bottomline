@@ -32,7 +32,7 @@ const THRESHOLDS = { medical: 0.30, rescue: 0.40, transport: 0.50, shelter: 0.30
 
 const SYSTEM_KEYS = ['medical', 'transport', 'rescue', 'shelter']
 const SYSTEM_NAMES = { medical: '医疗', transport: '交通', rescue: '救援', shelter: '避难' }
-const SYSTEM_COLORS = { medical: '#F87171', transport: '#FBBF24', rescue: '#FB923C', shelter: '#34D399' }
+const SYSTEM_COLORS = { medical: '#FF4444', transport: '#FFB800', rescue: '#FF3366', shelter: '#00FF94' }
 
 // 俞言祥2013 系数（config.yaml intensity.yu2013）
 const YU2013_PARAMS = { c1: 1.785, c2: 1.352, c3: 1.038, c4: 0.017, c5: 0.494 }

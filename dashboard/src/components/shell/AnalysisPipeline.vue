@@ -35,10 +35,21 @@ const emit = defineEmits(['switch'])
   align-items: center;
   gap: 10px;
   padding: 3px 16px;
-  background: rgba(10, 19, 32, 0.6);
+  background: rgba(11, 16, 24, 0.6);
   border-bottom: 1px solid var(--av-border);
   overflow-x: auto;
   white-space: nowrap;
+  position: relative;
+}
+.pipeline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.2;
 }
 .pipeline-label {
   font-size: 9px;
@@ -46,6 +57,7 @@ const emit = defineEmits(['switch'])
   letter-spacing: 0.5px;
   color: var(--av-muted-foreground);
   flex-shrink: 0;
+  font-family: var(--av-font-mono);
 }
 .pipeline-steps {
   display: flex;
@@ -58,15 +70,16 @@ const emit = defineEmits(['switch'])
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  border-radius: 3px;
+  clip-path: var(--clip-btn);
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s;
+  transition: all 0.2s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
-.pipeline-step:hover { background: rgba(0, 212, 255, 0.08); }
+.pipeline-step:hover { background: rgba(0, 217, 255, 0.08); border-color: var(--primary-dim); }
 .pipeline-step.active {
   background: var(--primary-dim);
   border-color: var(--primary-border);
+  box-shadow: 0 0 6px rgba(0, 217, 255, 0.15);
 }
 .pipeline-idx {
   font-size: 8px;

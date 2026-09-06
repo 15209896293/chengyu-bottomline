@@ -39,7 +39,7 @@ async function loadDashboard(mag) {
   if (cache.has(key)) {
     return cache.get(key)
   }
-  const resp = await fetch(`/data/dashboard_${key}.json`)
+  const resp = await fetch(`${import.meta.env.BASE_URL}data/dashboard_${key}.json`)
   if (!resp.ok) {
     throw new Error(`加载 ${key} 数据失败: ${resp.status}`)
   }

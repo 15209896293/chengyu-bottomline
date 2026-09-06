@@ -145,7 +145,7 @@ const reportLoading = ref(false)
 async function loadGlobalReport() {
   reportLoading.value = true
   try {
-    const resp = await fetch('/data/sensitivity_report.json')
+    const resp = await fetch(import.meta.env.BASE_URL + 'data/sensitivity_report.json')
     if (resp.ok) {
       globalReport.value = await resp.json()
     }
@@ -232,11 +232,11 @@ function updateTornadoChart() {
   const labels = tornado.map(t => t.label)
   const lowData = tornado.map((t, i) => ({
     value: [t.low_resilience, baseResilience],
-    itemStyle: { color: i === activeIdx ? '#FF8A8A' : '#F87171' }
+    itemStyle: { color: i === activeIdx ? '#FF8A8A' : '#FF4444' }
   }))
   const highData = tornado.map((t, i) => ({
     value: [baseResilience, t.high_resilience],
-    itemStyle: { color: i === activeIdx ? '#5EEAB6' : '#34D399' }
+    itemStyle: { color: i === activeIdx ? '#5EEAB6' : '#00FF94' }
   }))
 
   tornadoChart.setOption({
@@ -246,23 +246,23 @@ function updateTornadoChart() {
       type: 'value',
       min: 0.2,
       max: 0.5,
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#7E91AC', fontSize: 11 },
-      splitLine: { lineStyle: { color: '#16243C' } },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#5A6B82', fontSize: 11 },
+      splitLine: { lineStyle: { color: '#0B1018' } },
       name: '韧性指数',
       nameLocation: 'middle',
       nameGap: 25,
-      nameTextStyle: { color: '#7E91AC', fontSize: 11 },
+      nameTextStyle: { color: '#5A6B82', fontSize: 11 },
     },
     yAxis: {
       type: 'category',
       data: labels,
-      axisLine: { lineStyle: { color: '#1C2B43' } },
+      axisLine: { lineStyle: { color: '#1B2640' } },
       axisLabel: {
         formatter: (value, index) => index === activeIdx ? `{a|${value}}` : `{n|${value}}`,
         rich: {
-          a: { color: '#00D4FF', fontSize: 13, fontWeight: 'bold' },
-          n: { color: '#E6EDF7', fontSize: 12 },
+          a: { color: '#00D9FF', fontSize: 13, fontWeight: 'bold' },
+          n: { color: '#DCE6F0', fontSize: 12 },
         },
       },
       inverse: true,
@@ -313,7 +313,7 @@ function updateTornadoChart() {
         type: 'line',
         data: labels.map(() => baseResilience),
         symbol: 'none',
-        lineStyle: { color: '#00D4FF', width: 2, type: 'dashed' },
+        lineStyle: { color: '#00D9FF', width: 2, type: 'dashed' },
         markPoint: {
           data: [{ coord: [baseResilience, 0], symbol: 'none' }],
         },
@@ -345,20 +345,20 @@ function updateCIChart() {
     xAxis: {
       type: 'category',
       data: ci.map(s => s.name),
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#E6EDF7', fontSize: 13 },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#DCE6F0', fontSize: 13 },
     },
     yAxis: {
       type: 'value',
       min: 0,
       max: 1,
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#7E91AC', fontSize: 11, formatter: '{value}' },
-      splitLine: { lineStyle: { color: '#16243C' } },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#5A6B82', fontSize: 11, formatter: '{value}' },
+      splitLine: { lineStyle: { color: '#0B1018' } },
       name: '功能率',
       nameLocation: 'middle',
       nameGap: 35,
-      nameTextStyle: { color: '#7E91AC', fontSize: 11 },
+      nameTextStyle: { color: '#5A6B82', fontSize: 11 },
     },
     series: [
       {
@@ -429,23 +429,23 @@ function updateCollapseChart() {
     xAxis: {
       type: 'category',
       data: mags,
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#7E91AC', fontSize: 11 },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#5A6B82', fontSize: 11 },
     },
     yAxis: {
       type: 'value',
       min: 0,
       max: 1,
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#7E91AC', fontSize: 11, formatter: '{value*100}%' },
-      splitLine: { lineStyle: { color: '#16243C' } },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#5A6B82', fontSize: 11, formatter: '{value*100}%' },
+      splitLine: { lineStyle: { color: '#0B1018' } },
     },
     series: [{
       type: 'bar',
       data: values.map(v => ({
         value: v,
         itemStyle: {
-          color: v > 0.95 ? '#F87171' : v > 0.5 ? '#FBBF24' : '#34D399',
+          color: v > 0.95 ? '#FF4444' : v > 0.5 ? '#FFB800' : '#00FF94',
           borderRadius: [4, 4, 0, 0],
         }
       })),
@@ -453,7 +453,7 @@ function updateCollapseChart() {
       label: {
         show: true,
         position: 'top',
-        color: '#E6EDF7',
+        color: '#DCE6F0',
         fontSize: 11,
         formatter: (p) => `${(p.value * 100).toFixed(1)}%`,
       },
@@ -495,33 +495,33 @@ function updateDistChart() {
     xAxis: {
       type: 'category',
       data: sortedKeys,
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#7E91AC', fontSize: 11 },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#5A6B82', fontSize: 11 },
     },
     yAxis: {
       type: 'value',
-      axisLine: { lineStyle: { color: '#1C2B43' } },
-      axisLabel: { color: '#7E91AC', fontSize: 11 },
-      splitLine: { lineStyle: { color: '#16243C' } },
+      axisLine: { lineStyle: { color: '#1B2640' } },
+      axisLabel: { color: '#5A6B82', fontSize: 11 },
+      splitLine: { lineStyle: { color: '#0B1018' } },
       name: '频次',
       nameLocation: 'middle',
       nameGap: 35,
-      nameTextStyle: { color: '#7E91AC', fontSize: 11 },
+      nameTextStyle: { color: '#5A6B82', fontSize: 11 },
     },
     series: [{
       type: 'bar',
       data: sortedKeys.map(k => ({
         value: bins[k],
         itemStyle: {
-          color: '#A78BFA',
+          color: '#5A6B82',
           borderRadius: [4, 4, 0, 0],
         }
       })),
       barWidth: '60%',
       markLine: {
         data: [
-          { xAxis: `M${dist.median.toFixed(1)}`, label: { formatter: '中位数', color: '#00D4FF' },
-            lineStyle: { color: '#00D4FF', width: 2, type: 'dashed' } },
+          { xAxis: `M${dist.median.toFixed(1)}`, label: { formatter: '中位数', color: '#00D9FF' },
+            lineStyle: { color: '#00D9FF', width: 2, type: 'dashed' } },
         ],
       },
     }],
@@ -1081,7 +1081,7 @@ onBeforeUnmount(() => {
 .reset-btn:hover {
   background: var(--primary);
   color: var(--primary-fg);
-  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+  box-shadow: none;
 }
 
 /* Resilience Summary */
@@ -1159,7 +1159,7 @@ onBeforeUnmount(() => {
 
 .slider-card.active {
   border-color: var(--primary);
-  box-shadow: 0 0 0 1px var(--primary-border), 0 0 16px rgba(0, 212, 255, 0.25);
+  box-shadow: 0 0 0 1px var(--primary-border);
 }
 
 .slider-card-head {
@@ -1220,13 +1220,13 @@ onBeforeUnmount(() => {
   background: var(--primary);
   border: 2px solid var(--bg);
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
+  box-shadow: none;
   transition: box-shadow 0.2s, transform 0.1s;
 }
 
 .param-slider::-webkit-slider-thumb:hover,
 .param-slider:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 14px rgba(0, 212, 255, 1);
+  box-shadow: none;
   transform: scale(1.15);
 }
 
@@ -1237,7 +1237,7 @@ onBeforeUnmount(() => {
   background: var(--primary);
   border: 2px solid var(--bg);
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
+  box-shadow: none;
 }
 
 .param-slider::-moz-range-track {

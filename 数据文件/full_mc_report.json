@@ -1,0 +1,190 @@
+{
+  "title": "全链路增强蒙特卡洛分析",
+  "method": "enhanced_semi_full",
+  "method_description": "对 M6.0/M7.0 各 100 次: 真实 46K 网格 yu2013 烈度场重算 → 人口加权 ΔI → 灵敏度线性映射 → 8 参数联合扰动 → 级联模型迭代传播真实计算",
+  "comparison_with_step17": {
+    "step17_proxy": "7 关键距离平均烈度 → 线性映射 (纯代理)",
+    "step17b_enhanced": "46K 网格真实烈度场重算 → 人口加权 ΔI → 线性映射 (增强半全链路)",
+    "improvement": "烈度变化估计从 7 点平均升级为 46K 网格人口加权，更接近真实管线输出",
+    "remaining_proxy": "烈度→功能率映射仍为线性灵敏度系数（Dijkstra 可达性重算单次 >30s 不可行）"
+  },
+  "results": {
+    "M6.0": {
+      "n_samples": 100,
+      "elapsed_sec": 0.4,
+      "city_collapse_count": 84,
+      "city_collapse_pct": 84,
+      "system_collapse": {
+        "medical": 0,
+        "rescue": 84,
+        "shelter": 1,
+        "transport": 9
+      },
+      "cascade_stats": {
+        "medical": {
+          "mean": 0.4483,
+          "std": 0.0472,
+          "min": 0.3339,
+          "max": 0.5407,
+          "p5": 0.374,
+          "p95": 0.5181
+        },
+        "rescue": {
+          "mean": 0.3203,
+          "std": 0.0542,
+          "min": 0.1996,
+          "max": 0.4242,
+          "p5": 0.2335,
+          "p95": 0.4046
+        },
+        "transport": {
+          "mean": 0.6123,
+          "std": 0.0585
+        },
+        "shelter": {
+          "mean": 0.4709,
+          "std": 0.0441
+        }
+      },
+      "param_importance": [
+        {
+          "param": "dI",
+          "spearman_rho": -0.9678
+        },
+        {
+          "param": "c2",
+          "spearman_rho": -0.8773
+        },
+        {
+          "param": "c3",
+          "spearman_rho": 0.3292
+        },
+        {
+          "param": "dep_shelter←rescue",
+          "spearman_rho": 0.195
+        },
+        {
+          "param": "dep_rescue←transport",
+          "spearman_rho": 0.1221
+        },
+        {
+          "param": "dep_shelter←medical",
+          "spearman_rho": 0.1184
+        },
+        {
+          "param": "dep_medical←transport",
+          "spearman_rho": -0.0517
+        },
+        {
+          "param": "thr_rescue",
+          "spearman_rho": 0.0309
+        },
+        {
+          "param": "dep_medical←rescue",
+          "spearman_rho": -0.0252
+        },
+        {
+          "param": "dep_rescue←medical",
+          "spearman_rho": 0.0161
+        },
+        {
+          "param": "thr_medical",
+          "spearman_rho": 0.0076
+        },
+        {
+          "param": "dep_shelter←transport",
+          "spearman_rho": -0.0071
+        }
+      ]
+    },
+    "M7.0": {
+      "n_samples": 100,
+      "elapsed_sec": 0.4,
+      "city_collapse_count": 100,
+      "city_collapse_pct": 100,
+      "system_collapse": {
+        "medical": 91,
+        "rescue": 99,
+        "shelter": 100,
+        "transport": 24
+      },
+      "cascade_stats": {
+        "medical": {
+          "mean": 0.1856,
+          "std": 0.0676,
+          "min": 0.0569,
+          "max": 0.3278,
+          "p5": 0.0859,
+          "p95": 0.3138
+        },
+        "rescue": {
+          "mean": 0.2118,
+          "std": 0.063,
+          "min": 0.0923,
+          "max": 0.3485,
+          "p5": 0.1174,
+          "p95": 0.3249
+        },
+        "transport": {
+          "mean": 0.5646,
+          "std": 0.0705
+        },
+        "shelter": {
+          "mean": 0.1345,
+          "std": 0.037
+        }
+      },
+      "param_importance": [
+        {
+          "param": "dI",
+          "spearman_rho": -0.9958
+        },
+        {
+          "param": "c2",
+          "spearman_rho": -0.9331
+        },
+        {
+          "param": "c3",
+          "spearman_rho": 0.2963
+        },
+        {
+          "param": "dep_medical←rescue",
+          "spearman_rho": -0.1606
+        },
+        {
+          "param": "dep_rescue←transport",
+          "spearman_rho": -0.1421
+        },
+        {
+          "param": "dep_shelter←transport",
+          "spearman_rho": 0.1328
+        },
+        {
+          "param": "dep_medical←transport",
+          "spearman_rho": -0.1035
+        },
+        {
+          "param": "thr_medical",
+          "spearman_rho": 0.1009
+        },
+        {
+          "param": "dep_shelter←rescue",
+          "spearman_rho": 0.0754
+        },
+        {
+          "param": "thr_rescue",
+          "spearman_rho": 0.0436
+        },
+        {
+          "param": "dep_shelter←medical",
+          "spearman_rho": 0.026
+        },
+        {
+          "param": "dep_rescue←medical",
+          "spearman_rho": 0.0031
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-08-09 17:44:46"
+}

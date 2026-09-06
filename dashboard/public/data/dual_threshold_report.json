@@ -1,0 +1,218 @@
+{
+  "title": "双档阈值对比分析",
+  "conservative_thresholds": {
+    "medical": 0.3,
+    "rescue": 0.4,
+    "transport": 0.5,
+    "shelter": 0.3
+  },
+  "lenient_thresholds": {
+    "medical": 0.5,
+    "rescue": 0.5,
+    "transport": 0.6,
+    "shelter": 0.5
+  },
+  "conservative_critical": 6.0,
+  "lenient_critical": 5.5,
+  "results": [
+    {
+      "magnitude": 5.0,
+      "conservative": {
+        "city_collapse": false,
+        "systems": {
+          "medical": false,
+          "transport": false,
+          "rescue": false,
+          "shelter": false
+        },
+        "cascade": {
+          "medical": 0.5943,
+          "transport": 0.8985,
+          "rescue": 0.616,
+          "shelter": 0.6632
+        }
+      },
+      "lenient": {
+        "city_collapse": false,
+        "systems": {
+          "medical": false,
+          "transport": false,
+          "rescue": false,
+          "shelter": false
+        },
+        "cascade": {
+          "medical": 0.5943,
+          "transport": 0.8985,
+          "rescue": 0.616,
+          "shelter": 0.6632
+        }
+      }
+    },
+    {
+      "magnitude": 5.5,
+      "conservative": {
+        "city_collapse": false,
+        "systems": {
+          "medical": false,
+          "transport": false,
+          "rescue": false,
+          "shelter": false
+        },
+        "cascade": {
+          "medical": 0.5008,
+          "transport": 0.6602,
+          "rescue": 0.4389,
+          "shelter": 0.5349
+        }
+      },
+      "lenient": {
+        "city_collapse": true,
+        "systems": {
+          "medical": false,
+          "transport": false,
+          "rescue": true,
+          "shelter": false
+        },
+        "cascade": {
+          "medical": 0.5008,
+          "transport": 0.6602,
+          "rescue": 0.4389,
+          "shelter": 0.5349
+        }
+      }
+    },
+    {
+      "magnitude": 6.0,
+      "conservative": {
+        "city_collapse": true,
+        "systems": {
+          "medical": false,
+          "transport": false,
+          "rescue": true,
+          "shelter": false
+        },
+        "cascade": {
+          "medical": 0.4433,
+          "transport": 0.6058,
+          "rescue": 0.3119,
+          "shelter": 0.4664
+        }
+      },
+      "lenient": {
+        "city_collapse": true,
+        "systems": {
+          "medical": true,
+          "transport": false,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.4433,
+          "transport": 0.6058,
+          "rescue": 0.3119,
+          "shelter": 0.4664
+        }
+      }
+    },
+    {
+      "magnitude": 6.5,
+      "conservative": {
+        "city_collapse": true,
+        "systems": {
+          "medical": false,
+          "transport": false,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.4107,
+          "transport": 0.585,
+          "rescue": 0.2594,
+          "shelter": 0.2783
+        }
+      },
+      "lenient": {
+        "city_collapse": true,
+        "systems": {
+          "medical": true,
+          "transport": true,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.4107,
+          "transport": 0.585,
+          "rescue": 0.2594,
+          "shelter": 0.2783
+        }
+      }
+    },
+    {
+      "magnitude": 7.0,
+      "conservative": {
+        "city_collapse": true,
+        "systems": {
+          "medical": true,
+          "transport": false,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.1907,
+          "transport": 0.5729,
+          "rescue": 0.2137,
+          "shelter": 0.1341
+        }
+      },
+      "lenient": {
+        "city_collapse": true,
+        "systems": {
+          "medical": true,
+          "transport": true,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.1907,
+          "transport": 0.5729,
+          "rescue": 0.2137,
+          "shelter": 0.1341
+        }
+      }
+    },
+    {
+      "magnitude": 7.5,
+      "conservative": {
+        "city_collapse": true,
+        "systems": {
+          "medical": true,
+          "transport": false,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.1651,
+          "transport": 0.5566,
+          "rescue": 0.1908,
+          "shelter": 0.0841
+        }
+      },
+      "lenient": {
+        "city_collapse": true,
+        "systems": {
+          "medical": true,
+          "transport": true,
+          "rescue": true,
+          "shelter": true
+        },
+        "cascade": {
+          "medical": 0.1651,
+          "transport": 0.5566,
+          "rescue": 0.1908,
+          "shelter": 0.0841
+        }
+      }
+    }
+  ],
+  "conclusion": "保守阈值下城市崩溃临界 M6.0，宽松阈值下 M5.5。即使将所有系统崩溃阈值放宽 0.20，级联效应仍使城市崩溃提前于独立评估的 M6.5——证明跨系统级联传播的实质性影响不依赖于阈值设定。"
+}

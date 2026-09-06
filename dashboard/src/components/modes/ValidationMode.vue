@@ -13,8 +13,8 @@ const selectedEvent = ref('wenchuan_2008')
 async function loadData() {
   try {
     const [r1, r2] = await Promise.all([
-      fetch('/data/validation_report.json').then(r => r.json()),
-      fetch('/data/multi_source_comparison.json').then(r => r.json())
+      fetch(import.meta.env.BASE_URL + 'data/validation_report.json').then(r => r.json()),
+      fetch(import.meta.env.BASE_URL + 'data/multi_source_comparison.json').then(r => r.json())
     ])
     validationReport.value = r1
     multiSource.value = r2
@@ -27,10 +27,10 @@ async function loadData() {
 
 // ==================== 震源情景配色 ====================
 const SCENARIO_COLORS = {
-  '郯庐带合肥段': '#F87171',
-  '肥东断裂': '#FB923C',
-  '大别山断裂': '#FBBF24',
-  '宿迁段迁移': '#60A5FA',
+  '郯庐带合肥段': '#FF4444',
+  '肥东断裂': '#FF3366',
+  '大别山断裂': '#FFB800',
+  '宿迁段迁移': '#5A6B82',
 }
 
 // ==================== COMPUTED: 历史震例 ====================
@@ -68,12 +68,12 @@ const actualSource = computed(() => currentEvent.value?.isoseismal_comparison?.a
 // 可信度等级判定
 const credibilityLevel = computed(() => {
   const v = verdict.value
-  if (!v) return { color: '#7E91AC', bg: 'rgba(126,145,172,0.12)', tag: 'N/A' }
+  if (!v) return { color: '#5A6B82', bg: 'rgba(90, 107, 130,0.12)', tag: 'N/A' }
   const txt = v.credibility || ''
-  if (txt.includes('良好')) return { color: 'var(--state-success)', bg: 'rgba(52,211,153,0.12)', tag: '良好' }
-  if (txt.includes('中等')) return { color: 'var(--state-warning)', bg: 'rgba(251,191,36,0.12)', tag: '中等' }
-  if (txt.includes('较差') || txt.includes('低')) return { color: 'var(--state-error)', bg: 'rgba(248,113,113,0.12)', tag: '较差' }
-  return { color: 'var(--av-primary)', bg: 'rgba(0,212,255,0.12)', tag: '一般' }
+  if (txt.includes('良好')) return { color: 'var(--state-success)', bg: 'rgba(0, 255, 148,0.12)', tag: '良好' }
+  if (txt.includes('中等')) return { color: 'var(--state-warning)', bg: 'rgba(255, 184, 0,0.12)', tag: '中等' }
+  if (txt.includes('较差') || txt.includes('低')) return { color: 'var(--state-error)', bg: 'rgba(255, 68, 68,0.12)', tag: '较差' }
+  return { color: 'var(--av-primary)', bg: 'rgba(0, 217, 255,0.12)', tag: '一般' }
 })
 
 // ==================== COMPUTED: 多震源情景 ====================
@@ -94,7 +94,7 @@ const scenarios = computed(() => {
       maxGrade: intensity.max_grade ?? 0,
       collapsedCount: Object.values(cascade.collapses || {}).filter(Boolean).length,
       cityCollapsed: cascade.city_collapsed,
-      color: SCENARIO_COLORS[s.name] || '#7E91AC',
+      color: SCENARIO_COLORS[s.name] || '#5A6B82',
     }
   })
 })
@@ -148,10 +148,10 @@ const charts = {}
 let resizeObserver = null
 
 const CHART_TOOLTIP = {
-  backgroundColor: '#142440',
-  borderColor: '#1C2B43',
+  backgroundColor: '#0B1018',
+  borderColor: '#1B2640',
   borderWidth: 1,
-  textStyle: { color: '#E6EDF7', fontSize: 10 },
+  textStyle: { color: '#DCE6F0', fontSize: 10 },
 }
 
 function initIsoChart() {
@@ -180,32 +180,32 @@ function updateIsoChart() {
         return s
       }
     },
-    legend: { top: 2, right: 0, textStyle: { color: '#7E91AC', fontSize: 9 }, itemWidth: 10, itemHeight: 2, itemGap: 8 },
+    legend: { top: 2, right: 0, textStyle: { color: '#5A6B82', fontSize: 9 }, itemWidth: 10, itemHeight: 2, itemGap: 8 },
     xAxis: {
       type: 'category', data: rows.map(r => r.grade),
-      name: '烈度', nameTextStyle: { color: '#4A5C7A', fontSize: 9 },
+      name: '烈度', nameTextStyle: { color: '#5A6B82', fontSize: 9 },
       axisLine: { lineStyle: { color: '#1E3A5F' } },
       axisTick: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 }
+      axisLabel: { color: '#5A6B82', fontSize: 9 }
     },
     yAxis: {
       type: 'log',
-      name: '半径(km)', nameTextStyle: { color: '#4A5C7A', fontSize: 9 },
+      name: '半径(km)', nameTextStyle: { color: '#5A6B82', fontSize: 9 },
       axisLine: { show: false }, axisTick: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 },
+      axisLabel: { color: '#5A6B82', fontSize: 9 },
       splitLine: { lineStyle: { color: '#1E3A5F' } }
     },
     series: [
       {
         name: '模型半径', type: 'bar',
         data: rows.map(r => r.model),
-        itemStyle: { color: '#00D4FF', borderRadius: [2, 2, 0, 0] },
+        itemStyle: { color: '#00D9FF', borderRadius: [2, 2, 0, 0] },
         barGap: '15%',
       },
       {
         name: '实际半径', type: 'bar',
         data: rows.map(r => r.actual),
-        itemStyle: { color: '#FBBF24', borderRadius: [2, 2, 0, 0] },
+        itemStyle: { color: '#FFB800', borderRadius: [2, 2, 0, 0] },
       }
     ]
   }, true)
@@ -223,7 +223,7 @@ function updateRadarChart() {
   if (!scs.length) return
   charts.radar.setOption({
     tooltip: { ...CHART_TOOLTIP },
-    legend: { bottom: 2, textStyle: { color: '#7E91AC', fontSize: 9 }, itemWidth: 10, itemHeight: 2, itemGap: 12 },
+    legend: { bottom: 2, textStyle: { color: '#5A6B82', fontSize: 9 }, itemWidth: 10, itemHeight: 2, itemGap: 12 },
     radar: {
       indicator: [
         { name: '平均烈度', max: 8 },
@@ -234,9 +234,9 @@ function updateRadarChart() {
       ],
       center: ['50%', '46%'],
       radius: '60%',
-      axisName: { color: '#7E91AC', fontSize: 10 },
+      axisName: { color: '#5A6B82', fontSize: 10 },
       splitLine: { lineStyle: { color: '#1E3A5F' } },
-      splitArea: { areaStyle: { color: ['rgba(0,212,255,0.02)', 'rgba(0,212,255,0.05)'] } },
+      splitArea: { areaStyle: { color: ['rgba(0, 217, 255,0.02)', 'rgba(0, 217, 255,0.05)'] } },
       axisLine: { lineStyle: { color: '#1E3A5F' } }
     },
     series: [{
@@ -266,30 +266,30 @@ function updateIntChart() {
   charts.int.setOption({
     grid: { left: 36, right: 14, top: 30, bottom: 24 },
     tooltip: { ...CHART_TOOLTIP, trigger: 'axis' },
-    legend: { top: 2, right: 0, textStyle: { color: '#7E91AC', fontSize: 9 }, itemWidth: 10, itemHeight: 2 },
+    legend: { top: 2, right: 0, textStyle: { color: '#5A6B82', fontSize: 9 }, itemWidth: 10, itemHeight: 2 },
     xAxis: {
       type: 'category', data: scs.map(s => s.shortName),
       axisLine: { lineStyle: { color: '#1E3A5F' } },
       axisTick: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 8, interval: 0 }
+      axisLabel: { color: '#5A6B82', fontSize: 8, interval: 0 }
     },
     yAxis: {
       type: 'value', min: 4, max: 12,
       axisLine: { show: false }, axisTick: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 },
+      axisLabel: { color: '#5A6B82', fontSize: 9 },
       splitLine: { lineStyle: { color: '#1E3A5F' } }
     },
     series: [
       {
         name: '平均烈度', type: 'bar',
         data: scs.map(s => s.avg),
-        itemStyle: { color: '#00D4FF', borderRadius: [2, 2, 0, 0] },
+        itemStyle: { color: '#00D9FF', borderRadius: [2, 2, 0, 0] },
         barGap: '15%',
       },
       {
         name: '合肥烈度', type: 'bar',
         data: scs.map(s => s.atHeifei),
-        itemStyle: { color: '#A78BFA', borderRadius: [2, 2, 0, 0] },
+        itemStyle: { color: '#5A6B82', borderRadius: [2, 2, 0, 0] },
       }
     ]
   }, true)
@@ -604,7 +604,7 @@ onBeforeUnmount(() => {
 .event-toggle-btn:hover { color: var(--av-foreground); border-color: var(--av-muted-foreground); }
 
 .event-toggle-btn.active {
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(0, 217, 255, 0.1);
   border-color: var(--av-primary);
   color: var(--av-primary);
   font-weight: 600;
@@ -635,7 +635,7 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: rgba(15, 26, 43, 0.6);
+  background: rgba(17, 26, 42, 0.6);
 }
 
 .credibility-text { flex: 1; min-width: 0; }
@@ -663,7 +663,7 @@ onBeforeUnmount(() => {
 
 /* 误差归因面板：诚实展示 + 防御话术 */
 .attribution-panel {
-  background: rgba(15, 26, 43, 0.5);
+  background: rgba(17, 26, 42, 0.5);
   border: 1px solid var(--av-border);
   border-left: 2px solid var(--state-warning);
   border-radius: 4px;

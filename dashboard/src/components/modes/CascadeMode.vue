@@ -154,7 +154,7 @@ const selectedNodeDetails = computed(() => {
   return {
     sys: s,
     name: nodes.value[s]?.name || s,
-    color: nodes.value[s]?.color || '#7E91AC',
+    color: nodes.value[s]?.color || '#5A6B82',
     ratio: nodes.value[s] ? nodes.value[s].value : null,
     status: nodes.value[s]?.status || '—',
     affectedBy: affectedBy.map(e => ({ name: nodes.value[e.s]?.name || e.s, w: e.w })),
@@ -202,7 +202,7 @@ const chainNodes = computed(() => {
       name: sys?.name || t.system,
       state: sys?.status || t.event,
       value: Math.round(ratio * 1000) / 10,
-      color: sys?.color || '#7E91AC',
+      color: sys?.color || '#5A6B82',
     }
   })
 })
@@ -242,7 +242,7 @@ const propStrengths = computed(() => {
 
 // ==================== 矩阵着色 ====================
 function depCellColor(w) {
-  return `rgba(0,212,255,${w.toFixed(2)})`
+  return `rgba(0, 217, 255,${w.toFixed(2)})`
 }
 
 function depCellTxtColor(i, j, w) {
@@ -256,7 +256,7 @@ const HM_CELL = 32, HM_OX = 32, HM_OY = 28
 // ==================== 状态横幅 ====================
 const statusBanner = computed(() => {
   const c = cascade.value
-  if (!c) return { title: '加载中...', desc: '', color: '#7E91AC', bg: 'rgba(126,145,172,0.15)' }
+  if (!c) return { title: '加载中...', desc: '', color: '#5A6B82', bg: 'rgba(90, 107, 130,0.15)' }
   const magStr = `M${currentMag.value.toFixed(1)}`
   if (c.city_cascade_collapse) {
     // 按级联时序列出崩溃系统，与真实传播链顺序一致（systems 对象键序与 timeline 不同）
@@ -272,16 +272,16 @@ const statusBanner = computed(() => {
       title: `${magStr} 级联传播中`,
       desc: collapsedSys + '崩溃',
       color: 'var(--state-error)',
-      bg: 'rgba(248,113,113,0.15)',
-      borderColor: 'rgba(248,113,113,0.3)'
+      bg: 'rgba(255, 68, 68,0.15)',
+      borderColor: 'rgba(255, 68, 68,0.3)'
     }
   }
   return {
     title: `${magStr} 系统承压`,
     desc: '尚未触发级联崩溃',
     color: 'var(--state-warning)',
-    bg: 'rgba(251,191,36,0.15)',
-    borderColor: 'rgba(251,191,36,0.3)'
+    bg: 'rgba(255, 184, 0,0.15)',
+    borderColor: 'rgba(255, 184, 0,0.3)'
   }
 })
 
@@ -325,10 +325,10 @@ function updateChart() {
     grid: { left: 36, right: 14, top: 28, bottom: 22 },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
       borderWidth: 1,
-      textStyle: { color: '#E6EDF7', fontSize: 10 },
+      textStyle: { color: '#DCE6F0', fontSize: 10 },
       formatter(params) {
         let s = params[0].axisValue + '<br/>'
         params.forEach(p => {
@@ -340,7 +340,7 @@ function updateChart() {
     legend: {
       top: 0,
       right: 0,
-      textStyle: { color: '#7E91AC', fontSize: 9 },
+      textStyle: { color: '#5A6B82', fontSize: 9 },
       itemWidth: 10,
       itemHeight: 2,
       itemGap: 8
@@ -350,7 +350,7 @@ function updateChart() {
       data: magLabels,
       axisLine: { lineStyle: { color: '#1E3A5F' } },
       axisTick: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 }
+      axisLabel: { color: '#5A6B82', fontSize: 9 }
     },
     yAxis: {
       min: 0,
@@ -358,7 +358,7 @@ function updateChart() {
       axisLine: { show: false },
       axisTick: { show: false },
       axisLabel: {
-        color: '#4A5C7A', fontSize: 9,
+        color: '#5A6B82', fontSize: 9,
         formatter: (v) => Math.round(v * 100) + '%'
       },
       splitLine: { lineStyle: { color: '#1E3A5F' } }
@@ -367,51 +367,51 @@ function updateChart() {
       {
         name: '医疗', type: 'line', smooth: true,
         data: chartData.map(d => d.medical),
-        lineStyle: { color: '#F87171', width: 2 },
-        itemStyle: { color: '#F87171' },
+        lineStyle: { color: '#FF4444', width: 2 },
+        itemStyle: { color: '#FF4444' },
         symbol: 'circle', symbolSize: 5,
         markLine: {
           symbol: 'none', silent: true,
           label: { show: false },
           data: [
-            { yAxis: thCollapse.medical, lineStyle: { color: '#F87171', type: 'dashed', width: 1, opacity: 0.6 } },
+            { yAxis: thCollapse.medical, lineStyle: { color: '#FF4444', type: 'dashed', width: 1, opacity: 0.6 } },
           ]
         }
       },
       {
         name: '救援', type: 'line', smooth: true,
         data: chartData.map(d => d.rescue),
-        lineStyle: { color: '#FB923C', width: 2 },
-        itemStyle: { color: '#FB923C' },
+        lineStyle: { color: '#FF3366', width: 2 },
+        itemStyle: { color: '#FF3366' },
         symbol: 'circle', symbolSize: 5,
         markLine: {
           symbol: 'none', silent: true,
           label: { show: false },
-          data: [{ yAxis: thCollapse.rescue, lineStyle: { color: '#FB923C', type: 'dashed', width: 1, opacity: 0.4 } }]
+          data: [{ yAxis: thCollapse.rescue, lineStyle: { color: '#FF3366', type: 'dashed', width: 1, opacity: 0.4 } }]
         }
       },
       {
         name: '交通', type: 'line', smooth: true,
         data: chartData.map(d => d.transport),
-        lineStyle: { color: '#FBBF24', width: 2 },
-        itemStyle: { color: '#FBBF24' },
+        lineStyle: { color: '#FFB800', width: 2 },
+        itemStyle: { color: '#FFB800' },
         symbol: 'circle', symbolSize: 5,
         markLine: {
           symbol: 'none', silent: true,
           label: { show: false },
-          data: [{ yAxis: thCollapse.transport, lineStyle: { color: '#FBBF24', type: 'dashed', width: 1, opacity: 0.4 } }]
+          data: [{ yAxis: thCollapse.transport, lineStyle: { color: '#FFB800', type: 'dashed', width: 1, opacity: 0.4 } }]
         }
       },
       {
         name: '避难', type: 'line', smooth: true,
         data: chartData.map(d => d.shelter),
-        lineStyle: { color: '#34D399', width: 2 },
-        itemStyle: { color: '#34D399' },
+        lineStyle: { color: '#00FF94', width: 2 },
+        itemStyle: { color: '#00FF94' },
         symbol: 'circle', symbolSize: 5,
         markLine: {
           symbol: 'none', silent: true,
           label: { show: false },
-          data: [{ yAxis: thCollapse.shelter, lineStyle: { color: '#34D399', type: 'dashed', width: 1, opacity: 0.4 } }]
+          data: [{ yAxis: thCollapse.shelter, lineStyle: { color: '#00FF94', type: 'dashed', width: 1, opacity: 0.4 } }]
         }
       }
     ]
@@ -511,20 +511,20 @@ function updateEvoChart() {
 
   const labels = steps.map(s => s.label)
   const seriesCfg = [
-    { key: 'medical', name: '医疗', color: '#F87171' },
-    { key: 'transport', name: '交通', color: '#FBBF24' },
-    { key: 'rescue', name: '救援', color: '#FB923C' },
-    { key: 'shelter', name: '避难', color: '#34D399' },
+    { key: 'medical', name: '医疗', color: '#FF4444' },
+    { key: 'transport', name: '交通', color: '#FFB800' },
+    { key: 'rescue', name: '救援', color: '#FF3366' },
+    { key: 'shelter', name: '避难', color: '#00FF94' },
   ]
 
   evoChartInstance.setOption({
     grid: { left: 32, right: 14, top: 24, bottom: 20 },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
       borderWidth: 1,
-      textStyle: { color: '#E6EDF7', fontSize: 10 },
+      textStyle: { color: '#DCE6F0', fontSize: 10 },
       formatter(params) {
         const step = steps[params[0].dataIndex]
         let s = params[0].axisValue + ' · ' + (step?.desc || '') + '<br/>'
@@ -536,7 +536,7 @@ function updateEvoChart() {
     },
     legend: {
       top: 0, right: 0,
-      textStyle: { color: '#7E91AC', fontSize: 9 },
+      textStyle: { color: '#5A6B82', fontSize: 9 },
       itemWidth: 10, itemHeight: 2, itemGap: 8
     },
     xAxis: {
@@ -544,14 +544,14 @@ function updateEvoChart() {
       data: labels,
       axisLine: { lineStyle: { color: '#1E3A5F' } },
       axisTick: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 }
+      axisLabel: { color: '#5A6B82', fontSize: 9 }
     },
     yAxis: {
       min: 0, max: 1.05,
       axisLine: { show: false },
       axisTick: { show: false },
       axisLabel: {
-        color: '#4A5C7A', fontSize: 9,
+        color: '#5A6B82', fontSize: 9,
         formatter: (v) => Math.round(v * 100) + '%'
       },
       splitLine: { lineStyle: { color: '#1E3A5F' } }
@@ -569,7 +569,7 @@ function updateEvoChart() {
       if (idx === 0) {
         markLineData.push({
           xAxis: currentStepIdx.value,
-          lineStyle: { color: '#00D4FF', type: 'solid', width: 1.5, opacity: 0.8 },
+          lineStyle: { color: '#00D9FF', type: 'solid', width: 1.5, opacity: 0.8 },
           label: { show: false }
         })
       }
@@ -668,12 +668,12 @@ onBeforeUnmount(() => {
       <!-- 级联时间线 -->
       <div class="section-label">级联时间线</div>
       <div v-for="t in (cascade?.cascade_timeline || [])" :key="t.step" class="timeline-item">
-        <div class="timeline-dot" :style="{ background: nodes[t.system]?.color || '#7E91AC' }"></div>
+        <div class="timeline-dot" :style="{ background: nodes[t.system]?.color || '#5A6B82' }"></div>
         <div class="timeline-content">
           <div class="timeline-event">{{ t.event }}</div>
           <div class="timeline-desc">{{ t.description }}</div>
         </div>
-        <div class="timeline-ratio" :style="{ color: nodes[t.system]?.color || '#7E91AC' }">
+        <div class="timeline-ratio" :style="{ color: nodes[t.system]?.color || '#5A6B82' }">
           {{ ((t.ratio || 0) * 100).toFixed(1) }}%
         </div>
       </div>
@@ -703,11 +703,11 @@ onBeforeUnmount(() => {
             </marker>
             <marker id="ah-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
                     orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#F87171" />
+              <path d="M0,0 L10,5 L0,10 Z" fill="#FF4444" />
             </marker>
             <marker id="ah-hi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
                     orient="auto" markerUnits="userSpaceOnUse">
-              <path d="M0,0 L10,5 L0,10 Z" fill="#00D4FF" />
+              <path d="M0,0 L10,5 L0,10 Z" fill="#00D9FF" />
             </marker>
           </defs>
 
@@ -717,7 +717,7 @@ onBeforeUnmount(() => {
                 :class="{ dim: isEdgeDim(edge), hi: isEdgeHi(edge) }"
                 :x1="edge.sx.toFixed(1)" :y1="edge.sy.toFixed(1)"
                 :x2="edge.ex.toFixed(1)" :y2="edge.ey.toFixed(1)"
-                :stroke="isEdgeHi(edge) ? '#00D4FF' : '#3a4a66'"
+                :stroke="isEdgeHi(edge) ? '#00D9FF' : '#3a4a66'"
                 :stroke-width="edge.width"
                 :marker-end="isEdgeHi(edge) ? 'url(#ah-hi)' : 'url(#ah-muted)'" />
 
@@ -726,7 +726,7 @@ onBeforeUnmount(() => {
                 class="prop-path"
                 :x1="seg.sx.toFixed(1)" :y1="seg.sy.toFixed(1)"
                 :x2="seg.ex.toFixed(1)" :y2="seg.ey.toFixed(1)"
-                stroke="#F87171" stroke-width="2.5"
+                stroke="#FF4444" stroke-width="2.5"
                 marker-end="url(#ah-red)" />
 
           <!-- 系统节点 -->
@@ -741,28 +741,28 @@ onBeforeUnmount(() => {
             <!-- 节点圆 -->
             <circle class="node-circle"
                     :cx="NODE_POSITIONS[sys].x" :cy="NODE_POSITIONS[sys].y" :r="30"
-                    fill="#0F1A2B" :stroke="nodes[sys]?.color || '#7E91AC'" stroke-width="2.5" />
+                    fill="#0B1018" :stroke="nodes[sys]?.color || '#5A6B82'" stroke-width="2.5" />
             <!-- 系统名 -->
             <text :x="NODE_POSITIONS[sys].x" :y="NODE_POSITIONS[sys].y - 3"
-                  text-anchor="middle" :fill="nodes[sys]?.color || '#7E91AC'"
+                  text-anchor="middle" :fill="nodes[sys]?.color || '#5A6B82'"
                   font-size="11" font-weight="700">{{ nodes[sys]?.name || sys }}</text>
             <!-- 功能率 -->
             <text class="mono-txt" :x="NODE_POSITIONS[sys].x" :y="NODE_POSITIONS[sys].y + 10"
-                  text-anchor="middle" :fill="nodes[sys]?.color || '#7E91AC'"
+                  text-anchor="middle" :fill="nodes[sys]?.color || '#5A6B82'"
                   font-size="9" font-weight="600">{{ nodes[sys] ? nodes[sys].value.toFixed(1) + '%' : '—' }}</text>
             <!-- 状态标签 -->
             <text :x="statusPos(sys).x" :y="statusPos(sys).y"
-                  text-anchor="middle" :fill="nodes[sys]?.color || '#7E91AC'"
+                  text-anchor="middle" :fill="nodes[sys]?.color || '#5A6B82'"
                   font-size="8" font-weight="600">{{ nodes[sys]?.status || '—' }}</text>
           </g>
         </svg>
 
         <!-- 图例 -->
         <div class="map-legend">
-          <div><span class="legend-dot" style="background:#F87171;"></span>已崩溃</div>
-          <div><span class="legend-dot" style="background:#FB923C;"></span>级联风险</div>
+          <div><span class="legend-dot" style="background:#FF4444;"></span>已崩溃</div>
+          <div><span class="legend-dot" style="background:#FF3366;"></span>级联风险</div>
           <div><span class="legend-dot" style="background:#3a4a66;"></span>依赖关系</div>
-          <div><span class="legend-dot" style="background:#00D4FF;"></span>选中路径</div>
+          <div><span class="legend-dot" style="background:#00D9FF;"></span>选中路径</div>
         </div>
         <div class="map-hint">点击节点查看依赖详情 · 红色箭头为实际传播路径</div>
 
@@ -812,11 +812,11 @@ onBeforeUnmount(() => {
               <!-- 列标签 -->
               <text v-for="(l, j) in SYSTEM_LABELS" :key="'hl-' + j"
                     :x="HM_OX + j * HM_CELL + HM_CELL / 2" :y="HM_OY - 8"
-                    text-anchor="middle" fill="#7E91AC" font-size="9">{{ l }}</text>
+                    text-anchor="middle" fill="#5A6B82" font-size="9">{{ l }}</text>
               <!-- 行标签 -->
               <text v-for="(l, i) in SYSTEM_LABELS" :key="'vl-' + i"
                     :x="HM_OX - 6" :y="HM_OY + i * HM_CELL + HM_CELL / 2 + 3"
-                    text-anchor="end" fill="#7E91AC" font-size="9">{{ l }}</text>
+                    text-anchor="end" fill="#5A6B82" font-size="9">{{ l }}</text>
               <!-- 单元格 -->
               <template v-for="(row, i) in depMatrix" :key="'hmr-' + i">
                 <g v-for="(w, j) in row" :key="'hmc-' + i + '-' + j">
@@ -965,7 +965,7 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 40px; left: 10px; z-index: 20;
   min-width: 155px;
-  background: rgba(15, 26, 43, 0.96);
+  background: rgba(17, 26, 42, 0.96);
   border: 1px solid var(--av-border);
   border-radius: 6px;
   padding: 7px 9px;
@@ -980,7 +980,7 @@ onBeforeUnmount(() => {
 }
 .node-detail-status {
   font-size: 8px; color: var(--av-muted-foreground);
-  background: rgba(126, 145, 172, 0.15);
+  background: rgba(90, 107, 130, 0.15);
   padding: 0 4px; border-radius: 2px;
 }
 .node-detail-close {

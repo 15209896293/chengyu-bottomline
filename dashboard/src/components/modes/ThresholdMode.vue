@@ -22,13 +22,29 @@ const EXPOSURE_SCALE = [0.15, 1.0, 1.5, 2.0, 2.8, 3.5]
 // 6震级系统功能率数据（从 JSON 异步加载）
 const allMagData = ref([])
 
+// 双档阈值对比数据
+const dualThreshold = ref(null)
+
+// 加载双档阈值对比数据
+async function loadDualThreshold() {
+  if (dualThreshold.value) return
+  try {
+    const resp = await fetch(import.meta.env.BASE_URL + 'data/dual_threshold_report.json')
+    if (resp.ok) {
+      dualThreshold.value = await resp.json()
+    }
+  } catch (e) {
+    console.error('Failed to load dual threshold:', e)
+  }
+}
+
 // 加载全部6震级的系统功能率数据（用于响应曲线和崩溃阈值表）
 async function loadAllMagData() {
   if (allMagData.value.length > 0) return
   const summary = []
   for (const mag of magnitudes) {
     try {
-      const resp = await fetch(`/data/dashboard_M${mag.toFixed(1)}.json`)
+      const resp = await fetch(`${import.meta.env.BASE_URL}data/dashboard_M${mag.toFixed(1)}.json`)
       if (resp.ok) {
         const json = await resp.json()
         summary.push({
@@ -54,15 +70,15 @@ async function loadAllMagData() {
 
 // SVG地图：9区县多边形
 const districts = [
-  { name: '长丰县', path: 'M150,20 Q220,15 290,25 Q310,50 295,75 Q230,80 170,70 Q140,50 150,20Z', fill: 'rgba(52,211,153,0.04)', stroke: '#1E3A5F', sw: 0.5, lx: 220, ly: 48, tc: '#4A5C7A', fw: 400, il: 'I=5.2', ic: '#34D399' },
-  { name: '肥东县', path: 'M295,75 Q360,70 410,90 Q420,130 400,170 Q350,175 300,160 Q285,120 295,75Z', fill: 'rgba(251,191,36,0.04)', stroke: '#1E3A5F', sw: 0.5, lx: 350, ly: 120, tc: '#4A5C7A', fw: 400, il: 'I=5.2', ic: '#FBBF24' },
-  { name: '巢湖市', path: 'M380,180 Q440,175 465,210 Q470,250 440,265 Q390,260 370,230 Q365,200 380,180Z', fill: 'rgba(52,211,153,0.02)', stroke: '#1E3A5F', sw: 0.5, lx: 415, ly: 225, tc: '#4A5C7A', fw: 400, il: 'I=4.6', ic: '#34D399' },
-  { name: '庐江县', path: 'M230,230 Q290,225 340,245 Q345,270 310,275 Q250,272 215,260 Q210,240 230,230Z', fill: 'rgba(52,211,153,0.01)', stroke: '#1E3A5F', sw: 0.5, lx: 275, ly: 258, tc: '#4A5C7A', fw: 400, il: 'I=4.3', ic: '#34D399' },
-  { name: '肥西县', path: 'M80,150 Q140,145 175,165 Q180,210 150,240 Q100,245 65,220 Q55,180 80,150Z', fill: 'rgba(52,211,153,0.03)', stroke: '#1E3A5F', sw: 0.5, lx: 115, ly: 200, tc: '#4A5C7A', fw: 400, il: 'I=4.9', ic: '#34D399' },
-  { name: '蜀山区', path: 'M110,80 Q160,75 175,100 Q180,130 160,150 Q120,155 95,135 Q85,105 110,80Z', fill: 'rgba(251,191,36,0.06)', stroke: '#1E3A5F', sw: 0.5, lx: 132, ly: 115, tc: '#4A5C7A', fw: 400, il: 'I=5.3', ic: '#FBBF24' },
-  { name: '庐阳区', path: 'M170,70 Q220,65 240,85 Q245,110 225,130 Q190,135 170,115 Q160,90 170,70Z', fill: 'rgba(248,113,113,0.08)', stroke: '#F87171', sw: 0.6, lx: 200, ly: 100, tc: '#F87171', fw: 600, il: 'I=6.0', ic: '#F87171' },
-  { name: '瑶海区', path: 'M240,85 Q285,80 300,100 Q305,125 285,145 Q250,150 235,125 Q230,100 240,85Z', fill: 'rgba(248,113,113,0.1)', stroke: '#F87171', sw: 0.6, lx: 265, ly: 112, tc: '#F87171', fw: 600, il: 'I=6.1', ic: '#F87171' },
-  { name: '包河区', path: 'M175,130 Q230,125 260,145 Q270,175 245,195 Q200,200 170,180 Q155,155 175,130Z', fill: 'rgba(251,191,36,0.06)', stroke: '#1E3A5F', sw: 0.5, lx: 210, ly: 162, tc: '#4A5C7A', fw: 400, il: 'I=5.3', ic: '#FBBF24' }
+  { name: '长丰县', path: 'M150,20 Q220,15 290,25 Q310,50 295,75 Q230,80 170,70 Q140,50 150,20Z', fill: 'rgba(0, 255, 148,0.04)', stroke: '#1E3A5F', sw: 0.5, lx: 220, ly: 48, tc: '#5A6B82', fw: 400, il: 'I=5.2', ic: '#00FF94' },
+  { name: '肥东县', path: 'M295,75 Q360,70 410,90 Q420,130 400,170 Q350,175 300,160 Q285,120 295,75Z', fill: 'rgba(255, 184, 0,0.04)', stroke: '#1E3A5F', sw: 0.5, lx: 350, ly: 120, tc: '#5A6B82', fw: 400, il: 'I=5.2', ic: '#FFB800' },
+  { name: '巢湖市', path: 'M380,180 Q440,175 465,210 Q470,250 440,265 Q390,260 370,230 Q365,200 380,180Z', fill: 'rgba(0, 255, 148,0.02)', stroke: '#1E3A5F', sw: 0.5, lx: 415, ly: 225, tc: '#5A6B82', fw: 400, il: 'I=4.6', ic: '#00FF94' },
+  { name: '庐江县', path: 'M230,230 Q290,225 340,245 Q345,270 310,275 Q250,272 215,260 Q210,240 230,230Z', fill: 'rgba(0, 255, 148,0.01)', stroke: '#1E3A5F', sw: 0.5, lx: 275, ly: 258, tc: '#5A6B82', fw: 400, il: 'I=4.3', ic: '#00FF94' },
+  { name: '肥西县', path: 'M80,150 Q140,145 175,165 Q180,210 150,240 Q100,245 65,220 Q55,180 80,150Z', fill: 'rgba(0, 255, 148,0.03)', stroke: '#1E3A5F', sw: 0.5, lx: 115, ly: 200, tc: '#5A6B82', fw: 400, il: 'I=4.9', ic: '#00FF94' },
+  { name: '蜀山区', path: 'M110,80 Q160,75 175,100 Q180,130 160,150 Q120,155 95,135 Q85,105 110,80Z', fill: 'rgba(255, 184, 0,0.06)', stroke: '#1E3A5F', sw: 0.5, lx: 132, ly: 115, tc: '#5A6B82', fw: 400, il: 'I=5.3', ic: '#FFB800' },
+  { name: '庐阳区', path: 'M170,70 Q220,65 240,85 Q245,110 225,130 Q190,135 170,115 Q160,90 170,70Z', fill: 'rgba(255, 68, 68,0.08)', stroke: '#FF4444', sw: 0.6, lx: 200, ly: 100, tc: '#FF4444', fw: 600, il: 'I=6.0', ic: '#FF4444' },
+  { name: '瑶海区', path: 'M240,85 Q285,80 300,100 Q305,125 285,145 Q250,150 235,125 Q230,100 240,85Z', fill: 'rgba(255, 68, 68,0.1)', stroke: '#FF4444', sw: 0.6, lx: 265, ly: 112, tc: '#FF4444', fw: 600, il: 'I=6.1', ic: '#FF4444' },
+  { name: '包河区', path: 'M175,130 Q230,125 260,145 Q270,175 245,195 Q200,200 170,180 Q155,155 175,130Z', fill: 'rgba(255, 184, 0,0.06)', stroke: '#1E3A5F', sw: 0.5, lx: 210, ly: 162, tc: '#5A6B82', fw: 400, il: 'I=5.3', ic: '#FFB800' }
 ]
 
 // 医院POI（x, y, baseReach 基础可达性）
@@ -276,13 +292,13 @@ const alerts = computed(() => {
 const statusBanner = computed(() => {
   const d = currentData.value
   if (d.medC && !d.resC) {
-    return { icon: Zap, color: 'var(--state-error)', bg: 'rgba(248,113,113,0.15)', border: 'rgba(248,113,113,0.3)', title: 'M' + d.mag.toFixed(1) + ' 医疗系统崩溃', desc: '功能率降至' + (d.medical * 100).toFixed(1) + '%，44%医院不可达' }
+    return { icon: Zap, color: 'var(--state-error)', bg: 'rgba(255, 68, 68,0.15)', border: 'rgba(255, 68, 68,0.3)', title: 'M' + d.mag.toFixed(1) + ' 医疗系统崩溃', desc: '功能率降至' + (d.medical * 100).toFixed(1) + '%，44%医院不可达' }
   } else if (d.resC && !d.shelC) {
-    return { icon: AlertOctagon, color: 'var(--state-orange)', bg: 'rgba(251,146,60,0.15)', border: 'rgba(251,146,60,0.3)', title: 'M' + d.mag.toFixed(1) + ' 救援系统崩溃', desc: '医疗+救援双系统崩溃，级联传播中' }
+    return { icon: AlertOctagon, color: 'var(--state-orange)', bg: 'rgba(255, 51, 102,0.15)', border: 'rgba(255, 51, 102,0.3)', title: 'M' + d.mag.toFixed(1) + ' 救援系统崩溃', desc: '医疗+救援双系统崩溃，级联传播中' }
   } else if (d.shelC) {
-    return { icon: AlertTriangle, color: 'var(--state-error)', bg: 'rgba(248,113,113,0.15)', border: 'rgba(248,113,113,0.3)', title: 'M' + d.mag.toFixed(1) + ' 3系统级联崩溃', desc: '医疗/救援/避难崩溃，城市全面失能' }
+    return { icon: AlertTriangle, color: 'var(--state-error)', bg: 'rgba(255, 68, 68,0.15)', border: 'rgba(255, 68, 68,0.3)', title: 'M' + d.mag.toFixed(1) + ' 3系统级联崩溃', desc: '医疗/救援/避难崩溃，城市全面失能' }
   }
-  return { icon: ShieldCheck, color: 'var(--state-success)', bg: 'rgba(52,211,153,0.15)', border: 'rgba(52,211,153,0.3)', title: 'M' + d.mag.toFixed(1) + ' 全系统正常', desc: '所有生命线系统功能率高于30%阈值' }
+  return { icon: ShieldCheck, color: 'var(--state-success)', bg: 'rgba(0, 255, 148,0.15)', border: 'rgba(0, 255, 148,0.3)', title: 'M' + d.mag.toFixed(1) + ' 全系统正常', desc: '所有生命线系统功能率高于30%阈值' }
 })
 
 // 滑块stops
@@ -308,6 +324,35 @@ const districtRanking = computed(() => {
     const color = v > 50 ? 'var(--state-error)' : v > 20 ? 'var(--state-warning)' : 'var(--av-primary)'
     return { name: d.name, loss, pct, color }
   })
+})
+
+// 双档阈值对比表
+const dualThresholdTable = computed(() => {
+  if (!dualThreshold.value) return { rows: [], conservativeCritical: null, lenientCritical: null }
+  const dt = dualThreshold.value
+  const rows = dt.results.map(r => ({
+    mag: r.magnitude,
+    consCollapse: r.conservative.city_collapse,
+    leniCollapse: r.lenient.city_collapse,
+    consSystems: [
+      { name: '医', collapsed: r.conservative.systems.medical },
+      { name: '救', collapsed: r.conservative.systems.rescue },
+      { name: '交', collapsed: r.conservative.systems.transport },
+      { name: '避', collapsed: r.conservative.systems.shelter },
+    ],
+    leniSystems: [
+      { name: '医', collapsed: r.lenient.systems.medical },
+      { name: '救', collapsed: r.lenient.systems.rescue },
+      { name: '交', collapsed: r.lenient.systems.transport },
+      { name: '避', collapsed: r.lenient.systems.shelter },
+    ],
+  }))
+  return {
+    rows,
+    conservativeCritical: dt.conservative_critical,
+    lenientCritical: dt.lenient_critical,
+    conclusion: dt.conclusion,
+  }
 })
 
 // 韧性指数仪表
@@ -362,9 +407,9 @@ function sysColorVar(value, collapsed) {
 
 function hospitalFill(baseReach) {
   const reach = baseReach * currentData.value.medical / 0.5423
-  if (reach < 0.3) return '#F87171'
-  if (reach < 0.6) return '#FBBF24'
-  return '#34D399'
+  if (reach < 0.3) return '#FF4444'
+  if (reach < 0.6) return '#FFB800'
+  return '#00FF94'
 }
 
 function isHospitalUnreachable(baseReach) {
@@ -390,17 +435,17 @@ function getChartOption() {
     grid: { left: 38, right: 18, top: 28, bottom: 25 },
     legend: {
       top: 0,
-      textStyle: { color: '#7E91AC', fontSize: 9 },
+      textStyle: { color: '#5A6B82', fontSize: 9 },
       itemWidth: 10, itemHeight: 2,
       data: ['医疗', '救援', '交通', '避难']
     },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
-      textStyle: { color: '#E6EDF7', fontSize: 10 },
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
+      textStyle: { color: '#DCE6F0', fontSize: 10 },
       formatter: (params) => {
-        let html = '<div style="color:#00D4FF;font-weight:600;margin-bottom:2px;">' + params[0].axisValue + '</div>'
+        let html = '<div style="color:#00D9FF;font-weight:600;margin-bottom:2px;">' + params[0].axisValue + '</div>'
         params.forEach(p => {
           html += '<div>' + p.marker + ' ' + p.seriesName + ': ' + p.value.toFixed(1) + '%</div>'
         })
@@ -411,38 +456,38 @@ function getChartOption() {
       type: 'category',
       data: magLabels,
       axisLine: { lineStyle: { color: '#1E3A5F' } },
-      axisLabel: { color: '#4A5C7A', fontSize: 9 },
+      axisLabel: { color: '#5A6B82', fontSize: 9 },
       axisTick: { show: false }
     },
     yAxis: {
       type: 'value',
       min: 0, max: 105,
       axisLine: { show: false },
-      axisLabel: { color: '#4A5C7A', fontSize: 9, formatter: '{value}%' },
+      axisLabel: { color: '#5A6B82', fontSize: 9, formatter: '{value}%' },
       splitLine: { lineStyle: { color: '#1E3A5F' } }
     },
     series: [
       {
         name: '医疗', type: 'line', smooth: true,
         data: chartData.map(d => +((d.medical || 0) * 100).toFixed(1)),
-        lineStyle: { color: '#F87171', width: 2 },
-        itemStyle: { color: '#F87171' },
+        lineStyle: { color: '#FF4444', width: 2 },
+        itemStyle: { color: '#FF4444' },
         symbol: 'circle',
         symbolSize: (val, params) => params.dataIndex === idx ? 8 : 5
       },
       {
         name: '救援', type: 'line', smooth: true,
         data: chartData.map(d => +((d.rescue || 0) * 100).toFixed(1)),
-        lineStyle: { color: '#FB923C', width: 2 },
-        itemStyle: { color: '#FB923C' },
+        lineStyle: { color: '#FF3366', width: 2 },
+        itemStyle: { color: '#FF3366' },
         symbol: 'circle',
         symbolSize: (val, params) => params.dataIndex === idx ? 8 : 5
       },
       {
         name: '交通', type: 'line', smooth: true,
         data: chartData.map(d => +((d.transport || 0) * 100).toFixed(1)),
-        lineStyle: { color: '#FBBF24', width: 2 },
-        itemStyle: { color: '#FBBF24' },
+        lineStyle: { color: '#FFB800', width: 2 },
+        itemStyle: { color: '#FFB800' },
         symbol: 'circle',
         symbolSize: (val, params) => params.dataIndex === idx ? 8 : 5
       },
@@ -452,8 +497,8 @@ function getChartOption() {
           const v = d.shelter || 0
           return +(Math.min(v, 1.0) * 100).toFixed(1)
         }),
-        lineStyle: { color: '#34D399', width: 2 },
-        itemStyle: { color: '#34D399' },
+        lineStyle: { color: '#00FF94', width: 2 },
+        itemStyle: { color: '#00FF94' },
         symbol: 'circle',
         symbolSize: (val, params) => params.dataIndex === idx ? 8 : 5,
         markLine: {
@@ -462,12 +507,12 @@ function getChartOption() {
           data: [
             {
               yAxis: 30,
-              lineStyle: { color: '#F87171', type: 'dashed', width: 1, opacity: 0.5 },
-              label: { show: true, formatter: '30%阈值', color: '#F87171', fontSize: 8, position: 'end' }
+              lineStyle: { color: '#FF4444', type: 'dashed', width: 1, opacity: 0.5 },
+              label: { show: true, formatter: '30%阈值', color: '#FF4444', fontSize: 8, position: 'end' }
             },
             {
               xAxis: idx,
-              lineStyle: { color: '#00D4FF', type: 'dashed', width: 1, opacity: 0.4 }
+              lineStyle: { color: '#00D9FF', type: 'dashed', width: 1, opacity: 0.4 }
             }
           ]
         }
@@ -602,6 +647,7 @@ watch(() => !loading.value && !!data.kpi, (visible) => {
 // ==================== LIFECYCLE ====================
 onMounted(async () => {
   await loadAllMagData()
+  loadDualThreshold()
   nextTick(() => {
     initChart()
   })
@@ -756,9 +802,9 @@ onUnmounted(() => {
 
           <!-- Legend -->
           <div class="map-legend">
-            <div><span style="color:#F87171;">●</span>医院不可达 <span style="color:#FBBF24;">●</span>部分可达 <span style="color:#34D399;">●</span>可达</div>
-            <div><span style="color:#F87171;">━</span>关键路段(阻断) <span style="color:#A78BFA;">─</span>断裂带</div>
-            <div><span style="color:#F87171;">◎</span>VI度 <span style="color:#FBBF24;">◎</span>V度 <span style="color:#34D399;">◎</span>IV度</div>
+            <div><span style="color:#FF4444;">●</span>医院不可达 <span style="color:#FFB800;">●</span>部分可达 <span style="color:#00FF94;">●</span>可达</div>
+            <div><span style="color:#FF4444;">━</span>关键路段(阻断) <span style="color:#5A6B82;">─</span>断裂带</div>
+            <div><span style="color:#FF4444;">◎</span>VI度 <span style="color:#FFB800;">◎</span>V度 <span style="color:#00FF94;">◎</span>IV度</div>
           </div>
 
           <!-- District Tooltip -->
@@ -877,6 +923,46 @@ onUnmounted(() => {
             <span>0.0 低</span><span>0.4</span><span>0.6</span><span>1.0 高</span>
           </div>
         </div>
+
+        <!-- Dual Threshold Comparison -->
+        <div class="panel-item" v-if="dualThresholdTable.rows.length">
+          <div class="panel-label">双档阈值敏感性</div>
+          <div style="display:flex;gap:6px;margin-bottom:6px;">
+            <div style="flex:1;padding:4px 6px;border:1px solid var(--av-border);border-radius:4px;background:rgba(255,68,68,0.06);">
+              <div style="font-size:8px;color:var(--av-muted-foreground);">保守阈值</div>
+              <div style="font-size:14px;font-weight:700;color:var(--state-error);font-family:var(--av-font-mono);">M{{ dualThresholdTable.conservativeCritical?.toFixed(1) }}</div>
+              <div style="font-size:7px;color:var(--av-muted-foreground);">医&lt;.30 救&lt;.40</div>
+            </div>
+            <div style="flex:1;padding:4px 6px;border:1px solid var(--av-border);border-radius:4px;background:rgba(255,184,0,0.06);">
+              <div style="font-size:8px;color:var(--av-muted-foreground);">宽松阈值</div>
+              <div style="font-size:14px;font-weight:700;color:var(--state-warning);font-family:var(--av-font-mono);">M{{ dualThresholdTable.lenientCritical?.toFixed(1) }}</div>
+              <div style="font-size:7px;color:var(--av-muted-foreground);">医&lt;.50 救&lt;.50</div>
+            </div>
+          </div>
+          <table class="mini-table dual-thresh-table">
+            <tbody>
+              <tr>
+                <th>M</th>
+                <th colspan="2">保守</th>
+                <th colspan="2">宽松</th>
+              </tr>
+              <tr v-for="row in dualThresholdTable.rows" :key="row.mag">
+                <td>{{ row.mag.toFixed(1) }}</td>
+                <td :class="row.consCollapse ? 'cell-red' : 'cell-green'">{{ row.consCollapse ? '崩' : '正' }}</td>
+                <td style="font-size:7px;">
+                  <span v-for="(s, i) in row.consSystems" :key="i" :style="{ color: s.collapsed ? 'var(--state-error)' : 'var(--av-muted-foreground)' }">{{ s.name }}</span>
+                </td>
+                <td :class="row.leniCollapse ? 'cell-red' : 'cell-green'">{{ row.leniCollapse ? '崩' : '正' }}</td>
+                <td style="font-size:7px;">
+                  <span v-for="(s, i) in row.leniSystems" :key="i" :style="{ color: s.collapsed ? 'var(--state-error)' : 'var(--av-muted-foreground)' }">{{ s.name }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:8px;color:var(--av-muted-foreground);margin-top:4px;line-height:1.4;">
+            独立评估临界 M6.5 → 级联后两档均提前，证明结论不依赖阈值设定
+          </div>
+        </div>
       </div>
 
     </div>
@@ -898,5 +984,24 @@ onUnmounted(() => {
 @keyframes th-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.dual-thresh-table td.cell-red {
+  color: var(--state-error);
+  font-weight: 700;
+  font-size: 10px;
+}
+.dual-thresh-table td.cell-green {
+  color: var(--state-success);
+  font-size: 10px;
+}
+.dual-thresh-table th {
+  font-size: 8px;
+  color: var(--av-muted-foreground);
+  font-weight: 400;
+  padding: 2px 3px;
+}
+.dual-thresh-table td {
+  text-align: center;
+  padding: 2px 3px;
 }
 </style>

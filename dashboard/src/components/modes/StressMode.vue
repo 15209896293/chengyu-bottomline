@@ -13,9 +13,9 @@ const error = ref(null)
 async function loadData() {
   try {
     const [r, v, b] = await Promise.all([
-      fetch('/data/stress_report.json').then(res => res.json()),
-      fetch('/data/vulnerable_exposure.json').then(res => res.json()).catch(() => null),
-      fetch('/data/budget_optimization.json').then(res => res.json()).catch(() => null),
+      fetch(import.meta.env.BASE_URL + 'data/stress_report.json').then(res => res.json()),
+      fetch(import.meta.env.BASE_URL + 'data/vulnerable_exposure.json').then(res => res.json()).catch(() => null),
+      fetch(import.meta.env.BASE_URL + 'data/budget_optimization.json').then(res => res.json()).catch(() => null),
     ])
     report.value = r
     vulnerable.value = v
@@ -67,10 +67,10 @@ function grade(score) {
   return { label: '危险', type: 'danger' }
 }
 const BADGE = {
-  success: { bg: 'rgba(52,211,153,0.12)', color: 'var(--state-success)' },
+  success: { bg: 'rgba(0, 255, 148,0.12)', color: 'var(--state-success)' },
   info: { bg: 'rgba(96,165,250,0.12)', color: 'var(--state-info)' },
-  warning: { bg: 'rgba(251,191,36,0.12)', color: 'var(--state-warning)' },
-  danger: { bg: 'rgba(248,113,113,0.12)', color: 'var(--state-error)' },
+  warning: { bg: 'rgba(255, 184, 0,0.12)', color: 'var(--state-warning)' },
+  danger: { bg: 'rgba(255, 68, 68,0.12)', color: 'var(--state-error)' },
 }
 const GAUGE_COLOR = {
   success: 'var(--state-success)', info: 'var(--state-info)',
@@ -423,7 +423,7 @@ onMounted(loadData)
   gap: 14px;
 }
 .analysis-card {
-  background: var(--av-card, #0F1A2B);
+  background: var(--av-card, #0B1018);
   border: 1px solid var(--av-border);
   border-radius: 12px;
   padding: 14px 16px;
@@ -456,7 +456,7 @@ onMounted(loadData)
 
 /* ===== 综合评分总览 ===== */
 .summary-section {
-  background: var(--av-card, #0F1A2B);
+  background: var(--av-card, #0B1018);
   border: 1px solid var(--av-border);
   border-radius: 12px;
   padding: 16px 20px;

@@ -178,15 +178,15 @@ function selectDistrict(name) {
    ============================================================ */
 // 9 区县多边形路径 (坐标来自模板)
 const districtPaths = [
-  { name: '长丰县', d: 'M150,20 Q220,15 290,25 Q310,50 295,75 Q230,80 170,70 Q140,50 150,20Z', fill: 'rgba(52,211,153,0.06)', stroke: '#1E3A5F', textX: 220, textY: 48, textColor: '#4A5C7A' },
-  { name: '肥东县', d: 'M295,75 Q360,70 410,90 Q420,130 400,170 Q350,175 300,160 Q285,120 295,75Z', fill: 'rgba(52,211,153,0.05)', stroke: '#1E3A5F', textX: 350, textY: 120, textColor: '#4A5C7A' },
-  { name: '巢湖市', d: 'M380,180 Q440,175 465,210 Q470,250 440,265 Q390,260 370,230 Q365,200 380,180Z', fill: 'rgba(52,211,153,0.04)', stroke: '#1E3A5F', textX: 415, textY: 225, textColor: '#4A5C7A' },
-  { name: '庐江县', d: 'M230,230 Q290,225 340,245 Q345,270 310,275 Q250,272 215,260 Q210,240 230,230Z', fill: 'rgba(52,211,153,0.03)', stroke: '#1E3A5F', textX: 275, textY: 258, textColor: '#4A5C7A' },
-  { name: '肥西县', d: 'M80,150 Q140,145 175,165 Q180,210 150,240 Q100,245 65,220 Q55,180 80,150Z', fill: 'rgba(52,211,153,0.06)', stroke: '#1E3A5F', textX: 115, textY: 200, textColor: '#4A5C7A' },
-  { name: '蜀山区', d: 'M110,80 Q160,75 175,100 Q180,130 160,150 Q120,155 95,135 Q85,105 110,80Z', fill: 'rgba(251,191,36,0.10)', stroke: '#1E3A5F', textX: 132, textY: 115, textColor: '#4A5C7A' },
-  { name: '庐阳区', d: 'M170,70 Q220,65 240,85 Q245,110 225,130 Q190,135 170,115 Q160,90 170,70Z', fill: 'rgba(248,113,113,0.18)', stroke: '#F87171', textX: 200, textY: 100, textColor: '#F87171', bold: true },
-  { name: '瑶海区', d: 'M240,85 Q285,80 300,100 Q305,125 285,145 Q250,150 235,125 Q230,100 240,85Z', fill: 'rgba(248,113,113,0.16)', stroke: '#F87171', textX: 265, textY: 112, textColor: '#F87171', bold: true },
-  { name: '包河区', d: 'M175,130 Q230,125 260,145 Q270,175 245,195 Q200,200 170,180 Q155,155 175,130Z', fill: 'rgba(251,146,60,0.13)', stroke: '#1E3A5F', textX: 210, textY: 162, textColor: '#4A5C7A' }
+  { name: '长丰县', d: 'M150,20 Q220,15 290,25 Q310,50 295,75 Q230,80 170,70 Q140,50 150,20Z', fill: 'rgba(0, 255, 148,0.06)', stroke: '#1E3A5F', textX: 220, textY: 48, textColor: '#5A6B82' },
+  { name: '肥东县', d: 'M295,75 Q360,70 410,90 Q420,130 400,170 Q350,175 300,160 Q285,120 295,75Z', fill: 'rgba(0, 255, 148,0.05)', stroke: '#1E3A5F', textX: 350, textY: 120, textColor: '#5A6B82' },
+  { name: '巢湖市', d: 'M380,180 Q440,175 465,210 Q470,250 440,265 Q390,260 370,230 Q365,200 380,180Z', fill: 'rgba(0, 255, 148,0.04)', stroke: '#1E3A5F', textX: 415, textY: 225, textColor: '#5A6B82' },
+  { name: '庐江县', d: 'M230,230 Q290,225 340,245 Q345,270 310,275 Q250,272 215,260 Q210,240 230,230Z', fill: 'rgba(0, 255, 148,0.03)', stroke: '#1E3A5F', textX: 275, textY: 258, textColor: '#5A6B82' },
+  { name: '肥西县', d: 'M80,150 Q140,145 175,165 Q180,210 150,240 Q100,245 65,220 Q55,180 80,150Z', fill: 'rgba(0, 255, 148,0.06)', stroke: '#1E3A5F', textX: 115, textY: 200, textColor: '#5A6B82' },
+  { name: '蜀山区', d: 'M110,80 Q160,75 175,100 Q180,130 160,150 Q120,155 95,135 Q85,105 110,80Z', fill: 'rgba(255, 184, 0,0.10)', stroke: '#1E3A5F', textX: 132, textY: 115, textColor: '#5A6B82' },
+  { name: '庐阳区', d: 'M170,70 Q220,65 240,85 Q245,110 225,130 Q190,135 170,115 Q160,90 170,70Z', fill: 'rgba(255, 68, 68,0.18)', stroke: '#FF4444', textX: 200, textY: 100, textColor: '#FF4444', bold: true },
+  { name: '瑶海区', d: 'M240,85 Q285,80 300,100 Q305,125 285,145 Q250,150 235,125 Q230,100 240,85Z', fill: 'rgba(255, 68, 68,0.16)', stroke: '#FF4444', textX: 265, textY: 112, textColor: '#FF4444', bold: true },
+  { name: '包河区', d: 'M175,130 Q230,125 260,145 Q270,175 245,195 Q200,200 170,180 Q155,155 175,130Z', fill: 'rgba(255, 51, 102,0.13)', stroke: '#1E3A5F', textX: 210, textY: 162, textColor: '#5A6B82' }
 ]
 
 // 道路网络 (主干道 stroke=#3A5278)
@@ -205,7 +205,7 @@ const secondaryRoads = [
   [380, 180, 410, 170, 0.4], [340, 245, 370, 230, 0.4]
 ]
 
-// 关键瓶颈路段 (stroke=#FB923C)
+// 关键瓶颈路段 (stroke=#FF3366)
 const keyRoads = [
   [175, 95, 210, 100, 1.3, 0.8],
   [225, 115, 245, 125, 1.3, 0.8],
@@ -306,34 +306,34 @@ function createBarOption() {
     grid: { left: 50, right: 45, top: 28, bottom: 22 },
     legend: {
       data: ['人口(万)', 'GDP(亿)'],
-      textStyle: { color: '#7E91AC', fontSize: 9 },
+      textStyle: { color: '#5A6B82', fontSize: 9 },
       itemWidth: 10, itemHeight: 4,
       top: 0, right: 0
     },
     tooltip: {
       trigger: 'axis',
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
       borderWidth: 1,
-      textStyle: { color: '#E6EDF7', fontSize: 10 },
+      textStyle: { color: '#DCE6F0', fontSize: 10 },
       axisPointer: { type: 'shadow' }
     },
     xAxis: [
       {
         type: 'value',
         name: '万',
-        nameTextStyle: { color: '#00D4FF', fontSize: 8 },
+        nameTextStyle: { color: '#00D9FF', fontSize: 8 },
         position: 'bottom',
-        axisLabel: { color: '#4A5C7A', fontSize: 8 },
+        axisLabel: { color: '#5A6B82', fontSize: 8 },
         splitLine: { lineStyle: { color: '#1E3A5F' } },
         axisLine: { lineStyle: { color: '#1E3A5F' } }
       },
       {
         type: 'value',
         name: '亿',
-        nameTextStyle: { color: '#A78BFA', fontSize: 8 },
+        nameTextStyle: { color: '#5A6B82', fontSize: 8 },
         position: 'top',
-        axisLabel: { color: '#4A5C7A', fontSize: 8 },
+        axisLabel: { color: '#5A6B82', fontSize: 8 },
         splitLine: { show: false },
         axisLine: { lineStyle: { color: '#1E3A5F' } }
       }
@@ -341,7 +341,7 @@ function createBarOption() {
     yAxis: {
       type: 'category',
       data: districts.value.map(d => d.name),
-      axisLabel: { color: '#7E91AC', fontSize: 9 },
+      axisLabel: { color: '#5A6B82', fontSize: 9 },
       axisLine: { lineStyle: { color: '#1E3A5F' } },
       axisTick: { show: false }
     },
@@ -350,7 +350,7 @@ function createBarOption() {
         name: '人口(万)',
         type: 'bar',
         data: districts.value.map(d => d.pop),
-        itemStyle: { color: 'rgba(0,212,255,0.6)', borderColor: '#00D4FF', borderWidth: 1, borderRadius: 2 },
+        itemStyle: { color: 'rgba(0, 217, 255,0.6)', borderColor: '#00D9FF', borderWidth: 1, borderRadius: 2 },
         barWidth: 5
       },
       {
@@ -358,7 +358,7 @@ function createBarOption() {
         type: 'bar',
         xAxisIndex: 1,
         data: districts.value.map(d => d.gdp),
-        itemStyle: { color: 'rgba(167,139,250,0.5)', borderColor: '#A78BFA', borderWidth: 1, borderRadius: 2 },
+        itemStyle: { color: 'rgba(90,107,130,0.5)', borderColor: '#5A6B82', borderWidth: 1, borderRadius: 2 },
         barWidth: 5
       }
     ]
@@ -368,6 +368,10 @@ function createBarOption() {
 // 柱状图：初始化后每次数据变化通过 setBarChart() 刷新（首次 init 时也调用）
 function initBarChart() {
   if (!barChartRef.value) return
+  if (barChartRef.value.clientWidth === 0 || barChartRef.value.clientHeight === 0) {
+    requestAnimationFrame(() => initBarChart())
+    return
+  }
   if (!barChart) barChart = echarts.init(barChartRef.value)
   setBarChart()
 }
@@ -394,10 +398,10 @@ const radarAvg = computed(() => {
 function createRadarOption() {
   return {
     tooltip: {
-      backgroundColor: '#142440',
-      borderColor: '#1C2B43',
+      backgroundColor: '#0B1018',
+      borderColor: '#1B2640',
       borderWidth: 1,
-      textStyle: { color: '#E6EDF7', fontSize: 10 },
+      textStyle: { color: '#DCE6F0', fontSize: 10 },
       formatter: (params) => {
         const labels = ['医疗', '救援', '交通', '避难']
         return labels.map((l, i) => `${l}: ${(params.value[i] * 100).toFixed(0)}%`).join('<br/>')
@@ -412,10 +416,8 @@ function createRadarOption() {
       ],
       center: ['50%', '55%'],
       radius: '60%',
-      min: 0,
-      max: 1,
-      splitNumber: 4,
-      axisName: { color: '#7E91AC', fontSize: 11, fontWeight: 600 },
+      splitNumber: 5,
+      axisName: { color: '#5A6B82', fontSize: 11, fontWeight: 600 },
       splitLine: { lineStyle: { color: '#1E3A5F' } },
       splitArea: { show: false },
       axisLine: { lineStyle: { color: '#1E3A5F' } }
@@ -425,11 +427,11 @@ function createRadarOption() {
       data: [{
         value: radarCoverage.value,
         name: '基线覆盖率',
-        areaStyle: { color: 'rgba(0,212,255,0.15)' },
-        lineStyle: { color: '#00D4FF', width: 2 },
+        areaStyle: { color: 'rgba(0, 217, 255,0.15)' },
+        lineStyle: { color: '#00D9FF', width: 2 },
         symbol: 'circle',
         symbolSize: 6,
-        itemStyle: { color: '#00D4FF' }
+        itemStyle: { color: '#00D9FF' }
       }]
     }]
   }
@@ -437,6 +439,10 @@ function createRadarOption() {
 
 function initRadarChart() {
   if (!radarChartRef.value) return
+  if (radarChartRef.value.clientWidth === 0 || radarChartRef.value.clientHeight === 0) {
+    requestAnimationFrame(() => initRadarChart())
+    return
+  }
   if (!radarChart) radarChart = echarts.init(radarChartRef.value)
   setRadarChart()
 }
@@ -496,8 +502,8 @@ onBeforeUnmount(() => {
     <!-- === Left Panel === -->
     <div class="col-panel">
       <!-- Status Banner -->
-      <div class="status-banner" style="border-color:rgba(52,211,153,0.3);">
-        <div class="status-banner-icon" style="background:rgba(52,211,153,0.15);">
+      <div class="status-banner" style="border-color:rgba(0, 255, 148,0.3);">
+        <div class="status-banner-icon" style="background:rgba(0, 255, 148,0.15);">
           <ShieldCheck class="w-4 h-4" style="color:var(--state-success);" />
         </div>
         <div class="status-banner-text">
@@ -576,17 +582,17 @@ onBeforeUnmount(() => {
         <div class="map-legend">
           <div style="display:flex;align-items:center;gap:4px;">
             <span style="color:var(--av-muted-foreground);">人口密度</span>
-            <span style="display:inline-block;width:48px;height:5px;border-radius:1px;background:linear-gradient(to right,#34D399,#FBBF24,#FB923C,#F87171);"></span>
-            <span style="color:#34D399;">低</span>
-            <span style="color:#F87171;">高</span>
+            <span style="display:inline-block;width:48px;height:5px;border-radius:1px;background:linear-gradient(to right,#00FF94,#FFB800,#FF3366,#FF4444);"></span>
+            <span style="color:#00FF94;">低</span>
+            <span style="color:#FF4444;">高</span>
           </div>
           <div>
-            <span style="color:#34D399;">●</span>医疗机构(426)
-            <span style="color:#FB923C;">━</span>关键瓶颈路段
+            <span style="color:#00FF94;">●</span>医疗机构(426)
+            <span style="color:#FF3366;">━</span>关键瓶颈路段
           </div>
           <div>
             <span style="color:#3A5278;">─</span>路网(58K)
-            <span style="color:#A78BFA;">┄</span>郯庐断裂带
+            <span style="color:#5A6B82;">┄</span>郯庐断裂带
           </div>
         </div>
 
@@ -681,11 +687,11 @@ onBeforeUnmount(() => {
               :y1="debtGauge.cy"
               :x2="debtGauge.needleX"
               :y2="debtGauge.needleY"
-              stroke="#FB923C"
+              stroke="#FF3366"
               stroke-width="1.5"
               stroke-linecap="round"
             />
-            <circle :cx="debtGauge.cx" :cy="debtGauge.cy" r="2" fill="#FB923C" />
+            <circle :cx="debtGauge.cx" :cy="debtGauge.cy" r="2" fill="#FF3366" />
           </svg>
           <div>
             <div style="font-size:18px;font-weight:700;font-family:var(--av-font-mono);" :style="{ color: debtLevel.color }">

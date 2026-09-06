@@ -1,52 +1,68 @@
 /* ============================================================
    城域底线 · 设计令牌 — Design Tokens
-   保留项目变量 + 添加 --av-* 别名映射模板变量
-   Tailwind CSS 4 通过 @theme inline 映射消费
+   战双帕弥什风格 — 深蓝黑 / 青色霓虹 / 切角几何 / 全息辉光
    ============================================================ */
 
-:root {
-  /* --- 背景色阶 --- */
-  --bg: #0A1320;          /* 页面背景 */
-  --bg2: #0F1A2B;         /* 卡片层 */
-  --bg3: #16243C;         /* 内嵌面板 */
+/* ========== FONT FACES (战双科幻字体 · 西文用此，中文回退思源黑) ========== */
+@font-face { font-family: 'Tektur'; src: url('/fonts/Tektur-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Tektur'; src: url('/fonts/Tektur-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Jura'; src: url('/fonts/Jura-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Jura'; src: url('/fonts/Jura-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'GeistMono'; src: url('/fonts/GeistMono-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'GeistMono'; src: url('/fonts/GeistMono-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
 
-  /* --- 文字 --- */
-  --ink: #E6EDF7;         /* 主文字 */
-  --muted: #7E91AC;       /* 次要文字 */
+:root {
+  /* --- 背景色阶（深蓝黑系） --- */
+  --bg: #060912;
+  --bg2: #0B1018;
+  --bg3: #111A2A;
+  --bg4: #182236;
+
+  /* --- 文字（冷白系） --- */
+  --ink: #DCE6F0;
+  --muted: #5A6B82;
+  --muted2: #3A4759;
 
   /* --- 边框/分割线 --- */
-  --border: #1C2B43;
+  --border: #1B2640;
 
-  /* --- 主色 --- */
-  --primary: #00D4FF;     /* 主色/强调 */
-  --primary-fg: #061320;  /* 主色按钮文字 */
-  --primary-dim: rgba(0, 212, 255, 0.12);
-  --primary-border: rgba(0, 212, 255, 0.3);
+  /* --- 主色（青色霓虹系） --- */
+  --primary: #00D9FF;
+  --primary-fg: #060912;
+  --primary-dim: rgba(0, 217, 255, 0.15);
+  --primary-border: rgba(0, 217, 255, 0.5);
+  --primary-glow: rgba(0, 217, 255, 0.5);
 
-  /* --- 语义色 --- */
-  --success: #34D399;
-  --warning: #FBBF24;
-  --error: #F87171;
-  --orange: #FB923C;
-  --purple: #A78BFA;
-  --info: #60A5FA;
+  /* --- 语义色（冷色调，保持区分度） --- */
+  --success: #00FF94;
+  --warning: #FFB800;
+  --error: #FF4444;
+  --orange: #FF3366;
+  --purple: #9D4EDD;
+  --info: #00D9FF;
 
   /* --- 语义色透明背景 --- */
-  --success-dim: rgba(52, 211, 153, 0.12);
-  --warning-dim: rgba(251, 191, 36, 0.12);
-  --error-dim: rgba(248, 113, 113, 0.12);
-  --orange-dim: rgba(251, 146, 60, 0.12);
-  --purple-dim: rgba(167, 139, 250, 0.12);
+  --success-dim: rgba(0, 255, 148, 0.12);
+  --warning-dim: rgba(255, 184, 0, 0.12);
+  --error-dim: rgba(255, 68, 68, 0.12);
+  --orange-dim: rgba(255, 51, 102, 0.12);
+  --purple-dim: rgba(157, 78, 221, 0.12);
 
   /* --- 圆角 --- */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
   --radius-full: 999px;
 
-  /* --- 字体族（系统字体栈，离线可用，无外链） --- */
-  --font-sans: "PingFang SC", "Microsoft YaHei", system-ui, "Segoe UI", sans-serif;
-  --font-mono: "SF Mono", "Cascadia Code", Consolas, "Courier New", monospace;
+  /* --- 切角几何（战双特征 · polygon 多边形） --- */
+  --clip-btn: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  --clip-panel: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  --clip-tag: polygon(0 0, 100% 0, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+
+  /* --- 字体族（混合：西文科幻 + 中文思源黑回退） --- */
+  --font-sans: "Jura", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-serif: "Tektur", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+  --font-mono: "GeistMono", "DM Mono", "SF Mono", "Cascadia Code", Consolas, monospace;
 
   /* --- 间距 --- */
   --space-1: 4px;
@@ -65,13 +81,13 @@
   --text-micro: 10px;
 
   /* ============================================================
-     --av-* 别名：映射模板变量，让模板CSS原样可用
+     --av-* 别名：映射模板变量
      ============================================================ */
   --av-background: var(--bg);
   --av-foreground: var(--ink);
   --av-card: var(--bg2);
   --av-card-foreground: var(--ink);
-  --av-popover: #142440;
+  --av-popover: #0B1018;
   --av-popover-foreground: var(--ink);
   --av-primary: var(--primary);
   --av-primary-foreground: var(--primary-fg);
@@ -101,8 +117,10 @@
   --color-bg: var(--bg);
   --color-bg2: var(--bg2);
   --color-bg3: var(--bg3);
+  --color-bg4: var(--bg4);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-muted2: var(--muted2);
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-fg: var(--primary-fg);
